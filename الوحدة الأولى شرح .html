@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رحلة في عالم المعلومات والوسائط والأخلاقيات الرقمية</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #dbeafe;
+            --secondary: #0d9488;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --danger: #ef4444;
+            --success: #10b981;
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border: #e2e8f0;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Hero Banner */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #2563eb 100%);
+            color: white;
+            padding: 50px 20px 40px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 30px rgba(37, 99, 235, 0.2);
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 900;
+            margin-bottom: 12px;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: #cbd5e1;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-tags {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hero-tag {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        /* Navigation Bar */
+        .nav-wrapper {
+            position: sticky;
+            top: 15px;
+            z-index: 1000;
+            max-width: 1200px;
+            margin: -25px auto 30px;
+            padding: 0 20px;
+        }
+
+        .nav-glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 16px;
+            display: flex;
+            gap: 8px;
+            padding: 8px;
+            box-shadow: var(--shadow);
+            overflow-x: auto;
+        }
+
+        .nav-item {
+            flex: 1;
+            min-width: 160px;
+            text-align: center;
+            padding: 12px 14px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            font-weight: 700;
+            font-size: 0.95rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-item:hover {
+            color: var(--primary);
+            background: #eff6ff;
+        }
+
+        .nav-item.active {
+            background: var(--primary);
+            color: white !important;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.35);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 80px;
+        }
+
+        .content-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 35px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            scroll-margin-top: 100px;
+        }
+
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 1.7rem;
+            color: var(--text-main);
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 25px;
+        }
+
+        /* كتاب الوزارة المدرسي */
+        .book-def-box {
+            background: #f8fafc;
+            border-right: 5px solid var(--primary);
+            border-radius: 12px;
+            padding: 18px 22px;
+            margin-bottom: 15px;
+        }
+
+        .book-def-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .book-exact-text {
+            font-size: 1.05rem;
+            color: #0f172a;
+            font-weight: 700;
+            line-height: 1.9;
+        }
+
+        .explanation-bubble {
+            background: #eff6ff;
+            border-radius: 10px;
+            padding: 12px 18px;
+            margin-top: 10px;
+            font-size: 0.95rem;
+            color: #1e40af;
+            border: 1px dashed #bfdbfe;
+        }
+
+        /* Pipeline Visualizer */
+        .pipeline-wrapper {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 18px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .pipeline-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .scenario-btn {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 10px 18px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            color: var(--text-muted);
+            transition: all 0.25s;
+        }
+
+        .scenario-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .scenario-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+        }
+
+        .pipeline-cards {
+            display: grid;
+            grid-template-columns: 1fr 40px 1fr 40px 1fr;
+            align-items: center;
+            gap: 10px;
+        }
+
+        @media (max-width: 900px) {
+            .pipeline-cards {
+                grid-template-columns: 1fr;
+            }
+            .pipeline-arrow {
+                display: none;
+            }
+        }
+
+        .pipeline-card {
+            background: white;
+            border-radius: 16px;
+            padding: 22px;
+            border: 2px solid var(--border);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+            transition: all 0.3s ease;
+        }
+
+        .pipeline-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .pipeline-card.c-data { border-top: 5px solid var(--accent); }
+        .pipeline-card.c-info { border-top: 5px solid var(--primary); }
+        .pipeline-card.c-know { border-top: 5px solid var(--success); }
+
+        .pipeline-card h4 {
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pipeline-arrow {
+            font-size: 2rem;
+            color: #94a3b8;
+            text-align: center;
+            animation: pulseArrow 1.5s infinite;
+        }
+
+        .concept-chip {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 800;
+        }
+
+        .c-data .concept-chip { background: #fef3c7; color: #b45309; }
+        .c-info .concept-chip { background: #dbeafe; color: #1d4ed8; }
+        .c-know .concept-chip { background: #d1fae5; color: #047857; }
+
+        /* Tables */
+        .rich-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 20px 0;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .rich-table th {
+            background: #f1f5f9;
+            color: var(--text-main);
+            padding: 16px 20px;
+            text-align: right;
+            font-weight: 800;
+            font-size: 1rem;
+        }
+
+        .rich-table td {
+            padding: 16px 20px;
+            border-top: 1px solid var(--border);
+            background: white;
+            font-size: 0.95rem;
+        }
+
+        .rich-table tr:hover td {
+            background: #f8fafc;
+        }
+
+        /* Flip Cards */
+        .cards-3d-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .animated-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .animated-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .animated-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            border-color: #cbd5e1;
+        }
+
+        .card-icon-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .circle-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: #eff6ff;
+            color: var(--primary);
+        }
+
+        .expandable-hint {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 15px;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .hidden-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background: #f8fafc;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .animated-card.active .hidden-details {
+            max-height: 200px;
+            padding: 14px;
+            border: 1px dashed var(--border);
+        }
+
+        /* Tabs Container */
+        .tabs-container {
+            margin: 25px 0;
+        }
+
+        .tab-buttons {
+            display: flex;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 20px;
+            gap: 10px;
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            border: none;
+            background: transparent;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+            font-size: 1rem;
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-pane {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        /* Sorter Game */
+        .sorter-game {
+            background: #f8fafc;
+            border: 2px dashed #cbd5e1;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .sorter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .sorter-score {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--primary);
+            background: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .current-token {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #0f172a;
+            border: 2px solid var(--primary);
+            display: inline-block;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 20px rgba(37,99,235,0.1);
+            animation: bounceIn 0.5s ease;
+        }
+
+        .target-bins {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .target-bins {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .bin-btn {
+            background: white;
+            border: 2px solid var(--border);
+            padding: 18px 12px;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .bin-btn:hover {
+            border-color: var(--primary);
+            background: #eff6ff;
+            transform: translateY(-3px);
+        }
+
+        .bin-btn h5 {
+            font-size: 1.05rem;
+            color: var(--text-main);
+            margin-bottom: 5px;
+        }
+
+        .bin-btn span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: block;
+        }
+
+        .game-status-msg {
+            margin-top: 15px;
+            min-height: 28px;
+            font-weight: 800;
+            font-size: 1.05rem;
+        }
+
+        /* Danger Grid */
+        .danger-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .danger-card {
+            background: white;
+            border: 1px solid #fee2e2;
+            border-radius: 16px;
+            padding: 22px;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .danger-card:hover {
+            border-color: var(--danger);
+            box-shadow: 0 10px 25px -5px rgba(239, 68, 68, 0.15);
+        }
+
+        .danger-badge {
+            background: #fee2e2;
+            color: #b91c1c;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .danger-card h4 {
+            color: #991b1b;
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+        }
+
+        /* Quiz App */
+        .quiz-container {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 30px;
+        }
+
+        .quiz-item-box {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 22px;
+            margin-bottom: 20px;
+        }
+
+        .q-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 15px;
+        }
+
+        .q-choices {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .choice-btn {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            padding: 14px 18px;
+            border-radius: 10px;
+            text-align: right;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .choice-btn:hover {
+            background: #e2e8f0;
+            border-color: #cbd5e1;
+        }
+
+        .choice-btn.correct-choice {
+            background: #dcfce7 !important;
+            border-color: #22c55e !important;
+            color: #15803d !important;
+            font-weight: 800;
+        }
+
+        .choice-btn.wrong-choice {
+            background: #fee2e2 !important;
+            border-color: #ef4444 !important;
+            color: #b91c1c !important;
+        }
+
+        .choice-feedback {
+            display: none;
+            margin-top: 12px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            background: #eff6ff;
+            border-right: 4px solid var(--primary);
+            color: #1e40af;
+        }
+
+        /* Keyframes */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulseArrow {
+            0%, 100% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.2); opacity: 1; color: var(--primary); }
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.85); opacity: 0; }
+            70% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Header -->
+    <header class="hero">
+        <h1>الوحدة الأولى: ما هي المعلومات؟</h1>
+        <p>رحلة تفاعلية لاستكشاف البيانات والمعلومات والمعرفة، وأسرار الوسائط، وقواعد السلوك الأخلاقي في العالم الرقمي</p>
+        <div class="hero-tags">
+            <span class="hero-tag">الصف الأول الثانوي</span>
+            <span class="hero-tag">الدرس 1: المعلومات والوسائط</span>
+            <span class="hero-tag">الدرس 2: أخلاقيات المعلومات</span>
+            <span class="hero-tag">منهج 2025 - 2026</span>
+        </div>
+    </header>
+
+    <!-- Navigation Bar with dynamic scroll-spy targets -->
+    <div class="nav-wrapper">
+        <nav class="nav-glass">
+            <a href="#tab1" class="nav-item active" data-target="tab1">1. هرم المعرفة</a>
+            <a href="#tab2" class="nav-item" data-target="tab2">2. خصائص ومصادر المعلومات</a>
+            <a href="#tab3" class="nav-item" data-target="tab3">3. الوسائط والثقافة الإعلامية</a>
+            <a href="#tab4" class="nav-item" data-target="tab4">4. أخلاقيات ومخاطر الفضاء الرقمي</a>
+            <a href="#tab5" class="nav-item" data-target="tab5">5. بنك التحدي التفاعلي</a>
+        </nav>
+    </div>
+
+    <div class="container">
+
+        <!-- القسم الأول: هرم المعرفة -->
+        <section id="tab1" class="content-card">
+            <div class="section-badge">المحور الأول</div>
+            <h2 class="section-title">هرم البيانات والمعلومات والمعرفة</h2>
+            <p class="section-desc">المفاهيم والتعريفات الأساسية طبقاً لكتاب الوزارة المدرسي، مع شروحات وأمثلة توضيحية لتعميق الفهم:</p>
+
+            <!-- نص تعريف البيانات من الكتاب -->
+            <div class="book-def-box" style="border-right-color: var(--accent);">
+                <div class="book-def-title">
+                    <span>📌 (1) البيانات (Data):</span>
+                </div>
+                <div class="book-exact-text">
+                    "هي حقائق تمثل باستخدام الأرقام أو الأحرف أو الرموز."
+                </div>
+                <div class="explanation-bubble">
+                    💡 <strong>توضيح وأمثلة إضافية:</strong> البيانات هي المادة الخام الأولية التي لم يتم تفسيرها أو تحليلها بعد؛ مثل أرقام درجات حرارة الأسبوع المسجلة بدون عنوان: (30 ، 35 ، 28)، أو درجات طلاب في مادة: (95 ، 88 ، 76)، أو أسماء مجردة: (أحمد، سارة، محمد). هذه الأرقام وحدها لا تمكننا من فهم موقف كامل أو اتخاذ قرار.
+                </div>
+            </div>
+
+            <!-- نص تعريف المعلومات من الكتاب -->
+            <div class="book-def-box" style="border-right-color: var(--primary);">
+                <div class="book-def-title">
+                    <span>📌 (2) المعلومات (Information):</span>
+                </div>
+                <div class="book-exact-text">
+                    "هي معنى أو قيمة للمتلقي وتستخدم لاتخاذ القرار. وعلى عكس الأشياء المادية، فالمعلومات ليس لها شكل أو كيان ثابت."
+                </div>
+                <div class="explanation-bubble">
+                    💡 <strong>توضيح وأمثلة إضافية:</strong> عندما نقوم بتنظيم وتحليل وتفسير تلك البيانات الخام، فإنها تكتسب معنى وقيمة وتصبح معلومة يستفاد منها؛ مثل تحليل الأرقام السابقة والقول بأن: "متوسط درجات الحرارة هذا الأسبوع يبلغ 28 درجة مئوية"، أو "متوسط درجات طلاب الفصل هو 80%". هنا أصبحت واضحة وتساعد في اتخاذ قرار فوري كارتداء ملابس صيفية أو مراجعة مادة معينة.
+                </div>
+            </div>
+
+            <!-- نص تعريف المعرفة من الكتاب -->
+            <div class="book-def-box" style="border-right-color: var(--success);">
+                <div class="book-def-title">
+                    <span>📌 (3) المعرفة (Knowledge):</span>
+                </div>
+                <div class="book-exact-text">
+                    "هي المعلومات التي تم تحليلها وتنظيمها بشكل منهجي للمساعدة في حل المشكلات."
+                </div>
+                <div class="explanation-bubble">
+                    💡 <strong>توضيح وأمثلة إضافية:</strong> المعرفة هي المرحلة الأرقى والأشمل، حيث يتم تجميع المعلومات المنظمة وتطبيقها عملياً للتعامل مع مشكلة واقعية؛ مثل: معرفة أن "ارتفاع درجات الحرارة المستمر سنوياً سببه الانبعاثات الحرارية، ولذلك يجب خفض التلوث والاعتماد على الطاقة النظيفة لمنع أزمة المناخ". إذن المسار دائماً: (بيانات ➔ معلومات ➔ معرفة).
+                </div>
+            </div>
+
+            <!-- محاكي التحول التفاعلي -->
+            <div class="pipeline-wrapper">
+                <h3 style="font-size:1.2rem; margin-bottom:12px; color:var(--text-main);">🔄 محاكي دورة المعالجة الحية (اختر السيناريو وشاهد التدرج بنفسك):</h3>
+                <div class="pipeline-controls">
+                    <button class="scenario-btn active" onclick="switchPipeline(0, this)">🏥 الصحة والضغط</button>
+                    <button class="scenario-btn" onclick="switchPipeline(1, this)">🌤️ تقلبات الطقس</button>
+                    <button class="scenario-btn" onclick="switchPipeline(2, this)">🎓 نتائج الاختبارات</button>
+                    <button class="scenario-btn" onclick="switchPipeline(3, this)">📶 باقة الإنترنت</button>
+                </div>
+
+                <div class="pipeline-cards">
+                    <div class="pipeline-card c-data">
+                        <h4>البيانات <span class="concept-chip">Data</span></h4>
+                        <p style="font-weight:700; color:var(--accent); font-size:1.1rem; margin-bottom:6px;" id="dispDataVal">120 / 80</p>
+                        <p style="font-size:0.9rem; color:var(--text-muted);" id="dispDataDesc">حقائق تمثل بأرقام أو أحرف أو رموز خام بدون تفسير.</p>
+                    </div>
+
+                    <div class="pipeline-arrow">←</div>
+
+                    <div class="pipeline-card c-info">
+                        <h4>المعلومات <span class="concept-chip">Information</span></h4>
+                        <p style="font-weight:700; color:var(--primary); font-size:1.05rem; margin-bottom:6px;" id="dispInfoVal">قراءة ضغط دم الطالب طبيعية</p>
+                        <p style="font-size:0.9rem; color:var(--text-muted);" id="dispInfoDesc">معنى وقيمة تفيد المتلقي وتستخدم لاتخاذ القرار المباشر.</p>
+                    </div>
+
+                    <div class="pipeline-arrow">←</div>
+
+                    <div class="pipeline-card c-know">
+                        <h4>المعرفة <span class="concept-chip">Knowledge</span></h4>
+                        <p style="font-weight:700; color:var(--success); font-size:1.05rem; margin-bottom:6px;" id="dispKnowVal">المحافظة على الرياضة والنوم</p>
+                        <p style="font-size:0.9rem; color:var(--text-muted);" id="dispKnowDesc">تحليل وتنظيم منهجي يساعد بشكل فعال في حل المشكلات.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- جدول المقارنة المتكامل -->
+            <h3 style="margin-top:30px; margin-bottom:15px;">جدول ملخص الفروق طبقاً لكتاب الوزارة:</h3>
+            <table class="rich-table">
+                <thead>
+                    <tr>
+                        <th>المفهوم</th>
+                        <th>التعريف المعتمد في كتاب الوزارة</th>
+                        <th>الدلالة واستخدام اتخاذ القرار</th>
+                        <th>مثال صفي توضيحي</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>البيانات (Data)</strong></td>
+                        <td>حقائق تمثل باستخدام الأرقام أو الأحرف أو الرموز.</td>
+                        <td>خام وغير منظمة، وليس لها معنى واضح، ولا تساعد على اتخاذ القرار مباشرة.</td>
+                        <td>70 ، 80 ، 90</td>
+                    </tr>
+                    <tr>
+                        <td><strong>المعلومات (Information)</strong></td>
+                        <td>معنى أو قيمة للمتلقي وتستخدم لاتخاذ القرار، وليس لها شكل أو كيان ثابت.</td>
+                        <td>تم تنظيمها وتحليلها، ولها معنى، وتساعد مباشرة في اتخاذ القرار.</td>
+                        <td>"متوسط درجات الطالب 80%"</td>
+                    </tr>
+                    <tr>
+                        <td><strong>المعرفة (Knowledge)</strong></td>
+                        <td>المعلومات التي تم تحليلها وتنظيمها بشكل منهجي للمساعدة في حل المشكلات.</td>
+                        <td>تراكم منهجي للخبرات والمعلومات المترابطة يقود لإيجاد حلول جذرية للمشكلات.</td>
+                        <td>"تكثيف المراجعة للطلاب في أجزاء معينة لتفادي هبوط المستوى"</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- القسم الثاني: خصائص ومصادر المعلومات -->
+        <section id="tab2" class="content-card">
+            <div class="section-badge">المحور الثاني</div>
+            <h2 class="section-title">خصائص المعلومات ومصادرها الحيوية</h2>
+            <p class="section-desc">على عكس الأشياء المادية، المعلومات ليس لها شكل أو كيان ثابت، وتتميز بالخصائص الآتية بنص الكتاب:</p>
+
+            <div class="cards-3d-grid">
+                <div class="animated-card" onclick="toggleCard(this)">
+                    <div class="card-icon-title">
+                        <div class="circle-icon">⏳</div>
+                        <div>
+                            <h3 style="font-size:1.15rem; color:var(--text-main);">[1] الاستمرارية</h3>
+                            <span style="font-size:0.8rem; color:var(--text-muted);">Persistence</span>
+                        </div>
+                    </div>
+                    <div class="book-exact-text" style="font-size:0.95rem; margin-bottom:6px;">
+                        "بمجرد إنشاء المعلومات، لا يمكن محوها بالكامل."
+                    </div>
+                    <div class="expandable-hint">
+                        <span>👈 اضغط للاطلاع على التفاصيل والأمثلة</span>
+                    </div>
+                    <div class="hidden-details">
+                        <strong>توضيح ومثال:</strong> عندما ينشر شخص صورة أو منشوراً على الإنترنت، حتى إذا قام بحذفه فوراً، فإنه قد يكون تم نسخه أو حفظه أو إعادة نشره بواسطة آخرين، لذلك تظل المعلومات مستمرة ولا تتلاشى بسهولة.
+                    </div>
+                </div>
+
+                <div class="animated-card" onclick="toggleCard(this)">
+                    <div class="card-icon-title">
+                        <div class="circle-icon" style="background:#f3e8ff; color:var(--secondary);">📑</div>
+                        <div>
+                            <h3 style="font-size:1.15rem; color:var(--text-main);">[2] قابلية التكرار</h3>
+                            <span style="font-size:0.8rem; color:var(--text-muted);">Reproducibility</span>
+                        </div>
+                    </div>
+                    <div class="book-exact-text" style="font-size:0.95rem; margin-bottom:6px;">
+                        "إمكانية نسخ المعلومات بسهولة بكميات كبيرة."
+                    </div>
+                    <div class="expandable-hint">
+                        <span>👈 اضغط للاطلاع على التفاصيل والأمثلة</span>
+                    </div>
+                    <div class="hidden-details">
+                        <strong>توضيح ومثال:</strong> ملف PDF أو مقطع صوتي رقمي يمكن إرساله وتوزيعه على 10 أشخاص أو 100 شخص أو مليون شخص دون أن تقل جودته أو تنقص تفاصيله على عكس النسخ الورقية التقليدية.
+                    </div>
+                </div>
+
+                <div class="animated-card" onclick="toggleCard(this)">
+                    <div class="card-icon-title">
+                        <div class="circle-icon" style="background:#fef3c7; color:var(--accent);">🚀</div>
+                        <div>
+                            <h3 style="font-size:1.15rem; color:var(--text-main);">[3] الانتشار</h3>
+                            <span style="font-size:0.8rem; color:var(--text-muted);">Propagation</span>
+                        </div>
+                    </div>
+                    <div class="book-exact-text" style="font-size:0.95rem; margin-bottom:6px;">
+                        "من السهل توصيل المعلومات ونشرها. يمكن أن تنتشر المعلومات بسهولة عبر وسائل الإعلام الجماهيرية مثل الصحف والتلفزيون، وكذلك الإنترنت."
+                    </div>
+                    <div class="expandable-hint">
+                        <span>👈 اضغط للاطلاع على التفاصيل والأمثلة</span>
+                    </div>
+                    <div class="hidden-details">
+                        <strong>توضيح ومثال:</strong> خبر أو منشور عاجل على الإنترنت يمكن أن يتناقله الناس في دقائق معدودة ليصل إلى كافة أنحاء العالم بسرعة هائلة تفوق أي وسيلة مادية قديمة.
+                    </div>
+                </div>
+            </div>
+
+            <!-- تبويبات تفاعلية للمصادر المعتمدة -->
+            <div class="tabs-container" style="margin-top:35px;">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" onclick="openTab('tabPrimary', this)">المعلومات الأولية (Primary Information)</button>
+                    <button class="tab-btn" onclick="openTab('tabSecondary', this)">المعلومات الثانوية (Secondary Information)</button>
+                    <button class="tab-btn" onclick="openTab('tabCross', this)">التحقق المتبادل (Cross-checking)</button>
+                </div>
+
+                <div id="tabPrimary" class="tab-pane active">
+                    <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:12px; padding:20px;">
+                        <h4 style="color:#15803d; margin-bottom:8px;">تعريف الكتاب لنص [1] المعلومات الأولية:</h4>
+                        <div class="book-exact-text" style="color:#14532d; margin-bottom:10px;">
+                            "هي المعلومات التي يتم الحصول عليها من خلال التجربة الشخصية المباشرة أو عن طريق البحث والتجارب."
+                        </div>
+                        <ul style="padding-right:20px; color:#14532d; font-size:0.95rem; line-height:1.9;">
+                            <li><strong>أمثلة بنص الكتاب:</strong> تقارير التجارب، نتائج الاستطلاعات، جداول نتائج الاستبيانات، إلخ.</li>
+                            <li><strong>مثال توضيحي إضافي:</strong> قيامك شخصياً بسؤال 100 طالب في مدرستك عن عدد ساعات المذاكرة وتسجيل إجاباتهم بيدك.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="tabSecondary" class="tab-pane">
+                    <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:12px; padding:20px;">
+                        <h4 style="color:#1e40af; margin-bottom:8px;">تعريف الكتاب لنص [2] المعلومات الثانوية:</h4>
+                        <div class="book-exact-text" style="color:#172554; margin-bottom:10px;">
+                            "هي المعلومات التي لا تحصل عليها بنفسك بشكل مباشر، بل من خلال طرف ثالث."
+                        </div>
+                        <ul style="padding-right:20px; color:#172554; font-size:0.95rem; line-height:1.9;">
+                            <li><strong>أمثلة بنص الكتاب:</strong> الكتب، الصحف، التلفزيون، إلخ.</li>
+                            <li><strong>مثال توضيحي إضافي:</strong> قراءة تقرير صادر عن وزارة التربية والتعليم في جريدة أو موقع إخباري؛ فهذه معلومات ثانوية لأنها وصلت إليك عبر ناقل وسيط.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="tabCross" class="tab-pane">
+                    <div style="background:#fffbeb; border:1px solid #fde68a; border-radius:12px; padding:20px;">
+                        <h4 style="color:#92400e; margin-bottom:8px;">مفهوم التحقق المتبادل (Cross-checking) في الكتاب:</h4>
+                        <div class="book-exact-text" style="color:#78350f; margin-bottom:10px;">
+                            "يمكن أن تختلف المعلومات الثانوية في بعض الأحيان عن المعلومات الأصلية، أو تحتوي على تفسيرات مضافة إليها. لذلك، من الضروري مقارنة المعلومات التي تحصل عليها من مصادر متعددة مع معلومات أخرى لتحديد مدى دقتها وموثوقيتها. هذه العملية تسمى بالتحقق المتبادل."
+                        </div>
+                        <p style="font-size:0.95rem; color:#78350f;">🔍 <strong>مثال توضيحي إضافي:</strong> إذا وجدت خبراً في صفحة غير رسمية يقول: "تعطيل الدراسة غداً"، فلا تعتمد على هذا المصدر الفردي، بل اذهب وتأكد من الصفحة الرسمية للوزارة أو القنوات المعتمدة للمقارنة والتأكد قبل التصديق.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- القسم الثالث: معمل فرز الوسائط والثقافة الإعلامية -->
+        <section id="tab3" class="content-card">
+            <div class="section-badge">المحور الثالث</div>
+            <h2 class="section-title">ب. الوسائط (Media) والثقافة الإعلامية</h2>
+            
+            <div class="book-def-box" style="margin-bottom:20px;">
+                <div class="book-def-title">📌 تعريف الوسائط (Media) بنص الكتاب:</div>
+                <div class="book-exact-text">
+                    "هي وسائل لنقل المعلومات إلى عدد من الأفراد."
+                </div>
+            </div>
+
+            <!-- جدول أنواع الوسائط بنص الكتاب الحرفي -->
+            <h3 style="margin-bottom:12px;">جدول أنواع الوسائط من كتاب الوزارة:</h3>
+            <table class="rich-table">
+                <thead>
+                    <tr>
+                        <th>النوع والاسم بنص الكتاب</th>
+                        <th>المحتوى والوظيفة بنص الكتاب</th>
+                        <th>أمثلة الكتاب المدرسي</th>
+                        <th>أمثلة إضافية للمناقشة</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>وسائط الإعلام التعبيرية<br>(Expression media)</strong></td>
+                        <td>الوسائط المستخدمة كوسيلة للتعبير عن المعلومات.</td>
+                        <td>النص، الصور، الصوت، الفيديو.</td>
+                        <td>كتابة مقال باليد، تسجيل رسالة صوتية، التقاط صورة فوتوغرافية.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>وسائط النقل / الإرسال<br>(Propagation / Transmission media)</strong></td>
+                        <td>الوسائط المستخدمة كوسيط لنقل وتبادل المعلومات.</td>
+                        <td>التلفزيون، الراديو، الصحف، الكتب، الهاتف، الإنترنت.</td>
+                        <td>كابلات الألياف الضوئية، شبكات الواي فاي (Wi-Fi)، موجات الأثير.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>وسائط التسجيل<br>(Recording media)</strong></td>
+                        <td>الوسائط المستخدمة لتسجيل وتخزين المعلومات.</td>
+                        <td>الورق، محركات أقراص USB، أقراص DVD، التخزين السحابي.</td>
+                        <td>الأقراص الصلبة (Hard Drives)، بطاقات الذاكرة (SD Cards).</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- لعبة تصنيف الوسائط -->
+            <div class="sorter-game">
+                <div class="sorter-header">
+                    <h3 style="font-size:1.2rem; color:var(--text-main);">🎯 نشاط صفي تفاعلي: صنف هذا الوسيط فوراً</h3>
+                    <div class="sorter-score" id="gameScoreBoard">النقاط: 0 / 6</div>
+                </div>
+
+                <p style="color:var(--text-muted); font-size:0.95rem; margin-bottom:15px;">انقر على الحاوية المناسبة لنوع الوسيط الظاهر أمامك على الشاشة:</p>
+                <div class="current-token" id="sorterTokenText">جاري تشغيل المعمل...</div>
+
+                <div class="target-bins">
+                    <button class="bin-btn" onclick="checkSort('تعبير')">
+                        <div style="font-size:1.8rem; margin-bottom:5px;">🎨</div>
+                        <h5>وسائط الإعلام التعبيرية</h5>
+                        <span>(نص، صور، صوت، فيديو)</span>
+                    </button>
+                    <button class="bin-btn" onclick="checkSort('نقل')">
+                        <div style="font-size:1.8rem; margin-bottom:5px;">📡</div>
+                        <h5>وسائط النقل / الإرسال</h5>
+                        <span>(تلفزيون، راديو، هاتف، إنترنت، صحف، كتب)</span>
+                    </button>
+                    <button class="bin-btn" onclick="checkSort('تسجيل')">
+                        <div style="font-size:1.8rem; margin-bottom:5px;">💾</div>
+                        <h5>وسائط التسجيل</h5>
+                        <span>(ورق، محركات USB، أقراص DVD، تخزين سحابي)</span>
+                    </button>
+                </div>
+
+                <div class="game-status-msg" id="gameStatusMsg"></div>
+            </div>
+
+            <!-- تعريف الثقافة الإعلامية بنص الكتاب -->
+            <div class="book-def-box" style="margin-top:25px; border-right-color: var(--secondary); background: #f0fdfa;">
+                <div class="book-def-title" style="color: var(--secondary);">
+                    <span>📌 (3) الثقافة الإعلامية (Media literacy) بنص الكتاب:</span>
+                </div>
+                <div class="book-exact-text" style="color: #134e4a;">
+                    "القدرة على تفسير المعلومات التي تم الحصول عليها من الوسائط بدقة."
+                </div>
+                <div class="explanation-bubble" style="background: white; border-color: #99f6e4; color: #115e59;">
+                    💡 <strong>توضيح وأمثلة إضافية:</strong> الشخص الذي يتمتع بثقافة إعلامية لا يصدق كل ما يراه في وسائل التواصل الاجتماعي أو التلفاز؛ بل يمتلك الوعي النقدي ليسأل دائماً: من صاحب الرسالة؟ وما غايته؟ وهل المصدر موثوق وله مصداقية؟ وهل توجد أدلة وحقائق مؤكدة؟
+                </div>
+            </div>
+        </section>
+
+        <!-- القسم الرابع: أخلاقيات ومخاطر الفضاء الرقمي -->
+        <section id="tab4" class="content-card">
+            <div class="section-badge" style="background:#fee2e2; color:#b91c1c;">المحور الرابع</div>
+            <h2 class="section-title">الدرس الثاني: أخلاقيات المعلومات والمشاكل الرقمية</h2>
+            
+            <!-- تعريف أخلاقيات المعلومات بنص الكتاب -->
+            <div class="book-def-box" style="border-right-color: var(--danger);">
+                <div class="book-def-title" style="color: var(--danger);">
+                    <span>📌 (1) أخلاقيات المعلومات (Information Ethics) بنص الكتاب:</span>
+                </div>
+                <div class="book-exact-text">
+                    "المفاهيم والتوجهات الأساسية اللازمة للقيام بأنشطة مناسبة في مجتمع المعلومات. هذا بغض النظر عن وجود أو عدم وجود قوانين (laws)."
+                </div>
+                <div class="explanation-bubble" style="background:#fff5f5; border-color:#fecaca; color:#991b1b;">
+                    💡 <strong>توضيح ومثال إضافي:</strong> حتى لو لم ينص قانون صريح على منع سلوك ما، فإن الضمير الأخلاقي والوعي الرقمي يفرضان عليك عدم إيذاء مشاعر الآخرين أو استغلال ثغرات للتجسس عليهم؛ فالأخلاق هي الرقيب الذاتي الأول داخل الفضاء الرقمي.
+                </div>
+            </div>
+
+            <!-- نقاط يجب مراعاتها عند نشر المعلومات بنص الكتاب -->
+            <h3 style="margin-top:20px; margin-bottom:12px;">نقاط يجب مراعاتها عند نشر المعلومات (بنص كتاب الوزارة):</h3>
+            <div style="background:white; border:2px solid var(--border); border-radius:16px; padding:20px; margin-bottom:25px;">
+                <ul style="padding-right:20px; line-height:2.2; font-size:1rem; color:var(--text-main);">
+                    <li><strong>خصائص المعلومات على الإنترنت:</strong> المعلومات تنتشر بسهولة وبمجرد انتشارها، فإنها لا تختفي بسهولة.</li>
+                    <li>لا يجوز لك مشاركة الصور أو مقاطع الفيديو التي يمتلكها الآخرون دون الحصول على إذن.</li>
+                    <li>لا يجب عليك تسريب المعلومات الشخصية (personal information) لشخص آخر على الإنترنت.</li>
+                    <li>لا يجوز لك مشاركة الصور أو مقاطع الفيديو التي يحتفظ الآخرون بـ حقوق المؤلف (copyright) عليها علناً دون إذن.</li>
+                    <li>لا يجب عليك انتهاك خصوصية الآخرين.</li>
+                    <li>لا يجب عليك نشر تعليقات تشهير بالآخرين أو الانخراط في التنمر الإلكتروني (cyber bullying).</li>
+                </ul>
+            </div>
+
+            <!-- تعريف العلامة الجغرافية والمعلومات المضللة بنص الكتاب -->
+            <div class="danger-grid">
+                <div class="danger-card">
+                    <span class="danger-badge">المصطلح المنهجي [3]</span>
+                    <h4>العلامة الجغرافية (Geotagging) 📍</h4>
+                    <div class="book-exact-text" style="font-size:0.95rem; margin-bottom:8px;">
+                        "معلومات تتضمن خطوط الطول والعرض المضمنة في الصور ومقاطع الفيديو التي تم التقاطها بالهواتف الذكية والهواتف المحمولة. هناك خطر التعرض للتحديد والكشف عن موقعك، مثل تحديد موقع منزلك بناءً على الموقع الذي تم التقاط الصورة فيه."
+                    </div>
+                    <p style="font-size:0.85rem; color:#b91c1c; font-weight:700;">
+                        ⚠️ مثال توضيحي إضافي: التقاطك صورة بغرفتك ومشاركتها مع تفعيل خاصية الموقع الجغرافي تمكن الغرباء من معرفة الشارع ورقم المبنى الذي تسكنه!
+                    </p>
+                </div>
+
+                <div class="danger-card">
+                    <span class="danger-badge">المصطلح المنهجي [4]</span>
+                    <h4>المعلومات المضللة والشائعات 🛑</h4>
+                    <div class="book-exact-text" style="font-size:0.95rem; margin-bottom:8px;">
+                        "المعلومات المضللة والشائعات (Disinformation and rumors): معلومات كاذبة يتم نشرها عمداً أو شائعات لا أساس لها."
+                    </div>
+                    <p style="font-size:0.85rem; color:#b91c1c; font-weight:700;">
+                        ⚠️ مثال توضيحي إضافي: قيام شخص بفبركة صورة لقرار وزاري مزيف ونشره لإرباك الطلاب وتحقيق مشاهدات عالية.
+                    </p>
+                </div>
+            </div>
+
+            <!-- المشاكل التي تحدث مع الهواتف الذكية ووسائل التواصل بنص الكتاب -->
+            <h3 style="margin-top:30px; margin-bottom:15px;">المشاكل التي تحدث مع الهواتف الذكية ووسائل التواصل الاجتماعي (بنص الكتاب):</h3>
+            
+            <div class="book-def-box" style="margin-bottom:15px; border-right-color:#8b5cf6;">
+                <div class="book-def-title" style="color:#7c3aed;">📌 وسائل التواصل الاجتماعي (Social media):</div>
+                <div class="book-exact-text">
+                    "خدمات توفر منصات حيث يمكن للأفراد التواصل مع بعضهم البعض على الإنترنت."
+                </div>
+            </div>
+
+            <table class="rich-table">
+                <thead>
+                    <tr>
+                        <th>المشكلة بنص كتاب الوزارة</th>
+                        <th>التعريف الدقيق في كتاب الوزارة</th>
+                        <th>توضيح ومثال إضافي</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>[1] إدمان الإنترنت<br>(Internet addiction)</strong></td>
+                        <td>"حالة يصبح فيها الشخص منغمساً بشكل مفرط في الإنترنت إلى درجة تعطيل الحياة اليومية."</td>
+                        <td>قضاء 10 ساعات متواصلة في الألعاب والتصفح وإهمال المذاكرة ومواعيد النوم والصحة.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>[2] استخدام الهاتف الذكي أثناء المشي<br>(Using smartphone while walking)</strong></td>
+                        <td>"فعل استخدام الهاتف الذكي أثناء المشي."</td>
+                        <td>النظر في شاشة الهاتف أثناء عبور الشارع مما يعرض الفرد لحوادث السير والاصطدام.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>[3] الجريمة الإلكترونية<br>(Cybercrime)</strong></td>
+                        <td>"إساءة استخدام أجهزة الكمبيوتر والشبكات في الأنشطة الإجرامية."</td>
+                        <td>اختراق حسابات البنوك، الابتزاز الرقمي، وسرقة الخوادم والملفات المحمية.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>[4] انتحال الشخصية<br>(Identity theft)</strong></td>
+                        <td>"قيام شخص آخر بانتحال شخصية فرد أو مؤسسة لسرقة هويات أو كلمات مرور."</td>
+                        <td>إنشاء حساب وهمي يحمل اسمك وصورتك لطلب مبالغ مالية عاجلة من أقاربك.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>[5] تسريب المعلومات الشخصية<br>(Leakage of personal info)</strong></td>
+                        <td>"عندما يتم الكشف عن المعلومات الشخصية التي يجب أن تظل سرية لطرف ثالث."</td>
+                        <td>نشر أرقام بطاقات الهوية، سجلات الدرجات، أو عناوين السكن دون موافقة أصحابها.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- القسم الخامس: بنك التحدي والاختبار الصفي -->
+        <section id="tab5" class="content-card">
+            <div class="section-badge" style="background:#d1fae5; color:#065f46;">المحور الخامس</div>
+            <h2 class="section-title">بنك التحدي الفوري (أسئلة الكتاب وتدريباته التفاعلية)</h2>
+            <p class="section-desc">مجموعة من الأسئلة المتطابقة حرفياً مع تدريبات وتمارين كتاب الوزارة؛ انقر على الإجابة لتظهر الإجابة النموذجية وشرحها فوراً:</p>
+
+            <div class="quiz-container" id="quizContainer">
+                <!-- سيتم بناء الأسئلة ديناميكياً بواسطة JavaScript -->
+            </div>
+
+            <div style="text-align:center; margin-top:25px;">
+                <button class="scenario-btn active" style="padding:12px 30px; font-size:1.05rem;" onclick="reloadQuiz()">
+                    🔄 إعادة تعيين الاختبار لاختبار طلاب آخرين
+                </button>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // إعداد ميزة مراقبة التمرير لتحديد العنوان النشط تلقائياً (Scrollspy)
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section.content-card');
+            const navLinks = document.querySelectorAll('.nav-glass .nav-item');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '-80px 0px -50% 0px',
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const currentId = entry.target.getAttribute('id');
+                        navLinks.forEach(link => {
+                            if (link.getAttribute('data-target') === currentId) {
+                                link.classList.add('active');
+                            } else {
+                                link.classList.remove('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(sec => observer.observe(sec));
+        });
+
+        const pipelineData = [
+            {
+                data: "120 / 80",
+                dataDesc: "حقائق تمثل باستخدام الأرقام، خام بدون سياق واضح.",
+                info: "قراءة ضغط دم الطالب طبيعية ومثالية",
+                infoDesc: "معنى وقيمة للمتلقي وتستخدم لاتخاذ القرار المناسب.",
+                know: "المحافظة على التغذية المتوازنة وممارسة الرياضة",
+                knowDesc: "معلومات تم تحليلها وتنظيمها منهجياً للمساعدة في حل المشكلات."
+            },
+            {
+                data: "25 - 30 - 28",
+                dataDesc: "قيم درجات حرارة مجردة تمثل بيانات أولية قبل التحليل.",
+                info: "متوسط درجة الحرارة هذا الأسبوع 28 درجة",
+                infoDesc: "بيانات منظمة لها معنى واضح وتساعد في اتخاذ القرار.",
+                know: "ارتفاع درجات الحرارة يوجب تقليل الانبعاثات والتلوث",
+                knowDesc: "معلومات خضعت لتنظيم منهجي لحل مشكلات المناخ والبيئة."
+            },
+            {
+                data: "50 - 70 - 90 - 80",
+                dataDesc: "أرقام درجات الطلاب الخام قبل معالجتها أو حساب نسبها.",
+                info: "متوسط درجات الفصل = 72.5",
+                infoDesc: "تمت معالجة البيانات وأصبحت معلومة ذات قيمة تقييمية.",
+                know: "الطلاب يحتاجون إلى خطة لتحسين مادة معينة",
+                knowDesc: "توظيف المعلومات لوضع حل منهجي لمشكلة الضعف الدراسي."
+            },
+            {
+                data: "18 جيجابايت من 20 جيجابايت",
+                dataDesc: "أرقام تدل على كمية البايتات المستهلكة من الباقة.",
+                info: "تم استهلاك 90% من رصيد الباقة في أول أسبوع",
+                infoDesc: "معلومة ذات دلالة واضحة تنبه صاحبها لاتخاذ قرار.",
+                know: "جدولة أوقات التنزيل وإلغاء التحديثات التلقائية",
+                knowDesc: "حل منهجي لمشكلة الاستهلاك المفرط لتجنب انقطاع الخدمة."
+            }
+        ];
+
+        function switchPipeline(idx, btn) {
+            document.querySelectorAll('.pipeline-controls .scenario-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const item = pipelineData[idx];
+            document.getElementById('dispDataVal').innerText = item.data;
+            document.getElementById('dispDataDesc').innerText = item.dataDesc;
+            document.getElementById('dispInfoVal').innerText = item.info;
+            document.getElementById('dispInfoDesc').innerText = item.infoDesc;
+            document.getElementById('dispKnowVal').innerText = item.know;
+            document.getElementById('dispKnowDesc').innerText = item.knowDesc;
+        }
+
+        function toggleCard(card) {
+            card.classList.toggle('active');
+        }
+
+        function openTab(tabId, btn) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        const gameItems = [
+            { text: "النص، الصور، الصوت، الفيديو", type: "تعبير" },
+            { text: "الإنترنت، الهاتف، التلفزيون، الراديو", type: "نقل" },
+            { text: "الورق، محركات أقراص USB", type: "تسجيل" },
+            { text: "الصحف والكتب (كوسيط لنقل وتبادل المعلومات)", type: "نقل" },
+            { text: "أقراص DVD، التخزين السحابي", type: "تسجيل" },
+            { text: "حرف نصي أو ملف فيديو (كوسيلة للتعبير)", type: "تعبير" }
+        ];
+
+        let gCurrentIndex = 0;
+        let gScore = 0;
+
+        function refreshSorterGame() {
+            if (gCurrentIndex < gameItems.length) {
+                document.getElementById('sorterTokenText').innerText = gameItems[gCurrentIndex].text;
+                document.getElementById('gameStatusMsg').innerText = "";
+            } else {
+                document.getElementById('sorterTokenText').innerText = "🏆 تهانينا! صنف الطلاب جميع وسائط الكتاب بدقة تامة!";
+                document.getElementById('gameStatusMsg').innerHTML = `<span style="color:var(--success);">الدرجة الكاملة: ${gScore} من ${gameItems.length}</span>`;
+            }
+            document.getElementById('gameScoreBoard').innerText = `النقاط: ${gScore} / ${gameItems.length}`;
+        }
+
+        function checkSort(chosenType) {
+            if (gCurrentIndex >= gameItems.length) return;
+
+            const correct = gameItems[gCurrentIndex].type;
+            const statusBox = document.getElementById('gameStatusMsg');
+
+            if (chosenType === correct) {
+                gScore++;
+                statusBox.style.color = "var(--success)";
+                statusBox.innerText = "✨ إجابة صحيحة طبقاً لتصنيف كتاب الوزارة!";
+            } else {
+                statusBox.style.color = "var(--danger)";
+                statusBox.innerText = `⚠️ انتبه! في كتاب الوزارة، هذا العنصر يصنف ضمن: وسائط ${correct}.`;
+            }
+
+            gCurrentIndex++;
+            setTimeout(refreshSorterGame, 1200);
+        }
+
+        refreshSorterGame();
+
+        const examQuestions = [
+            {
+                q: "1. (سؤال الكتاب) اختر عبارة واحدة غير مناسبة كخاصية للمعلومات من الخيارات التالية:",
+                choices: [
+                    "أ) ليس لها شكل أو كيان ثابت على عكس الأشياء المادية",
+                    "ب) لها شكل مثل الجسم المادي",
+                    "ت) لها خاصية الاستمرارية والثبات",
+                    "ث) لها خاصية الانتشار عبر وسائل الإعلام والإنترنت"
+                ],
+                correct: 1,
+                reason: "على عكس الأشياء المادية، المعلومات ليس لها شكل أو كيان مادي ملموس ثابت، لذلك العبارة (ب) غير مناسبة كخاصية للمعلومات."
+            },
+            {
+                q: "2. (سؤال الكتاب) ما هو المصطلح الذي يشير إلى القدرة على تفسير المعلومات التي تم الحصول عليها من الوسائط بدقة؟",
+                choices: [
+                    "أ) التحقق المتبادل (Cross-checking)",
+                    "ب) الثقافة الإعلامية (Media literacy)",
+                    "ج) أخلاقيات المعلومات (Information ethics)",
+                    "د) وسائط التعبير (Expression media)"
+                ],
+                correct: 1,
+                reason: "الثقافة الإعلامية بنص كتاب الوزارة هي: 'القدرة على تفسير المعلومات التي تم الحصول عليها من الوسائط بدقة'."
+            },
+            {
+                q: "3. (سؤال الكتاب) معلومات تتضمن خطوط الطول والعرض المضمنة في الصور ومقاطع الفيديو ويخشى منها كشف عنوان المنزل تسمى:",
+                choices: [
+                    "أ) انتحال الشخصية (Identity theft)",
+                    "ب) المعلومات المضللة (Disinformation)",
+                    "ج) العلامة الجغرافية (Geotagging)",
+                    "د) التحقق المتبادل (Cross-checking)"
+                ],
+                correct: 2,
+                reason: "العلامة الجغرافية (Geotagging) بنص الكتاب هي: 'معلومات تتضمن خطوط الطول والعرض المضمنة في الصور ومقاطع الفيديو الملتقطة بالهواتف، وفيها خطر كشف وتحديد الموقع'."
+            },
+            {
+                q: "4. (سؤال الكتاب) المعلومات التي يتم الحصول عليها من خلال التجربة الشخصية المباشرة أو عن طريق البحث والتجارب تسمى:",
+                choices: [
+                    "أ) معلومات ثانوية (Secondary information)",
+                    "ب) معلومات أولية (Primary information)",
+                    "ج) وسائط النقل والإرسال",
+                    "د) معلومات مضللة وشائعات"
+                ],
+                correct: 1,
+                reason: "المعلومات الأولية في كتاب الوزارة هي: 'المعلومات التي يتم الحصول عليها من خلال التجربة الشخصية المباشرة أو عن طريق البحث والتجارب مثل تقارير التجارب والاستبيانات'."
+            },
+            {
+                q: "5. (سؤال الكتاب) المفاهيم والتوجهات الأساسية اللازمة للقيام بأنشطة مناسبة في مجتمع المعلومات بغض النظر عن وجود قوانين تسمى:",
+                choices: [
+                    "أ) وسائط التسجيل (Recording media)",
+                    "ب) أخلاقيات المعلومات (Information Ethics)",
+                    "ج) الجرائم الإلكترونية (Cybercrime)",
+                    "د) المعرفة (Knowledge)"
+                ],
+                correct: 1,
+                reason: "أخلاقيات المعلومات في الكتاب هي: 'المفاهيم والتوجهات الأساسية اللازمة للقيام بأنشطة مناسبة في مجتمع المعلومات، وهذا بغض النظر عن وجود أو عدم وجود قوانين'."
+            }
+        ];
+
+        function renderExam() {
+            const container = document.getElementById('quizContainer');
+            container.innerHTML = "";
+
+            examQuestions.forEach((item, qIdx) => {
+                const qBox = document.createElement('div');
+                qBox.className = 'quiz-item-box';
+                qBox.innerHTML = `
+                    <div class="q-title">${item.q}</div>
+                    <div class="q-choices" id="choiceGroup_${qIdx}">
+                        ${item.choices.map((c, cIdx) => `
+                            <button class="choice-btn" onclick="validateAnswer(${qIdx}, ${cIdx}, this)">${c}</button>
+                        `).join('')}
+                    </div>
+                    <div class="choice-feedback" id="feedback_${qIdx}">📖 <strong>الشرح المنهجي من الكتاب:</strong> ${item.reason}</div>
+                `;
+                container.appendChild(qBox);
+            });
+        }
+
+        function validateAnswer(qIdx, cIdx, btn) {
+            const group = document.getElementById(`choiceGroup_${qIdx}`);
+            const buttons = group.querySelectorAll('.choice-btn');
+            const feedback = document.getElementById(`feedback_${qIdx}`);
+            const correctIdx = examQuestions[qIdx].correct;
+
+            buttons.forEach(b => b.disabled = true);
+
+            if (cIdx === correctIdx) {
+                btn.classList.add('correct-choice');
+            } else {
+                btn.classList.add('wrong-choice');
+                buttons[correctIdx].classList.add('correct-choice');
+            }
+
+            feedback.style.display = 'block';
+        }
+
+        function reloadQuiz() {
+            renderExam();
+        }
+
+        renderExam();
+    </script>
+</body>
+</html>

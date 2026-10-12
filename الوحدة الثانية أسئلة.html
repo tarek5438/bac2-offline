@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار الوحدة الثانية: القوانين والحقوق في مجتمع المعلومات (50 سؤالاً)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@400;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #3730a3;
+            --accent: #f59e0b;
+            --success: #16a34a;
+            --danger: #dc2626;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0f172a 0%, #3730a3 50%, #4f46e5 100%);
+            color: white;
+            padding: 28px 20px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.25);
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 1.7rem;
+            font-weight: 900;
+            margin-bottom: 6px;
+        }
+
+        header p {
+            font-size: 0.95rem;
+            color: #e0e7ff;
+            direction: ltr;
+        }
+
+        .stats-bar {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 14px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: block;
+        }
+
+        .stat-val {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .stat-val.high {
+            color: var(--accent);
+        }
+
+        .btn-index {
+            background: #eef2ff;
+            color: var(--primary);
+            border: 2px solid #c7d2fe;
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-index:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 6px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: width 0.3s ease;
+        }
+
+        .q-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: 0 10px 20px -3px rgba(0,0,0,0.06);
+            margin-bottom: 24px;
+        }
+
+        .q-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #f1f5f9;
+        }
+
+        .q-badge {
+            background: #eef2ff;
+            color: var(--primary);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .q-text-ar {
+            font-size: 1.25rem;
+            font-weight: 800;
+            line-height: 1.8;
+            margin-bottom: 8px;
+            color: #0f172a;
+        }
+
+        .q-text-en {
+            font-size: 1.05rem;
+            font-weight: 600;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #475569;
+            direction: ltr;
+            text-align: left;
+            font-family: 'Inter', sans-serif;
+            border-left: 3px solid var(--primary);
+            padding-left: 12px;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .opt-btn {
+            background: #f8fafc;
+            border: 2px solid var(--border);
+            padding: 14px 18px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            text-align: right;
+        }
+
+        .opt-btn:hover:not(:disabled) {
+            background: #eef2ff;
+            border-color: #a5b4fc;
+            transform: translateX(-4px);
+        }
+
+        .opt-btn.correct {
+            background: #dcfce7 !important;
+            border-color: var(--success) !important;
+        }
+
+        .opt-btn.wrong {
+            background: #fee2e2 !important;
+            border-color: var(--danger) !important;
+        }
+
+        .opt-ar {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .opt-en {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: #64748b;
+            direction: ltr;
+            text-align: left;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .opt-btn.correct .opt-ar, .opt-btn.correct .opt-en {
+            color: #15803d !important;
+        }
+
+        .opt-btn.wrong .opt-ar, .opt-btn.wrong .opt-en {
+            color: #991b1b !important;
+        }
+
+        .explanation {
+            margin-top: 20px;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 0.98rem;
+            line-height: 1.7;
+            display: none;
+            background: #f1f5f9;
+            border-right: 5px solid var(--primary);
+        }
+
+        .exp-en {
+            direction: ltr;
+            text-align: left;
+            font-family: 'Inter', sans-serif;
+            color: #334155;
+            margin-top: 6px;
+            font-size: 0.92rem;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 25px;
+        }
+
+        .btn-nav {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-nav:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-nav:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 23, 42, 0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 850px;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 26px;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2);
+            animation: popIn 0.25s ease;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .modal-header h3 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .close-btn {
+            background: #f1f5f9;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+        }
+
+        .close-btn:hover {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+
+        .legend {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .legend-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 4px;
+        }
+
+        .grid-index {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(55px, 1fr));
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .index-pill {
+            background: #f8fafc;
+            border: 2px solid var(--border);
+            padding: 9px 2px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            color: #334155;
+        }
+
+        .index-pill:hover {
+            border-color: var(--primary);
+            background: #eef2ff;
+            transform: translateY(-2px);
+        }
+
+        .index-pill.active {
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+            font-weight: 900;
+        }
+
+        .index-pill.solved-correct {
+            background: #dcfce7 !important;
+            border-color: #22c55e !important;
+            color: #15803d !important;
+        }
+
+        .index-pill.solved-wrong {
+            background: #fee2e2 !important;
+            border-color: #ef4444 !important;
+            color: #b91c1c !important;
+        }
+
+        .results-card {
+            background: white;
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .trophy {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+
+        .score-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: #eef2ff;
+            border: 6px solid var(--primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 20px auto;
+        }
+
+        .score-num {
+            font-size: 2.3rem;
+            font-weight: 900;
+            color: var(--primary);
+        }
+
+        .btn-restart {
+            background: var(--accent);
+            color: #000;
+            border: none;
+            padding: 14px 34px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+            margin-top: 25px;
+            transition: 0.2s;
+        }
+
+        .btn-restart:hover {
+            transform: scale(1.03);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>اختبار الوحدة الثانية: القوانين والحقوق في مجتمع المعلومات (50 سؤالاً)</h1>
+        <p>Unit 2 Comprehensive Quiz: Personal Data, Privacy, IP Rights, Copyright & Fair Use (50 Questions)</p>
+    </header>
+
+    <div class="stats-bar">
+        <div class="stat-item">
+            <span class="stat-label">رقم السؤال / Question</span>
+            <div><span class="stat-val" id="qCurrent">1</span> / 50</div>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">أول محاولة / 1st Score 🎯</span>
+            <span class="stat-val" style="color: #4f46e5;" id="firstScore">--</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">الدرجة الحالية / Score</span>
+            <span class="stat-val" id="score">0</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">أعلى نتيجة / High Score 🏆</span>
+            <span class="stat-val high" id="highScore">0</span>
+        </div>
+        <div>
+            <button class="btn-index" onclick="openIndexModal()">
+                <span>📑</span>
+                <span>فهرس الأسئلة (1-50)</span>
+            </button>
+        </div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+    </div>
+
+    <div class="q-card" id="quizCard">
+        <div class="q-header">
+            <span class="q-badge" id="topicBadge">الدرس 1: البيانات الشخصية</span>
+            <span style="color: var(--text-muted); font-size: 0.9rem;" id="qStatusIndicator">لم يُجب بعد / Not answered</span>
+        </div>
+        
+        <div class="q-text-ar" id="questionTextAr">جاري تحميل السؤال...</div>
+        <div class="q-text-en" id="questionTextEn">Loading question...</div>
+        
+        <div class="options-list" id="optionsContainer"></div>
+        
+        <div class="explanation" id="explanationText"></div>
+
+        <div class="actions">
+            <button class="btn-nav" id="prevBtn" onclick="prevQuestion()" disabled>➡️ السابق / Prev</button>
+            <button class="btn-nav" id="nextBtn" onclick="nextQuestion()">التالي / Next ⬅️</button>
+        </div>
+    </div>
+
+    <div class="results-card" id="resultsCard">
+        <div class="trophy" id="trophyIcon">🎉</div>
+        <h2 id="resultMsg" style="font-size: 1.8rem; margin-bottom: 8px;">أحسنت صنعاً!</h2>
+        <p id="resultSubtitle" style="color: var(--text-muted);">You completed all 50 questions for Unit 2!</p>
+        
+        <div class="score-circle">
+            <div class="score-num" id="finalScore">0</div>
+            <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted);">/ 50</span>
+        </div>
+
+        <p id="highScoreNotice" style="font-weight: 700; font-size: 1.1rem; color: var(--accent); margin-top: 10px;"></p>
+
+        <button class="btn-restart" onclick="restartQuiz()">إعادة الاختبار من البداية 🔄</button>
+    </div>
+</div>
+
+<div class="modal-overlay" id="indexModal" onclick="closeIndexModalOnOutside(event)">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>📑 فهرس أسئلة الوحدة الثانية (50 سؤالاً)</h3>
+            <button class="close-btn" onclick="closeIndexModal()">✕</button>
+        </div>
+        
+        <div class="legend">
+            <div class="legend-item"><div class="legend-dot" style="background: #22c55e;"></div><span>إجابة صحيحة</span></div>
+            <div class="legend-item"><div class="legend-dot" style="background: #ef4444;"></div><span>إجابة خاطئة</span></div>
+            <div class="legend-item"><div class="legend-dot" style="background: #4f46e5;"></div><span>السؤال الحالي</span></div>
+            <div class="legend-item"><div class="legend-dot" style="background: #e2e8f0; border: 1px solid #cbd5e1;"></div><span>لم يُحل بعد</span></div>
+        </div>
+
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px;">انقر على أي رقم سؤال للانتقال إليه مباشرة:</p>
+        
+        <div class="grid-index" id="gridIndexContainer"></div>
+    </div>
+</div>
+
+<script>
+    const questions = [
+        // --- أسئلة الدرس الأول: البيانات الشخصية والخصوصية (1 - 18) ---
+        {
+            topic: "الدرس 1: تعريف البيانات الشخصية 📖",
+            ar_q: "📖 ما هو المصطلح الذي يطلق على كل بيان أو معلومة تتعلق بشخص طبيعي محدد أو يمكن تحديده بشكل مباشر أو غير مباشر؟",
+            en_q: "What term refers to any data or information relating to an identified or identifiable natural person?",
+            options: [
+                { ar: "حقوق الملكية الفكرية", en: "Intellectual Property Rights" },
+                { ar: "البيانات الشخصية", en: "Personal Information" },
+                { ar: "البيانات الإحصائية العامة", en: "Public Statistical Data" },
+                { ar: "العلامة الجغرافية", en: "Geotagging" }
+            ],
+            correct: 1,
+            exp_ar: "البيانات الشخصية بنص الكتاب: 'هي كل بيان أو معلومة تتعلق بشخص طبيعي محدد أو يمكن تحديده بشكل مباشر أو غير مباشر، من خلال الربط مع بيانات أخرى'.",
+            exp_en: "Personal information refers to any data relating to an identified or identifiable natural person directly or indirectly."
+        },
+        {
+            topic: "الدرس 1: البيانات الأساسية 📖",
+            ar_q: "📖 ما هو المصطلح الذي يطلق على الإشارة الجماعية إلى (الاسم، العنوان، تاريخ الميلاد، والنوع/الجنس)؟",
+            en_q: "What term collectively refers to Name, Address, Date of Birth, and Gender?",
+            options: [
+                { ar: "البيانات الأساسية", en: "Basic Data / Basic Personal Information" },
+                { ar: "أرقام الهوية الشخصية", en: "Personal Identification Numbers" },
+                { ar: "البيانات الحساسة", en: "Sensitive Personal Data" },
+                { ar: "البيانات المجهولة", en: "Anonymous Data" }
+            ],
+            correct: 0,
+            exp_ar: "يطلق على البيانات مثل (الاسم، العنوان، تاريخ الميلاد، والنوع) اسم 'البيانات الأساسية' وتُستخدم للتحقق من هوية الفرد.",
+            exp_en: "Name, address, birth date, and gender are classified in the textbook as Basic Personal Information."
+        },
+        {
+            topic: "الدرس 1: أرقام الهوية الشخصية 📖",
+            ar_q: "📖 ما هو المصطلح الذي يطلق على المعلومات الرقمية في وثائق مثل جوازات السفر، رخص القيادة، وبطاقات الرقم القومي؟",
+            en_q: "What term describes numerical strings in documents such as passports, driving licenses, and national ID cards?",
+            options: [
+                { ar: "بيانات القياس الحيوي", en: "Biometric Data" },
+                { ar: "أرقام الهوية الشخصية", en: "Personal Identification Numbers" },
+                { ar: "حقوق الصورة", en: "Image Rights" },
+                { ar: "البيانات الفاصلة", en: "Interval Data" }
+            ],
+            correct: 1,
+            exp_ar: "الأرقام الموجودة في جوازات السفر ورخص القيادة وبطاقات الرقم القومي تُعرف باسم 'أرقام الهوية الشخصية'.",
+            exp_en: "Numbers on passports, driving licenses, and national IDs are designated as Personal Identification Numbers."
+        },
+        {
+            topic: "الدرس 1: البيانات الشخصية الحساسة 📖",
+            ar_q: "أي مما يلي يُصنف ضمن 'البيانات الشخصية الحساسة' التي تتطلب عناية خاصة لمنع التمييز أو الضرر؟",
+            en_q: "Which of the following is classified as 'Sensitive Personal Data' requiring special care to avoid discrimination?",
+            options: [
+                { ar: "الاسم المستعار في لعبة إلكترونية", en: "A username in an online video game" },
+                { ar: "الحالة الصحية، الديانة، السجل الجنائي، والآراء السياسية", en: "Health status, religion, criminal record, and political opinions" },
+                { ar: "درجات حرارة المدن المنشورة في النشرة الجوية", en: "City temperatures broadcasted in weather news" },
+                { ar: "عنوان البريد الإلكتروني للشكاوى في مدرسة", en: "School complaints email address" }
+            ],
+            correct: 1,
+            exp_ar: "نص الكتاب: معلومات العرق، الديانة، الآراء السياسية، الانتماءات النقابية، الحالة الصحية، والسجل الجنائي تسمى 'البيانات الشخصية الحساسة'.",
+            exp_en: "Sensitive data covers health records, religion, political views, ethnicity, and criminal background."
+        },
+        {
+            topic: "الدرس 1: قانون حماية البيانات الشخصية",
+            ar_q: "📖 ما هو القانون الذي يحدد القواعد الأساسية لجمع ومعالجة وتخزين ونقل البيانات الشخصية؟",
+            en_q: "What law regulates the basic principles for collecting, processing, storing, and transferring personal data?",
+            options: [
+                { ar: "قانون حقوق المؤلف", en: "Copyright Act" },
+                { ar: "قانون حماية البيانات الشخصية", en: "Act on the Protection of Personal Information" },
+                { ar: "قانون الاتصالات السلكية واللاسلكية", en: "Telecommunications Act" },
+                { ar: "قانون مكافحة الشائعات", en: "Anti-Rumor Act" }
+            ],
+            correct: 1,
+            exp_ar: "قانون حماية البيانات الشخصية هو التشريع المنظم لجمع ومعالجة وتخزين ونقل بيانات الأفراد وحمايتها.",
+            exp_en: "The Act on the Protection of Personal Information establishes rules for personal data handling."
+        },
+        {
+            topic: "الدرس 1: البيانات البيومترية (القياسات الحيوية)",
+            ar_q: "أي من العناصر التالية يُعد مثالاً على بيانات القياسات الحيوية (Biometrics) الشخصية؟",
+            en_q: "Which of the following represents biometric personal data?",
+            options: [
+                { ar: "رقم رخصة القيادة", en: "Driver license number" },
+                { ar: "بصمة الإصبع وبصمة قزحية العين", en: "Fingerprints and iris patterns" },
+                { ar: "تاريخ التخرج من الثانوية العامة", en: "High school graduation date" },
+                { ar: "رمز البريد لمنطقة السكن", en: "Postal ZIP code" }
+            ],
+            correct: 1,
+            exp_ar: "بيانات القياسات الحيوية (البيومترية) تشمل الخصائص الجسدية مثل بصمة الإصبع أو بصمة قزحية العين.",
+            exp_en: "Biometric data includes physical unique attributes such as fingerprints and iris scans."
+        },
+        {
+            topic: "الدرس 1: الحق في الخصوصية 📖",
+            ar_q: "ما هو النص الدستوري المصري الصريح الذي يحمي الحق في الخصوصية وحرمة الحياة الخاصة؟",
+            en_q: "Which article of the Egyptian Constitution explicitly guarantees the Right to Privacy?",
+            options: [
+                { ar: "المادة (57) من الدستور المصري", en: "Article 57 of the Egyptian Constitution" },
+                { ar: "المادة (10) من الدستور المصري", en: "Article 10 of the Egyptian Constitution" },
+                { ar: "المادة (80) من الدستور المصري", en: "Article 80 of the Egyptian Constitution" },
+                { ar: "المادة (1) من قانون براءات الاختراع", en: "Article 1 of Patent Act" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب صراحة: الحق في الخصوصية حق دستوري عام يحمي الحياة الخاصة للفرد، وقد نصت عليه المادة (57) من الدستور المصري.",
+            exp_en: "The right to privacy is guaranteed under Article 57 of the Egyptian Constitution."
+        },
+        {
+            topic: "الدرس 1: حقوق الصورة 📖",
+            ar_q: "📖 ما هو المصطلح الذي يشير إلى 'حق الفرد في منع الآخرين من تصويره أو استخدام صورته أو مظهره دون إذنه'؟",
+            en_q: "What term denotes an individual's right to prevent others from photographing or using their likeness without permission?",
+            options: [
+                { ar: "حقوق الدعاية", en: "Publicity Rights" },
+                { ar: "حقوق الصورة", en: "Image Rights" },
+                { ar: "حقوق المؤلف", en: "Copyrights" },
+                { ar: "الحق في النسيان", en: "Right to be Forgotten" }
+            ],
+            correct: 1,
+            exp_ar: "حقوق الصورة (Image Rights): حق الفرد في منع الآخرين من تصويره أو استخدام صورته أو مظهره دون إذنه.",
+            exp_en: "Image rights grant individuals control over photographing and distributing their personal likeness."
+        },
+        {
+            topic: "الدرس 1: حقوق الدعاية للمشاهير 📖",
+            ar_q: "📖 بما أن صور المشاهير لها قيمة اقتصادية، فما هو الحق الذي يحمي المصالح الاقتصادية الناتجة عن شهرتهم؟",
+            en_q: "What right protects the economic benefits arising from the commercial exploitation of celebrities' likeness?",
+            options: [
+                { ar: "حقوق الدعاية", en: "Publicity Rights" },
+                { ar: "حقوق براءات الاختراع", en: "Patent Rights" },
+                { ar: "حقوق نموذج المنفعة", en: "Utility Model Rights" },
+                { ar: "حق الاستشهاد", en: "Citation Right" }
+            ],
+            correct: 0,
+            exp_ar: "حقوق الدعاية (Publicity Rights): حق يهدف إلى حماية المصالح الاقتصادية للمشاهير في استغلال صورهم أو سمعتهم تجارياً.",
+            exp_en: "Publicity rights safeguard the commercial and financial value associated with a celebrity's identity."
+        },
+        {
+            topic: "الدرس 1: مشاركة صور الآخرين",
+            ar_q: "قام طالب بالتقاط صورة لزميله في الفصل ونشرها على فيسبوك دون علمه. هذا التصرف يُعتبر:",
+            en_q: "A student took a picture of a classmate and posted it on Facebook without consent. This action is:",
+            options: [
+                { ar: "سلوكاً مباحاً لأن المدرسة مكان عام", en: "Permissible because school is a public premise" },
+                { ar: "انتهاكاً لحقوق الصورة والخصوصية وفقاً للقانون", en: "A violation of image rights and privacy under the law" },
+                { ar: "تطبيقاً لحرية تداول المعلومات", en: "An exercise of free information exchange" },
+                { ar: "استخداماً عادلاً للأعمال التعليمية", en: "Educational fair use" }
+            ],
+            correct: 1,
+            exp_ar: "يحظر قانون حماية الملكية الفكرية والبيانات الشخصية نشر أو توزيع صورة شخص إلا بموافقته وموافقة كل من يظهرون فيها.",
+            exp_en: "Posting individuals' pictures without their consent violates both privacy and image rights."
+        },
+        {
+            topic: "الدرس 1: بيع منتجات عليها صور المشاهير",
+            ar_q: "📖 قام شخص بطباعة صورة لمشهور رياضي على قمصان وبيعها عبر الإنترنت لتحقيق أرباح. هذا الفعل يُعد:",
+            en_q: "A person printed an athlete's image on t-shirts and sold them online for profit. This act constitutes:",
+            options: [
+                { ar: "انتهاكاً صريحاً لحقوق الدعاية للمشهور", en: "A direct infringement of the celebrity's publicity rights" },
+                { ar: "عملاً مشروعاً لأن الصورة منتشرة على الإنترنت", en: "A lawful act because the picture is public on the web" },
+                { ar: "حقاً من حقوق المشاع الإبداعي", en: "A Creative Commons application" },
+                { ar: "اقتباساً تجارياً مسموحاً به", en: "Permissible commercial citation" }
+            ],
+            correct: 0,
+            exp_ar: "صور المشاهير لها قيمة اقتصادية، واستغلالها للربح التجاري دون ترخيص ينتهك حقوق الدعاية.",
+            exp_en: "Selling merchandise bearing a celebrity's face without authorization violates publicity rights."
+        },
+        {
+            topic: "الدرس 1: استثناءات مشاركة البيانات الشخصية",
+            ar_q: "في أي من الحالات التالية يجوز قانوناً تقديم البيانات الشخصية لطرف ثالث دون موافقة الفرد؟",
+            en_q: "Under which circumstance is personal data legally shared with a third party without individual consent?",
+            options: [
+                { ar: "عند رغبة شركة إعلانات في الترويج لمنتجات جديدة", en: "When an ad agency seeks to promote consumer products" },
+                { ar: "عندما يكون ذلك لازماً لحماية الأمن القومي أو لتنفيذ حكم قضائي", en: "When required for national security or court order execution" },
+                { ar: "عندما يطلب أحد الأصدقاء هاتف صديقه للتسلية", en: "When a friend requests a mutual phone number for fun" },
+                { ar: "عند بيع قاعدة بيانات المدرسة لمكتبة خارجية", en: "When selling the school student roster to a bookstore" }
+            ],
+            correct: 1,
+            exp_ar: "نص الكتاب: يُستثنى من شرط الموافقة: حماية الأمن القومي، المصلحة العامة، تنفيذ حكم قضائي، أو حماية حياة الشخص وصحته.",
+            exp_en: "National security, court mandates, and safeguarding human life waive the individual consent prerequisite."
+        },
+        {
+            topic: "الدرس 1: سياسة الخصوصية بالشركات 📖",
+            ar_q: "📖 ما هو المصطلح الذي يطلق على 'السياسة التي تضعها الشركات لتوضيح كيفية جمع ومعالجة وحماية بيانات العملاء'؟",
+            en_q: "What term describes policies adopted by organizations specifying collection, processing, and protection of customer data?",
+            options: [
+                { ar: "سياسة الخصوصية", en: "Privacy Policy" },
+                { ar: "ترخيص المصادر المفتوحة", en: "Open Source License" },
+                { ar: "سجل العمليات التجارية", en: "Commercial Audit Record" },
+                { ar: "مبدأ الشكلية", en: "Principle of Formality" }
+            ],
+            correct: 0,
+            exp_ar: "سياسة الخصوصية (Privacy Policy) هي وثيقة توضح بها الشركات للعملاء كيف تتعامل مع بياناتهم وتحميها.",
+            exp_en: "A privacy policy details how a company collects, utilizes, and secures customer information."
+        },
+        {
+            topic: "الدرس 1: ترخيص مركز حماية البيانات الشخصية",
+            ar_q: "📖 ما هو الترخيص الذي تحصل عليه الشركات من الجهة المنظمة للتأكد من التزامها بقانون حماية البيانات؟",
+            en_q: "What official license do companies obtain from regulatory authorities to confirm compliance with data protection laws?",
+            options: [
+                { ar: "ترخيص مركز حماية البيانات الشخصية", en: "Personal Data Protection Center License" },
+                { ar: "رخصة المشاع الإبداعي", en: "Creative Commons License" },
+                { ar: "براءة الاختراع الرقمية", en: "Digital Patent" },
+                { ar: "شهادة SSL", en: "SSL Certificate" }
+            ],
+            correct: 0,
+            exp_ar: "ترخيص مركز حماية البيانات الشخصية يُمنح للشركات والمنظمات للتأكد من مطابقتها لضوابط القانون ومعايير حماية البيانات.",
+            exp_en: "The Data Protection Center License certifies organizational adherence to personal data legislation."
+        },
+        {
+            topic: "الدرس 1: نظام الموافقة المسبقة 📖",
+            ar_q: "📖 ما هو النظام الذي يشترط الحصول على موافقة صريحة ومسبقة من المستخدم قبل جمع بياناته أو معالجتها أو تقديم الخدمة له؟",
+            en_q: "What system mandates obtaining explicit prior consent from the user before data collection or service provision?",
+            options: [
+                { ar: "نظام الموافقة المسبقة", en: "Prior Approval System" },
+                { ar: "نظام الاعتراض", en: "Objection System" },
+                { ar: "نظام الاسترجاع التلقائي", en: "Automatic Recovery System" },
+                { ar: "نظام عدم التسجيل", en: "Non-Formality System" }
+            ],
+            correct: 0,
+            exp_ar: "نظام الموافقة المسبقة (Prior Approval System) يشترط أخذ موافقة الفرد مسبقاً قبل جمع أو استخدام بياناته.",
+            exp_en: "The Prior Approval System requires proactive and explicit affirmative user consent before data processing."
+        },
+        {
+            topic: "الدرس 1: نظام الاعتراض 📖",
+            ar_q: "📖 ما هو النظام الذي يتيح معالجة بيانات المستخدم ما لم يبدِ المستخدم اعتراضاً صريحاً أو يطلب وقف المعالجة؟",
+            en_q: "What system permits processing user data unless the user explicitly lodges an objection or demands cessation?",
+            options: [
+                { ar: "نظام الاعتراض", en: "Objection System" },
+                { ar: "نظام الموافقة المسبقة", en: "Prior Approval System" },
+                { ar: "نظام التحقق المتبادل", en: "Cross-checking System" },
+                { ar: "نظام التشفير المتماثل", en: "Symmetric Encryption System" }
+            ],
+            correct: 0,
+            exp_ar: "نظام الاعتراض (Objection system) يسمح بتقديم الخدمة ومعالجة البيانات حتى يطلب المستخدم صراحةً إيقاف ذلك.",
+            exp_en: "The Objection System operates on continued processing until the data subject explicitly opts out."
+        },
+        {
+            topic: "الدرس 1: الأرقام التعريفية الرقمية",
+            ar_q: "📖 على الرغم من أن رقم بطاقة الرقم القومي أو رخصة القيادة مجرد سلسلة من الأرقام، إلا أنها تُعد بيانات شخصية لأنها:",
+            en_q: "Although national ID or driver license numbers are merely numerical sequences, they constitute personal data because:",
+            options: [
+                { ar: "تسمح بتحديد هوية الفرد بدقة عند دمجها مع بيانات أخرى", en: "They enable precise individual identification when linked with other data" },
+                { ar: "أرقام باهظة التكلفة المالية", en: "They carry monetary purchase cost" },
+                { ar: "محمية بموجب قانون براءات الاختراع", en: "They are secured under patent laws" },
+                { ar: "لا تتغير نهائياً عبر الزمن", en: "They never change across centuries" }
+            ],
+            correct: 0,
+            exp_ar: "الأرقام الثبوتية تمكّن من معرفة هوية الشخص الطبيعي وتحديده بدقة عند ربطها بالسجلات الرسمية.",
+            exp_en: "Identifier numbers directly pinpoint a living person when cross-referenced with databases."
+        },
+        {
+            topic: "الدرس 1: المعلومات المجهولة مقابل الشخصية",
+            ar_q: "أي من العناصر التالية لا يُعتبر معلومة شخصية بموجب قانون حماية البيانات الشخصية؟",
+            en_q: "Which of the following is NOT regarded as personal data under the Data Protection Act?",
+            options: [
+                { ar: "إحصائية متوسط درجات الحرارة لمدينة الإسكندرية في شهر أغسطس", en: "Average temperature statistics for Alexandria in August" },
+                { ar: "صورة الوجه الملتقطة بكاميرا المراقبة لطالب", en: "CCTV snapshot of a student face" },
+                { ar: "رقم جواز سفر سائح أجنبي مقيم", en: "Passport number of a resident foreigner" },
+                { ar: "الملف الصحي لمريض في مستشفى حكومي", en: "Hospital patient health record" }
+            ],
+            correct: 0,
+            exp_ar: "إحصاءات الطقس والبيانات البيئية العامة ليست لها صلة بشخص طبيعي محدد، لذا لا تخضع للبيانات الشخصية.",
+            exp_en: "Weather and climate statistics are public environmental metrics, not personal data."
+        },
+
+        // --- أسئلة الدرس الثاني: حقوق الملكية الفكرية وحقوق الملكية الصناعية (19 - 34) ---
+        {
+            topic: "الدرس 2: مفهوم حقوق الملكية الفكرية 📖",
+            ar_q: "📖 ما هو المصطلح الشامل للحقوق التي تحمي نتاج الإبداع الفكري البشري في المجالات الأدبية والفنية والعلمية والصناعية؟",
+            en_q: "What broad term encompasses rights protecting creations of human mind in literature, arts, science, and industry?",
+            options: [
+                { ar: "حقوق الملكية الفكرية", en: "Intellectual Property Rights" },
+                { ar: "حقوق الملكية الصناعية فقط", en: "Industrial Property Rights only" },
+                { ar: "أخلاقيات المعلومات", en: "Information Ethics" },
+                { ar: "حقوق الدعاية التجارية", en: "Commercial Publicity Rights" }
+            ],
+            correct: 0,
+            exp_ar: "حقوق الملكية الفكرية تنقسم إلى فرعين رئيسيين: حقوق الملكية الصناعية (براءات، علامات، نماذج) وحقوق المؤلف والحقوق المجاورة.",
+            exp_en: "Intellectual Property covers industrial property as well as copyright and neighboring rights."
+        },
+        {
+            topic: "الدرس 2: أقسام الملكية الفكرية 📖",
+            ar_q: "📖 تنقسم حقوق الملكية الفكرية بشكل أساسي إلى حقوق الملكية الصناعية التي تساهم في تطوير الصناعة، و........ التي تساهم في تطوير الثقافة:",
+            en_q: "Intellectual property is mainly bifurcated into industrial property, and ........... which promotes cultural advancement:",
+            options: [
+                { ar: "حقوق المؤلف (Copyrights)", en: "Copyrights" },
+                { ar: "براءات الاختراع", en: "Patents" },
+                { ar: "العلامات التجارية", en: "Trademarks" },
+                { ar: "الهندسة العكسية", en: "Reverse Engineering" }
+            ],
+            correct: 0,
+            exp_ar: "الملكية الصناعية تدعم وتطور الصناعة والتجارة، بينما حقوق المؤلف تدعم وتطور الثقافة والفنون والآداب.",
+            exp_en: "Industrial property advances commerce/industry, while copyrights foster cultural development."
+        },
+        {
+            topic: "الدرس 2: مبدأ الشكلية والتسجيل 📖",
+            ar_q: "📖 ما هو المبدأ الذي تشترط بموجبه حقوق الملكية الصناعية تقديم طلب وتسجيل لدى جهة مختصة للتمتع بالحماية القانونية؟",
+            en_q: "What principle requires industrial property rights to be formally registered at competent offices to receive legal protection?",
+            options: [
+                { ar: "مبدأ الشكلية (التسجيل)", en: "Principle of Formality (Registration)" },
+                { ar: "مبدأ عدم الشكلية (عدم التسجيل)", en: "Principle of Non-Formality" },
+                { ar: "مبدأ الاستخدام الحر", en: "Principle of Free Use" },
+                { ar: "مبدأ الحماية التلقائية", en: "Principle of Automatic Protection" }
+            ],
+            correct: 0,
+            exp_ar: "حقوق الملكية الصناعية تتبع مبدأ الشكلية (Formality): لا تُمنح الحماية إلا بعد الفحص والتسجيل لدى مكتب البراءات أو السجل التجاري.",
+            exp_en: "Industrial property rights require compliance with formal registration (Formality Principle)."
+        },
+        {
+            topic: "الدرس 2: مبدأ عدم التسجيل لحقوق المؤلف 📖",
+            ar_q: "📖 المبدأ الذي بموجبه يتم منح حقوق المؤلف في لحظة إنشاء العمل الإبداعي دون اشتراط تسجيل أو إشعار يُعرف بـ:",
+            en_q: "The principle whereby copyright is generated automatically at the very moment of creation without registration is called:",
+            options: [
+                { ar: "مبدأ عدم التسجيل (عدم الشكلية)", en: "Principle of Non-Formality" },
+                { ar: "مبدأ الشكلية الصارمة", en: "Principle of Strict Formality" },
+                { ar: "مبدأ الفحص الفني المسبق", en: "Principle of Prior Technical Examination" },
+                { ar: "مبدأ الملكية العامة", en: "Public Domain Principle" }
+            ],
+            correct: 0,
+            exp_ar: "حقوق المؤلف تتبع مبدأ عدم الشكلية (Non-Formality): تنشأ تلقائياً بمجرد إبداع النص أو الرسم أو البرنامج دون قيد أو شرط.",
+            exp_en: "Copyright operates under the Non-Formality principle, granting instantaneous protection upon creation."
+        },
+        {
+            topic: "الدرس 2: مدة حماية براءات الاختراع 📖",
+            ar_q: "📖 ما هي مدة الحماية القانونية لبراءات الاختراع (Patent Rights) وفقاً لما ورد في كتاب الوزارة؟",
+            en_q: "What is the legal protection duration for patents according to the textbook?",
+            options: [
+                { ar: "20 سنة من تاريخ تقديم الطلب", en: "20 years from the filing date" },
+                { ar: "7 سنوات من تاريخ التقديم", en: "7 years from the filing date" },
+                { ar: "10 سنوات تجدد مرة واحدة", en: "10 years renewable once" },
+                { ar: "50 سنة بعد وفاة المخترع", en: "50 years after the inventor's death" }
+            ],
+            correct: 0,
+            exp_ar: "براءات الاختراع تحمي الاختراعات التقنية الجديدة القابلة للتطبيق الصناعي لمدة 20 سنة من تاريخ التقديم.",
+            exp_en: "Patent protection extends for 20 years from the initial application filing date."
+        },
+        {
+            topic: "الدرس 2: حقوق نموذج المنفعة 📖",
+            ar_q: "📖 حقوق تحمي حلولاً تقنية بسيطة أو تحسينات عملية جديدة لأشكال وهياكل المنتجات (أقل ابتكاراً من الاختراع)، مدة حمايتها:",
+            en_q: "Utility model rights protect minor technical solutions or shape improvements. What is their protection term?",
+            options: [
+                { ar: "7 سنوات من تاريخ التقديم", en: "7 years from the filing date" },
+                { ar: "20 سنة من تاريخ التقديم", en: "20 years from the filing date" },
+                { ar: "10 سنوات من تاريخ التسجيل", en: "10 years from the registration date" },
+                { ar: "مدى الحياة", en: "Lifetime protection" }
+            ],
+            correct: 0,
+            exp_ar: "حقوق نموذج المنفعة (Utility Model Rights) مدتها 7 سنوات من تاريخ التقديم، وموضوعها تحسينات عملية وهيكلية بسيطة.",
+            exp_en: "Utility models protect practical device improvements for a duration of 7 years."
+        },
+        {
+            topic: "الدرس 2: الرسوم والنماذج الصناعية 📖",
+            ar_q: "📖 ما هي مدة حماية الرسوم والنماذج الصناعية (التصميمات الصناعية) التي تحمي المظهر الخارجي للمنتج؟",
+            en_q: "What is the protection term for industrial designs safeguarding products' exterior visual appearance?",
+            options: [
+                { ar: "10 سنوات من تاريخ التقديم (تجدد مرة واحدة كل 5 سنوات)", en: "10 years from filing date (renewable once every 5 years)" },
+                { ar: "20 سنة غير قابلة للتجديد", en: "20 years non-renewable" },
+                { ar: "7 سنوات فقط", en: "7 years only" },
+                { ar: "50 سنة بعد الوفاة", en: "50 years post-mortem" }
+            ],
+            correct: 0,
+            exp_ar: "التصميمات الصناعية تحمي الشكل الخارجي للمنتج لمدة 10 سنوات وتجدد مرة واحدة لـ 5 سنوات.",
+            exp_en: "Industrial designs last 10 years from filing, with an optional 5-year single extension."
+        },
+        {
+            topic: "الدرس 2: حقوق العلامة التجارية 📖",
+            ar_q: "📖 ما هو المصطلح الذي يطلق على 'كل إشارة يمكن إدراكها بالبصر تستخدم لتمييز منتجات أو خدمات عن غيرها'؟",
+            en_q: "What term defines any visible sign capable of distinguishing goods or services of one enterprise from others?",
+            options: [
+                { ar: "العلامة التجارية (Trademark)", en: "Trademark" },
+                { ar: "براءة الاختراع (Patent)", en: "Patent" },
+                { ar: "نموذج المنفعة (Utility Model)", en: "Utility Model" },
+                { ar: "المؤشر الجغرافي الخفي", en: "Hidden Geographic Indicator" }
+            ],
+            correct: 0,
+            exp_ar: "العلامة التجارية (Trademark): إشارة تميز السلع والخدمات وتدوم حمايتها 10 سنوات من تاريخ التسجيل قابلة للتجديد.",
+            exp_en: "A trademark is a distinctive visual sign used to distinguish goods or services of businesses."
+        },
+        {
+            topic: "الدرس 2: تجديد العلامة التجارية",
+            ar_q: "📖 تنتهي حقوق العلامة التجارية بعد 10 سنوات من التسجيل، فهل يمكن الحفاظ على الحقوق بعدها؟",
+            en_q: "A trademark term expires after 10 years; can its owner maintain rights beyond this timeframe?",
+            options: [
+                { ar: "نعم، يمكن تجديدها لمدد مماثلة من خلال إجراءات التجديد الرسمية", en: "Yes, it can be perpetually renewed for similar periods via renewal filings" },
+                { ar: "لا، تسقط العلامة إجبارياً في الملك العام للأبد", en: "No, it enters the public domain permanently" },
+                { ar: "نعم، ولكن فقط إذا كان صاحبها قاصراً", en: "Yes, but solely if the proprietor is a minor" },
+                { ar: "لا، تتحول تلقائياً إلى براءة اختراع", en: "No, it automatically converts into a patent" }
+            ],
+            correct: 0,
+            exp_ar: "العلامة التجارية تتميز بإمكانية تجديدها المستمر كل 10 سنوات طالما يقوم المالك بسداد رسوم التجديد القانونية.",
+            exp_en: "Trademarks can be indefinitely renewed every 10 years upon proper application."
+        },
+        {
+            topic: "الدرس 2: المكتب المختص ببراءات الاختراع",
+            ar_q: "📖 أين يتم تقديم طلبات تسجيل الاختراعات التقنية في جمهورية مصر العربية؟",
+            en_q: "Where are technological patent applications officially filed in Egypt?",
+            options: [
+                { ar: "مكتب براءات الاختراع المصري", en: "Egyptian Patent Office" },
+                { ar: "الجهاز المركزي للتعبئة العامة والإحصاء", en: "Central Agency for Public Mobilization and Statistics" },
+                { ar: "هيئة تنمية صناعة تكنولوجيا المعلومات (إيتيدا)", en: "ITIDA" },
+                { ar: "وزارة الصحة والسكان", en: "Ministry of Health" }
+            ],
+            correct: 0,
+            exp_ar: "الجهة المختصة بتسجيل وفحص براءات الاختراع ونماذج المنفعة في مصر هي مكتب براءات الاختراع المصري.",
+            exp_en: "The Egyptian Patent Office is the national authority administering patent applications."
+        },
+        {
+            topic: "الدرس 2: موضوعات نموذج المنفعة",
+            ar_q: "فكرة هندسية لتعديل شكل غطاء زجاجة دواء لمنع فتحها بواسطة الأطفال تُصنف قانوناً كـ:",
+            en_q: "A mechanical improvement to medicine bottle caps to prevent children from opening them is legally classified as:",
+            options: [
+                { ar: "حق نموذج منفعة", en: "Utility Model Right" },
+                { ar: "حقوق مؤلف أدبية", en: "Literary Copyright" },
+                { ar: "علامة تجارية بصرية", en: "Visual Trademark" },
+                { ar: "ترخيص مشاع إبداعي", en: "Creative Commons License" }
+            ],
+            correct: 0,
+            exp_ar: "تطوير أشكال وتراكيب عملية للأدوات الحالية أقل من مستوى الاختراع الكامل يُحمى كنموذج منفعة لمدة 7 سنوات.",
+            exp_en: "Functional shape adaptations to existing utility products fit the scope of utility model rights."
+        },
+        {
+            topic: "الدرس 2: جودة العمل وحقوق المؤلف",
+            ar_q: "📖 هل تشترط القوانين أن يكون العمل الإبداعي ذا جودة فنية عالية أو صادراً من شخص محترف ليتمتع بحقوق المؤلف؟",
+            en_q: "Does copyright law require a work to possess high artistic quality or come from a professional creator?",
+            options: [
+                { ar: "لا، تنشأ حقوق المؤلف لأي عمل إبداعي أصلي حتى لو كان المبدع هاوياً أو قاصراً وبغض النظر عن جودته", en: "No, copyright protects original works even if the author is amateur, minor, regardless of quality" },
+                { ar: "نعم، يشترط أن توافق لجنة تحكيم على جودة العمل أولاً", en: "Yes, an evaluation jury must approve artistic quality first" },
+                { ar: "نعم، تُحجب حقوق المؤلف عن الأطفال دون 18 عاماً", en: "Yes, minors under 18 cannot hold copyrights" },
+                { ar: "لا، ولكن يشترط أن يُباع العمل في الأسواق رسمياً", en: "No, but the work must be commercially sold" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب صراحة: 'تنشأ الحقوق بغض النظر عما إذا كان المؤلف هاوياً أو قاصراً، ولا ترتبط حقوق المؤلف بجودة العمل'.",
+            exp_en: "Copyright protection is independent of artistic merit, commercialization, or author's age."
+        },
+        {
+            topic: "الدرس 2: الحقوق المعنوية للمؤلف 📖",
+            ar_q: "ما المقصود بـ 'الحقوق المعنوية للمؤلف' وفقاً لما ورد في كتاب الوزارة؟",
+            en_q: "What is meant by the 'Moral Rights of an Author' according to the textbook?",
+            options: [
+                { ar: "الحقوق التي تحمي الصلة الشخصية بين المبدع ومصنفه، كنسب المصنف إليه ومنع تشويهه", en: "Rights safeguarding the personal bond between author and work, like attribution and integrity" },
+                { ar: "حق بيع وتأجير المصنف لتحقيق عوائد مالية", en: "The right to sell or rent works for economic profit" },
+                { ar: "حق تسجيل المصنف في مكتب براءات الاختراع", en: "The right to file patents at industrial registries" },
+                { ar: "حق تحصيل الضرائب من المشترين", en: "The right to collect governmental taxes from buyers" }
+            ],
+            correct: 0,
+            exp_ar: "الحقوق المعنوية أبدية وغير قابلة للتنازل، وتشمل حق المؤلف في إعلان اسمه ومنع أي تحريف أو تشويه لعمله.",
+            exp_en: "Moral rights protect the personal association: paternity (attribution) and integrity of the work."
+        },
+        {
+            topic: "الدرس 2: الحقوق المالية للمؤلف 📖",
+            ar_q: "ما هي الحقوق المالية (حقوق الملكية) للمؤلف كما عرفها المنهج المدرسي؟",
+            en_q: "What are the Economic (Property) Rights of an author as outlined in the curriculum?",
+            options: [
+                { ar: "حق المبدع في الاستغلال الاقتصادي لمصنفه عبر النسخ، التوزيع، والترجمة والأداء العلني", en: "The right to economically exploit the work via reproduction, distribution, translation, and performance" },
+                { ar: "حق منع ذكر اسمه على غلاف الكتاب", en: "The right to conceal their name from book covers" },
+                { ar: "حق مصادرة أموال القراء", en: "The right to confiscate readers' funds" },
+                { ar: "حق تمديد براءة الاختراع إلى 70 سنة", en: "The right to stretch patent terms to 70 years" }
+            ],
+            correct: 0,
+            exp_ar: "الحقوق المالية تعطي المؤلف الحق الحصري في استغلال مصنفه مالياً عبر البيع، الترجمة، النسخ، والتوزيع.",
+            exp_en: "Economic rights allow authors to reap financial proceeds through reproduction and commercial distribution."
+        },
+
+        // --- أسئلة الدرس الثالث: استخدام المعلومات وكشفها، الاستثناءات والمشاع الإبداعي (35 - 50) ---
+        {
+            topic: "الدرس 3: مدة حماية حقوق المؤلف 📖",
+            ar_q: "📖 ما هي المدة الزمنية المحددة لحماية الحقوق الاقتصادية للمؤلف بعد وفاته وفقاً لكتاب الوزارة؟",
+            en_q: "What is the duration for protecting an author's economic rights after death under the curriculum?",
+            options: [
+                { ar: "50 سنة بعد وفاة المبدع", en: "50 years after the author's death" },
+                { ar: "20 سنة بعد وفاة المبدع", en: "20 years after the author's death" },
+                { ar: "10 سنوات بعد وفاة المبدع", en: "10 years after the author's death" },
+                { ar: "100 سنة بعد وفاة المبدع", en: "100 years after the author's death" }
+            ],
+            correct: 0,
+            exp_ar: "تنتهي الحقوق المالية للمؤلف بعد انقضاء 50 عاماً على وفاته، ليصبح العمل بعد ذلك ملكاً عاماً متاحاً للجميع.",
+            exp_en: "Economic rights lapse 50 years after the creator's decease, entering the public domain."
+        },
+        {
+            topic: "الدرس 3: الحقوق المجاورة لحقوق المؤلف 📖",
+            ar_q: "📖 ما هي 'الحقوق المجاورة' (Neighboring Rights) ومن هم المستفيدون منها؟",
+            en_q: "What are 'Neighboring Rights' and who is granted these legal protections?",
+            options: [
+                { ar: "حقوق تمنح للمؤدين (المطربين، الممثلين)، منتجي التسجيلات الصوتية، وهيئات الإذاعة", en: "Rights granted to performers (singers, actors), phonogram producers, and broadcasting agencies" },
+                { ar: "حقوق خاصة بالجيران المقيمين بجوار مكتب البراءات", en: "Rights granted to homeowners adjacent to patent buildings" },
+                { ar: "حقوق تمنح لمخترعي محركات الغسالات والسيارات", en: "Rights awarded to automotive engine designers" },
+                { ar: "حقوق نشر الصور الشخصية على لوحات الإعلانات", en: "Billboard publicity licenses" }
+            ],
+            correct: 0,
+            exp_ar: "الحقوق المجاورة تحمي مساهمات المؤدين ومنتجي التسجيلات وهيئات البث لارتباطهم الوثيق بنقل وعرض المصنفات.",
+            exp_en: "Neighboring rights safeguard performers, audio producers, and broadcasting organizations."
+        },
+        {
+            topic: "الدرس 3: مؤلفات طه حسين والملك العام 📖",
+            ar_q: "📖 نشر رواية 'الأيام' لعميد الأدب العربي طه حسين على موقعك الإلكتروني دون إذن ورثة المؤلف يُعد قانوناً:",
+            en_q: "Publishing the novel 'The Days' by Taha Hussein on your website without heirs' consent is legally:",
+            options: [
+                { ar: "عملاً مشروعاً ولا يشكل انتهاكاً لمرور أكثر من 50 عاماً على وفاته", en: "Lawful and non-infringing because over 50 years elapsed since his demise" },
+                { ar: "انتهاكاً صارخاً لحقوق المؤلف المالية", en: "A severe violation of author economic copyright" },
+                { ar: "جريمة إلكترونية توجب إغلاق الموقع فوراً", en: "A cybercrime warranting website closure" },
+                { ar: "سرقة أدبية تنتهك براءات الاختراع", en: "Plagiarism breaching technological patents" }
+            ],
+            correct: 0,
+            exp_ar: "وفقاً لشرح كتاب الوزارة، نظراً لمرور أكثر من 50 عاماً على وفاة الدكتور طه حسين، سقطت الحقوق المالية وأصبح المصنف ملكاً عاماً.",
+            exp_en: "Because more than 50 years passed since Taha Hussein's passing, the novel entered the public domain."
+        },
+        {
+            topic: "الدرس 3: استثناءات حقوق المؤلف بالمؤسسات التعليمية 📖",
+            ar_q: "📖 قام معلم بنسخ صفحات وتدريبات من كتاب مدرسي ووزعها على طلابه في الفصل أثناء الشرح. هذا التصرف:",
+            en_q: "A teacher photocopied exercise pages from a book and distributed them to students during class. This action is:",
+            options: [
+                { ar: "استخداماً مشروعاً ومسموحاً به كاستثناء تعليمي غير ربحي دون حاجة لإذن", en: "Lawful and permitted as an educational non-profit exception without consent" },
+                { ar: "انتهاكاً لحقوق الطبع والنشر يستوجب التعويض", en: "A copyright infringement demanding monetary compensation" },
+                { ar: "خرقاً لسياسة الخصوصية", en: "A privacy breach" },
+                { ar: "جريمة قرصنة برمجية", en: "A software piracy crime" }
+            ],
+            correct: 0,
+            exp_ar: "استخدام المصنفات واستنساخها داخل المؤسسات التعليمية لأغراض التدريس يندرج تحت الاستثناءات القانونية للاستخدام العادل.",
+            exp_en: "Educational reproductions conducted within classrooms qualify as lawful statutory exceptions."
+        },
+        {
+            topic: "الدرس 3: حفلات موسيقية وفرض رسوم دخول 📖",
+            ar_q: "📖 قامت فرقة موسيقية بأداء أغانٍ محمية بحقوق المؤلف وفرضت رسوم دخول وتذاكر على الجمهور دون إذن. هذا الفعل يُعد:",
+            en_q: "A music band performed copyrighted tracks and charged admission ticket fees without authorization. This act is:",
+            options: [
+                { ar: "انتهاكاً لحقوق المؤلف لأن الحفل ذو غرض ربحي تجاري", en: "A copyright infringement because admission fees constitute commercial usage" },
+                { ar: "استخداماً عادلاً لأن الأداء كان علنياً", en: "Fair use because the rendition was public" },
+                { ar: "تطبيقاً لمبدأ عدم الشكلية", en: "Application of non-formality doctrine" },
+                { ar: "حقا أصيلاً لجميع الموسيقيين", en: "An inherent prerogative of musical performers" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب: بما أنه يتم فرض رسوم دخول، فالاستخدام لم يعد غير ربحي، وبالتالي يشكل انتهاكاً لحقوق المؤلف ما لم يحصلوا على إذن.",
+            exp_en: "Charging admission fees negates the non-profit defense, rendering the performance unauthorized infringement."
+        },
+        {
+            topic: "الدرس 3: تنزيل المحتوى المقرصن 📖",
+            ar_q: "📖 قام شخص بتنزيل فيلم سينمائي مع علمه التام بأنه تم تحميله على الموقع بشكل غير قانوني، ولكن لاستخدامه الشخصي فقط:",
+            en_q: "A user downloaded a movie knowing it was pirated illegally, claiming purely personal home viewing:",
+            options: [
+                { ar: "يشكل انتهاكاً لحقوق المؤلف حتى وإن كان للاستخدام الشخصي", en: "Constitutes copyright infringement even if meant for personal consumption" },
+                { ar: "مباح تماماً طالما لم يقم بإعادة بيع الفيلم", en: "Entirely lawful as long as he does not resell the copies" },
+                { ar: "يُعفى من المسؤولية لأن صاحب الموقع هو المسؤول وحده", en: "Exempt because the site uploader carries sole responsibility" },
+                { ar: "يُصنف كحق من حقوق نموذج المنفعة", en: "Classified as a utility model prerogative" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب في الشرح صراحة: تنزيل الموسيقى أو مقاطع الفيديو المعروضة للبيع مع العلم أنها رُفعت بشكل غير قانوني يشكل انتهاكاً لحقوق المؤلف.",
+            exp_en: "Downloading media while conscious of its unauthorized infringing upload remains illegal."
+        },
+        {
+            topic: "الدرس 3: نسخ الأقراص المدمجة وتوزيعها على الأصدقاء",
+            ar_q: "📖 قام طالب بشراء قرص موسيقي أصلي (CD) ونسخ منه 10 نسخ ووزعها على أصدقائه في المدرسة مجاناً. هذا الفعل يُعتبر:",
+            en_q: "A student bought an authentic music CD, duplicated 10 copies, and gifted them to classmates. This act is:",
+            options: [
+                { ar: "انتهاكاً لحقوق المؤلف لأن التوزيع على الأصدقاء يتجاوز نطاق الاستخدام الشخصي الفردي", en: "A copyright violation because distribution among peers exceeds personal private use limits" },
+                { ar: "مسموحاً به لأنه لم يتقاضَ أي أموال مقابل النسخ", en: "Permitted because no cash profit was earned" },
+                { ar: "محمياً بموجب رخصة المشاع الإبداعي التلقائية", en: "Covered by default Creative Commons rights" },
+                { ar: "عملاً مشروعاً وفقاً لقانون براءات الاختراع", en: "A legitimate practice under patent acts" }
+            ],
+            correct: 0,
+            exp_ar: "الاستنساخ للاستخدام الشخصي يقتصر على الشخص وأسرته الضيقة، وتوزيع النسخ على الآخرين حتى بدون مقابل يمثل انتهاكاً.",
+            exp_en: "Duplicating copyrighted media for friends breaches the strict boundaries of personal use exception."
+        },
+        {
+            topic: "الدرس 3: تعريف الاقتباس (Quotation) 📖",
+            ar_q: "📖 ما هو المصطلح الذي يشير إلى 'استخدام جزء من عمل محمي بحقوق المؤلف لشخص آخر في عملك المحمي بشروط محددة'؟",
+            en_q: "What term denotes utilizing an excerpt of another person's copyrighted work within your own under strict rules?",
+            options: [
+                { ar: "الاقتباس (Quotation)", en: "Quotation" },
+                { ar: "الانتحال (Plagiarism)", en: "Plagiarism" },
+                { ar: "التشفير (Encryption)", en: "Encryption" },
+                { ar: "التحقق المتبادل (Cross-checking)", en: "Cross-checking" }
+            ],
+            correct: 0,
+            exp_ar: "الاقتباس (Quotation) مباح قانوناً بشرط أن يكون عملك هو الأساس والمقتبس ثانوياً مع تمييزه بوضوح وعزو المصدر.",
+            exp_en: "Quotation allows incorporating cited excerpts provided the quoter's own text remains the primary body."
+        },
+        {
+            topic: "الدرس 3: قواعد الاقتباس - علامات التنصيص 📖",
+            ar_q: "وفقاً لقواعد الاقتباس المنهجية، كيف يتم تمييز النص المقتبس عن عمل الكاتب الأصلي؟",
+            en_q: "According to curriculum citation rules, how should cited quoted text be explicitly distinguished?",
+            options: [
+                { ar: "بوضعه بوضوح بين علامتي اقتباس (\" \") مع ذكر المصدر كاملاً", en: "By enclosing it clearly in quotation marks (\" \") and stating the source" },
+                { ar: "بتغيير كلماته وإعادة كتابتها دون ذكر اسم صاحبها الأصلي", en: "By rephrasing its wording without referencing the originator" },
+                { ar: "بجعله أطول من التقرير الأساسي المكتوب", en: "By making it expand larger than the main essay" },
+                { ar: "بحذف اسم الكتاب لتقليل عدد السطور", en: "By omitting the title to conserve line space" }
+            ],
+            correct: 0,
+            exp_ar: "من شروط الاقتباس: تمييز المادة المقتبسة بوضعها بين علامتي تنصيص (\" \")، تحديد المصدر بدقة، وعدم تحريف العبارة.",
+            exp_en: "Quoted citations must be encased in quotation marks and accompanied by source attribution."
+        },
+        {
+            topic: "الدرس 3: قواعد الاقتباس - عدم التعديل 📖",
+            ar_q: "📖 أثناء كتابة بحث، أراد باحث اقتباس فقرة من كتاب؛ هل يجوز له تعديل بعض الكلمات في النص المقتبس ليوافق رأيه؟",
+            en_q: "While writing a paper, a researcher quotes a passage; is he permitted to alter quoted phrasing to fit his stance?",
+            options: [
+                { ar: "لا يجوز تعديل أو تحريف المادة المقتبسة إطلاقاً", en: "He is strictly prohibited from altering or modifying the quoted content" },
+                { ar: "يجوز له تعديل ما يشاء طالما ذكر المصدر في النهاية", en: "He may modify anything as long as bibliography notes exist" },
+                { ar: "يجوز فقط إذا لم يتجاوز التعديل 50 كلمة", en: "Permitted solely if edits are under 50 words" },
+                { ar: "نعم، التعديل شرط أساسي لنجاح الاقتباس", en: "Yes, modifying is mandatory for valid citation" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب الحرفي: 'يجب عدم تغيير المادة المقتبسة، بغض النظر عن الحجة الخاصة بالشخص'.",
+            exp_en: "Textbook rule: 'You must never alter the quoted text, regardless of your personal argument.'"
+        },
+        {
+            topic: "الدرس 3: ترجمة الكتب الأجنبية دون تصريح",
+            ar_q: "📖 قام شخص بترجمة رواية إسبانية حديثة إلى اللغة العربية ونشرها دون إذن صاحبها، مبرراً أن اللغات مختلفة تماماً. هذا الفعل:",
+            en_q: "A person translated a modern Spanish novel into Arabic and published it without consent, claiming language differences. This is:",
+            options: [
+                { ar: "انتهاك صريح لحقوق المؤلف، لأن حق الترجمة من الحقوق المالية الحصرية للمبدع", en: "Copyright infringement, as translation is an exclusive economic right of the author" },
+                { ar: "مباح لأن الترجمة مجهود إبداعي مستقل لا يحتاج إذناً", en: "Lawful because translating is independent creative work" },
+                { ar: "تطبيق لترخيص المشاع الإبداعي العام", en: "An enactment of public Creative Commons privileges" },
+                { ar: "حق من حقوق الملكية الصناعية", en: "An industrial property entitlement" }
+            ],
+            correct: 0,
+            exp_ar: "حق الترجمة هو أحد الحقوق المالية الأساسية المملوكة للمؤلف، ولا يجوز ترجمة ونشر عمل محمي دون موافقة مسبقة.",
+            exp_en: "Translation rights belong exclusively to the copyright holder; unauthorized translation is an infringement."
+        },
+        {
+            topic: "الدرس 3: ترخيص المشاع الإبداعي (CC License) 📖",
+            ar_q: "📖 ما هو 'ترخيص المشاع الإبداعي' (Creative Commons License)؟",
+            en_q: "What is a 'Creative Commons License' (CC License)?",
+            options: [
+                { ar: "مجموعة من الرموز القياسية التي تشير إلى شروط استخدام ومشاركة الأعمال المحمية بحقوق النشر", en: "Standardized license symbols indicating usage and sharing terms for copyrighted works" },
+                { ar: "عقد بيع نهائي يتنازل بموجبه المبدع عن نسب المصنف إليه", en: "A sales contract by which creators renounce authorship attribution" },
+                { ar: "شهادة أمان رقمية لحماية مواقع الويب من الاختراق", en: "A digital security certificate guarding websites from hackers" },
+                { ar: "رخصة قيادة برمجية تمنحها الدولة للشركات", en: "Government software development commercial license" }
+            ],
+            correct: 0,
+            exp_ar: "تراخيص المشاع الإبداعي تسمح للمبدعين بالإعلان مسبقاً عن الشروط التي يمنحون بموجبها الإذن للجمهور لاستخدام أعمالهم.",
+            exp_en: "Creative Commons licenses provide authors a flexible framework to grant pre-approved sharing permissions."
+        },
+        {
+            topic: "الدرس 3: شرط الإسناد (BY) في المشاع الإبداعي 📖",
+            ar_q: "ما هو الشرط الذي يرمز له بالحرفين (BY) أو رمز الشخص في تراخيص المشاع الإبداعي؟",
+            en_q: "What condition is symbolized by (BY) or the person icon in Creative Commons licenses?",
+            options: [
+                { ar: "الإشارة إلى فضل المبدع الأصلي (عرض اسمه وعنوان العمل)", en: "Attribution: credit the author's name and original work title" },
+                { ar: "منع استخدام المصنف لأغراض تجارية", en: "Non-commercial restriction" },
+                { ar: "منع إجراء أي تعديلات أو اشتقاقات على العمل", en: "No derivative works allowed" },
+                { ar: "المشاركة بنفس رخصة العمل الأصلية", en: "Share-Alike obligation" }
+            ],
+            correct: 0,
+            exp_ar: "الرمز (BY) يعني الإسناد (Attribution): يوجب على من يستفيد من العمل ذكر اسم صاحب العمل الأصلي.",
+            exp_en: "The (BY) license element mandates attribution to the original creator of the work."
+        },
+        {
+            topic: "الدرس 3: شرط غير تجاري (NC) في المشاع الإبداعي 📖",
+            ar_q: "ما هو الشرط الذي يرمز له بالرمز (NC) أو علامة العملة المشطوبة في المشاع الإبداعي؟",
+            en_q: "What condition is designated by (NC) or the crossed dollar icon in Creative Commons?",
+            options: [
+                { ar: "عدم استخدام العمل لأغراض تجارية أو ربحية (Non-Commercial)", en: "Non-commercial: work cannot be utilized for commercial profit" },
+                { ar: "عدم تعديل العمل نهائياً", en: "No modifications permissible" },
+                { ar: "السماح بالبيع التجاري المفتوح", en: "Open commercial sales allowed" },
+                { ar: "إلزامية تسجيل العمل في مكتب البراءات", en: "Compulsory patent registration" }
+            ],
+            correct: 0,
+            exp_ar: "الرمز (NC) يعني Non-Commercial: يُلزم المستفيدين بعدم استخدام العمل في تحقيق عوائد أو مكاسب تجارية.",
+            exp_en: "(NC) signifies Non-Commercial use, forbidding sales and profit-generating implementations."
+        },
+        {
+            topic: "الدرس 3: شرط بلا مشتقات (ND) في المشاع الإبداعي 📖",
+            ar_q: "ما هو الشرط الذي يرمز له بالحرفين (ND) أو علامة التساوي (=) في المشاع الإبداعي؟",
+            en_q: "What restriction is signified by (ND) or the equal (=) sign in Creative Commons?",
+            options: [
+                { ar: "بلا مشتقات: عدم تعديل أو تغيير أو تحريف العمل الأصلي (No Derivatives)", en: "No Derivatives: original work must not be altered, modified, or remixed" },
+                { ar: "نشر العمل تحت نفس الرخصة حصراً", en: "Publishing under identical license terms" },
+                { ar: "السماح بالترجمة الحرة دون إذن", en: "Freely translating without notification" },
+                { ar: "إلغاء حماية حقوق المؤلف", en: "Waiving author protection outright" }
+            ],
+            correct: 0,
+            exp_ar: "الرمز (ND) يعني No Derivatives: يُسمح بنسخ وتوزيع العمل بشكله الأصلي فقط، مع حظر تعديله أو دمجه في عمل آخر.",
+            exp_en: "(ND) denotes No Derivatives, requiring the original work to be redistributed intact and unedited."
+        },
+        {
+            topic: "الدرس 3: شرط المشاركة بالمثل (SA) والترخيص المركب 📖",
+            ar_q: "📖 ما هو المعنى الدقيق لرمز ترخيص المشاع الإبداعي المركب: (CC BY-ND)؟",
+            en_q: "What is the exact meaning of the compound Creative Commons license: (CC BY-ND)?",
+            options: [
+                { ar: "عرض اسم المبدع (BY) + عدم تعديل العمل الأصلي (ND)", en: "Attribution to the creator (BY) + No alteration of the original work (ND)" },
+                { ar: "عدم الاستخدام التجاري + السماح بالتعديل الشامل", en: "Non-commercial + unrestricted modifications" },
+                { ar: "النشر بدون ذكر المؤلف + المشاركة بالمثل", en: "Unattributed publishing + Share-Alike" },
+                { ar: "التنازل الكامل عن العمل للملك العام", en: "Total abandonment into the public domain" }
+            ],
+            correct: 0,
+            exp_ar: "(CC BY-ND) يجمع بين شرطين: ذكر اسم المبدع (BY)، ومنع أي تعديل أو اشتقاق للمصنف الأصلي (ND).",
+            exp_en: "(CC BY-ND) combines mandatory creator attribution with a strict prohibition on creating derivative works."
+        }
+    ];
+
+    let userAnswers = new Array(questions.length).fill(null);
+    let currentIdx = 0;
+    let score = 0;
+
+    function loadScores() {
+        const storedHigh = localStorage.getItem('unit2_50q_highscore');
+        const high = storedHigh ? parseInt(storedHigh) : 0;
+        document.getElementById('highScore').innerText = high;
+
+        const storedFirst = localStorage.getItem('unit2_50q_first_score');
+        if (storedFirst !== null) {
+            document.getElementById('firstScore').innerText = storedFirst;
+        } else {
+            document.getElementById('firstScore').innerText = "--";
+        }
+        return { high, first: storedFirst };
+    }
+
+    function saveScores(finalScore) {
+        let isFirstTime = false;
+        if (localStorage.getItem('unit2_50q_first_score') === null) {
+            localStorage.setItem('unit2_50q_first_score', finalScore);
+            document.getElementById('firstScore').innerText = finalScore;
+            isFirstTime = true;
+        }
+
+        const currentHigh = parseInt(localStorage.getItem('unit2_50q_highscore') || '0');
+        let isNewHigh = false;
+        if (finalScore > currentHigh) {
+            localStorage.setItem('unit2_50q_highscore', finalScore);
+            document.getElementById('highScore').innerText = finalScore;
+            isNewHigh = true;
+        }
+
+        return { isFirstTime, isNewHigh };
+    }
+
+    function calculateScore() {
+        let s = 0;
+        for (let i = 0; i < questions.length; i++) {
+            if (userAnswers[i] !== null && userAnswers[i] === questions[i].correct) {
+                s++;
+            }
+        }
+        score = s;
+        document.getElementById('score').innerText = score;
+        return score;
+    }
+
+    function displayQuestion() {
+        const q = questions[currentIdx];
+        document.getElementById('qCurrent').innerText = currentIdx + 1;
+        document.getElementById('topicBadge').innerText = q.topic;
+        document.getElementById('questionTextAr').innerText = (currentIdx + 1) + ". " + q.ar_q;
+        document.getElementById('questionTextEn').innerText = "Q" + (currentIdx + 1) + ": " + q.en_q;
+
+        const answeredCount = userAnswers.filter(a => a !== null).length;
+        const pct = (answeredCount / questions.length) * 100;
+        document.getElementById('progressBar').style.width = pct + '%';
+
+        const container = document.getElementById('optionsContainer');
+        container.innerHTML = '';
+
+        const expBox = document.getElementById('explanationText');
+        const statusIndicator = document.getElementById('qStatusIndicator');
+
+        const prevAns = userAnswers[currentIdx];
+
+        if (prevAns === null) {
+            statusIndicator.innerText = "لم يُجب بعد / Not answered";
+            statusIndicator.style.color = "var(--text-muted)";
+            expBox.style.display = 'none';
+        } else {
+            statusIndicator.innerText = prevAns === q.correct ? "✅ إجابة صحيحة مسجلة" : "❌ إجابة خاطئة مسجلة";
+            statusIndicator.style.color = prevAns === q.correct ? "var(--success)" : "var(--danger)";
+            showExplanation(prevAns === q.correct, prevAns);
+        }
+
+        q.options.forEach((opt, idx) => {
+            const btn = document.createElement('button');
+            btn.className = 'opt-btn';
+            btn.innerHTML = `
+                <div class="opt-ar">${['أ', 'ب', 'ج', 'د'][idx]}) ${opt.ar}</div>
+                <div class="opt-en">${['A', 'B', 'C', 'D'][idx]}) ${opt.en}</div>
+            `;
+
+            if (prevAns !== null) {
+                btn.disabled = true;
+                if (idx === q.correct) {
+                    btn.classList.add('correct');
+                } else if (idx === prevAns) {
+                    btn.classList.add('wrong');
+                }
+            } else {
+                btn.onclick = () => selectAnswer(idx);
+            }
+            container.appendChild(btn);
+        });
+
+        document.getElementById('prevBtn').disabled = (currentIdx === 0);
+        document.getElementById('nextBtn').innerText = (currentIdx === questions.length - 1) ? "إنهاء الاختبار / Finish 🏁" : "التالي / Next ⬅️";
+    }
+
+    function selectAnswer(chosenIdx) {
+        if (userAnswers[currentIdx] !== null) return;
+
+        userAnswers[currentIdx] = chosenIdx;
+        calculateScore();
+
+        const q = questions[currentIdx];
+        const isCorrect = (chosenIdx === q.correct);
+
+        const buttons = document.querySelectorAll('.opt-btn');
+        buttons.forEach(b => b.disabled = true);
+
+        if (isCorrect) {
+            buttons[chosenIdx].classList.add('correct');
+        } else {
+            buttons[chosenIdx].classList.add('wrong');
+            buttons[q.correct].classList.add('correct');
+        }
+
+        showExplanation(isCorrect, chosenIdx);
+
+        const statusIndicator = document.getElementById('qStatusIndicator');
+        statusIndicator.innerText = isCorrect ? "✅ إجابة صحيحة مسجلة" : "❌ إجابة خاطئة مسجلة";
+        statusIndicator.style.color = isCorrect ? "var(--success)" : "var(--danger)";
+
+        const answeredCount = userAnswers.filter(a => a !== null).length;
+        document.getElementById('progressBar').style.width = ((answeredCount / questions.length) * 100) + '%';
+    }
+
+    function showExplanation(isCorrect, chosenIdx) {
+        const q = questions[currentIdx];
+        const expBox = document.getElementById('explanationText');
+
+        if (isCorrect) {
+            expBox.innerHTML = `
+                <b>✅ إجابة صحيحة طبقاً لكتاب الوزارة!</b><br>
+                <div>${q.exp_ar}</div>
+                <div class="exp-en">${q.exp_en}</div>
+            `;
+            expBox.style.borderRightColor = 'var(--success)';
+        } else {
+            expBox.innerHTML = `
+                <b>❌ إجابة غير دقيقة!</b><br>
+                <div>الإجابة الصحيحة المعتمدة هي: <b>${q.options[q.correct].ar}</b></div>
+                <div class="exp-en">Correct answer: <b>${q.options[q.correct].en}</b></div>
+                <div style="margin-top: 6px;">${q.exp_ar}</div>
+                <div class="exp-en">${q.exp_en}</div>
+            `;
+            expBox.style.borderRightColor = 'var(--danger)';
+        }
+        expBox.style.display = 'block';
+    }
+
+    function nextQuestion() {
+        if (currentIdx < questions.length - 1) {
+            currentIdx++;
+            displayQuestion();
+        } else {
+            showFinalResults();
+        }
+    }
+
+    function prevQuestion() {
+        if (currentIdx > 0) {
+            currentIdx--;
+            displayQuestion();
+        }
+    }
+
+    function openIndexModal() {
+        buildIndexGrid();
+        document.getElementById('indexModal').style.display = 'flex';
+    }
+
+    function closeIndexModal() {
+        document.getElementById('indexModal').style.display = 'none';
+    }
+
+    function closeIndexModalOnOutside(e) {
+        if (e.target.id === 'indexModal') {
+            closeIndexModal();
+        }
+    }
+
+    function buildIndexGrid() {
+        const grid = document.getElementById('gridIndexContainer');
+        grid.innerHTML = '';
+
+        for (let i = 0; i < questions.length; i++) {
+            const pill = document.createElement('div');
+            pill.className = 'index-pill';
+            pill.innerText = (i + 1);
+
+            if (i === currentIdx) {
+                pill.classList.add('active');
+            }
+
+            if (userAnswers[i] !== null) {
+                if (userAnswers[i] === questions[i].correct) {
+                    pill.classList.add('solved-correct');
+                } else {
+                    pill.classList.add('solved-wrong');
+                }
+            }
+
+            pill.onclick = () => {
+                currentIdx = i;
+                displayQuestion();
+                closeIndexModal();
+            };
+
+            grid.appendChild(pill);
+        }
+    }
+
+    function showFinalResults() {
+        document.getElementById('quizCard').style.display = 'none';
+        document.getElementById('progressBar').style.width = '100%';
+
+        const resultsCard = document.getElementById('resultsCard');
+        resultsCard.style.display = 'block';
+
+        calculateScore();
+        document.getElementById('finalScore').innerText = score;
+        const res = saveScores(score);
+        const scores = loadScores();
+
+        const notice = document.getElementById('highScoreNotice');
+        const msg = document.getElementById('resultMsg');
+        const icon = document.getElementById('trophyIcon');
+
+        let textDetails = `🎯 أول محاولة مسجلة (First Attempt): ${scores.first} من 50<br>`;
+        if (res.isNewHigh && score > 0) {
+            textDetails += `🏆 مبروك! حققت رقماً قياسياً جديداً (New High Score): ${score} من 50!`;
+        } else {
+            textDetails += `🏆 أعلى نتيجة على هذا الجهاز (Best Score): ${scores.high} من 50`;
+        }
+        notice.innerHTML = textDetails;
+
+        if (score >= 45) {
+            msg.innerText = "ممتاز ومحترف! إتقان تام لقوانين وحقوق مجتمع المعلومات 🌟";
+            icon.innerText = "👑";
+        } else if (score >= 35) {
+            msg.innerText = "جيد جداً! استيعاب رائع للملكية الفكرية وحماية البيانات الشخصية 👏";
+            icon.innerText = "🎉";
+        } else if (score >= 25) {
+            msg.innerText = "مستوى متوسط! ركّز أكثر على مدد الحماية وتراخيص المشاع الإبداعي 📖";
+            icon.innerText = "👍";
+        } else {
+            msg.innerText = "يُنصح بمراجعة الوحدة الثانية من كتاب الوزارة وإعادة الاختبار 💡";
+            icon.innerText = "💡";
+        }
+    }
+
+    function restartQuiz() {
+        userAnswers = new Array(questions.length).fill(null);
+        currentIdx = 0;
+        score = 0;
+        document.getElementById('score').innerText = '0';
+        document.getElementById('resultsCard').style.display = 'none';
+        document.getElementById('quizCard').style.display = 'block';
+        displayQuestion();
+    }
+
+    window.onload = function() {
+        loadScores();
+        displayQuestion();
+    };
+</script>
+</body>
+</html>
