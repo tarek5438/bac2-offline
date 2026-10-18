@@ -1,0 +1,2446 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الوحدة الثالثة: أمن المعلومات - منصة الشرح التفاعلية</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #3730a3;
+            --primary-light: #e0e7ff;
+            --secondary: #0891b2;
+            --secondary-light: #cffafe;
+            --accent: #d97706;
+            --accent-light: #fef3c7;
+            --danger: #dc2626;
+            --danger-light: #fee2e2;
+            --success: #16a34a;
+            --success-light: #dcfce7;
+            --purple: #7c3aed;
+            --purple-light: #ede9fe;
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --surface-alt: #f1f5f9;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border: #e2e8f0;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+            --font-scale: 1;
+        }
+
+        body.dark-mode {
+            --primary: #6366f1;
+            --primary-dark: #818cf8;
+            --primary-light: rgba(99, 102, 241, 0.2);
+            --secondary: #06b6d4;
+            --secondary-light: rgba(6, 182, 212, 0.2);
+            --accent: #f59e0b;
+            --accent-light: rgba(245, 158, 11, 0.2);
+            --danger: #ef4444;
+            --danger-light: rgba(239, 68, 68, 0.2);
+            --success: #22c55e;
+            --success-light: rgba(34, 197, 94, 0.2);
+            --purple: #a78bfa;
+            --purple-light: rgba(167, 139, 250, 0.2);
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --surface-alt: #334155;
+            --text-main: #f8fafc;
+            --text-muted: #cbd5e1;
+            --border: #334155;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.8;
+            overflow-x: hidden;
+            font-size: calc(16px * var(--font-scale));
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Top Reading Progress Bar */
+        .progress-bar-container {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.15);
+            z-index: 2000;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #22d3ee, #818cf8, #f472b6);
+            transition: width 0.15s ease-out;
+        }
+
+        /* Teacher Floating Toolbar */
+        .teacher-toolbar {
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 8px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            font-size: 0.9rem;
+        }
+
+        .toolbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            color: #38bdf8;
+        }
+
+        .toolbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tool-btn {
+            background: rgba(255, 255, 255, 0.12);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 6px 13px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tool-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* Hero Banner */
+        .hero {
+            background: linear-gradient(135deg, #090d16 0%, #1e1b4b 45%, #3730a3 80%, #0891b2 100%);
+            color: white;
+            padding: 50px 20px 45px;
+            text-align: center;
+            box-shadow: 0 4px 30px rgba(79, 70, 229, 0.25);
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: calc(2.3rem * var(--font-scale));
+            font-weight: 900;
+            margin-bottom: 12px;
+            animation: fadeInDown 0.7s ease;
+        }
+
+        .hero p {
+            font-size: calc(1.12rem * var(--font-scale));
+            color: #cbd5e1;
+            max-width: 900px;
+            margin: 0 auto 22px;
+        }
+
+        .hero-tags {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .hero-tag {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        /* Navigation Bar */
+        .nav-wrapper {
+            position: sticky;
+            top: 12px;
+            z-index: 1000;
+            max-width: 1240px;
+            margin: -26px auto 30px;
+            padding: 0 16px;
+        }
+
+        .nav-glass {
+            background: var(--surface);
+            opacity: 0.98;
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            display: flex;
+            gap: 6px;
+            padding: 8px;
+            box-shadow: var(--shadow);
+            overflow-x: auto;
+        }
+
+        .nav-item {
+            flex: 1;
+            min-width: 155px;
+            text-align: center;
+            padding: 11px 12px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            font-weight: 800;
+            font-size: 0.9rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-item:hover {
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .nav-item.active {
+            background: var(--primary);
+            color: white !important;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.35);
+        }
+
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 16px 80px;
+        }
+
+        .content-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 35px;
+            margin-bottom: 35px;
+            box-shadow: var(--shadow);
+            scroll-margin-top: 95px;
+        }
+
+        @media (max-width: 768px) {
+            .content-card {
+                padding: 22px 16px;
+            }
+        }
+
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 800;
+            margin-bottom: 14px;
+        }
+
+        .section-title {
+            font-size: calc(1.65rem * var(--font-scale));
+            color: var(--text-main);
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            font-size: calc(1.02rem * var(--font-scale));
+            margin-bottom: 24px;
+        }
+
+        /* كتاب الوزارة المدرسي */
+        .book-def-box {
+            background: var(--surface-alt);
+            border-right: 5px solid var(--primary);
+            border-radius: 12px;
+            padding: 18px 22px;
+            margin-bottom: 20px;
+        }
+
+        .book-def-title {
+            font-size: calc(1.12rem * var(--font-scale));
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .book-exact-text {
+            font-size: calc(1.03rem * var(--font-scale));
+            color: var(--text-main);
+            font-weight: 700;
+            line-height: 1.9;
+        }
+
+        .explanation-bubble {
+            background: var(--primary-light);
+            border-radius: 10px;
+            padding: 12px 18px;
+            margin-top: 10px;
+            font-size: calc(0.95rem * var(--font-scale));
+            color: var(--primary-dark);
+            border: 1px dashed var(--primary);
+        }
+
+        /* CIA Triad Interactive Section */
+        .cia-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin: 24px 0;
+        }
+
+        @media (max-width: 850px) {
+            .cia-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .cia-card {
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 22px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+            text-align: right;
+        }
+
+        .cia-card:hover, .cia-card.active {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(79, 70, 229, 0.12);
+        }
+
+        .cia-letter {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: 900;
+            margin-bottom: 12px;
+        }
+
+        .cia-detail-panel {
+            background: var(--surface-alt);
+            border: 2px solid var(--primary);
+            border-radius: 16px;
+            padding: 22px;
+            margin-bottom: 26px;
+            transition: all 0.3s ease;
+        }
+
+        /* Interactive Filter Hub */
+        .filter-hub {
+            background: var(--surface-alt);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 25px 0;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 9px 16px;
+            border-radius: 10px;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.92rem;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .items-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+            gap: 15px;
+        }
+
+        .item-badge-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 18px;
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+
+        .item-badge-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .item-cat {
+            font-size: 0.78rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .cat-access { background: #dbeafe; color: #1e40af; }
+        .cat-malware { background: #fee2e2; color: #991b1b; }
+        .cat-spy { background: #fef3c7; color: #92400e; }
+        .cat-crime { background: #ede9fe; color: #5b21b6; }
+        .cat-defense { background: #dcfce7; color: #166534; }
+
+        /* Tables */
+        .table-responsive {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .rich-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .rich-table th {
+            background: var(--surface-alt);
+            color: var(--text-main);
+            padding: 15px 18px;
+            text-align: right;
+            font-weight: 800;
+            font-size: 0.98rem;
+        }
+
+        .rich-table td {
+            padding: 15px 18px;
+            border-top: 1px solid var(--border);
+            background: var(--surface);
+            font-size: 0.95rem;
+        }
+
+        /* 3D Expandable Cards */
+        .cards-3d-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 18px;
+            margin: 22px 0;
+        }
+
+        .animated-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 22px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .animated-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .animated-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 28px rgba(0,0,0,0.08);
+        }
+
+        .card-icon-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .circle-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: var(--primary-light);
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .expandable-hint {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.88rem;
+        }
+
+        .hidden-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background: var(--surface-alt);
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .animated-card.active .hidden-details {
+            max-height: 320px;
+            padding: 14px;
+            border: 1px dashed var(--border);
+        }
+
+        /* Password Brute-Force Lab */
+        .lab-box {
+            background: var(--surface-alt);
+            border: 2px dashed var(--primary);
+            border-radius: 20px;
+            padding: 26px;
+            margin: 25px 0;
+        }
+
+        .lab-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 22px;
+            align-items: start;
+        }
+
+        @media (max-width: 850px) {
+            .lab-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .charset-checks {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 14px 0;
+        }
+
+        .check-pill {
+            background: var(--surface);
+            border: 2px solid var(--border);
+            padding: 10px 14px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .check-pill input {
+            transform: scale(1.25);
+        }
+
+        .formula-display {
+            background: var(--surface);
+            border: 2px solid var(--primary);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .math-big {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin: 8px 0;
+            direction: ltr;
+            display: inline-block;
+        }
+
+        .preset-btns {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .preset-btn {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            border: 1px solid var(--primary);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .preset-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Security Policy Pyramid */
+        .pyramid-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 25px;
+            align-items: center;
+            margin: 24px 0;
+            background: var(--surface-alt);
+            padding: 25px;
+            border-radius: 18px;
+            border: 1px solid var(--border);
+        }
+
+        @media (max-width: 850px) {
+            .pyramid-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .pyramid-stack {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pyramid-level {
+            text-align: center;
+            padding: 16px 12px;
+            color: white;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.25s;
+            border-radius: 12px;
+            border: 3px solid transparent;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .pyramid-level:hover, .pyramid-level.active {
+            transform: scale(1.03);
+            border-color: #fbbf24;
+        }
+
+        .p-lvl-1 {
+            width: 55%;
+            background: linear-gradient(135deg, #4f46e5, #3730a3);
+            clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%);
+            padding-top: 22px;
+        }
+
+        .p-lvl-2 {
+            width: 78%;
+            background: linear-gradient(135deg, #0891b2, #0e7490);
+        }
+
+        .p-lvl-3 {
+            width: 100%;
+            background: linear-gradient(135deg, #0f766e, #115e59);
+        }
+
+        /* Encryption Diagram & Simulator */
+        .Diagram-flow {
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 22px;
+            margin: 20px 0;
+        }
+
+        .flow-nodes {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+        }
+
+        .flow-box {
+            flex: 1;
+            min-width: 135px;
+            background: var(--surface-alt);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 10px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .flow-box.highlight-key {
+            border-color: var(--accent);
+            background: var(--accent-light);
+        }
+
+        .flow-box.highlight-cipher {
+            border-color: var(--danger);
+            background: var(--danger-light);
+        }
+
+        .flow-arrow {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--primary);
+        }
+
+        .blank-slot {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            border: 1px dashed var(--primary);
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-weight: 800;
+            cursor: pointer;
+            margin: 3px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .blank-slot.revealed {
+            background: var(--success-light);
+            color: var(--success);
+            border-style: solid;
+            border-color: var(--success);
+        }
+
+        /* Sorter Game */
+        .sorter-game {
+            background: var(--surface-alt);
+            border: 2px dashed var(--border);
+            border-radius: 20px;
+            padding: 28px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .sorter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .sorter-score {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--primary);
+            background: var(--surface);
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .current-token {
+            background: var(--surface);
+            padding: 20px 26px;
+            border-radius: 16px;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text-main);
+            border: 2px solid var(--primary);
+            display: inline-block;
+            margin-bottom: 22px;
+            box-shadow: 0 10px 20px rgba(79,70,229,0.1);
+            max-width: 720px;
+        }
+
+        .target-bins {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        @media (max-width: 900px) {
+            .target-bins {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 550px) {
+            .target-bins {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .bin-btn {
+            background: var(--surface);
+            border: 2px solid var(--border);
+            padding: 15px 10px;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            color: var(--text-main);
+        }
+
+        .bin-btn:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            transform: translateY(-3px);
+        }
+
+        .bin-btn h5 {
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .bin-btn span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: block;
+        }
+
+        .game-status-msg {
+            margin-top: 15px;
+            min-height: 28px;
+            font-weight: 800;
+            font-size: 1.05rem;
+        }
+
+        /* Quiz App */
+        .quiz-container {
+            background: var(--surface-alt);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 26px;
+        }
+
+        .quiz-item-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 22px;
+            margin-bottom: 18px;
+        }
+
+        .q-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 14px;
+        }
+
+        .q-choices {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .choice-btn {
+            background: var(--surface-alt);
+            border: 1px solid var(--border);
+            padding: 13px 18px;
+            border-radius: 10px;
+            text-align: right;
+            font-size: 0.98rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .choice-btn:hover:not(:disabled) {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .choice-btn.correct-choice {
+            background: #dcfce7 !important;
+            border-color: #22c55e !important;
+            color: #15803d !important;
+            font-weight: 800;
+        }
+
+        .choice-btn.wrong-choice {
+            background: #fee2e2 !important;
+            border-color: #ef4444 !important;
+            color: #b91c1c !important;
+        }
+
+        .choice-feedback {
+            display: none;
+            margin-top: 12px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 0.94rem;
+            background: var(--primary-light);
+            border-right: 4px solid var(--primary);
+            color: var(--primary-dark);
+        }
+
+        .btn-action {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 11px 24px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s;
+            font-size: 0.95rem;
+        }
+
+        .btn-action:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Glossary Modal */
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(6px);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-backdrop.open {
+            display: flex;
+        }
+
+        .modal-box {
+            background: var(--surface);
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 28px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+        }
+
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .glossary-item {
+            background: var(--surface-alt);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-18px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Reading Progress Bar -->
+    <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progressBar"></div>
+    </div>
+
+    <!-- Teacher Classroom Bar -->
+    <div class="teacher-toolbar">
+        <div class="toolbar-brand">
+            <span>🛡️ منصة المعلم التفاعلية • الصف الأول الثانوي</span>
+            <span style="background:rgba(56,189,248,0.2); padding:2px 10px; border-radius:20px; font-size:0.8rem;">الوحدة الثالثة: أمن المعلومات</span>
+        </div>
+        <div class="toolbar-actions">
+            <button class="tool-btn" onclick="openGlossaryModal()">📖 قاموس مصطلحات الوحدة (EN/AR)</button>
+            <button class="tool-btn" onclick="changeFontScale(0.08)">🔍 تكبير الخط A+</button>
+            <button class="tool-btn" onclick="changeFontScale(-0.08)">🔎 تصغير الخط A-</button>
+            <button class="tool-btn" id="darkModeBtn" onclick="toggleDarkMode()">🌙 الوضع الليلي للسبورة</button>
+        </div>
+    </div>
+
+    <!-- Hero Header -->
+    <header class="hero">
+        <h1>الوحدة الثالثة: أمن المعلومات (Information Security)</h1>
+        <p>منصة تعليمية تفاعلية متكاملة لشرح عناصر أمن المعلومات، البرمجيات الخبيثة، كلمات المرور والمصادقة، الهندسة الاجتماعية، التشفير، التوقيع الرقمي، وبروتوكول SSL/TLS</p>
+        <div class="hero-tags">
+            <span class="hero-tag">الدرس 1: تهديدات أمن المعلومات (1)</span>
+            <span class="hero-tag">الدرس 2: كلمات المرور والمصادقة (2)</span>
+            <span class="hero-tag">الدرس 3: الاحتيال والهندسة الاجتماعية (3)</span>
+            <span class="hero-tag">الدرس 4: تقنيات التشفير (4)</span>
+            <span class="hero-tag">الدرس 5: التوقيع الرقمي و SSL/TLS (5)</span>
+        </div>
+    </header>
+
+    <!-- Sticky Glass Navigation -->
+    <div class="nav-wrapper">
+        <nav class="nav-glass">
+            <a href="#tab1" class="nav-item active" data-target="tab1">1. مثلث الأمان والتهديدات</a>
+            <a href="#tab2" class="nav-item" data-target="tab2">2. كلمات المرور والمصادقة</a>
+            <a href="#tab3" class="nav-item" data-target="tab3">3. الاحتيال والهندسة الاجتماعية</a>
+            <a href="#tab4" class="nav-item" data-target="tab4">4. تقنيات التشفير والمفاتيح</a>
+            <a href="#tab5" class="nav-item" data-target="tab5">5. التوقيع الرقمي و SSL/TLS</a>
+            <a href="#tab6" class="nav-item" data-target="tab6">6. بنك التحدي الشامل</a>
+        </nav>
+    </div>
+
+    <div class="container">
+
+        <!-- =========================================================
+             القسم الأول: الدرس 1 (3-1) أمن المعلومات والتهديدات والبرمجيات الخبيثة
+             ========================================================= -->
+        <section id="tab1" class="content-card">
+            <div class="section-badge">المحور الأول • الدرس 1 (3-1) • صـ 30 إلى 33</div>
+            <h2 class="section-title">أ. مفهوم أمن المعلومات والعناصر الأساسية الثلاثة (CIA Triad)</h2>
+            <p class="section-desc">التعريفات الرسمية المعتمدة بنص كتاب الوزارة المدرسي مع أمثلة الأضرار والتدابير:</p>
+
+            <div class="book-def-box">
+                <div class="book-def-title">📌 (1) أمن المعلومات (Information security):</div>
+                <div class="book-exact-text">
+                    "هو عملية إدارة المعلومات بشكل صحيح والحفاظ عليها آمنة."
+                </div>
+                <div class="explanation-bubble">
+                    💡 <strong>لماذا ندرس أمن المعلومات؟</strong> لحماية الأنظمة والبيانات من الوصول غير المصرّح به، أو التدمير والتلاعب، أو تعطل الخدمات الحيوية، وذلك عبر تحقيق التوازن بين ثلاثة عناصر رئيسية.
+                </div>
+            </div>
+
+            <!-- مثلث أمن المعلومات التفاعلي -->
+            <h3 style="font-size:1.2rem; margin: 20px 0 10px;">🔺 اضغط على أي ركن من أركان أمن المعلومات الثلاثة لاستعراض تفاصيله من الكتاب:</h3>
+            <div class="cia-grid">
+                <div class="cia-card active" id="cia_c" onclick="selectCIA('c')">
+                    <div class="cia-letter" style="background:#dbeafe; color:#1d4ed8;">C</div>
+                    <h4 style="font-size:1.18rem; margin-bottom:4px;">[1] السرية (Confidentiality)</h4>
+                    <p style="font-size:0.9rem; color:var(--text-muted);">قصر الوصول على الأفراد المصرّح لهم فقط.</p>
+                </div>
+                <div class="cia-card" id="cia_i" onclick="selectCIA('i')">
+                    <div class="cia-letter" style="background:#dcfce7; color:#15803d;">I</div>
+                    <h4 style="font-size:1.18rem; margin-bottom:4px;">[2] السلامة / التكامل (Integrity)</h4>
+                    <p style="font-size:0.9rem; color:var(--text-muted);">عدم تدمير المعلومات أو العبث بها أو محوها.</p>
+                </div>
+                <div class="cia-card" id="cia_a" onclick="selectCIA('a')">
+                    <div class="cia-letter" style="background:#fef3c7; color:#b45309;">A</div>
+                    <h4 style="font-size:1.18rem; margin-bottom:4px;">[3] التوافرية / التوفر (Availability)</h4>
+                    <p style="font-size:0.9rem; color:var(--text-muted);">إمكانية الوصول للمعلومات في أي وقت عند الحاجة.</p>
+                </div>
+            </div>
+
+            <div class="cia-detail-panel" id="ciaDetailBox">
+                <!-- يتم تحديثه عبر الجافاسكربت -->
+            </div>
+
+            <!-- ب. تهديدات متنوعة لأمن المعلومات والبرمجيات الخبيثة والجرائم -->
+            <h3 style="font-size:1.35rem; margin-top:30px; margin-bottom:10px;">ب. التهديدات المتنوعة، البرمجيات الخبيثة (Malware)، والجرائم الإلكترونية</h3>
+            <div class="filter-hub">
+                <h4 style="font-size:1.08rem; margin-bottom:14px;">🔍 صفِّ التهديدات والمفاهيم حسب تصنيف كتاب الوزارة (صـ 30):</h4>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" onclick="filterThreats('all', this)">عرض الكل (11 مفهوماً)</button>
+                    <button class="filter-btn" onclick="filterThreats('access', this)">الوصول والاختراق (Cracking)</button>
+                    <button class="filter-btn" onclick="filterThreats('malware', this)">البرمجيات الخبيثة (Malware)</button>
+                    <button class="filter-btn" onclick="filterThreats('spy', this)">برامج التجسس والفدية</button>
+                    <button class="filter-btn" onclick="filterThreats('crime', this)">الجرائم الإلكترونية (Cybercrime)</button>
+                </div>
+
+                <div class="items-showcase" id="threatsShowcase">
+                    <!-- يتم ملؤها عبر الجافاسكربت -->
+                </div>
+            </div>
+
+            <div class="explanation-bubble" style="margin-top:15px;">
+                ⚠️ <strong>ملاحظة هامة جداً من أسئلة الكتاب (صـ 30 و 32 و 33):</strong>
+                كيف تنتقل الإصابة بالبرمجيات الخبيثة (Malware)؟ تنتقل عبر: <strong>(1) مواقع الويب، (2) مرفقات البريد الإلكتروني، (3) محركات أقراص فلاش USB، (4) الشبكات المصابة، (5) أقراص DVD التي تم تشغيلها على جهاز مصاب</strong>. لذا فإن عدم فتح البريد الإلكتروني وحده أو عدم الاتصال بالشبكة مع استخدام فلاشة USB لا يحميك من الإصابة!
+            </div>
+        </section>
+
+        <!-- =========================================================
+             القسم الثاني: الدرس 2 (3-2) كلمات المرور والمصادقة وإجراءات الأمن
+             ========================================================= -->
+        <section id="tab2" class="content-card">
+            <div class="section-badge" style="background:#ccfbf1; color:#0f766e;">المحور الثاني • الدرس 2 (3-2) • صـ 34 إلى 37</div>
+            <h2 class="section-title">أ. كلمات المرور (Passwords) والمصادقة (Authentication)</h2>
+            <p class="section-desc">قواعد إنشاء كلمات المرور القوية، حساب احتمالات القوة الغاشمة، وأنواع المصادقة الخمسة:</p>
+
+            <div class="book-def-box" style="border-right-color: var(--secondary);">
+                <div class="book-def-title" style="color: var(--secondary);">📌 تعريف كلمة المرور وكلمة المرور لمرة واحدة (OTP):</div>
+                <div class="book-exact-text">
+                    • <strong>كلمة المرور (Password):</strong> سلسلة من الأحرف تُستخدم للتحقق من هوية المستخدم وأنه هو صاحب الحساب الشرعي.<br>
+                    • <strong>كلمة المرور لمرة واحدة (One-time password - OTP):</strong> كلمة مرور تتغير على فترات منتظمة ولا يمكن استخدامها إلا مرة واحدة، ولها وقت صلاحية محدود، وتمنع <strong>الوصول غير المصرّح به باستخدام كلمات مرور مسرّبة</strong>.
+                </div>
+            </div>
+
+            <!-- إرشادات كتاب الوزارة لإنشاء كلمة مرور -->
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:14px; margin:20px 0;">
+                <div style="background:var(--success-light); border:1px solid var(--success); border-radius:12px; padding:16px;">
+                    <h4 style="color:var(--success); margin-bottom:6px;">✅ افعل عند إنشاء كلمة المرور:</h4>
+                    <ul style="padding-right:18px; font-size:0.93rem;">
+                        <li>استخدم سلسلة أحرف <strong>طويلة</strong> قدر الإمكان.</li>
+                        <li><strong>اجمع</strong> بين الأحرف الكبيرة (A-Z) والصغيرة (a-z) والأرقام (0-9) والرموز.</li>
+                        <li>غيّر كلمة المرور الأولية (الافتراضية) فور استلامها.</li>
+                    </ul>
+                </div>
+                <div style="background:var(--danger-light); border:1px solid var(--danger); border-radius:12px; padding:16px;">
+                    <h4 style="color:var(--danger); margin-bottom:6px;">❌ تجنب تماماً (أخطاء شائعة في الامتحان):</h4>
+                    <ul style="padding-right:18px; font-size:0.93rem;">
+                        <li>لا تستخدم معلومات شخصية (تاريخ ميلاد، اسم، هاتف، بريد إلكتروني، User ID).</li>
+                        <li>لا تُعد استخدام نفس كلمة المرور عبر خدمات متعددة.</li>
+                        <li>لا تدوّن كلمات المرور في دفتر ملاحظات أو أوراق لاصقة.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- مختبر حساب عدد تركيبات كلمة المرور (مسائل الكتاب ص 35، 36، 37) -->
+            <div class="lab-box">
+                <h3 style="font-size:1.25rem; margin-bottom:8px;">🧮 مختبر مسائل كلمة المرور وهجمات القوة الغاشمة (Brute-Force Calculator)</h3>
+                <p style="font-size:0.94rem; color:var(--text-muted); margin-bottom:16px;">
+                    في امتحانات الوحدة الثالثة، يطلب منك حساب عدد التركيبات الممكنة لكلمة مرور طولها <strong>(n)</strong> باستخدام القاعدة الرياضية: <strong>(عدد الاحتمالات للحرف الواحد)<sup>طول كلمة المرور</sup> = a<sup>n</sup></strong>. جرّب بنفسك أو اختر مسألة من مسائل الكتاب:
+                </p>
+
+                <div class="lab-grid">
+                    <div>
+                        <label style="font-weight:800; display:block; margin-bottom:8px;">1. اختر أنواع الرموز المسموحة في كلمة المرور (قيمة الأساس a):</label>
+                        <div class="charset-checks">
+                            <label class="check-pill">
+                                <input type="checkbox" id="chkDigits" checked onchange="calcPasswordMath()">
+                                <span>أرقام (0-9) = 10</span>
+                            </label>
+                            <label class="check-pill">
+                                <input type="checkbox" id="chkLower" checked onchange="calcPasswordMath()">
+                                <span>أحرف صغيرة (a-z) = 26</span>
+                            </label>
+                            <label class="check-pill">
+                                <input type="checkbox" id="chkUpper" onchange="calcPasswordMath()">
+                                <span>أحرف كبيرة (A-Z) = 26</span>
+                            </label>
+                            <label class="check-pill">
+                                <input type="checkbox" id="chkSymbols" onchange="calcPasswordMath()">
+                                <span>رموز خاصة = 10</span>
+                            </label>
+                        </div>
+
+                        <label style="font-weight:800; display:block; margin:16px 0 6px;">
+                            2. حدد طول كلمة المرور (عدد الخانات n): <span id="lenValLabel" style="color:var(--primary); font-size:1.2rem;">3</span> أحرف
+                        </label>
+                        <input type="range" id="passLenSlider" min="1" max="8" value="3" style="width:100%; accent-color:var(--primary); cursor:pointer;" oninput="calcPasswordMath()">
+
+                        <div class="preset-btns">
+                            <button class="preset-btn" onclick="setPassPreset(true, true, false, false, 3)">📘 مسألة صـ 35 (أرقام + حروف صغيرة، طول 3)</button>
+                            <button class="preset-btn" onclick="setPassPreset(true, true, false, false, 4)">📗 مسألة صـ 37 (أرقام + حروف صغيرة، طول 4)</button>
+                            <button class="preset-btn" onclick="setPassPreset(false, false, true, false, 6)">📙 مسألة صـ 36 (26 حرف A-Z، زيادة من 4 لـ 6)</button>
+                        </div>
+                    </div>
+
+                    <div class="formula-display">
+                        <div style="font-size:0.9rem; color:var(--text-muted); font-weight:700;">مجموع الاحتمالات للحرف الواحد (a): <span id="baseCountSpan">36</span></div>
+                        <div class="math-big" id="formulaMathText">36<sup>3</sup> = 36 × 36 × 36</div>
+                        <div style="font-size:1.35rem; font-weight:900; color:var(--success); margin-bottom:8px;" id="totalCombText">46,656 تركيبة</div>
+                        <div style="font-size:0.88rem; color:var(--text-muted); background:var(--surface-alt); padding:10px; border-radius:10px;" id="mathNoteText">
+                            💡 مطابق لسؤال الكتاب صـ 35: (10 أرقام + 26 حرفاً صغيراً = 36 حرفاً محتملاً، ولـ 3 أحرف = 36<sup>3</sup>).
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- جدول أنواع المصادقة الخمسة في الكتاب -->
+            <h3 style="margin-top:28px; margin-bottom:12px;">🔐 (5) أنواع المصادقة (Authentication Types) - مقارنة هامة جداً للامتحان (صـ 34):</h3>
+            <div class="table-responsive">
+                <table class="rich-table">
+                    <thead>
+                        <tr>
+                            <th>نوع المصادقة</th>
+                            <th>المفهوم والطريقة بنص الكتاب</th>
+                            <th>الأمثلة المعتمدة في الكتاب</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>أ. المصادقة القائمة على المعرفة<br>(Knowledge-based)</strong></td>
+                            <td>المصادقة باستخدام معلومات يعرفها الفرد فقط.</td>
+                            <td>معرّف المستخدم وكلمة المرور (ID & Password)، رمز PIN، سؤال سري.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ب. المصادقة البيومترية<br>(Biometric authentication)</strong></td>
+                            <td>المصادقة باستخدام الخصائص الفيزيائية (الجسدية) أو السلوكية للفرد.</td>
+                            <td>بصمة الإصبع، قزحية العين، نمط الوريد، خط اليد.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ت. المصادقة القائمة على الحيازة (الامتلاك)<br>(Possession-based)</strong></td>
+                            <td>المصادقة باستخدام عنصر يمتلكه الفرد فعلياً.</td>
+                            <td>بطاقة ذكية (Smart Card)، كلمة مرور لمرة واحدة (OTP)، رمز تحقق عبر رسالة SMS للهاتف.</td>
+                        </tr>
+                        <tr style="background:var(--primary-light);">
+                            <td><strong>ث. المصادقة الثنائية بعاملين مختلفين<br>(Two-factor - 2FA)</strong></td>
+                            <td><strong>تجمع بين نوعين مختلفين من العوامل</strong> (من بين: المعرفة، الحيازة، البيومترية).</td>
+                            <td><strong>رقم PIN (معرفة) + رمز عبر SMS (حيازة)</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ج. المصادقة متعددة الخطوات<br>(Two-step authentication)</strong></td>
+                            <td>تقوم بالمصادقة على خطوتين باستخدام <strong>معلومتين من نفس نوع العامل</strong>.</td>
+                            <td><strong>كلمة المرور (معرفة) + سؤال سري (معرفة)</strong>.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ب. إجراءات أمن المعلومات -->
+            <h3 style="margin-top:28px; margin-bottom:12px;">🛡️ ب. إجراءات أمن المعلومات ومواجهة الفيروسات (صـ 34):</h3>
+            <div class="cards-3d-grid">
+                <div class="animated-card" onclick="toggleCard(this)">
+                    <div class="card-icon-title">
+                        <div class="circle-icon">🚪</div>
+                        <div>
+                            <h4 style="font-size:1.1rem;">التحكم في الوصول (Access Control)</h4>
+                            <span style="font-size:0.8rem; color:var(--text-muted);">تقييد الصلاحيات</span>
+                        </div>
+                    </div>
+                    <p class="book-exact-text" style="font-size:0.95rem;">
+                        "طريقة للحد من الوصول إلى أنظمة الكمبيوتر أو البيانات بحيث يُسمح فقط لمستخدمين محددين، ويتم التحقق منهم من خلال استخدام المصادقة."
+                    </p>
+                    <div class="expandable-hint">👈 اضغط للتفاصيل</div>
+                    <div class="hidden-details">
+                        يمنع الأشخاص غير المخولين من تشغيل النظام أو قراءة الملفات السرية حتى داخل نفس المؤسسة.
+                    </div>
+                </div>
+
+                <div class="animated-card" onclick="toggleCard(this)">
+                    <div class="card-icon-title">
+                        <div class="circle-icon" style="background:#fee2e2; color:var(--danger);">🧱</div>
+                        <div>
+                            <h4 style="font-size:1.1rem;">جدار الحماية (Firewall)</h4>
+                            <span style="font-size:0.8rem; color:var(--text-muted);">حارس بوابة الشبكة</span>
+                        </div>
+                    </div>
+                    <p class="book-exact-text" style="font-size:0.95rem;">
+                        "نظام مثبت عند نقاط دخول الشبكة لمنع (الوصول غير المصرّح به) من الخارج ولمنع (تسرّب البيانات) من الداخل."
+                    </p>
+                    <div class="expandable-hint">👈 اضغط للتفاصيل</div>
+                    <div class="hidden-details">
+                        كما يذكر الكتاب في صـ 36: هو النظام الذي يخفي أجهزة الكمبيوتر الموجودة في الشبكة المحلية (LAN) الداخلية عن الشبكات الخارجية.
+                    </div>
+                </div>
+
+                <div class="animated-card" onclick="toggleCard(this)">
+                    <div class="card-icon-title">
+                        <div class="circle-icon" style="background:#dcfce7; color:var(--success);">💉</div>
+                        <div>
+                            <h4 style="font-size:1.1rem;">مواجهة الفيروسات والثغرات</h4>
+                            <span style="font-size:0.8rem; color:var(--text-muted);">3 خطوات أساسية</span>
+                        </div>
+                    </div>
+                    <p class="book-exact-text" style="font-size:0.95rem;">
+                        1. تثبيت <strong>برنامج مكافحة الفيروسات (Antivirus)</strong> وتحديث تعريفاته.<br>
+                        2. <strong>تحديث (Update)</strong> نظام التشغيل والتطبيقات لسد <strong>الثغرات الأمنية (Security holes)</strong>.<br>
+                        3. إنشاء <strong>نسخ احتياطية (Backups)</strong> بانتظام.
+                    </p>
+                    <div class="expandable-hint">👈 اضغط للتفاصيل</div>
+                    <div class="hidden-details">
+                        تحديث النظام يغلق الثغرات الأمنية قبل أن تستغلها البرمجيات الخبيثة، والنسخ الاحتياطي يحميك من ضياع البيانات أو هجمات الفدية.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             القسم الثالث: الدرس 3 (3-3) الاحتيال والهندسة الاجتماعية وسياسة الأمن
+             ========================================================= -->
+        <section id="tab3" class="content-card">
+            <div class="section-badge" style="background:#fef3c7; color:#92400e;">المحور الثالث • الدرس 3 (3-3) • صـ 38 إلى 40</div>
+            <h2 class="section-title">الاحتيال بالفواتير، التصيّد، الهندسة الاجتماعية، وسياسة أمن المعلومات</h2>
+            <p class="section-desc">كيف يخدع المحتالون المستخدمين؟ وما الفرق بين الهجمات التقنية والهندسة الاجتماعية؟</p>
+
+            <div class="table-responsive">
+                <table class="rich-table">
+                    <thead>
+                        <tr>
+                            <th>الفئة</th>
+                            <th>المصطلح في الكتاب</th>
+                            <th>التعريف الدقيق والآلية</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="2"><strong>أ. الاحتيال بالفواتير</strong></td>
+                            <td><strong>فاتورة احتيالية<br>(Fraudulent billing)</strong></td>
+                            <td>احتيال يتم فيه إصدار فاتورة لشخص ما مقابل خدمة وهمية لم يستخدمها أبداً، بهدف الحصول على المال بشكل احتيالي.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>الاحتيال بنقرة واحدة<br>(One-click fraud)</strong></td>
+                            <td>احتيال يؤدي فيه مجرد النقر على رابط (URL) في موقع ويب أو بريد إلكتروني تلقائياً إلى رسالة تدّعي أنه تم إبرام عقد، يليها طلب دفع مبالغ كبيرة.</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="5"><strong>ب. الحصول غير المصرّح به على المعلومات</strong></td>
+                            <td><strong>التصيّد<br>(Phishing)</strong></td>
+                            <td>احتيال يستخدم مواقع ويب مزيفة (أو رسائل بريد إلكتروني) متنكرة على أنها مؤسسات مالية (بنوك) أو هيئات عامة لسرقة رموز PIN أو أرقام بطاقات الائتمان.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>الهندسة الاجتماعية<br>(Social engineering)</strong></td>
+                            <td><strong>طريقة للحصول على المعلومات بشكل احتيالي عن طريق استغلال علم النفس البشري أو الإهمال أو قلة الوعي</strong> (مثل التنصت على المحادثات، وتشمل الطرق الـ 3 التالية):</td>
+                        </tr>
+                        <tr>
+                            <td>↳ <strong>[1] انتحال الشخصية (Impersonation)</strong></td>
+                            <td>التظاهر بأنك شخص آخر — مثل إجراء مكالمة هاتفية باسم موظف أو مسؤول — لاستخلاص معلومات داخلية سرية.</td>
+                        </tr>
+                        <tr>
+                            <td>↳ <strong>[2] التجسس المباشر (Shoulder surfing)</strong></td>
+                            <td>التلصص على الشاشة أو لوحة مفاتيح شخص أثناء قيامه بإدخال كلمة المرور أو رمز PIN لسرقتها.</td>
+                        </tr>
+                        <tr>
+                            <td>↳ <strong>[3] البحث في المهملات (Dumper diving)</strong></td>
+                            <td>البحث في المهملات (القمامة) للحصول على مستندات أو معلومات سرية تم التخلص منها.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ب. سرقة البطاقات</strong></td>
+                            <td><strong>التزوير / نسخ البطاقات<br>(Skimming)</strong></td>
+                            <td>استخراج البيانات بشكل غير قانوني من بطاقة ائتمان أو خصم خاصة بشخص ما (عبر قارئ خفي) واستخدامها لإنشاء بطاقة مزورة.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- هرم سياسة أمن المعلومات التفاعلي -->
+            <h3 style="margin-top:30px; margin-bottom:10px;">📐 ت. هرم سياسة أمن المعلومات (Information Security Policy) - صـ 38:</h3>
+            <p style="font-size:0.95rem; color:var(--text-muted); margin-bottom:15px;">
+                <strong>تعريف سياسة أمن المعلومات:</strong> "مجموعة من القواعد والإرشادات الأساسية التي تضعها شركة أو منظمة للحفاظ على أمن المعلومات وحمايته." اضغط على طبقات الهرم الثلاث لشرحها لطلابك:
+            </p>
+
+            <div class="pyramid-wrapper">
+                <div class="pyramid-stack">
+                    <div class="pyramid-level p-lvl-1 active" id="pyr_1" onclick="selectPyramid(1)">
+                        1. السياسة الأساسية<br><span style="font-size:0.78rem; font-weight:600;">(Basic Policy)</span>
+                    </div>
+                    <div class="pyramid-level p-lvl-2" id="pyr_2" onclick="selectPyramid(2)">
+                        2. معايير الأمان<br><span style="font-size:0.78rem; font-weight:600;">(Security Standards)</span>
+                    </div>
+                    <div class="pyramid-level p-lvl-3" id="pyr_3" onclick="selectPyramid(3)">
+                        3. إجراءات التنفيذ وقواعد التشغيل<br><span style="font-size:0.78rem; font-weight:600;">(Implementation Procedures)</span>
+                    </div>
+                </div>
+
+                <div class="book-def-box" id="pyramidDetailBox" style="margin-bottom:0;">
+                    <!-- يتم ملؤه عبر الجافاسكربت -->
+                </div>
+            </div>
+
+            <!-- لعبة التصنيف السريع -->
+            <div class="sorter-game">
+                <div class="sorter-header">
+                    <h3 style="font-size:1.18rem; color:var(--text-main);">🎯 مختبر التصنيف التفاعلي للطلاب: صنّف الموقف أو التهديد الأمني</h3>
+                    <div class="sorter-score" id="secScoreBoard">النقاط: 0 / 8</div>
+                </div>
+
+                <p style="color:var(--text-muted); font-size:0.95rem; margin-bottom:14px;">اقرأ الموقف المعروض واختر التصنيف الصحيح له حسب منهج الوحدة الثالثة:</p>
+                <div class="current-token" id="secTokenText">جاري التحميل...</div>
+
+                <div class="target-bins">
+                    <button class="bin-btn" onclick="checkSecSort('malware')">
+                        <div style="font-size:1.5rem; margin-bottom:4px;">🦠</div>
+                        <h5>برمجيات خبيثة (Malware)</h5>
+                        <span>(فيروس / طروادة / دودة / فدية / تجسس)</span>
+                    </button>
+                    <button class="bin-btn" onclick="checkSecSort('social')">
+                        <div style="font-size:1.5rem; margin-bottom:4px;">🕵️</div>
+                        <h5>هندسة اجتماعية</h5>
+                        <span>(استغلال علم النفس / الإهمال / التلصص / القمامة)</span>
+                    </button>
+                    <button class="bin-btn" onclick="checkSecSort('fraud')">
+                        <div style="font-size:1.5rem; margin-bottom:4px;">🎣</div>
+                        <h5>احتيال وتصيّد وتزوير</h5>
+                        <span>(نقرة واحدة / تصيد Phishing / تزوير بطاقات)</span>
+                    </button>
+                    <button class="bin-btn" onclick="checkSecSort('auth')">
+                        <div style="font-size:1.5rem; margin-bottom:4px;">🔐</div>
+                        <h5>مصادقة ودفاع أمني</h5>
+                        <span>(بيومترية / OTP / جدار حماية / تحكم وصول)</span>
+                    </button>
+                </div>
+
+                <div class="game-status-msg" id="secStatusMsg"></div>
+                <div style="margin-top:12px;">
+                    <button class="preset-btn" onclick="resetSecSorter()">🔄 إعادة تشغيل اللعبة من البداية</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             القسم الرابع: الدرس 4 (3-4) تقنيات التشفير
+             ========================================================= -->
+        <section id="tab4" class="content-card">
+            <div class="section-badge" style="background:#ede9fe; color:#5b21b6;">المحور الرابع • الدرس 4 (3-4) • صـ 41 إلى 43</div>
+            <h2 class="section-title">تقنيات المعلومات للسلامة (1): التشفير (Encryption) وأنواعه</h2>
+            <p class="section-desc">المفاهيم الأساسية للتشفير، والمقارنة التفصيلية بين التشفير بالمفتاح المتماثل والتشفير بالمفتاح العام:</p>
+
+            <div class="book-def-box" style="border-right-color: var(--purple);">
+                <div class="book-def-title" style="color: var(--purple);">📌 المصطلحات الأربعة الأساسية للتشفير (صـ 41):</div>
+                <div class="book-exact-text">
+                    1. <strong>التشفير (Encryption):</strong> طريقة تُستخدم عند إرسال المعلومات لمنع اعتراضها من قبل أي شخص آخر غير المستلم المقصود.<br>
+                    2. <strong>النص العادي (Plaintext):</strong> النص الأصلي غير المشفر قبل تحويله (مثل كلمة: "مرحباً").<br>
+                    3. <strong>النص المشفر (Ciphertext):</strong> النص الناتج بعد التشفير (مثل: <code style="direction:ltr; display:inline-block;">&amp;SA+F¥Cs+A</code>).<br>
+                    4. <strong>فك التشفير (Decryption):</strong> عملية تحويل النص المشفر مرة أخرى إلى شكله الأصلي كنص عادي باستخدام <strong>المفتاح (Key)</strong>.
+                </div>
+            </div>
+
+            <!-- محاكي التشفير التفاعلي (المتماثل vs العام vs المؤقت) -->
+            <div class="Diagram-flow">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:14px;">
+                    <h3 style="font-size:1.2rem;">🔑 محاكي آلية التشفير التفاعلي (اختر نوع التشفير لمشاهدة مسار المفاتيح):</h3>
+                    <div class="filter-buttons" style="margin-bottom:0;">
+                        <button class="filter-btn active" id="encBtn_sym" onclick="switchEncMode('sym')">1. المفتاح المتناظر (المتماثل)</button>
+                        <button class="filter-btn" id="encBtn_pub" onclick="switchEncMode('pub')">2. المفتاح العام (Public Key)</button>
+                        <button class="filter-btn" id="encBtn_ses" onclick="switchEncMode('ses')">3. المفتاح المؤقت (Session Key)</button>
+                    </div>
+                </div>
+
+                <div id="encSimulatorContent">
+                    <!-- يتم تحديثه عبر الجافاسكربت -->
+                </div>
+            </div>
+
+            <!-- جدول المقارنة الرسمي من صـ 42 -->
+            <h3 style="margin-top:26px; margin-bottom:12px;">📊 جدول مقارنة خصائص التشفير بالمفتاح المتماثل والتشفير بالمفتاح العام (صـ 42):</h3>
+            <div class="table-responsive">
+                <table class="rich-table">
+                    <thead>
+                        <tr>
+                            <th>وجه المقارنة</th>
+                            <th>التشفير بالمفتاح المتماثل / المتناظر (Symmetric Key)</th>
+                            <th>التشفير بالمفتاح العام (Public Key Encryption)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>المفاتيح المستخدمة</strong></td>
+                            <td>نفس <strong>المفتاح المشترك (Shared key)</strong> للتشفير وفك التشفير.</td>
+                            <td>مفتاحان للمستلم: <strong>المفتاح العام للمستلم</strong> (للتشفير) + <strong>المفتاح الخاص للمستلم</strong> (لفك التشفير).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>التشبيه التوضيحي بالكتاب</strong></td>
+                            <td>يتشارك الطرفان نفس "المفتاح السري" لفتح وإغلاق الصندوق.</td>
+                            <td>يشبه <strong>قفلاً مفتوحاً</strong> تم توزيعه على الجميع؛ أي شخص يغلق به الصندوق، ولكن وحده المستلم يمتلك <strong>المفتاح الفريد</strong> لفتحه.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>المزايا (Advantages)</strong></td>
+                            <td><span class="item-cat cat-defense">السرعة العالية</span> سرعة معالجة التشفير وفك التشفير <strong>أسرع</strong> مقارنة بالمفتاح العام.</td>
+                            <td><span class="item-cat cat-defense">سهولة وأمان إدارة المفاتيح</span> لأن المفتاح العام يُنشر بحرية ولا حاجة لإرسال المفتاح الخاص.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>العيوب (Disadvantages)</strong></td>
+                            <td><span class="item-cat cat-malware">صعوبة تبادل المفتاح</span> يحتاج كل مرسل لمفتاح مشترك منفصل، وخطر سرقة المفتاح أثناء إرساله للمستلم.</td>
+                            <td><span class="item-cat cat-malware">البطء النسبي</span> سرعة معالجة التشفير وفك التشفير <strong>أبطأ</strong> مقارنة بالمفتاح المتماثل.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- تدريب الكتاب التفاعلي صـ 43 (الفراغات 1 إلى 10) -->
+            <div class="lab-box" style="border-color: var(--purple);">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+                    <h3 style="font-size:1.18rem;">📝 تدريب الرسم البياني من كتاب الوزارة (صـ 43): سير عملية التشفير بالمفتاح العام</h3>
+                    <div>
+                        <button class="preset-btn" onclick="toggleAllBlanks('encBlanks', true)">👁️ إظهار جميع الإجابات (1-10)</button>
+                        <button class="preset-btn" onclick="toggleAllBlanks('encBlanks', false)">🙈 إخفاء لاختبار الطلاب</button>
+                    </div>
+                </div>
+                <p style="font-size:0.92rem; color:var(--text-muted); margin-bottom:12px;">انقر على أي رقم من [1] إلى [10] للكشف عن المصطلح الصحيح أثناء الشرح:</p>
+                <div id="encBlanks" style="background:var(--surface); padding:18px; border-radius:14px; border:1px solid var(--border); line-height:2.3;">
+                    • <strong>عند المرسل:</strong> يبدأ بـ "مرحباً" وهو <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[1] (أ) نص عادي">[1] اضغط للكشف</span>
+                    ← يجري عملية <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[2] (ث) تشفير">[2] اضغط للكشف</span>
+                    باستخدام <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[3] (خ) مفتاح عام">[3] اضغط للكشف</span>
+                    من <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[4] (ر) المستلم">[4] اضغط للكشف</span>
+                    ← فينتج `&amp;SA+F¥Cs+A` وهو <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[5] (ب) نص مشفر">[5] اضغط للكشف</span>.<br>
+                    • <strong>عند المستلم (بعد الإرسال):</strong> يستقبل `&amp;SA+F¥Cs+A` وهو <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[6] (ب) نص مشفر">[6] اضغط للكشف</span>
+                    ← يجري عملية <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[7] (ت) فك التشفير">[7] اضغط للكشف</span>
+                    باستخدام <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[8] (د) مفتاح خاص">[8] اضغط للكشف</span>
+                    من <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[9] (ر) المستلم">[9] اضغط للكشف</span>
+                    ← فيستعيد "مرحباً" وهو <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[10] (أ) نص عادي">[10] اضغط للكشف</span>.
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             القسم الخامس: الدرس 5 (3-5) التوقيع الرقمي و CA و SSL/TLS
+             ========================================================= -->
+        <section id="tab5" class="content-card">
+            <div class="section-badge" style="background:#dcfce7; color:#166534;">المحور الخامس • الدرس 5 (3-5) • صـ 44 إلى 47</div>
+            <h2 class="section-title">تكنولوجيا المعلومات للسلامة (2): التوقيع الرقمي، الشهادات الرقمية، و SSL/TLS</h2>
+            <p class="section-desc">كيف نثبت أن الرسالة جاءت من المرسل الحقيقي ولم يتم التلاعب بها في الطريق؟</p>
+
+            <div class="book-def-box" style="border-right-color: var(--success);">
+                <div class="book-def-title" style="color: var(--success);">📌 (1) دالة التجزئة (Hash function) و (2) التوقيع الرقمي (Digital Signature):</div>
+                <div class="book-exact-text">
+                    • <strong>دالة التجزئة (Hash function):</strong> دالة تحسب قيمة فريدة بناءً على بيانات الإدخال تسمى <strong>قيمة التجزئة / قيمة هاش (Hash value)</strong>. (مستحيل استعادة البيانات الأصلية منها، وتغيير حرف واحد في الرسالة يغير قيمة الهاش كلياً).<br>
+                    • <strong>التوقيع الرقمي (Digital Signature):</strong> تقنية تستخدم التشفير بالمفتاح العام وقيم التجزئة لإثبات أن البيانات المرسلة هي من المرسل الفعلي ولم يتم العبث بها.
+                </div>
+                <div class="explanation-bubble">
+                    ⚠️ <strong>انتبه للفرق الجوهري في الامتحان بين (التشفير بالمفتاح العام) و(التوقيع الرقمي):</strong><br>
+                    • في <strong>التشفير لحماية السرية (الدرس 4):</strong> نشفر بـ <strong>المفتاح العام للمستلم</strong>، ونفك التشفير بـ <strong>المفتاح الخاص للمستلم</strong>.<br>
+                    • في <strong>التوقيع الرقمي لإثبات الهوية وعدم العبث (الدرس 5):</strong> يشفر المرسل قيمة الهاش بـ <strong>المفتاح الخاص للمرسل</strong>، ويفك المستلم التوقيع بـ <strong>المفتاح العام للمرسل</strong>!
+                </div>
+            </div>
+
+            <!-- محاكي التوقيع الرقمي والعبث بالرسالة -->
+            <div class="lab-box" style="border-color: var(--success);">
+                <h3 style="font-size:1.22rem; margin-bottom:10px;">🔬 مختبر محاكاة التوقيع الرقمي وكشف العبث (Digital Signature Live Lab)</h3>
+                <p style="font-size:0.94rem; color:var(--text-muted); margin-bottom:16px;">
+                    جرّب مع طلابك إرسال رسالة موقعة رقمياً، ثم اضغط على زر <strong>"محاكاة عبث مخترق بالرسالة أثناء الإرسال"</strong> لترى كيف تكشف دالة الهاش والتوقيع الرقمي أي تغيير فوراً!
+                </p>
+
+                <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-bottom:18px;">
+                    <label style="font-weight:800;">النص العادي لدى المرسل:</label>
+                    <input type="text" id="sigInputText" value="مرحباً" style="padding:10px 14px; border-radius:10px; border:2px solid var(--border); font-weight:700; font-size:1rem; background:var(--surface); color:var(--text-main);" oninput="runSigSimulation()">
+                    <button class="btn-action" id="tamperToggleBtn" style="background:var(--danger);" onclick="toggleTamperMode()">
+                        😈 تفعيل عبث مخترق بالرسالة في الطريق: متوقف (سليم)
+                    </button>
+                </div>
+
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:18px;" id="sigStepsGrid">
+                    <!-- يملأ عبر الجافاسكربت -->
+                </div>
+
+                <div id="sigVerdictBanner" style="margin-top:16px; padding:15px; border-radius:12px; text-align:center; font-weight:900; font-size:1.15rem;">
+                    <!-- يملأ عبر الجافاسكربت -->
+                </div>
+            </div>
+
+            <!-- تدريب الكتاب التفاعلي صـ 47 (الفراغات 1 إلى 8 في التوقيع الرقمي) -->
+            <div style="background:var(--surface-alt); padding:20px; border-radius:16px; border:1px solid var(--border); margin:22px 0;">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:10px;">
+                    <h4 style="font-size:1.1rem;">📝 حل تمرين مخطط التوقيع الرقمي في كتاب الوزارة (صـ 47 - الأرقام 1 إلى 8):</h4>
+                    <div>
+                        <button class="preset-btn" onclick="toggleAllBlanks('sigBlanks', true)">👁️ إظهار الإجابات (1-8)</button>
+                        <button class="preset-btn" onclick="toggleAllBlanks('sigBlanks', false)">🙈 إخفاء جميع الفراغات</button>
+                    </div>
+                </div>
+                <div id="sigBlanks" style="line-height:2.3; font-size:0.95rem;">
+                    • <strong>لدى المرسل:</strong> (1) تمرير النص العادي على دالة هاش فينتج <code>06fe3f3e</code> وهي <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[1] (ح) قيمة التجزئة">[1] اضغط للكشف</span>
+                    ← (2) تشفيرها باستخدام <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[2] (ث) المفتاح الخاص">[2] اضغط للكشف</span>
+                    الخاص بـ <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[3] (أ) المرسل">[3] اضغط للكشف</span>
+                    لتكوين <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[4] (خ) التوقيع الرقمي">[4] اضغط للكشف</span>.<br>
+                    • <strong>لدى المستقبل (بعد الإرسال 3):</strong> (5) يمرر النص العادي المستلم على دالة هاش فينتج <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[5] (ح) قيمة التجزئة">[5] اضغط للكشف</span>
+                    ← (4) يفك تشفير التوقيع الرقمي باستخدام <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[6] (ج) المفتاح العام">[6] اضغط للكشف</span>
+                    الخاص بـ <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[7] (أ) المرسل">[7] اضغط للكشف</span>
+                    لاستخراج <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[8] (ح) قيمة التجزئة">[8] اضغط للكشف</span>
+                    ← (6) يقارن القيمتين (تطابق!).
+                </div>
+            </div>
+
+            <!-- جهة التصديق CA وبروتوكول SSL/TLS -->
+            <div class="cards-3d-grid" style="margin-top:25px;">
+                <div class="animated-card" onclick="toggleCard(this)">
+                    <div class="card-icon-title">
+                        <div class="circle-icon" style="background:#fef3c7; color:var(--accent);">🏛️</div>
+                        <div>
+                            <h4 style="font-size:1.15rem;">جهة التصديق (CA) والشهادة الرقمية</h4>
+                            <span style="font-size:0.8rem; color:var(--text-muted);">Certification Authority</span>
+                        </div>
+                    </div>
+                    <p class="book-exact-text" style="font-size:0.95rem;">
+                        "منظمة طرف ثالث موثوقة تتحقق مما إذا كان المفتاح العام ينتمي حقاً إلى المالك المطروح، وتُصدر <strong>(الشهادة الرقمية Digital Certificate)</strong> التي تتضمن المفتاح العام ومعلومات تعريف صاحبه."
+                    </p>
+                    <div class="expandable-hint">👈 لماذا نحتاج إلى جهة التصديق CA؟</div>
+                    <div class="hidden-details">
+                        التوقيع الرقمي وحده لا يمنع شخصاً محتالاً من إنشاء مفتاح عام وخاص والادعاء بأنه البنك! لذا تتدخل منظمة طرف ثالث موثوقة (CA) لإصدار شهادة رقمية تثبت هوية صاحب المفتاح العام وتمنع انتحال الشخصية والتصيّد.
+                    </div>
+                </div>
+
+                <div class="animated-card" onclick="toggleCard(this)">
+                    <div class="card-icon-title">
+                        <div class="circle-icon" style="background:#dcfce7; color:var(--success);">🔒</div>
+                        <div>
+                            <h4 style="font-size:1.15rem;">بروتوكول SSL / TLS و https</h4>
+                            <span style="font-size:0.8rem; color:var(--text-muted);">تشفير متصفح وخادم الويب</span>
+                        </div>
+                    </div>
+                    <p class="book-exact-text" style="font-size:0.95rem;">
+                        "تقنية تُستخدم لتشفير الاتصال بين <strong>خادم الويب (Web Server) ومتصفح الويب (Browser)</strong>. تستخدم <strong>طريقة مفتاح الجلسة (Session Key)</strong>، ويبدأ رابط الصفحة المشفرة بـ <code>https://...</code>"
+                    </p>
+                    <div class="expandable-hint">👈 معلومة تاريخية هامة من صـ 45 و 47</div>
+                    <div class="hidden-details">
+                        تم تقديم <strong>TLS (أمان طبقة النقل)</strong> كإصدار أحدث وأكثر أماناً من <strong>SSL (طبقة المقابس الآمنة)</strong>، ويُعد TLS المعيار الرئيسي حالياً، كما يرفق الشهادة الرقمية من CA لمنع التصيّد.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             القسم السادس: بنك التحدي الشامل للوحدة الثالثة
+             ========================================================= -->
+        <section id="tab6" class="content-card">
+            <div class="section-badge" style="background:#d1fae5; color:#065f46;">المحور السادس • اختبار شامل للوحدة الثالثة</div>
+            <h2 class="section-title">بنك التحدي التفاعلي الشامل (أسئلة وتدريبات كتاب الوزارة - 15 سؤالاً)</h2>
+            <p class="section-desc">جميع الأسئلة مستخرجة من فقرات "تحدى معلوماتك" و"جرب بنفسك" و"تمرين" بالكتاب المدرسي (صـ 31 إلى 47):</p>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:20px; background:var(--surface-alt); padding:14px 20px; border-radius:14px; border:1px solid var(--border);">
+                <div class="filter-buttons" style="margin-bottom:0;">
+                    <button class="filter-btn active" onclick="filterQuiz('all', this)">كل الدروس (15 سؤالاً)</button>
+                    <button class="filter-btn" onclick="filterQuiz('L1', this)">الدرس 1 (الأمان والتهديدات)</button>
+                    <button class="filter-btn" onclick="filterQuiz('L2', this)">الدرس 2 (كلمات المرور والمصادقة)</button>
+                    <button class="filter-btn" onclick="filterQuiz('L3', this)">الدرس 3 (الاحتيال والهندسة)</button>
+                    <button class="filter-btn" onclick="filterQuiz('L45', this)">الدرس 4 و 5 (التشفير والتوقيع و SSL)</button>
+                </div>
+                <div style="font-weight:900; color:var(--primary); font-size:1.05rem;" id="quizScoreTracker">
+                    النتيجة الحالية: 0 / 15
+                </div>
+            </div>
+
+            <div class="quiz-container" id="quizContainer">
+                <!-- يتم ملؤها عبر الجافاسكربت -->
+            </div>
+
+            <div style="text-align:center; margin-top:25px;">
+                <button class="btn-action" onclick="reloadQuiz()">
+                    🔄 إعادة تعيين الإجابات وبدء اختبار جديد
+                </button>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Modal القاموس السريع لمصطلحات الوحدة الثالثة -->
+    <div class="modal-backdrop" id="glossaryModal" onclick="if(event.target===this) closeGlossaryModal()">
+        <div class="modal-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); padding-bottom:14px;">
+                <h3 style="font-size:1.3rem; color:var(--primary);">📖 القاموس الشامل لمصطلحات الوحدة الثالثة (عربي / إنجليزي)</h3>
+                <button class="btn-action" style="padding:6px 14px; background:var(--danger);" onclick="closeGlossaryModal()">✖ إغلاق</button>
+            </div>
+            <p style="font-size:0.92rem; color:var(--text-muted); margin-top:10px;">ابحث بسرعة عن أي مصطلح في الوحدة الثالثة لمراجعته مع الطلاب:</p>
+            <input type="text" id="glossarySearchInput" placeholder="🔍 ابحث عن مصطلح بالعربية أو الإنجليزية (مثال: Phishing أو التوقيع أو Firewall)..." style="width:100%; padding:12px 16px; margin-top:10px; border-radius:10px; border:2px solid var(--border); font-size:0.98rem; background:var(--surface-alt); color:var(--text-main);" oninput="renderGlossary()">
+            <div class="glossary-grid" id="glossaryGrid"></div>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // 1. أدوات المعلم (الخط، الوضع الليلي، شريط التقدم، ScrollSpy)
+        // ==========================================
+        let currentFontScale = 1;
+
+        function changeFontScale(delta) {
+            currentFontScale = Math.min(1.35, Math.max(0.85, currentFontScale + delta));
+            document.documentElement.style.setProperty('--font-scale', currentFontScale);
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            document.getElementById('darkModeBtn').innerText = isDark ? '☀️ الوضع النهاري' : '🌙 الوضع الليلي للسبورة';
+        }
+
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
+        function toggleCard(card) {
+            card.classList.toggle('active');
+        }
+
+        function toggleAllBlanks(containerId, reveal) {
+            const slots = document.querySelectorAll(`#${containerId} .blank-slot`);
+            slots.forEach(s => {
+                if (reveal) {
+                    s.classList.add('revealed');
+                    s.innerText = s.getAttribute('data-ans');
+                } else {
+                    s.classList.remove('revealed');
+                    const num = s.getAttribute('data-ans').split(' ')[0];
+                    s.innerText = `${num} اضغط للكشف`;
+                }
+            });
+        }
+
+        document.addEventListener('click', (e) => {
+            if (e.target && e.target.classList.contains('blank-slot')) {
+                const s = e.target;
+                if (s.classList.contains('revealed')) {
+                    s.innerText = s.getAttribute('data-ans');
+                } else {
+                    const num = s.getAttribute('data-ans').split(' ')[0];
+                    s.innerText = `${num} اضغط للكشف`;
+                }
+            }
+        });
+
+        // ==========================================
+        // 2. مثلث أمن المعلومات (CIA Triad) - الدرس 1
+        // ==========================================
+        const ciaData = {
+            c: {
+                title: "[1] السرية (Confidentiality)",
+                def: "هي الحالة التي يمكن فيها فقط للأفراد المصرّح لهم الوصول إلى المعلومات.",
+                damage: "الأضرار عند غيابها: تسرّب المعلومات الشخصية أو السرية، التنصت على الشبكة، تسرّب كلمات المرور، والاستخدام غير المصرّح به.",
+                measure: "إجراء التأمين (من الكتاب صـ 31): التعامل مع البيانات الخاصة مثل أرقام الهوية الشخصية في غرفة يُسمح بدخولها فقط للموظفين المصرّح لهم، وتطبيق المصادقة والتشفير."
+            },
+            i: {
+                title: "[2] السلامة / التكامل (Integrity)",
+                def: "هي الحالة التي لم يتم فيها تدمير المعلومات أو العبث بها أو محوها.",
+                damage: "الأضرار عند غيابها: التلاعب بالمعلومات أو تدميرها، أو إدخال بيانات غير صحيحة أو مزورة.",
+                measure: "إجراء التأمين (من الكتاب صـ 32): الاحتفاظ بسجلات الوصول إلى البيانات والتعديلات التي تتم عليها لتمكين إمكانية التتبع، واستخدام التوقيع الرقمي لكشف أي عبث."
+            },
+            a: {
+                title: "[3] التوافرية / التوفر (Availability)",
+                def: "هي الحالة التي يمكن فيها الوصول إلى المعلومات في أي وقت عند الحاجة.",
+                damage: "الأضرار عند غيابها: انقطاع الخدمة مثل توقف النظام أو تعطيل موقع ويب بسبب هجوم إلكتروني أو انقطاع الكهرباء.",
+                measure: "إجراء التأمين (من الكتاب صـ 32): تركيب إمدادات طاقة احتياطية لجميع الأجهزة المتعلقة بأنظمة المعلومات الحيوية استعداداً لانقطاع التيار الكهربائي، وعمل نسخ احتياطية."
+            }
+        };
+
+        function selectCIA(key) {
+            ['c', 'i', 'a'].forEach(k => {
+                document.getElementById('cia_' + k).classList.toggle('active', k === key);
+            });
+            const d = ciaData[key];
+            document.getElementById('ciaDetailBox').innerHTML = `
+                <h4 style="font-size:1.22rem; color:var(--primary-dark); margin-bottom:8px;">${d.title}</h4>
+                <p style="font-weight:800; margin-bottom:8px;">📖 نص الكتاب: "${d.def}"</p>
+                <p style="color:var(--danger); font-weight:700; font-size:0.95rem; margin-bottom:6px;">⚠️ ${d.damage}</p>
+                <p style="color:var(--success); font-weight:700; font-size:0.95rem;">🛡️ ${d.measure}</p>
+            `;
+        }
+
+        // ==========================================
+        // 3. فلتر التهديدات والبرمجيات الخبيثة والجرائم - الدرس 1
+        // ==========================================
+        const threatsList = [
+            { name: "الوصول غير المصرّح به (Unauthorized access)", cat: "access", catName: "وصول واختراق", desc: "الوصول إلى نظام بشكل غير قانوني للتلاعب بالبيانات أو محوها أو سرقتها (مثل الدخول بهوية وكلمة مرور شخص آخر)." },
+            { name: "الاختراق / القرصنة (Cracking) والمخترق (Cracker)", cat: "access", catName: "وصول واختراق", desc: "الوصول إلى نظام بشكل غير قانوني للتلاعب بالبيانات أو محوها أو سرقتها، ويُسمى مرتكبه بالمخترق (Cracker) أو المتسلل (Hacker)." },
+            { name: "البرمجيات الخبيثة (Malware)", cat: "malware", catName: "برمجيات خبيثة", desc: "مصطلح عام وشامل للبرامج الضارة المصممة لإلحاق الضرر بأجهزة الكمبيوتر (تشمل الفيروسات، طروادة، الديدان، التجسس، الفدية)." },
+            { name: "فيروس الكمبيوتر (Computer virus)", cat: "malware", catName: "برمجيات خبيثة", desc: "برنامج مصمم لإحداث ضرر بشكل متعمد، مثل تدمير البيانات الداخلية أو البرامج." },
+            { name: "حصان طروادة (Trojan horse)", cat: "malware", catName: "برمجيات خبيثة", desc: "برنامج متنكر على أنه برنامج شرعي مفيد، يتسلل إلى النظام ويبدأ الهجمات بهدوء وصمت." },
+            { name: "الدودة (Worm)", cat: "malware", catName: "برمجيات خبيثة", desc: "برنامج ينسخ نفسه تلقائياً وينتشر عبر الإنترنت مثل الدودة، مما يؤدي إلى توسيع نطاق الإصابة بسرعة." },
+            { name: "برنامج التجسس (Spyware)", cat: "spy", catName: "تجسس وفدية", desc: "برنامج يجمع المعلومات الشخصية المخزنة دون علم المستخدم ويرسلها إلى أطراف ثالثة في الخارج." },
+            { name: "مسجل لوحة المفاتيح (Keylogger)", cat: "spy", catName: "تجسس وفدية", desc: "نوع من برامج التجسس يراقب ويسجل ضغطات المفاتيح لسرقة كلمات المرور وأرقام البطاقات." },
+            { name: "برنامج الإعلانات (Adware)", cat: "spy", catName: "تجسس وفدية", desc: "برنامج يعرض إعلانات غير مرغوب فيها على الشاشة دون موافقة المستخدم." },
+            { name: "برنامج الفدية (Ransomware)", cat: "spy", catName: "تجسس وفدية", desc: "برنامج يقفل أو يشفر البيانات ويجعلها غير قابلة للوصول ويطالب بدفع فدية مالية لاستعادتها." },
+            { name: "الجريمة الإلكترونية (Cybercrime) بأنواعها الـ 3", cat: "crime", catName: "جريمة إلكترونية", desc: "تشمل: (1) انتهاك قانون الوصول غير المصرح به، (2) جرائم العبث بالسجلات الإلكترونية والأجهزة، (3) الجرائم القائمة على الشبكة كالاحتيال والتشهير وانتهاك حقوق المؤلف." }
+        ];
+
+        function filterThreats(filter, btn) {
+            if (btn) {
+                btn.parentElement.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            }
+            const container = document.getElementById('threatsShowcase');
+            container.innerHTML = '';
+            const items = filter === 'all' ? threatsList : threatsList.filter(i => i.cat === filter);
+            items.forEach(item => {
+                const badgeClass = item.cat === 'access' ? 'cat-access' : (item.cat === 'malware' ? 'cat-malware' : (item.cat === 'spy' ? 'cat-spy' : 'cat-crime'));
+                const card = document.createElement('div');
+                card.className = 'item-badge-card';
+                card.innerHTML = `
+                    <span class="item-cat ${badgeClass}">${item.catName}</span>
+                    <h4 style="font-size:1.03rem; margin-bottom:6px;">${item.name}</h4>
+                    <p style="font-size:0.88rem; color:var(--text-muted);">${item.desc}</p>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // ==========================================
+        // 4. مختبر حساب تركيبات كلمة المرور (Brute-force Math) - الدرس 2
+        // ==========================================
+        function calcPasswordMath() {
+            let a = 0;
+            if (document.getElementById('chkDigits').checked) a += 10;
+            if (document.getElementById('chkLower').checked) a += 26;
+            if (document.getElementById('chkUpper').checked) a += 26;
+            if (document.getElementById('chkSymbols').checked) a += 10;
+
+            if (a === 0) {
+                document.getElementById('chkDigits').checked = true;
+                a = 10;
+            }
+
+            const n = parseInt(document.getElementById('passLenSlider').value, 10);
+            document.getElementById('lenValLabel').innerText = n;
+            document.getElementById('baseCountSpan').innerText = a;
+
+            const total = Math.pow(a, n);
+            const multStr = Array(n).fill(a).join(' × ');
+            document.getElementById('formulaMathText').innerHTML = `${a}<sup>${n}</sup> = ${multStr}`;
+            document.getElementById('totalCombText').innerText = total.toLocaleString('en-US') + ' تركيبة ممكنة';
+
+            let note = `كل خانة لها ${a} احتمال، وبما أن الطول ${n} خانات، نضرب ${a} في نفسها ${n} مرات (${a}^${n}).`;
+            if (a === 36 && n === 3) {
+                note = `📘 مطابق لسؤال "تحدى معلوماتك" صـ 35: (10 أرقام + 26 حرفاً صغيراً = 36 احتمالاً للحرف، ولـ 3 أحرف = 36³ = 46,656 مجموعة).`;
+            } else if (a === 36 && n === 4) {
+                note = `📗 مطابق لسؤال "تمرين (6)" صـ 37: (10 أرقام + 26 حرفاً صغيراً = 36، ولـ 4 أحرف تُكتب في صورة أسية 36⁴ = 1,679,616 تركيبة).`;
+            } else if (a === 26 && n === 6) {
+                note = `📙 مطابق لسؤال "جرب بنفسك (6)" صـ 36: عند زيادة الطول من 4 أحرف إلى 6 أحرف باستخدام 26 حرفاً، تزيد المحاولات بمقدار 26⁶ ÷ 26⁴ = 26² = 676 مرة!`;
+            }
+            document.getElementById('mathNoteText').innerText = note;
+        }
+
+        function setPassPreset(d, l, u, s, len) {
+            document.getElementById('chkDigits').checked = d;
+            document.getElementById('chkLower').checked = l;
+            document.getElementById('chkUpper').checked = u;
+            document.getElementById('chkSymbols').checked = s;
+            document.getElementById('passLenSlider').value = len;
+            calcPasswordMath();
+        }
+
+        // ==========================================
+        // 5. هرم سياسة أمن المعلومات + لعبة التصنيف - الدرس 3
+        // ==========================================
+        const pyramidLevels = {
+            1: {
+                title: "1. قمة الهرم: السياسة الأساسية (Basic Policy)",
+                text: "تصف المبادئ الأساسية والإعلانات المتعلقة بأمن المعلومات الخاصة بالمنظمة.",
+                example: "مثال: إعلان الإدارة العليا للشركة التزامها الكامل بحماية سرية بيانات العملاء ومنع أي وصول غير مصرح به."
+            },
+            2: {
+                title: "2. وسط الهرم: معايير الأمان (Security Standards)",
+                text: "تحدد القواعد اللازمة لتطبيق السياسة الأساسية عملياً.",
+                example: "مثال: اشتراط ألا يقل طول كلمة المرور للموظفين عن 10 رموز، وتشفير جميع قواعد البيانات، ومنع إخراج فلاشات USB."
+            },
+            3: {
+                title: "3. قاعدة الهرم: إجراءات التنفيذ وقواعد التشغيل (Implementation Procedures)",
+                text: "تحدد بوضوح الإجراءات اللازمة بناءً على الجمهور المستهدف والغرض المقصود.",
+                example: "مثال: الخطوات العملية اليومية لكيفية عمل النسخ الاحتياطي الساعة 5 مساءً، وإجراءات الإبلاغ الفوري عند الاشتباه في بريد تصيّد."
+            }
+        };
+
+        function selectPyramid(lvl) {
+            [1, 2, 3].forEach(i => {
+                document.getElementById('pyr_' + i).classList.toggle('active', i === lvl);
+            });
+            const p = pyramidLevels[lvl];
+            document.getElementById('pyramidDetailBox').innerHTML = `
+                <div class="book-def-title">📐 ${p.title}</div>
+                <div class="book-exact-text">"${p.text}"</div>
+                <div class="explanation-bubble">${p.example}</div>
+            `;
+        }
+
+        const secGameItems = [
+            { text: "البحث في سلة مهملات الشركة للحصول على أوراق تحتوي على كلمات مرور سرية تم التخلص منها", type: "social" },
+            { text: "برنامج يتنكر في شكل لعبة مجانية شرعية ثم يتسلل للنظام لبدء الهجمات بهدوء (حصان طروادة)", type: "malware" },
+            { text: "رسالة بريد إلكتروني تتظاهر بأنها من البنك تقودك لموقع مزيف لسرقة رمز PIN الخاص بك", type: "fraud" },
+            { text: "التلصص من فوق كتف زميلك أثناء كتابته لكلمة المرور على لوحة المفاتيح", type: "social" },
+            { text: "تسجيل الدخول عن طريق مسح بصمة الإصبع أو قزحية العين على المستشعر", type: "auth" },
+            { text: "برنامج يشفر ملفات المستشفى ويجعلها غير قابلة للوصول ويطالب بمبلغ مالي لاستعادتها", type: "malware" },
+            { text: "النقر على رابط URL يؤدي فوراً لظهور شاشة تدعي إبرام عقد وتطالبك بدفع مبلغ مالي كبير", type: "fraud" },
+            { text: "الاتصال هاتفياً بموظف والتظاهر بأنك مدير الدعم الفني لاستخلاص معلومات داخلية سرية", type: "social" }
+        ];
+
+        let secIdx = 0;
+        let secScore = 0;
+
+        function initSecSorter() {
+            if (secIdx < secGameItems.length) {
+                document.getElementById('secTokenText').innerText = secGameItems[secIdx].text;
+                document.getElementById('secStatusMsg').innerText = "";
+            } else {
+                document.getElementById('secTokenText').innerText = "🏆 ممتاز! أتممت تصنيف جميع المواقف الأمنية بنجاح!";
+                document.getElementById('secStatusMsg').innerHTML = `<span style="color:var(--success);">الدرجة النهائية: ${secScore} من ${secGameItems.length}</span>`;
+            }
+            document.getElementById('secScoreBoard').innerText = `النقاط: ${secScore} / ${secGameItems.length}`;
+        }
+
+        function checkSecSort(chosen) {
+            if (secIdx >= secGameItems.length) return;
+            const correct = secGameItems[secIdx].type;
+            const msg = document.getElementById('secStatusMsg');
+            const names = {
+                malware: "برمجيات خبيثة (Malware)",
+                social: "هندسة اجتماعية (Social Engineering)",
+                fraud: "احتيال وتصيّد وتزوير (Phishing / Fraud)",
+                auth: "مصادقة ودفاع أمني (Authentication)"
+            };
+            if (chosen === correct) {
+                secScore++;
+                msg.style.color = "var(--success)";
+                msg.innerText = "✅ إجابة صحيحة ومطابقة لكتاب الوزارة!";
+            } else {
+                msg.style.color = "var(--danger)";
+                msg.innerText = `❌ غير صحيح! هذا الموقف يُصنف ضمن: ${names[correct]}.`;
+            }
+            secIdx++;
+            setTimeout(initSecSorter, 1200);
+        }
+
+        function resetSecSorter() {
+            secIdx = 0;
+            secScore = 0;
+            initSecSorter();
+        }
+
+        // ==========================================
+        // 6. محاكي التشفير (المتماثل vs العام vs مفتاح الجلسة) - الدرس 4
+        // ==========================================
+        function switchEncMode(mode) {
+            ['sym', 'pub', 'ses'].forEach(m => {
+                document.getElementById('encBtn_' + m).classList.toggle('active', m === mode);
+            });
+            const box = document.getElementById('encSimulatorContent');
+            if (mode === 'sym') {
+                box.innerHTML = `
+                    <div style="background:var(--primary-light); padding:12px 16px; border-radius:10px; font-weight:700; color:var(--primary-dark);">
+                        🔹 <strong>(1) التشفير بالمفتاح المتناظر / المتماثل (Symmetric key encryption):</strong> يتم استخدام نفس <strong>المفتاح المشترك (Shared key)</strong> في كل من التشفير وفك التشفير. (سريع جداً، لكن مشكلته: كيف نرسل المفتاح المشترك للمستلم بأمان دون أن يسرقه أحد؟).
+                    </div>
+                    <div class="flow-nodes">
+                        <div class="flow-box">
+                            <div style="font-size:1.5rem;">🧑 المرسل</div>
+                            <strong>نص عادي (Plaintext)</strong>
+                            <div style="color:var(--primary); font-weight:800; margin-top:4px;">"مرحباً"</div>
+                        </div>
+                        <div class="flow-arrow">⬅️</div>
+                        <div class="flow-box highlight-key">
+                            <div style="font-size:1.5rem;">🗝️ تشفير</div>
+                            <strong>المفتاح المشترك</strong>
+                            <div style="font-size:0.82rem;">(Shared Key)</div>
+                        </div>
+                        <div class="flow-arrow">⬅️</div>
+                        <div class="flow-box highlight-cipher">
+                            <div style="font-size:1.5rem;">📡 إرسال</div>
+                            <strong>نص مشفر (Ciphertext)</strong>
+                            <div style="direction:ltr; font-family:monospace; font-weight:900;">&amp;SA+F¥Cs+A</div>
+                        </div>
+                        <div class="flow-arrow">⬅️</div>
+                        <div class="flow-box highlight-key">
+                            <div style="font-size:1.5rem;">🗝️ فك التشفير</div>
+                            <strong>نفس المفتاح المشترك</strong>
+                            <div style="font-size:0.82rem;">(تم إرساله مسبقاً)</div>
+                        </div>
+                        <div class="flow-arrow">⬅️</div>
+                        <div class="flow-box">
+                            <div style="font-size:1.5rem;">👩 المستلم</div>
+                            <strong>نص عادي (Plaintext)</strong>
+                            <div style="color:var(--success); font-weight:800; margin-top:4px;">"مرحباً"</div>
+                        </div>
+                    </div>
+                `;
+            } else if (mode === 'pub') {
+                box.innerHTML = `
+                    <div style="background:var(--purple-light); padding:12px 16px; border-radius:10px; font-weight:700; color:var(--purple);">
+                        🟣 <strong>(2) التشفير بالمفتاح العام (Public key encryption):</strong> ينشئ <strong>المستلم</strong> زوج مفاتيح: يوزع <strong>مفتاحه العام (قفل مفتوح)</strong> علناً للجميع، ويحتفظ بـ <strong>مفتاحه الخاص</strong> سراً لنفسه فقط. (إدارة مفاتيح سهلة وآمنة، لكنه أبطأ في المعالجة).
+                    </div>
+                    <div class="flow-nodes">
+                        <div class="flow-box">
+                            <div style="font-size:1.5rem;">🧑 المرسل</div>
+                            <strong>نص عادي (Plaintext)</strong>
+                            <div style="color:var(--primary); font-weight:800; margin-top:4px;">"مرحباً"</div>
+                        </div>
+                        <div class="flow-arrow">⬅️</div>
+                        <div class="flow-box highlight-key">
+                            <div style="font-size:1.5rem;">🔓 تشفير</div>
+                            <strong>المفتاح العام للمستلم</strong>
+                            <div style="font-size:0.82rem;">(معلن للجميع)</div>
+                        </div>
+                        <div class="flow-arrow">⬅️</div>
+                        <div class="flow-box highlight-cipher">
+                            <div style="font-size:1.5rem;">📡 إرسال</div>
+                            <strong>نص مشفر (Ciphertext)</strong>
+                            <div style="direction:ltr; font-family:monospace; font-weight:900;">&amp;SA+F¥Cs+A</div>
+                        </div>
+                        <div class="flow-arrow">⬅️</div>
+                        <div class="flow-box" style="border-color:var(--success); background:var(--success-light);">
+                            <div style="font-size:1.5rem;">🔐 فك التشفير</div>
+                            <strong>المفتاح الخاص للمستلم</strong>
+                            <div style="font-size:0.82rem;">(سري لدى المستلم فقط)</div>
+                        </div>
+                        <div class="flow-arrow">⬅️</div>
+                        <div class="flow-box">
+                            <div style="font-size:1.5rem;">👩 المستلم</div>
+                            <strong>نص عادي (Plaintext)</strong>
+                            <div style="color:var(--success); font-weight:800; margin-top:4px;">"مرحباً"</div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                box.innerHTML = `
+                    <div style="background:var(--secondary-light); padding:12px 16px; border-radius:10px; font-weight:700; color:var(--secondary);">
+                        🔷 <strong>(4) طريقة المفتاح المؤقت / مفتاح الجلسة (Session key method):</strong> طريقة تشفير هجينة (مختلطة) تجمع بين مزايا الطريقتين، وهي المستخدمة في بروتوكول <strong>SSL/TLS (https)</strong>!
+                    </div>
+                    <div class="flow-nodes">
+                        <div class="flow-box highlight-key">
+                            <div style="font-size:1.4rem;">1️⃣ تبادل المفتاح بأمان</div>
+                            <strong>بالتشفير بالمفتاح العام</strong>
+                            <div style="font-size:0.84rem;">نشفر "مفتاح الجلسة المؤقت" بالمفتاح العام للخادم لإرساله بأمان تام.</div>
+                        </div>
+                        <div class="flow-arrow">➕</div>
+                        <div class="flow-box" style="border-color:var(--success); background:var(--success-light);">
+                            <div style="font-size:1.4rem;">2️⃣ تشفير البيانات بسرعة</div>
+                            <strong>بالتشفير بالمفتاح المتماثل</strong>
+                            <div style="font-size:0.84rem;">بعد وصول مفتاح الجلسة للطرفين، نستخدمه كمفتاح مشترك سريع لتشفير البيانات!</div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // ==========================================
+        // 7. محاكي التوقيع الرقمي ودالة التجزئة - الدرس 5
+        // ==========================================
+        let isTampered = false;
+
+        function simpleHexHash(str) {
+            if (str.trim() === "مرحباً" || str.trim() === "مرحبا") return "06fe3f3e";
+            let h = 2166136261;
+            for (let i = 0; i < str.length; i++) {
+                h ^= str.charCodeAt(i);
+                h = Math.imul(h, 16777619);
+            }
+            return (h >>> 0).toString(16).padStart(8, '0');
+        }
+
+        function toggleTamperMode() {
+            isTampered = !isTampered;
+            const btn = document.getElementById('tamperToggleBtn');
+            if (isTampered) {
+                btn.style.background = "var(--accent)";
+                btn.innerText = "⚠️ وضع العبث مفعّل: المخترق غيّر الرسالة في الطريق! (اضغط للإلغاء)";
+            } else {
+                btn.style.background = "var(--danger)";
+                btn.innerText = "😈 تفعيل عبث مخترق بالرسالة في الطريق: متوقف (سليم)";
+            }
+            runSigSimulation();
+        }
+
+        function runSigSimulation() {
+            const origText = document.getElementById('sigInputText').value || "مرحباً";
+            const senderHash = simpleHexHash(origText);
+            const receivedText = isTampered ? (origText + " هو") : origText;
+            const receiverCalculatedHash = simpleHexHash(receivedText);
+            const matched = (senderHash === receiverCalculatedHash);
+
+            document.getElementById('sigStepsGrid').innerHTML = `
+                <div style="background:var(--surface); padding:18px; border-radius:14px; border:2px solid var(--primary);">
+                    <h4 style="color:var(--primary); margin-bottom:10px;">📤 【إجراءات المرسل】 (الخطوات 1، 2، 3)</h4>
+                    <ol style="padding-right:18px; font-size:0.93rem; line-height:2;">
+                        <li>توليد <strong>قيمة تجزئة (Hash value)</strong> من النص العادي (<code>${origText}</code>) عبر دالة هاش = <code style="background:var(--primary-light); padding:2px 8px; border-radius:6px; font-weight:900;">${senderHash}</code></li>
+                        <li>تشفير قيمة التجزئة باستخدام <strong>المفتاح الخاص للمرسل</strong> لإنتاج <strong>التوقيع الرقمي</strong>.</li>
+                        <li>إرسال <strong>النص العادي + التوقيع الرقمي</strong> معاً إلى المستلم.</li>
+                    </ol>
+                </div>
+                <div style="background:var(--surface); padding:18px; border-radius:14px; border:2px solid ${matched ? 'var(--success)' : 'var(--danger)'};">
+                    <h4 style="color:${matched ? 'var(--success)' : 'var(--danger)'}; margin-bottom:10px;">📥 【إجراءات المستلم】 (الخطوات 4، 5، 6)</h4>
+                    <ol style="padding-right:18px; font-size:0.93rem; line-height:2;">
+                        <li>فك تشفير التوقيع الرقمي باستخدام <strong>المفتاح العام للمرسل</strong> لاسترداد قيمة التجزئة الأصلية = <code style="background:var(--success-light); padding:2px 8px; border-radius:6px; font-weight:900;">${senderHash}</code></li>
+                        <li>حساب قيمة تجزئة جديدة للنص المستلم (<code>${receivedText}</code>) بنفس دالة الهاش = <code style="background:${matched ? 'var(--success-light)' : 'var(--danger-light)'}; padding:2px 8px; border-radius:6px; font-weight:900;">${receiverCalculatedHash}</code></li>
+                        <li>مقارنة قيمتي التجزئة: <code>${senderHash}</code> مقابل <code>${receiverCalculatedHash}</code></li>
+                    </ol>
+                </div>
+            `;
+
+            const banner = document.getElementById('sigVerdictBanner');
+            if (matched) {
+                banner.style.background = "var(--success-light)";
+                banner.style.color = "var(--success)";
+                banner.style.border = "2px solid var(--success)";
+                banner.innerText = `✅ تطابق! (${senderHash} == ${receiverCalculatedHash}) ← يثبت أن الرسالة من المرسل الصحيح ولم يتم العبث بها!`;
+            } else {
+                banner.style.background = "var(--danger-light)";
+                banner.style.color = "var(--danger)";
+                banner.style.border = "2px solid var(--danger)";
+                banner.innerText = `❌ عدم تطابق! (${senderHash} ≠ ${receiverCalculatedHash}) ← تم تغيير النص إلى "${receivedText}" في الطريق! التوقيع الرقمي كشف التزوير!`;
+            }
+        }
+
+        // ==========================================
+        // 8. بنك الأسئلة الشامل للوحدة الثالثة (15 سؤالاً من الكتاب)
+        // ==========================================
+        const unit3Questions = [
+            {
+                lesson: "L1",
+                q: "1. (صـ 31 - تحدى معلوماتك) أي من الحالات التالية تكون فيها 'التوافرية' (Availability) معرضة للخطر من حيث أمن المعلومات؟",
+                choices: [
+                    "أ) تسبب هجوم إلكتروني في تعطيل موقع ويب وجعله غير متاح",
+                    "ب) تم إدخال بيانات غير صحيحة بسبب خطأ في الكتابة",
+                    "ج) تم تسريب معلومات شخصية بسبب إصابة ببرنامج خبيث",
+                    "د) اطلاع موظف غير مصرح له على الملفات السرية"
+                ],
+                correct: 0,
+                reason: "التوافرية (Availability) تعني إمكانية الوصول للمعلومات في أي وقت عند الحاجة؛ وتعطيل موقع الويب يجعل المعلومات غير متوفرة. (بينما ب تخل بالسلامة، وج ود تخلان بالسرية)."
+            },
+            {
+                lesson: "L1",
+                q: "2. (صـ 32 - جرب بنفسك) البرنامج الضار الذي يتنكر على أنه برنامج شرعي، ويتسلل إلى النظام بهدوء لتنفيذ الهجمات يسمى:",
+                choices: [
+                    "أ) الدودة (Worm)",
+                    "ب) حصان طروادة (Trojan horse)",
+                    "ج) برنامج الفدية (Ransomware)",
+                    "د) برنامج الإعلانات (Adware)"
+                ],
+                correct: 1,
+                reason: "حصان طروادة (Trojan horse) يتنكر كبرنامج شرعي ويتسلل بصمت، بينما الدودة (Worm) تنسخ نفسها وتنتشر عبر الإنترنت."
+            },
+            {
+                lesson: "L1",
+                q: "3. (صـ 32 - جرب بنفسك) أي من الأفعال التالية يُعد انتهاكاً لقانون الوصول غير المصرّح به للكمبيوتر؟",
+                choices: [
+                    "أ) التقاط صورة لصفحة مجلة بهاتف ذكي وتحميلها على التواصل الاجتماعي",
+                    "ب) استخدام هوية مستخدم (ID) وكلمة مرور شخص آخر دون إذن لشراء منتجات عبر الإنترنت",
+                    "ج) تركيب إمدادات طاقة احتياطية لأجهزة الخوادم",
+                    "د) تثبيت جدار حماية على الشبكة المنزلية"
+                ],
+                correct: 1,
+                reason: "انتهاك قانون الوصول غير المصرح به للكمبيوتر هو الدخول غير القانوني إلى نظام باستخدام هوية (ID) أو كلمة مرور خاصة بشخص آخر (أو تخزينها أو مشاركتها دون إذن)."
+            },
+            {
+                lesson: "L1",
+                q: "4. (صـ 33 - تمرين) اختر العبارة الصحيحة الوحيدة الخاصة بإصابة فيروسات الكمبيوتر:",
+                choices: [
+                    "أ) طالما أن الكمبيوتر متصل بالشبكة، فهناك دائماً خطر الإصابة بفيروس كمبيوتر",
+                    "ب) إذا لم تتصل بالشبكة وقمت فقط بنقل البيانات بذاكرة فلاش (USB)، فلن تحدث الإصابة",
+                    "ج) إذا تجنبت الدخول إلى المواقع الضارة فقط، يستحيل أن تصاب بالفيروس",
+                    "د) طالما أنك لا تفتح رسائل البريد الإلكتروني، فأنت في أمان تام من الإصابة"
+                ],
+                correct: 0,
+                reason: "العبارة (أ) هي الصحيحة؛ لأن الإصابة قد تحدث عبر الشبكات أو مرفقات البريد أو المواقع أو فلاشات USB أو أقراص DVD مصابة."
+            },
+            {
+                lesson: "L2",
+                q: "5. (صـ 35 - تحدى معلوماتك) أي عبارة مما يلي غير صحيحة بخصوص أفضل الممارسات لكلمة المرور؟",
+                choices: [
+                    "أ) لا تُعد استخدام نفس كلمة المرور عبر خدمات متعددة",
+                    "ب) من الأفضل الاستمرار في استخدام كلمة المرور الافتراضية (الأولية) التي تم تعيينها في البداية دون تغييرها",
+                    "ج) اجمع بين الأحرف الكبيرة والصغيرة والأرقام والرموز",
+                    "د) تجنب استخدام معلومات يمكن تخمينها بسهولة مثل اسمك أو تاريخ ميلادك"
+                ],
+                correct: 1,
+                reason: "العبارة غير الصحيحة هي (ب)؛ لأنه يجب تغيير كلمة المرور الأولية/الافتراضية فوراً لاحتمال تسربها."
+            },
+            {
+                lesson: "L2",
+                q: "6. (صـ 36 - جرب بنفسك) ما هو التهديد الذي يمكن منعه تحديداً باستخدام كلمة مرور لمرة واحدة (One-time password - OTP)؟",
+                choices: [
+                    "أ) الإصابة بفيروس من خلال البرامج الضارة",
+                    "ب) الوصول غير المصرّح به باستخدام كلمة مرور مسرّبة",
+                    "ج) انقطاع التيار الكهربائي عن الخادم",
+                    "د) البحث في المهملات الورقية"
+                ],
+                correct: 1,
+                reason: "كلمة المرور لمرة واحدة (OTP) تتغير بانتظام وتصلح لمرة واحدة فقط، لذلك تمنع الوصول غير المصرح به حتى لو تسربت كلمة المرور السابقة."
+            },
+            {
+                lesson: "L2",
+                q: "7. (صـ 34 و 37 - تمرين) ما اسم طريقة المصادقة التي تجمع بين عنصرين مختلفين من (المعرفة، البيومترية، والحيازة) مثل إدخال رقم PIN مع رمز SMS؟",
+                choices: [
+                    "أ) المصادقة الثنائية باستخدام عاملين مختلفين (Two-factor authentication)",
+                    "ب) المصادقة متعددة الخطوات من نفس العامل (Two-step authentication)",
+                    "ج) جدار الحماية (Firewall)",
+                    "د) التشفير بالمفتاح المتناظر"
+                ],
+                correct: 0,
+                reason: "المصادقة الثنائية (Two-factor authentication) تجمع بين عاملين من نوعين مختلفين (مثل معرفة + حيازة)، بينما متعددة الخطوات (Two-step) تستخدم خطوتين من نفس نوع العامل (مثل كلمة مرور + سؤال سري)."
+            },
+            {
+                lesson: "L2",
+                q: "8. (صـ 35 - تحدى معلوماتك) إذا كان يمكن في كلمة المرور استخدام الأرقام (0 إلى 9) والأحرف الصغيرة (a إلى z)، فكم عدد التركيبات لكلمة مرور مكونة من 3 أحرف؟",
+                choices: [
+                    "أ) 26³",
+                    "ب) 10³",
+                    "ج) 36³ (أي 36 × 36 × 36 = 46,656)",
+                    "د) 36 × 3 = 108"
+                ],
+                correct: 2,
+                reason: "يوجد 10 أرقام (0-9) + 26 حرفاً صغيراً (a-z) = 36 احتمالاً لكل خانة. ولكلمة مرور من 3 أحرف يكون عدد التركيبات = 36 × 36 × 36 = 36³."
+            },
+            {
+                lesson: "L3",
+                q: "9. (صـ 39 - تحدى معلوماتك) التظاهر بأنه بريد إلكتروني من مؤسسة مالية لإغراء شخص بالدخول إلى موقع ويب مزيف وسرقة رمز PIN أو رقم بطاقة الائتمان يسمى:",
+                choices: [
+                    "أ) الاحتيال بنقرة واحدة (One-click fraud)",
+                    "ب) التصيّد (Phishing)",
+                    "ج) برنامج الفدية (Ransomware)",
+                    "د) فاتورة احتيالية (Fraudulent billing)"
+                ],
+                correct: 1,
+                reason: "التصيّد (Phishing) يعتمد على رسائل ومواقع مزيفة متنكرة كمؤسسات مالية لسرقة بيانات الحساب ورموز PIN."
+            },
+            {
+                lesson: "L3",
+                q: "10. (صـ 40 - تمرين) استخراج البيانات بشكل غير قانوني من بطاقة ائتمان أو بطاقة بنكية لشخص آخر واستخدامها لإنشاء بطاقة مزورة يسمى:",
+                choices: [
+                    "أ) التزوير / نسخ البطاقات (Skimming)",
+                    "ب) البحث في المهملات (Dumper diving)",
+                    "ج) سياسة أمن المعلومات",
+                    "د) الاحتيال بنقرة واحدة"
+                ],
+                correct: 0,
+                reason: "التزوير (Skimming) هو استخراج بيانات البطاقة الائتمانية أو البنكية بشكل غير قانوني لنسخها في بطاقة مزورة."
+            },
+            {
+                lesson: "L45",
+                q: "11. (صـ 42 و 43 - جرب بنفسك) في التشفير بالمفتاح العام (Public key encryption)، أي مفتاح يستخدمه المرسل لتشفير الرسالة، وأي مفتاح يستخدمه المستلم لفك تشفيرها؟",
+                choices: [
+                    "أ) يشفرها بالمفتاح الخاص للمرسل، ويفكها بالمفتاح العام للمرسل",
+                    "ب) يشفرها بالمفتاح العام للمستلم، ويفكها بالمفتاح الخاص للمستلم",
+                    "ج) يشفرها ويفكها بنفس المفتاح المشترك للمرسل",
+                    "د) يشفرها بالمفتاح الخاص للمستلم، ويفكها بالمفتاح العام للمستلم"
+                ],
+                correct: 1,
+                reason: "في التشفير بالمفتاح العام (لحماية سرية الرسالة): يقوم المرسل بالتشفير باستخدام المفتاح العام للمستلم، ويقوم المستلم بفك التشفير باستخدام المفتاح الخاص للمستلم."
+            },
+            {
+                lesson: "L45",
+                q: "12. (صـ 43 - تمرين) أي عبارة تصف بشكل صحيح إحدى مزايا التشفير بالمفتاح المتماثل (Symmetric) عند مقارنته بالتشفير بالمفتاح العام؟",
+                choices: [
+                    "أ) يسمح بمعالجة التشفير وفك التشفير بسرعة أعلى",
+                    "ب) يجعل إدارة وتوزيع المفاتيح أسهل مع أطراف متعددة",
+                    "ج) يستخدم مفتاحين مختلفين للتشفير وفك التشفير",
+                    "د) لا يحتاج إلى مشاركة المفتاح مع المستلم"
+                ],
+                correct: 0,
+                reason: "ميزة التشفير بالمفتاح المتماثل هي السرعة العالية في معالجة التشفير وفك التشفير مقارنة بالمفتاح العام."
+            },
+            {
+                lesson: "L45",
+                q: "13. (صـ 45 - تحدى معلوماتك) في تقنية التوقيع الرقمي (Digital Signature)، كيف يتم إنشاء التوقيع الرقمي لدى المرسل؟",
+                choices: [
+                    "أ) عن طريق تشفير قيمة التجزئة (Hash value) للمستند باستخدام المفتاح الخاص للمرسل",
+                    "ب) عن طريق تشفير المستند بالكامل بالمفتاح العام للمستلم",
+                    "ج) عن طريق ضغط الملف بدون فقدان",
+                    "د) عن طريق إرسال كلمة مرور لمرة واحدة OTP"
+                ],
+                correct: 0,
+                reason: "يتم توليد قيمة التجزئة (الهاش) من النص العادي ثم تشفيرها بالمفتاح الخاص للمرسل لإنتاج التوقيع الرقمي، ويفك المستلم التوقيع بالمفتاح العام للمرسل."
+            },
+            {
+                lesson: "L45",
+                q: "14. (صـ 46 - جرب بنفسك) ما اسم منظمة الطرف الثالث الموثوقة التي تُصدر (الشهادة الرقمية) لضمان أن المفتاح العام ينتمي حقاً إلى المالك الفعلي؟",
+                choices: [
+                    "أ) جهة التصديق / سلطة التصديق (Certification Authority - CA)",
+                    "ب) موفر خدمة الإنترنت (ISP)",
+                    "ج) جدار الحماية (Firewall)",
+                    "د) خادم أسماء النطاقات (DNS)"
+                ],
+                correct: 0,
+                reason: "جهة التصديق (CA) هي منظمة طرف ثالث موثوقة تصدر الشهادات الرقمية التي توثق ملكية المفتاح العام وتمنع انتحال الشخصية."
+            },
+            {
+                lesson: "L45",
+                q: "15. (صـ 46 و 47 - تمرين) عندما يبدأ عنوان URL لصفحة ويب بـ 'https://'، فهذا يعني تشفير الاتصال بين المتصفح والخادم باستخدام:",
+                choices: [
+                    "أ) بروتوكول SSL/TLS الذي يعتمد على طريقة مفتاح الجلسة (Session Key) والشهادة الرقمية",
+                    "ب) برنامج مكافحة الفيروسات (Antivirus)",
+                    "ج) المصادقة البيومترية لبصمة الإصبع",
+                    "د) بروتوكول HTTP غير المشفر"
+                ],
+                correct: 0,
+                reason: "بروتوكول SSL/TLS يشفر الاتصال بين متصفح الويب وخادم الويب في صفحات https:// باستخدام طريقة مفتاح الجلسة (التي تجمع بين التشفير المتماثل والعام)."
+            }
+        ];
+
+        let currentQuizFilter = 'all';
+        let answeredCorrectly = new Set();
+
+        function renderExam() {
+            const container = document.getElementById('quizContainer');
+            container.innerHTML = "";
+
+            unit3Questions.forEach((item, qIdx) => {
+                if (currentQuizFilter !== 'all' && item.lesson !== currentQuizFilter) return;
+                const qBox = document.createElement('div');
+                qBox.className = 'quiz-item-box';
+                qBox.innerHTML = `
+                    <div class="q-title">${item.q}</div>
+                    <div class="q-choices" id="choiceGroup_${qIdx}">
+                        ${item.choices.map((c, cIdx) => `
+                            <button class="choice-btn" onclick="validateAnswer(${qIdx}, ${cIdx}, this)">${c}</button>
+                        `).join('')}
+                    </div>
+                    <div class="choice-feedback" id="feedback_${qIdx}">📖 <strong>الشرح المنهجي من كتاب الوزارة:</strong> ${item.reason}</div>
+                `;
+                container.appendChild(qBox);
+            });
+            updateQuizScoreDisplay();
+        }
+
+        function filterQuiz(lesson, btn) {
+            currentQuizFilter = lesson;
+            if (btn) {
+                btn.parentElement.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            }
+            renderExam();
+        }
+
+        function validateAnswer(qIdx, cIdx, btn) {
+            const group = document.getElementById(`choiceGroup_${qIdx}`);
+            const buttons = group.querySelectorAll('.choice-btn');
+            const feedback = document.getElementById(`feedback_${qIdx}`);
+            const correctIdx = unit3Questions[qIdx].correct;
+
+            buttons.forEach(b => b.disabled = true);
+
+            if (cIdx === correctIdx) {
+                btn.classList.add('correct-choice');
+                answeredCorrectly.add(qIdx);
+            } else {
+                btn.classList.add('wrong-choice');
+                buttons[correctIdx].classList.add('correct-choice');
+            }
+
+            feedback.style.display = 'block';
+            updateQuizScoreDisplay();
+        }
+
+        function updateQuizScoreDisplay() {
+            document.getElementById('quizScoreTracker').innerText = `النتيجة الحالية: ${answeredCorrectly.size} / ${unit3Questions.length}`;
+        }
+
+        function reloadQuiz() {
+            answeredCorrectly.clear();
+            renderExam();
+        }
+
+        // ==========================================
+        // 9. قاموس مصطلحات الوحدة الثالثة (Modal)
+        // ==========================================
+        const glossaryTerms = [
+            { ar: "أمن المعلومات", en: "Information Security", desc: "إدارة المعلومات بشكل صحيح والحفاظ عليها آمنة." },
+            { ar: "السرية", en: "Confidentiality", desc: "حالة يمكن فيها فقط للأفراد المصرح لهم الوصول للمعلومات." },
+            { ar: "السلامة / التكامل", en: "Integrity", desc: "حالة لم يتم فيها تدمير المعلومات أو العبث بها أو محوها." },
+            { ar: "التوافرية / التوفر", en: "Availability", desc: "إمكانية الوصول للمعلومات في أي وقت عند الحاجة." },
+            { ar: "الوصول غير المصرّح به", en: "Unauthorized Access", desc: "الدخول غير القانوني لنظام للتلاعب بالبيانات أو سرقتها." },
+            { ar: "الاختراق / المخترق", en: "Cracking / Cracker", desc: "التسلل غير القانوني للنظام لتدمير أو سرقة البيانات." },
+            { ar: "البرمجيات الخبيثة", en: "Malware", desc: "مصطلح عام للبرامج الضارة المصممة لإلحاق الضرر بالحاسوب." },
+            { ar: "فيروس الكمبيوتر", en: "Computer Virus", desc: "برنامج مصمم لإحداث ضرر متعمد وتدمير البيانات أو البرامج." },
+            { ar: "حصان طروادة", en: "Trojan Horse", desc: "برنامج يتنكر كبرنامج شرعي ويتسلل بهدوء لبدء الهجمات." },
+            { ar: "الدودة", en: "Worm", desc: "برنامج ينسخ نفسه وينتشر عبر الإنترنت لتوسيع الإصابة." },
+            { ar: "برنامج التجسس", en: "Spyware", desc: "يجمع المعلومات الشخصية دون علم المستخدم ويرسلها للخارج." },
+            { ar: "مسجل لوحة المفاتيح", en: "Keylogger", desc: "يراقب ويسجل ضغطات المفاتيح لسرقة كلمات المرور." },
+            { ar: "برنامج الإعلانات", en: "Adware", desc: "يعرض إعلانات غير مرغوب فيها دون موافقة المستخدم." },
+            { ar: "برنامج الفدية", en: "Ransomware", desc: "يمنع الوصول للبيانات ويطالب بفدية مالية لاستعادتها." },
+            { ar: "كلمة المرور لمرة واحدة", en: "One-Time Password (OTP)", desc: "كلمة مرور تتغير بانتظام وتُستخدم لمرة واحدة فقط." },
+            { ar: "المصادقة", en: "Authentication", desc: "عملية التحقق من هوية المستخدم على كمبيوتر أو شبكة." },
+            { ar: "المصادقة البيومترية", en: "Biometric Authentication", desc: "التحقق بالخصائص الجسدية أو السلوكية كالبصمة والقزحية." },
+            { ar: "المصادقة الثنائية", en: "Two-Factor Authentication (2FA)", desc: "الجمع بين عاملين مختلفين (مثل معرفة + حيازة)." },
+            { ar: "التحكم في الوصول", en: "Access Control", desc: "تقييد الوصول للنظام بحيث يُسمح فقط لمستخدمين محددين." },
+            { ar: "جدار الحماية", en: "Firewall", desc: "نظام يمنع الوصول غير المصرح به من الخارج وتسرب البيانات من الداخل." },
+            { ar: "فاتورة احتيالية", en: "Fraudulent Billing", desc: "إصدار فاتورة مقابل خدمة وهمية لم يستخدمها الشخص أبداً." },
+            { ar: "الاحتيال بنقرة واحدة", en: "One-Click Fraud", desc: "نقر رابط يزعم تلقائياً إبرام عقد ويطالب بمبالغ مالية." },
+            { ar: "التصيّد", en: "Phishing", desc: "مواقع ورسائل مزيفة تنتحل صفة بنوك لسرقة رموز PIN والبطاقات." },
+            { ar: "الهندسة الاجتماعية", en: "Social Engineering", desc: "سرقة المعلومات باستغلال علم النفس البشري أو الإهمال." },
+            { ar: "التجسس المباشر", en: "Shoulder Surfing", desc: "التلصص على الشاشة أو لوحة المفاتيح لمعرفة كلمة المرور." },
+            { ar: "البحث في المهملات", en: "Dumper Diving", desc: "البحث في القمامة للحصول على معلومات سرية تم التخلص منها." },
+            { ar: "التزوير (نسخ البطاقات)", en: "Skimming", desc: "استخراج بيانات بطاقة الائتمان بشكل غير قانوني لإنشاء بطاقة مزورة." },
+            { ar: "التشفير / فك التشفير", en: "Encryption / Decryption", desc: "تحويل النص العادي (Plaintext) إلى نص مشفر (Ciphertext) والعكس." },
+            { ar: "التشفير بالمفتاح المتناظر", en: "Symmetric Key Encryption", desc: "استخدام نفس المفتاح المشترك (Shared Key) للتشفير وفك التشفير." },
+            { ar: "التشفير بالمفتاح العام", en: "Public Key Encryption", desc: "التشفير بالمفتاح العام للمستلم وفك التشفير بالمفتاح الخاص للمستلم." },
+            { ar: "طريقة المفتاح المؤقت", en: "Session Key Method", desc: "تجمع بين التشفير بالمفتاح المتماثل والمفتاح العام." },
+            { ar: "دالة التجزئة / قيمة التجزئة", en: "Hash Function / Hash Value", desc: "دالة تحسب قيمة فريدة ذات اتجاه واحد لا يمكن عكسها." },
+            { ar: "التوقيع الرقمي", en: "Digital Signature", desc: "تشفير قيمة الهاش بالمفتاح الخاص للمرسل لإثبات الهوية وعدم العبث." },
+            { ar: "جهة التصديق", en: "Certification Authority (CA)", desc: "منظمة طرف ثالث موثوقة تصدر الشهادة الرقمية لتوثيق المفتاح العام." },
+            { ar: "أمان طبقة النقل", en: "SSL / TLS (https://)", desc: "بروتوكول لتشفير الاتصال بين متصفح الويب وخادم الويب." }
+        ];
+
+        function openGlossaryModal() {
+            document.getElementById('glossaryModal').classList.add('open');
+            renderGlossary();
+        }
+
+        function closeGlossaryModal() {
+            document.getElementById('glossaryModal').classList.remove('open');
+        }
+
+        function renderGlossary() {
+            const q = (document.getElementById('glossarySearchInput').value || '').trim().toLowerCase();
+            const grid = document.getElementById('glossaryGrid');
+            grid.innerHTML = '';
+            const filtered = glossaryTerms.filter(t => t.ar.includes(q) || t.en.toLowerCase().includes(q) || t.desc.includes(q));
+            filtered.forEach(t => {
+                const div = document.createElement('div');
+                div.className = 'glossary-item';
+                div.innerHTML = `
+                    <div style="font-weight:900; color:var(--primary); font-size:0.98rem;">${t.ar}</div>
+                    <div style="font-size:0.82rem; font-weight:700; color:var(--secondary); direction:ltr; text-align:right; margin-bottom:4px;">${t.en}</div>
+                    <div style="font-size:0.86rem; color:var(--text-muted);">${t.desc}</div>
+                `;
+                grid.appendChild(div);
+            });
+        }
+
+        // ==========================================
+        // تهيئة المنصة عند التحميل
+        // ==========================================
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section.content-card');
+            const navLinks = document.querySelectorAll('.nav-glass .nav-item');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        navLinks.forEach(link => {
+                            link.classList.toggle('active', link.getAttribute('data-target') === id);
+                        });
+                    }
+                });
+            }, { rootMargin: '-80px 0px -50% 0px', threshold: 0 });
+
+            sections.forEach(s => observer.observe(s));
+
+            selectCIA('c');
+            filterThreats('all', null);
+            calcPasswordMath();
+            selectPyramid(1);
+            initSecSorter();
+            switchEncMode('sym');
+            runSigSimulation();
+            renderExam();
+        });
+    </script>
+</body>
+</html>
