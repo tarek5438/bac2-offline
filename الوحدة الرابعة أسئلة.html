@@ -1,0 +1,2601 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة الوحدة الرابعة التفاعلية: تكنولوجيا المعلومات والمجتمع (50 سؤالاً + ملخص ومخططات الشرح)</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #3730a3;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --success: #16a34a;
+            --success-bg: #dcfce7;
+            --danger: #dc2626;
+            --danger-bg: #fee2e2;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --code-bg: #f1f5f9;
+            --font-scale: 1;
+        }
+
+        body.dark-mode {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #1e1b4b;
+            --accent: #fbbf24;
+            --success: #22c55e;
+            --success-bg: rgba(34, 197, 94, 0.18);
+            --danger: #ef4444;
+            --danger-bg: rgba(239, 68, 68, 0.18);
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --code-bg: #0f172a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', 'Cairo', 'Inter', Tahoma, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 18px;
+            min-height: 100vh;
+            transition: background-color 0.25s ease, color 0.25s ease;
+            font-size: calc(16px * var(--font-scale));
+        }
+
+        .container {
+            max-width: 1040px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 45%, #4f46e5 100%);
+            color: white;
+            padding: 26px 24px;
+            border-radius: 22px;
+            text-align: center;
+            box-shadow: 0 12px 28px -6px rgba(79, 70, 229, 0.35);
+            margin-bottom: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header h1 {
+            font-size: calc(1.62rem * var(--font-scale));
+            font-weight: 900;
+            margin-bottom: 6px;
+        }
+
+        header p {
+            font-size: calc(0.95rem * var(--font-scale));
+            color: #e0e7ff;
+            direction: ltr;
+            margin-bottom: 14px;
+        }
+
+        .header-badges {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .header-pill {
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #fff;
+            padding: 4px 14px;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+
+        /* Teacher & Controls Toolbar */
+        .teacher-toolbar {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 14px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.04);
+        }
+
+        .toolbar-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tool-btn {
+            background: var(--code-bg);
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 7px 13px;
+            border-radius: 10px;
+            font-size: 0.86rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .tool-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .tool-btn.active-mode {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+
+        .tool-btn.study-btn {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #fff;
+            border: none;
+        }
+
+        .tool-btn.study-btn:hover {
+            opacity: 0.93;
+            color: #fff;
+        }
+
+        .search-box {
+            position: relative;
+            flex: 1;
+            min-width: 200px;
+            max-width: 310px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 7px 14px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--code-bg);
+            color: var(--text);
+            font-size: 0.86rem;
+            font-weight: 600;
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary);
+        }
+
+        /* Lesson Filter Tabs */
+        .lesson-tabs {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 6px;
+            margin-bottom: 14px;
+            scrollbar-width: thin;
+        }
+
+        .lesson-tab {
+            background: var(--card);
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            padding: 8px 14px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .lesson-tab:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .lesson-tab.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 14px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 18px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: block;
+        }
+
+        .stat-val {
+            font-size: calc(1.3rem * var(--font-scale));
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .stat-val.high {
+            color: var(--accent);
+        }
+
+        .btn-index {
+            background: var(--primary-light);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 0.92rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-index:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 6px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: width 0.3s ease;
+        }
+
+        /* Question Card */
+        .q-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 26px;
+            box-shadow: 0 10px 20px -3px rgba(0,0,0,0.06);
+            margin-bottom: 24px;
+        }
+
+        .q-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .badge-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .q-badge {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.86rem;
+            font-weight: 800;
+        }
+
+        .source-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .source-badge.book {
+            background: #fef3c7;
+            color: #b45309;
+            border: 1px solid #fde68a;
+        }
+
+        .source-badge.extra {
+            background: #e0f2fe;
+            color: #0369a1;
+            border: 1px solid #bae6fd;
+        }
+
+        body.dark-mode .source-badge.book {
+            background: rgba(245, 158, 11, 0.2);
+            color: #fcd34d;
+            border-color: rgba(245, 158, 11, 0.4);
+        }
+
+        body.dark-mode .source-badge.extra {
+            background: rgba(14, 165, 233, 0.2);
+            color: #7dd3fc;
+            border-color: rgba(14, 165, 233, 0.4);
+        }
+
+        .q-text-ar {
+            font-size: calc(1.22rem * var(--font-scale));
+            font-weight: 800;
+            line-height: 1.8;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .q-text-en {
+            font-size: calc(1.02rem * var(--font-scale));
+            font-weight: 600;
+            line-height: 1.6;
+            margin-bottom: 18px;
+            color: var(--text-muted);
+            direction: ltr;
+            text-align: left;
+            border-left: 3px solid var(--primary);
+            padding-left: 12px;
+        }
+
+        /* Embedded Textbook Diagrams */
+        .diagram-box {
+            background: var(--code-bg);
+            border: 2px dashed var(--border);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .diagram-title {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .flow-grid {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .flow-node {
+            background: var(--card);
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 10px 14px;
+            min-width: 125px;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .flow-node .tag {
+            background: var(--primary);
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-bottom: 4px;
+        }
+
+        .flow-arrow {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--accent);
+        }
+
+        /* Options */
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .opt-btn {
+            background: var(--code-bg);
+            border: 2px solid var(--border);
+            padding: 14px 18px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            text-align: right;
+        }
+
+        .opt-btn:hover:not(:disabled) {
+            background: var(--primary-light);
+            border-color: var(--primary);
+            transform: translateX(-4px);
+        }
+
+        .opt-btn.correct {
+            background: var(--success-bg) !important;
+            border-color: var(--success) !important;
+        }
+
+        .opt-btn.wrong {
+            background: var(--danger-bg) !important;
+            border-color: var(--danger) !important;
+        }
+
+        .opt-ar {
+            font-size: calc(1.04rem * var(--font-scale));
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .opt-en {
+            font-size: calc(0.9rem * var(--font-scale));
+            font-weight: 600;
+            color: var(--text-muted);
+            direction: ltr;
+            text-align: left;
+        }
+
+        .opt-btn.correct .opt-ar, .opt-btn.correct .opt-en {
+            color: var(--success) !important;
+        }
+
+        .opt-btn.wrong .opt-ar, .opt-btn.wrong .opt-en {
+            color: var(--danger) !important;
+        }
+
+        .explanation {
+            margin-top: 20px;
+            padding: 16px 18px;
+            border-radius: 12px;
+            font-size: calc(0.98rem * var(--font-scale));
+            line-height: 1.75;
+            display: none;
+            background: var(--code-bg);
+            border-right: 5px solid var(--primary);
+        }
+
+        .exp-en {
+            direction: ltr;
+            text-align: left;
+            color: var(--text-muted);
+            margin-top: 8px;
+            font-size: calc(0.9rem * var(--font-scale));
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 24px;
+        }
+
+        .btn-nav {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-nav:hover:not(:disabled) {
+            background: var(--primary-dark);
+        }
+
+        .btn-nav:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .btn-retry-q {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: 0.86rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .btn-retry-q:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Modals */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 23, 42, 0.65);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            background: var(--card);
+            color: var(--text);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 920px;
+            max-height: 88vh;
+            overflow-y: auto;
+            padding: 26px;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.25);
+            border: 1px solid var(--border);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .modal-header h3 {
+            font-size: 1.22rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .close-btn {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+        }
+
+        .close-btn:hover {
+            background: var(--danger-bg);
+            color: var(--danger);
+        }
+
+        .legend {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .legend-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 4px;
+        }
+
+        .grid-index {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .index-pill {
+            background: var(--code-bg);
+            border: 2px solid var(--border);
+            padding: 9px 2px;
+            border-radius: 10px;
+            font-size: 0.92rem;
+            font-weight: 700;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            color: var(--text);
+            position: relative;
+        }
+
+        .index-pill:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .index-pill.active {
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.25);
+            font-weight: 900;
+        }
+
+        .index-pill.solved-correct {
+            background: var(--success-bg) !important;
+            border-color: var(--success) !important;
+            color: var(--success) !important;
+        }
+
+        .index-pill.solved-wrong {
+            background: var(--danger-bg) !important;
+            border-color: var(--danger) !important;
+            color: var(--danger) !important;
+        }
+
+        /* Study Guide Modal Styles */
+        .study-tabs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .study-tab-btn {
+            background: var(--code-bg);
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: 0.86rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .study-tab-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .study-pane {
+            display: none;
+            line-height: 1.75;
+        }
+
+        .study-pane.active {
+            display: block;
+        }
+
+        .study-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0 18px;
+            font-size: 0.9rem;
+        }
+
+        .study-table th, .study-table td {
+            border: 1px solid var(--border);
+            padding: 10px 12px;
+            text-align: right;
+        }
+
+        .study-table th {
+            background: var(--primary-light);
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        .calc-box {
+            background: var(--code-bg);
+            border: 2px solid var(--primary);
+            border-radius: 14px;
+            padding: 16px;
+            margin-top: 14px;
+        }
+
+        .calc-controls {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .calc-controls select {
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .results-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .trophy {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+
+        .score-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            border: 6px solid var(--primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 20px auto;
+        }
+
+        .score-num {
+            font-size: 2.3rem;
+            font-weight: 900;
+            color: var(--primary);
+        }
+
+        .btn-restart {
+            background: var(--accent);
+            color: #000;
+            border: none;
+            padding: 14px 34px;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.2s;
+        }
+
+        .btn-restart:hover {
+            transform: scale(1.03);
+        }
+
+        @media (max-width: 640px) {
+            body { padding: 10px; }
+            .q-card { padding: 18px; }
+            .stats-bar { padding: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>🌐 منصة الوحدة الرابعة التفاعلية: تكنولوجيا المعلومات والمجتمع (50 سؤالاً)</h1>
+        <p>Unit 4 Interactive Platform: Evolution of IT, Society 5.0, Big Data, AI, Machine Learning, IoT, VR/AR, Technostress &amp; Digital Divide</p>
+        <div class="header-badges">
+            <span class="header-pill">📖 شاملة جميع أسئلة كتاب الوزارة (صفحات 48 - 52)</span>
+            <span class="header-pill">⭐ أسئلة إضافية ومخططات تفاعلية للشرح</span>
+            <span class="header-pill">👨‍🏫 وضع خاص للمعلم لشرح الدروس للطلاب</span>
+        </div>
+    </header>
+
+    <!-- Teacher & Classroom Toolbar -->
+    <div class="teacher-toolbar">
+        <div class="toolbar-group">
+            <button class="tool-btn study-btn" id="openStudyBtn">
+                <span>📚</span>
+                <span>ملخص ومخططات الوحدة الرابعة للشرح</span>
+            </button>
+            <button class="tool-btn" id="teacherModeBtn" title="إظهار الشرح الفوري ومفتاح الإجابة للشرح أمام الطلاب">
+                <span>👨‍🏫</span>
+                <span id="teacherModeLabel">وضع شرح المعلم: مغلق</span>
+            </button>
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 ابحث في الـ 50 سؤالاً (مثال: الجيل الخامس، IoT، VDT، الفجوة)...">
+        </div>
+
+        <div class="toolbar-group">
+            <button class="tool-btn" id="zoomInBtn" title="تكبير الخط للشاشة الذكية">A+</button>
+            <button class="tool-btn" id="zoomOutBtn" title="تصغير الخط">A-</button>
+            <button class="tool-btn" id="darkModeBtn" title="تبديل الوضع الليلي">🌙</button>
+        </div>
+    </div>
+
+    <!-- Lesson Filter Tabs -->
+    <div class="lesson-tabs" id="lessonTabs">
+        <button class="lesson-tab active" data-filter="all">الكل (50 سؤالاً)</button>
+        <button class="lesson-tab" data-filter="1">المحور 1: التطور المجتمعي و Society 5.0 (14)</button>
+        <button class="lesson-tab" data-filter="2">المحور 2: البيانات الضخمة و AI والتعلم الآلي (12)</button>
+        <button class="lesson-tab" data-filter="3">المحور 3: إنترنت الأشياء والمنزل الذكي و VR/AR (12)</button>
+        <button class="lesson-tab" data-filter="4">المحور 4: الإجهاد التكنولوجي والفجوة الرقمية (12)</button>
+        <button class="lesson-tab" data-filter="book">📖 أسئلة الكتاب المدرسي (28)</button>
+        <button class="lesson-tab" data-filter="wrong">❌ أخطائي للمراجعة</button>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <span class="stat-label">رقم السؤال / Question</span>
+            <div><span class="stat-val" id="qCurrent">1</span> / <span id="qTotalFiltered">50</span></div>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">أول محاولة / 1st Score 🎯</span>
+            <span class="stat-val" id="firstScore">--</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">الدرجة الكلية / Score</span>
+            <div><span class="stat-val" id="score">0</span> / 50</div>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">أعلى نتيجة / High Score 🏆</span>
+            <span class="stat-val high" id="highScore">0</span>
+        </div>
+        <div>
+            <button class="btn-index" id="openIndexBtn">
+                <span>📑</span>
+                <span>فهرس الأسئلة (1-50)</span>
+            </button>
+        </div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar" style="width: 0%;"></div>
+        </div>
+    </div>
+
+    <!-- Main Question Card -->
+    <div class="q-card" id="quizCard">
+        <div class="q-header">
+            <div class="badge-group">
+                <span class="q-badge" id="topicBadge">المحور 1: تدفق التطور المجتمعي 📖</span>
+                <span class="source-badge book" id="sourceBadge">كتاب الوزارة - تحدى معلوماتك (1) صـ 50</span>
+            </div>
+            <span style="color: var(--text-muted); font-size: 0.9rem; font-weight: 700;" id="qStatusIndicator">لم يُجب بعد / Not answered</span>
+        </div>
+
+        <div class="q-text-ar" id="questionTextAr"></div>
+        <div class="q-text-en" id="questionTextEn"></div>
+
+        <!-- Dynamic Diagram Container -->
+        <div id="diagramContainer" style="display: none;"></div>
+
+        <div class="options-list" id="optionsContainer"></div>
+
+        <div class="explanation" id="explanationText" style="display: none;"></div>
+
+        <div class="actions">
+            <button class="btn-nav" id="prevBtn" disabled="">➡️ السابق / Prev</button>
+            <button class="btn-retry-q" id="retryQuestionBtn" title="إعادة تصفير هذا السؤال لتجربته مرة أخرى أمام الطلاب">🔄 إعادة حل هذا السؤال</button>
+            <button class="btn-nav" id="nextBtn">التالي / Next ⬅️</button>
+        </div>
+    </div>
+
+    <!-- Final Results Card -->
+    <div class="results-card" id="resultsCard">
+        <div class="trophy" id="trophyIcon">🎉</div>
+        <h2 id="resultMsg" style="font-size: 1.8rem; margin-bottom: 8px;">أحسنت صنعاً!</h2>
+        <p id="resultSubtitle" style="color: var(--text-muted);">You completed all 50 questions for Unit 4: Information Technology &amp; Society!</p>
+
+        <div class="score-circle">
+            <div class="score-num" id="finalScore">0</div>
+            <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted);">/ 50</span>
+        </div>
+
+        <p id="highScoreNotice" style="font-weight: 700; font-size: 1.1rem; color: var(--accent); margin-top: 10px;"></p>
+
+        <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 20px;">
+            <button class="btn-restart" id="restartQuizBtn">إعادة الاختبار بالكامل من البداية 🔄</button>
+            <button class="btn-nav" id="reviewWrongBtn" style="margin-top: 20px; padding: 14px 26px;">مراجعة الأسئلة الخاطئة فقط ❌</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 1: Question Index (1-50) -->
+<div class="modal-overlay" id="indexModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>📑 فهرس أسئلة الوحدة الرابعة: تكنولوجيا المعلومات والمجتمع (50 سؤالاً)</h3>
+            <button class="close-btn" id="closeIndexBtn">✕</button>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item"><div class="legend-dot" style="background: #22c55e;"></div><span>إجابة صحيحة</span></div>
+            <div class="legend-item"><div class="legend-dot" style="background: #ef4444;"></div><span>إجابة خاطئة</span></div>
+            <div class="legend-item"><div class="legend-dot" style="background: #4f46e5;"></div><span>السؤال الحالي</span></div>
+            <div class="legend-item"><div class="legend-dot" style="background: #cbd5e1;"></div><span>لم يُحل بعد</span></div>
+        </div>
+
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px;">انقر على أي رقم سؤال للانتقال إليه مباشرة (الأسئلة من 1 إلى 50 مرتبة حسب محاور الوحدة الرابعة):</p>
+
+        <div class="grid-index" id="gridIndexContainer"></div>
+    </div>
+</div>
+
+<!-- Modal 2: Teacher Interactive Study Guide & Diagrams -->
+<div class="modal-overlay" id="studyModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>📚 دليل المعلم والطالب: ملخص ومخططات الوحدة الرابعة (تكنولوجيا المعلومات والمجتمع)</h3>
+            <button class="close-btn" id="closeStudyBtn">✕</button>
+        </div>
+
+        <div class="study-tabs" id="studyTabs">
+            <button class="study-tab-btn active" data-pane="pane1">1️⃣ التطور المجتمعي و Society 5.0</button>
+            <button class="study-tab-btn" data-pane="pane2">2️⃣ البيانات الضخمة و AI والتعلم الآلي</button>
+            <button class="study-tab-btn" data-pane="pane3">3️⃣ إنترنت الأشياء و VR / AR</button>
+            <button class="study-tab-btn" data-pane="pane4">4️⃣ الإجهاد التكنولوجي والفجوة الرقمية</button>
+        </div>
+
+        <!-- Pane 1 -->
+        <div class="study-pane active" id="pane1">
+            <h4 style="color: var(--primary); margin-bottom: 8px;">أولاً: جدول تدفق التطور المجتمعي (Society 1.0 → 5.0) - صـ 49</h4>
+            <table class="study-table">
+                <thead>
+                    <tr>
+                        <th>المرحلة</th>
+                        <th>اسم المجتمع</th>
+                        <th>الشرح والحقبة الزمنية (كتاب الوزارة)</th>
+                        <th>التقنيات والأدوات المؤثرة</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>1.0</b></td>
+                        <td><b>مجتمع الصيادين-الجامعين (Hunter-gatherer)</b></td>
+                        <td>منذ ولادة البشرية • مجتمع يعيش الناس فيه من خلال الصيد وجمع النباتات.</td>
+                        <td>الفؤوس الحجرية، الأقواس والسهام، تقنيات إشعال النار، اللغة.</td>
+                    </tr>
+                    <tr>
+                        <td><b>2.0</b></td>
+                        <td><b>المجتمع الزراعي (Agrarian society)</b></td>
+                        <td>منذ حوالي 13,000 قبل الميلاد • حياة مستقرة من خلال زراعة الغذاء وحصاده.</td>
+                        <td>الأدوات الزراعية، الري، اختراع الكتابة، علم الفلك.</td>
+                    </tr>
+                    <tr>
+                        <td><b>3.0</b></td>
+                        <td><b>المجتمع الصناعي (Industrialized society)</b></td>
+                        <td>منذ منتصف القرن الثامن عشر (بعد الثورة الصناعية) • الإنتاج الضخم باستخدام الآلات بفضل المحرك البخاري والكهرباء.</td>
+                        <td>المحركات البخارية، الآلات الصناعية، تكنولوجيا الطباعة.</td>
+                    </tr>
+                    <tr>
+                        <td><b>4.0</b></td>
+                        <td><b>مجتمع المعلومات (Information society)</b></td>
+                        <td>منذ النصف الثاني من القرن العشرين • مجتمع تم فيه تعزيز الأتمتة من خلال تقدم أجهزة الكمبيوتر.</td>
+                        <td>أجهزة الكمبيوتر، الإنترنت، الراديو والتلفزيون.</td>
+                    </tr>
+                    <tr>
+                        <td><b>5.0</b></td>
+                        <td><b>مجتمع الجيل الخامس (Society 5.0)</b></td>
+                        <td>مجتمع جديد يرتكز على الإنسان ويتم فيه دمج <b>الفضاء الافتراضي (الإلكتروني)</b> و<b>الفضاء الحقيقي (المادي)</b> لحل مختلف القضايا الاجتماعية وتحقيق التنمية الاقتصادية.</td>
+                        <td>إنترنت الأشياء (IoT)، البيانات الضخمة (Big Data)، الذكاء الاصطناعي (AI).</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pane 2 -->
+        <div class="study-pane" id="pane2">
+            <h4 style="color: var(--primary); margin-bottom: 8px;">ثانياً: البيانات الضخمة (Big Data)، الذكاء الاصطناعي (AI)، والتعلم الآلي (ML) - صـ 49</h4>
+            <table class="study-table">
+                <thead>
+                    <tr>
+                        <th>التقنية</th>
+                        <th>التعريف الرسمي في كتاب الوزارة</th>
+                        <th>الأمثلة والخصائص</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>البيانات الضخمة (Big Data)</b></td>
+                        <td>مجموعات ضخمة من البيانات في أشكال مختلفة، بخصائص مختلفة وأنواع متنوعة.</td>
+                        <td>تتكون من 3 عناصر: <b>حجم البيانات (Volume)</b>، <b>تنوع البيانات (Variety)</b>، و<b>وتيرة التوليد/التحديث (Generation/update frequency)</b>.</td>
+                    </tr>
+                    <tr>
+                        <td><b>الذكاء الاصطناعي (AI)</b></td>
+                        <td>تقنية تستخدم أجهزة الكمبيوتر لتقليد السلوك الفكري البشري بشكل مصطنع.</td>
+                        <td>القيادة الذاتية، الطب عن بُعد، الزراعة الذكية، المنزل الذكي.</td>
+                    </tr>
+                    <tr>
+                        <td><b>التعلّم الآلي (Machine Learning)</b></td>
+                        <td>تقنية تتعلم فيها أجهزة الكمبيوتر من كميات كبيرة من البيانات لاستخراج القواعد والأنماط من البيانات.</td>
+                        <td>تحليل البيانات الضخمة لاكتشاف الأنماط والتنبؤ.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pane 3 -->
+        <div class="study-pane" id="pane3">
+            <h4 style="color: var(--primary); margin-bottom: 8px;">ثالثاً: إنترنت الأشياء (IoT)، المنزل الذكي، والواقع الافتراضي (VR) والمعزز (AR) - صـ 50</h4>
+            <table class="study-table">
+                <thead>
+                    <tr>
+                        <th>التقنية</th>
+                        <th>التعريف الدقيق (صـ 50)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>إنترنت الأشياء (IoT - Internet of Things)</b></td>
+                        <td>تقنية تدعم الحياة اليومية من خلال ربط الأجهزة المنزلية وغيرها من العناصر بالإنترنت، مما يسمح للأجهزة بالتواصل مع بعضها البعض.</td>
+                    </tr>
+                    <tr>
+                        <td><b>المنزل الذكي (Smart Home)</b></td>
+                        <td>مسكن يستخدم تقنيات <b>IoT و AI</b> لتوفير بيئة معيشة أكثر راحة.</td>
+                    </tr>
+                    <tr>
+                        <td><b>الواقع الافتراضي (VR - Virtual Reality)</b></td>
+                        <td>تقنية تسمح للمستخدمين بتجربة وهم الواقع في بيئة محاكاة (بناء بيئات افتراضية بالكامل بواسطة كمبيوتر).</td>
+                    </tr>
+                    <tr>
+                        <td><b>الواقع المعزز (AR - Augmented Reality)</b></td>
+                        <td>تقنية تستخدم معالجة الكمبيوتر لتعزيز البيئة الواقعية التي تدركها الحواس البشرية (بإضافة صور ثابتة أو فيديو للبيئة الواقعية).</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="calc-box">
+                <h4 style="color: var(--primary);">🔍 مستكشف الفروق السريع للشرح في الفصل</h4>
+                <div class="calc-controls">
+                    <label>اختر المقارنة لعرضها للطلاب:
+                        <select id="compareSelect">
+                            <option value="vr_ar">مقارنة: الواقع الافتراضي (VR) مقابل الواقع المعزز (AR)</option>
+                            <option value="ai_ml">مقارنة: الذكاء الاصطناعي (AI) مقابل التعلم الآلي (ML)</option>
+                            <option value="soc4_5">مقارنة: مجتمع المعلومات (4.0) مقابل مجتمع الجيل الخامس (5.0)</option>
+                        </select>
+                    </label>
+                </div>
+                <div id="compareResultDisplay" style="font-size: 0.96rem; font-weight: 700; color: var(--text); margin-top: 8px; background: var(--card); padding: 12px; border-radius: 10px;">
+                    🥽 <b>VR (الواقع الافتراضي):</b> يبني بيئة افتراضية كاملة يعيشها المستخدم كوهم للواقع | 📱 <b>AR (الواقع المعزز):</b> يعزز البيئة الواقعية الحقيقية بإضافة صور ومعلومات رقمية فوقها.
+                </div>
+            </div>
+        </div>
+
+        <!-- Pane 4 -->
+        <div class="study-pane" id="pane4">
+            <h4 style="color: var(--primary); margin-bottom: 8px;">رابعاً: الإجهاد التكنولوجي (Technostress) والفجوة الرقمية (Digital Divide) - صـ 50</h4>
+            <table class="study-table">
+                <thead>
+                    <tr>
+                        <th>المصطلح</th>
+                        <th>التعريف الرسمي في كتاب الوزارة (صـ 50 و 52)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>الإجهاد التكنولوجي (Technostress)</b></td>
+                        <td>المصطلح العام للمشاكل العقلية والجسدية التي تنشأ من استخدام أجهزة الكمبيوتر (ويشمل القلق والإحباط من عدم القدرة على التكيف مع تشغيل أجهزة المعلومات).</td>
+                    </tr>
+                    <tr>
+                        <td><b>↳ رهاب التكنولوجيا (Technophobia)</b></td>
+                        <td>حالة من القلق أو الخوف من استخدام أجهزة الكمبيوتر بسبب الشعور بعدم الارتياح أو قلة الثقة في التعامل معها.</td>
+                    </tr>
+                    <tr>
+                        <td><b>↳ الإدمان التكنولوجي (Techno-Addiction)</b></td>
+                        <td>الاعتماد المفرط على أجهزة الكمبيوتر.</td>
+                    </tr>
+                    <tr>
+                        <td><b>↳ اضطراب VDT (VDT Disorder)</b></td>
+                        <td>تصلّب الكتف وإجهاد العين الناتج عن استخدام الكمبيوتر لفترات طويلة.</td>
+                    </tr>
+                    <tr>
+                        <td><b>الفجوة الرقمية (Digital Divide)</b></td>
+                        <td>الفجوة (أو التفاوت) بين أولئك الذين يمكنهم الاستفادة من تكنولوجيا المعلومات (مثل الإنترنت وأجهزة الكمبيوتر) وأولئك الذين لا يستطيعون.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    const questions = [
+        // ============================================================
+        // المحور 1: التقدم في تكنولوجيا المعلومات والمجتمع المستقبلي (1 - 14)
+        // ============================================================
+        {
+            id: 1,
+            lesson: 1,
+            isBook: true,
+            source: "كتاب الوزارة - تحدى معلوماتك (1) صـ 50",
+            topic: "المحور 1: تسلسل التطور المجتمعي 📖",
+            ar_q: "اختر التسلسل الأكثر ملاءمة للتطور المجتمعي عبر التاريخ من الخيارات التالية:",
+            en_q: "Choose the most appropriate chronological sequence for societal evolution from the following options:",
+            diagram: "society_timeline",
+            options: [
+                { ar: "مجتمع الصيد والجمع ← المجتمع الزراعي ← المجتمع الصناعي ← مجتمع المعلومات", en: "Hunter-gatherer society → Agrarian society → Industrialized society → Information society" },
+                { ar: "المجتمع الزراعي ← مجتمع الصيد والجمع ← مجتمع المعلومات ← المجتمع الصناعي", en: "Agrarian society → Hunter-gatherer society → Information society → Industrialized society" },
+                { ar: "المجتمع الزراعي ← مجتمع الصيد والجمع ← المجتمع الصناعي ← مجتمع المعلومات", en: "Agrarian society → Hunter-gatherer society → Industrialized society → Information society" },
+                { ar: "مجتمع الصيد والجمع ← المجتمع الزراعي ← مجتمع المعلومات ← المجتمع الصناعي", en: "Hunter-gatherer society → Agrarian society → Information society → Industrialized society" }
+            ],
+            correct: 0,
+            exp_ar: "طبقاً لجدول تدفق التطور المجتمعي في كتاب الوزارة (صـ 49 و50): بدأ البشر بمجتمع الصيد والجمع (منذ ولادة البشرية) ← ثم المجتمع الزراعي (منذ 13,000 ق.م) ← ثم المجتمع الصناعي (منتصف القرن 18) ← ثم مجتمع المعلومات (النصف الثاني من القرن 20) ← وصولاً إلى مجتمع الجيل الخامس.",
+            exp_en: "Per the textbook (pp. 49–50), human society evolved from Hunter-gatherer (1.0) → Agrarian (2.0) → Industrialized (3.0) → Information society (4.0) → Society 5.0."
+        },
+        {
+            id: 2,
+            lesson: 1,
+            isBook: true,
+            source: "كتاب الوزارة - جدول صـ 49 + تمرين 1 صـ 52",
+            topic: "المحور 1: مجتمع الصيادين-الجامعين 📖",
+            ar_q: "ما هو المجتمع الذي بدأ «منذ ولادة البشرية» ويعيش الناس فيه من خلال صيد الحيوانات وجمع النباتات، ودعمته أدوات مثل الفؤوس الحجرية والأقواس والسهام وتقنيات إشعال النار واللغة؟",
+            en_q: "Which society existed 'since the birth of humanity', where people lived by hunting and gathering, supported by stone axes, bows and arrows, fire-making, and language?",
+            options: [
+                { ar: "المجتمع الزراعي (Agrarian society)", en: "Agrarian society" },
+                { ar: "مجتمع الصيادين-الجامعين (Hunter-gatherer society)", en: "Hunter-gatherer society" },
+                { ar: "المجتمع الصناعي (Industrialized society)", en: "Industrialized society" },
+                { ar: "مجتمع المعلومات (Information society)", en: "Information society" }
+            ],
+            correct: 1,
+            exp_ar: "مجتمع الصيادين-الجامعين (Hunter-gatherer society) هو أولى مراحل التطور المجتمعي منذ ولادة البشرية، ومن أدواته وتقنياته المؤثرة: الفؤوس الحجرية، الأقواس والسهام، تقنيات إشعال النار، واللغة.",
+            exp_en: "The Hunter-gatherer society existed since the birth of humanity and relied on stone axes, bows and arrows, fire-making techniques, and language."
+        },
+        {
+            id: 3,
+            lesson: 1,
+            isBook: true,
+            source: "كتاب الوزارة - جدول صـ 49 + تمرين 1 صـ 52",
+            topic: "المحور 1: المجتمع الزراعي 📖",
+            ar_q: "منذ حوالي 13,000 قبل الميلاد، استقرت البشرية على الأراضي الخصبة وقاد الناس حياة مستقرة من خلال زراعة الغذاء وحصاده. يُسمى هذا المجتمع بـ:",
+            en_q: "Around 13,000 BC, humanity settled on fertile lands and led a stable life by growing and harvesting food. This society is called:",
+            options: [
+                { ar: "المجتمع الصناعي (Industrialized society)", en: "Industrialized society" },
+                { ar: "مجتمع الجيل الخامس (Society 5.0)", en: "Society 5.0" },
+                { ar: "المجتمع الزراعي (Agrarian society)", en: "Agrarian society" },
+                { ar: "مجتمع المعلومات (Information society)", en: "Information society" }
+            ],
+            correct: 2,
+            exp_ar: "المجتمع الزراعي (Agrarian society) ظهر منذ حوالي 13,000 قبل الميلاد، حيث قاد الناس حياة مستقرة من خلال زراعة الغذاء وحصاده بفضل تقنيات الري والأدوات الزراعية واختراع الكتابة وعلم الفلك.",
+            exp_en: "The Agrarian society began around 13,000 BC when humans settled down to cultivate and harvest crops using irrigation and agricultural tools."
+        },
+        {
+            id: 4,
+            lesson: 1,
+            isBook: true,
+            source: "كتاب الوزارة - جدول صـ 49 + تمرين 1 صـ 52",
+            topic: "المحور 1: المجتمع الصناعي 📖",
+            ar_q: "أي مجتمع ظهر منذ «منتصف القرن الثامن عشر» (بعد الثورة الصناعية)، وتقدمت فيه الصناعة من خلال الإنتاج الضخم باستخدام الآلات بفضل اختراع المحرك البخاري والكهرباء؟",
+            en_q: "Which society emerged in the 'mid-18th century' (after the Industrial Revolution), advancing industry through mass production using steam engines and electricity?",
+            options: [
+                { ar: "المجتمع الصناعي (Industrialized society)", en: "Industrialized society" },
+                { ar: "المجتمع الزراعي (Agrarian society)", en: "Agrarian society" },
+                { ar: "مجتمع الصيادين-الجامعين (Hunter-gatherer society)", en: "Hunter-gatherer society" },
+                { ar: "مجتمع المعلومات (Information society)", en: "Information society" }
+            ],
+            correct: 0,
+            exp_ar: "المجتمع الصناعي (Industrialized society) ظهر منذ منتصف القرن الثامن عشر بعد الثورة الصناعية، وتميز بالإنتاج الضخم باستخدام الآلات بفضل اختراع المحرك البخاري والكهرباء وتكنولوجيا الطباعة.",
+            exp_en: "The Industrialized society emerged in the mid-18th century following the Industrial Revolution, driven by steam engines, electricity, printing technology, and mass production."
+        },
+        {
+            id: 5,
+            lesson: 1,
+            isBook: true,
+            source: "كتاب الوزارة - جدول صـ 49 + تمرين 1 صـ 52",
+            topic: "المحور 1: مجتمع المعلومات 📖",
+            ar_q: "المجتمع الذي ظهر «منذ النصف الثاني من القرن العشرين» وتم فيه تعزيز الأتمتة (Automation) من خلال تقدم أجهزة الكمبيوتر والإنترنت يُسمى:",
+            en_q: "The society that emerged 'since the second half of the 20th century' and enhanced automation through the advancement of computers and the internet is called:",
+            options: [
+                { ar: "مجتمع الصيادين-الجامعين", en: "Hunter-gatherer society" },
+                { ar: "المجتمع الزراعي", en: "Agrarian society" },
+                { ar: "المجتمع الصناعي", en: "Industrialized society" },
+                { ar: "مجتمع المعلومات (Information society)", en: "Information society" }
+            ],
+            correct: 3,
+            exp_ar: "مجتمع المعلومات (Information society) بدأ منذ النصف الثاني من القرن العشرين، وتم فيه تعزيز الأتمتة من خلال تقدم أجهزة الكمبيوتر وانتشار الإنترنت ووسائل الإعلام.",
+            exp_en: "The Information society emerged in the second half of the 20th century, promoting automation through computers and the internet."
+        },
+        {
+            id: 6,
+            lesson: 1,
+            isBook: true,
+            source: "كتاب الوزارة - صـ 49 + جرب بنفسك 1-(2) صـ 51",
+            topic: "المحور 1: مجتمع الجيل الخامس (Society 5.0) 📖",
+            ar_q: "ما هو المصطلح الذي يُطلق على «المجتمع الجديد الذي يرتكز على الإنسان ويتم فيه دمج الفضاء الافتراضي (الفضاء الإلكتروني) والفضاء الحقيقي (الفضاء المادي) لحل مختلف القضايا الاجتماعية وتحقيق التنمية الاقتصادية»؟",
+            en_q: "What term refers to the 'new human-centered society that integrates virtual space (cyberspace) and real space (physical space) to resolve social issues and achieve economic development'?",
+            diagram: "society_5",
+            options: [
+                { ar: "مجتمع الجيل الخامس (Society 5.0)", en: "Society 5.0" },
+                { ar: "المجتمع الزراعي (Agrarian society)", en: "Agrarian society" },
+                { ar: "الفجوة الرقمية (Digital Divide)", en: "Digital Divide" },
+                { ar: "اضطراب VDT", en: "VDT Disorder" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 49 و51): مجتمع الجيل الخامس (Society 5.0) هو مجتمع جديد يتم فيه دمج الفضاء الافتراضي (الفضاء الإلكتروني) والفضاء الحقيقي (الفضاء المادي) لحل مختلف القضايا الاجتماعية وتحقيق التنمية الاقتصادية.",
+            exp_en: "Textbook (pp. 49 & 51): Society 5.0 integrates virtual space (cyberspace) and real space (physical space) to balance economic development with solving social issues."
+        },
+        {
+            id: 7,
+            lesson: 1,
+            isBook: true,
+            source: "كتاب الوزارة - جرب بنفسك 1-(1) صـ 51",
+            topic: "المحور 1: فقرة التطور المجتمعي [1] إلى [5] 📖",
+            ar_q: "في فقرة الكتاب المدرسي (صـ 51): عاش الناس قديماً في مجتمع [1]، ثم استقروا في الأراضي الخصبة في مجتمع [2]، وفي منتصف القرن 18 حدثت ثورة [3] فتشكل مجتمع [4]، وفي منتصف القرن 20 ظهر مجتمع [5]. الترتيب الصحيح للفراغات هو:",
+            en_q: "In the textbook passage (p. 51), fill in blanks [1] to [5] describing the progression of human societies:",
+            options: [
+                { ar: "[1] صيد وجمع | [2] زراعي | [3] صناعية | [4] صناعي | [5] معلومات", en: "[1] Hunting & gathering | [2] Agrarian | [3] Industrial | [4] Industrialized | [5] Information" },
+                { ar: "[1] زراعي | [2] صيد وجمع | [3] معلومات | [4] صناعي | [5] إنترنت", en: "[1] Agrarian | [2] Hunting | [3] Information | [4] Industrial | [5] Internet" },
+                { ar: "[1] صناعي | [2] معلومات | [3] زراعية | [4] صيد | [5] افتراضي", en: "[1] Industrial | [2] Information | [3] Agricultural | [4] Hunting | [5] Virtual" },
+                { ar: "[1] معلومات | [2] صناعي | [3] زراعي | [4] صيد وجمع | [5] الجيل الخامس", en: "[1] Information | [2] Industrial | [3] Agrarian | [4] Hunting | [5] Society 5.0" }
+            ],
+            correct: 0,
+            exp_ar: "حل سؤال جرب بنفسك 1-(1) صـ 51: [1] (ب) صيد وجمع، [2] (ج) زراعي، [3] (أ) صناعية (ثورة صناعية)، [4] (ح) صناعي (مجتمع صناعي)، [5] (ت) معلومات (مجتمع المعلومات).",
+            exp_en: "Solution to Try It Yourself 1-(1) on p. 51: [1] Hunting & gathering, [2] Agrarian, [3] Industrial (revolution), [4] Industrialized (society), [5] Information (society)."
+        },
+        {
+            id: 8,
+            lesson: 1,
+            isBook: false,
+            source: "سؤال إضافي على المحور 1 (جدول صـ 49 و صـ 51) ⭐",
+            topic: "المحور 1: التقنيات المؤثرة في كل مجتمع ⭐",
+            ar_q: "أي من المطابقات التالية بين «نوع المجتمع» و«التقنيات والأدوات المؤثرة فيه» صحيحة تماماً طبقاً للكتاب المدرسي (صـ 49 و 51)؟",
+            en_q: "Which matching between the 'type of society' and its 'influential technologies/tools' is completely accurate per the textbook (pp. 49 & 51)?",
+            options: [
+                { ar: "مجتمع الصيد والجمع: المحركات البخارية والكهرباء", en: "Hunter-gatherer society: Steam engines and electricity" },
+                { ar: "المجتمع الزراعي: الأدوات الزراعية، الري، اختراع الكتابة، وعلم الفلك", en: "Agrarian society: Agricultural tools, irrigation, invention of writing, and astronomy" },
+                { ar: "المجتمع الصناعي: الفؤوس الحجرية والأقواس والسهام", en: "Industrialized society: Stone axes and bows and arrows" },
+                { ar: "مجتمع المعلومات: الأدوات الحجرية فقط بدون كهرباء", en: "Information society: Stone tools only without electricity" }
+            ],
+            correct: 1,
+            exp_ar: "ذكر الكتاب (صـ 49 و51) أن المجتمع الزراعي دعمته تقنيات مثل اختراع الكتابة، الأدوات الزراعية، علم الفلك، والري. بينما الفؤوس والأقواس لمجتمع الصيد، والمحركات البخارية والطباعة للمجتمع الصناعي.",
+            exp_en: "The Agrarian society was supported by agricultural tools, irrigation, the invention of writing, and astronomy (pp. 49 & 51)."
+        },
+        {
+            id: 9,
+            lesson: 1,
+            isBook: false,
+            source: "سؤال إضافي على المحور 1 (صـ 51) ⭐",
+            topic: "المحور 1: الثورة الصناعية في بريطانيا ⭐",
+            ar_q: "وفقاً لنص فقرة الكتاب المدرسي (صـ 51)، في أي دولة تم اختراع المحرك البخاري في منتصف القرن الثامن عشر مما أدى إلى قيام الثورة الصناعية؟",
+            en_q: "According to the textbook passage (p. 51), in which country was the steam engine invented in the mid-18th century, triggering the Industrial Revolution?",
+            options: [
+                { ar: "بريطانيا (Britain)", en: "Britain" },
+                { ar: "البرازيل (Brazil)", en: "Brazil" },
+                { ar: "أستراليا (Australia)", en: "Australia" },
+                { ar: "كندا (Canada)", en: "Canada" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 51): «من منتصف القرن الثامن عشر، عندما تم اختراع المحرك البخاري في بريطانيا، حدثت ثورة صناعية، مما أدى إلى تشكيل مجتمع صناعي».",
+            exp_en: "Textbook passage (p. 51): 'From the mid-18th century, when the steam engine was invented in Britain, an industrial revolution occurred, forming an industrialized society.'"
+        },
+        {
+            id: 10,
+            lesson: 1,
+            isBook: false,
+            source: "سؤال إضافي على المحور 1 (صـ 49) ⭐",
+            topic: "المحور 1: تكنولوجيا الطباعة والمجتمع الصناعي ⭐",
+            ar_q: "في جدول تدفق التطور المجتمعي (صـ 49)، ضمن أي مجتمع صُنّفت «تكنولوجيا الطباعة» و«المحركات البخارية» و«الآلات الصناعية» كأدوات وتقنيات مؤثرة؟",
+            en_q: "In the societal evolution table (p. 49), under which society are 'printing technology', 'steam engines', and 'industrial machinery' listed as influential technologies?",
+            options: [
+                { ar: "مجتمع الصيادين-الجامعين", en: "Hunter-gatherer society" },
+                { ar: "المجتمع الزراعي", en: "Agrarian society" },
+                { ar: "المجتمع الصناعي (Industrialized society)", en: "Industrialized society" },
+                { ar: "العصر الجليدي", en: "The Ice Age" }
+            ],
+            correct: 2,
+            exp_ar: "في جدول صـ 49، وردت «المحركات البخارية، الآلات الصناعية، تكنولوجيا الطباعة، إلخ» ضمن التقنيات والأدوات المؤثرة في المجتمع الصناعي (Industrialized society).",
+            exp_en: "In the table on p. 49, steam engines, industrial machinery, and printing technology are listed as the key technologies of the Industrialized society."
+        },
+        {
+            id: 11,
+            lesson: 1,
+            isBook: false,
+            source: "سؤال إضافي على المحور 1 (صـ 49 و 51) ⭐",
+            topic: "المحور 1: المفهوم المرادف للفضاء الافتراضي والفضاء الحقيقي ⭐",
+            ar_q: "في تعريف «مجتمع الجيل الخامس» (Society 5.0) بالكتاب المدرسي (صـ 49 و51)، ما المصطلح المرادف لـ «الفضاء الافتراضي» وما المصطلح المرادف لـ «الفضاء الحقيقي»؟",
+            en_q: "In the textbook definition of Society 5.0 (pp. 49 & 51), what are the synonymous terms for 'Virtual Space' and 'Real Space'?",
+            options: [
+                { ar: "الفضاء الافتراضي = الفضاء الإلكتروني (Cyberspace) | والفضاء الحقيقي = الفضاء المادي (Physical space)", en: "Virtual Space = Cyberspace | Real Space = Physical Space" },
+                { ar: "الفضاء الافتراضي = الفضاء الخارجي للفلك | والفضاء الحقيقي = الغلاف الجوي", en: "Virtual Space = Outer Space | Real Space = Atmosphere" },
+                { ar: "كلاهما يشير إلى الفؤوس الحجرية والري الزراعي", en: "Both refer to stone axes and agricultural irrigation" },
+                { ar: "الفضاء الافتراضي = الورق المطبوع | والفضاء الحقيقي = الخيال العلمي", en: "Virtual Space = Printed paper | Real Space = Science fiction" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 49 و51): يتم في مجتمع الجيل الخامس دمج «الفضاء الافتراضي (الفضاء الإلكتروني)» و«الفضاء الحقيقي (الفضاء المادي)».",
+            exp_en: "Textbook (pp. 49 & 51): Society 5.0 merges 'virtual space (cyberspace)' with 'real space (physical space)'."
+        },
+        {
+            id: 12,
+            lesson: 1,
+            isBook: false,
+            source: "سؤال إضافي على المحور 1 (صـ 49 و 51) ⭐",
+            topic: "المحور 1: الهدف المزدوج لمجتمع الجيل الخامس ⭐",
+            ar_q: "ما هما الهدفان الرئيسيان اللذان يسعى «مجتمع الجيل الخامس» (Society 5.0) إلى تحقيقهما والمواءمة بينهما من خلال دمج الفضاء الإلكتروني والفضاء المادي؟",
+            en_q: "What are the two main goals that 'Society 5.0' seeks to harmonize by integrating cyberspace and physical space?",
+            options: [
+                { ar: "حل مختلف القضايا الاجتماعية + تحقيق التنمية الاقتصادية (في مجتمع يرتكز على الإنسان)", en: "Solving various social issues + Achieving economic development (in a human-centered society)" },
+                { ar: "إلغاء استخدام الإنترنت + العودة إلى الصيد بالأقواس والسهام", en: "Abolishing the internet + Returning to hunting with bows and arrows" },
+                { ar: "زيادة الفجوة الرقمية + زيادة الإجهاد التكنولوجي", en: "Widening the digital divide + Increasing technostress" },
+                { ar: "استبدال جميع البشر بالبخار والفحم الحجري", en: "Replacing all humans with steam and coal" }
+            ],
+            correct: 0,
+            exp_ar: "يهدف مجتمع الجيل الخامس (صـ 49 و51) إلى تحقيق مجتمع يرتكز على الإنسان ويوائم بين «التنمية الاقتصادية» و«حل مختلف القضايا الاجتماعية».",
+            exp_en: "Society 5.0 aims to build a human-centered society that balances economic development with the resolution of social issues."
+        },
+        {
+            id: 13,
+            lesson: 1,
+            isBook: false,
+            source: "سؤال إضافي على المحور 1 (صـ 49) ⭐",
+            topic: "المحور 1: تعزيز الأتمتة في مجتمع المعلومات ⭐",
+            ar_q: "ما السمة المميزة لـ «مجتمع المعلومات» (Information society) الذي ظهر في النصف الثاني من القرن العشرين كما ورد في جدول صـ 49؟",
+            en_q: "What is the defining feature of the 'Information society' that emerged in the second half of the 20th century per the table on p. 49?",
+            options: [
+                { ar: "مجتمع تم فيه تعزيز الأتمتة (Automation) من خلال تقدم أجهزة الكمبيوتر والإنترنت", en: "A society in which automation was promoted through the advancement of computers and the internet" },
+                { ar: "مجتمع يعتمد حصرياً على الفؤوس الحجرية وإشعال النار", en: "A society relying exclusively on stone axes and fire-making" },
+                { ar: "مجتمع بدأ منذ 13,000 قبل الميلاد لزراعة الحبوب فقط", en: "A society that began around 13,000 BC solely for grain farming" },
+                { ar: "مجتمع يخلو تماماً من أجهزة الكمبيوتر أو وسائل الاتصال", en: "A society completely devoid of computers or communication media" }
+            ],
+            correct: 0,
+            exp_ar: "نص جدول الكتاب (صـ 49): مجتمع المعلومات ظهر منذ النصف الثاني من القرن العشرين، وهو «مجتمع تم فيه تعزيز الأتمتة من خلال تقدم أجهزة الكمبيوتر».",
+            exp_en: "Per the textbook table (p. 49), the Information society is characterized by promoting automation through the advancement of computers."
+        },
+        {
+            id: 14,
+            lesson: 1,
+            isBook: false,
+            source: "سؤال إضافي على المحور 1 (صـ 49) ⭐",
+            topic: "المحور 1: مقارنة المجتمع الصناعي ومجتمع المعلومات ⭐",
+            ar_q: "قارن بين المحرك الأساسي لكل من «المجتمع الصناعي» و«مجتمع المعلومات» حسب الكتاب المدرسي:",
+            en_q: "Compare the primary driver of the 'Industrialized society' versus the 'Information society' according to the textbook:",
+            options: [
+                { ar: "المجتمع الصناعي قام على الإنتاج الضخم بالآلات والمحرك البخاري والكهرباء | بينما مجتمع المعلومات قام على تعزيز الأتمتة بتقدم أجهزة الكمبيوتر والإنترنت", en: "Industrialized relied on mass production via steam engines & electricity | Information relied on automation via computers & the internet" },
+                { ar: "المجتمع الصناعي قام على الإنترنت | ومجتمع المعلومات قام على الفؤوس الحجرية", en: "Industrialized relied on the internet | Information relied on stone axes" },
+                { ar: "كلاهما ظهر منذ 13,000 قبل الميلاد", en: "Both emerged around 13,000 BC" },
+                { ar: "لا يوجد أي فرق بينهما في الحقبة الزمنية أو الأدوات", en: "There is no difference between them in era or tools" }
+            ],
+            correct: 0,
+            exp_ar: "المجتمع الصناعي (منتصف القرن 18) اعتمد على الإنتاج الضخم بالآلات والمحرك البخاري والكهرباء، بينما مجتمع المعلومات (النصف الثاني من القرن 20) اعتمد على الأتمتة بتقدم أجهزة الكمبيوتر والإنترنت.",
+            exp_en: "The Industrialized society (mid-18th century) was driven by steam engines, electricity, and mass production, whereas the Information society (late 20th century) was driven by computers, the internet, and automation."
+        },
+
+        // ============================================================
+        // المحور 2: البيانات الضخمة والذكاء الاصطناعي والتعلم الآلي (15 - 26)
+        // ============================================================
+        {
+            id: 15,
+            lesson: 2,
+            isBook: true,
+            source: "كتاب الوزارة - تحدى معلوماتك (2)-[3] صـ 50 + جرب بنفسك 2-(1) صـ 51",
+            topic: "المحور 2: مفهوم البيانات الضخمة (Big Data) 📖",
+            ar_q: "ما هو المصطلح الذي يُطلق على «كميات ضخمة وهائلة من البيانات بأشكال وخصائص مختلفة يصعب على البشر فهمها بالكامل، يتم جمعها وتراكمها من الناس والأشياء والمجتمع والطبيعة ثم تحليلها لحل المشكلات»؟",
+            en_q: "What term refers to 'massive amounts of data in various forms and characteristics accumulated from people, things, society, and nature, analyzed to solve problems'?",
+            options: [
+                { ar: "البيانات الضخمة (Big Data)", en: "Big Data" },
+                { ar: "اضطراب VDT (VDT Disorder)", en: "VDT Disorder" },
+                { ar: "الفجوة الرقمية (Digital Divide)", en: "Digital Divide" },
+                { ar: "رهاب التكنولوجيا (Technophobia)", en: "Technophobia" }
+            ],
+            correct: 0,
+            exp_ar: "البيانات الضخمة (Big Data) هي مجموعات ضخمة وهائلة من البيانات في أشكال مختلفة وبخصائص متنوعة، يتم جمعها وتراكمها بفضل تقدم تكنولوجيا المعلومات ثم تحليلها لحل المشكلات.",
+            exp_en: "Big Data refers to massive, diverse datasets collected from people, things, society, and nature that are analyzed to solve complex problems."
+        },
+        {
+            id: 16,
+            lesson: 2,
+            isBook: true,
+            source: "كتاب الوزارة - النقاط الرئيسية صـ 49",
+            topic: "المحور 2: العناصر الثلاثة للبيانات الضخمة (3Vs) 📖",
+            ar_q: "طبقاً للنقاط الرئيسية في كتاب الوزارة (صـ 49)، تتكون «البيانات الضخمة» (Big Data) من ثلاثة عناصر أساسية هي:",
+            en_q: "According to the textbook Key Points (p. 49), 'Big Data' consists of three core elements:",
+            diagram: "big_data_3v",
+            options: [
+                { ar: "حجم البيانات (Volume)، وتنوع البيانات (Variety)، ووتيرة التوليد/التحديث (Generation/update frequency)", en: "Volume, Variety, and Generation/update frequency" },
+                { ar: "السرية (Confidentiality)، والسلامة (Integrity)، والتوافرية (Availability)", en: "Confidentiality, Integrity, and Availability" },
+                { ar: "الإدخال، والمعالجة، والطباعة الورقية", en: "Input, Processing, and Paper Printing" },
+                { ar: "النحاس، والألياف الضوئية، والأقمار الصناعية", en: "Copper, Fiber Optics, and Satellites" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 49): تتكون البيانات الضخمة من ثلاثة عناصر: حجم البيانات (Volume)، وتنوع البيانات (Variety)، ووتيرة التوليد/التحديث (Generation/update frequency).",
+            exp_en: "Textbook (p. 49): Big Data is characterized by three elements: data Volume, data Variety, and Generation/update frequency."
+        },
+        {
+            id: 17,
+            lesson: 2,
+            isBook: true,
+            source: "كتاب الوزارة - جرب بنفسك 2-(2) صـ 51",
+            topic: "المحور 2: تمييز خصائص البيانات الضخمة 📖",
+            ar_q: "اختر الخيار الذي «ليس» خاصية من خصائص البيانات الضخمة الثلاث من الخيارات التالية (سؤال جرب بنفسك صـ 51):",
+            en_q: "Choose the option that is NOT one of the three core characteristics of Big Data (Try It Yourself, p. 51):",
+            options: [
+                { ar: "البيانات لها تنوع (Variety)", en: "Data has variety" },
+                { ar: "كمية / حجم البيانات (Volume)", en: "Data volume / amount" },
+                { ar: "أنواع البيانات (Data types)", en: "Data types" },
+                { ar: "البيانات لها وتيرة عالية (High frequency)", en: "Data has high generation/update frequency" }
+            ],
+            correct: 2,
+            exp_ar: "في سؤال الكتاب (صـ 51)، الخصائص الثلاث للبيانات الضخمة هي: التنوع (أ)، كمية/حجم البيانات (ب)، والوتيرة العالية للتوليد/التحديث (ث). أما الخيار (ت: أنواع البيانات) فليس أحد العناصر الثلاثة المذكورة.",
+            exp_en: "Per p. 51, the three characteristics of Big Data are Variety, Volume (amount), and High frequency; 'Data types' is the odd one out."
+        },
+        {
+            id: 18,
+            lesson: 2,
+            isBook: true,
+            source: "كتاب الوزارة - صـ 49 + تمرين 3-(1)-[2] صـ 52",
+            topic: "المحور 2: تعريف الذكاء الاصطناعي (AI) 📖",
+            ar_q: "ما هو المصطلح الذي يُطلق على «التقنية التي تستخدم أجهزة الكمبيوتر لتقليد السلوك الفكري البشري بشكل مصطنع»؟",
+            en_q: "What term refers to the 'technology that uses computers to artificially imitate human intellectual behavior'?",
+            options: [
+                { ar: "الذكاء الاصطناعي (Artificial Intelligence - AI)", en: "Artificial Intelligence (AI)" },
+                { ar: "الواقع الافتراضي (Virtual Reality - VR)", en: "Virtual Reality (VR)" },
+                { ar: "الفجوة الرقمية (Digital Divide)", en: "Digital Divide" },
+                { ar: "اضطراب VDT", en: "VDT Disorder" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 49 و52): الذكاء الاصطناعي (AI - Artificial Intelligence) هو تقنية تستخدم أجهزة الكمبيوتر لتقليد السلوك الفكري البشري بشكل مصطنع.",
+            exp_en: "Textbook (pp. 49 & 52): Artificial Intelligence (AI) is a technology that uses computers to artificially imitate human intellectual behavior."
+        },
+        {
+            id: 19,
+            lesson: 2,
+            isBook: true,
+            source: "كتاب الوزارة - النقاط الرئيسية صـ 49",
+            topic: "المحور 2: أمثلة تطبيقات الذكاء الاصطناعي 📖",
+            ar_q: "أي مجموعة من التطبيقات التالية وردت نصاً في كتاب الوزارة (صـ 49) كأمثلة مباشرة على تطبيقات «الذكاء الاصطناعي» (AI)؟",
+            en_q: "Which group of applications is explicitly listed in the textbook (p. 49) as direct examples of 'Artificial Intelligence' (AI)?",
+            options: [
+                { ar: "القيادة الذاتية، الطب عن بُعد، الزراعة الذكية، والمنزل الذكي", en: "Autonomous driving, Telemedicine, Smart agriculture, and Smart home" },
+                { ar: "الفؤوس الحجرية، الأقواس والسهام، والمحركات البخارية", en: "Stone axes, Bows and arrows, and Steam engines" },
+                { ar: "تصلّب الكتف، إجهاد العين، ورهاب التكنولوجيا", en: "Shoulder stiffness, Eye strain, and Technophobia" },
+                { ar: "الطباعة بالحروف المتحركة وحفر قنوات الري التقليدية", en: "Movable-type printing and digging traditional irrigation canals" }
+            ],
+            correct: 0,
+            exp_ar: "ذكر الكتاب المدرسي في صـ 49 تحت الذكاء الاصطناعي (AI): «أمثلة: القيادة الذاتية، الطب عن بُعد، الزراعة الذكية، المنزل الذكي، إلخ».",
+            exp_en: "On page 49, the textbook explicitly lists autonomous driving, telemedicine, smart agriculture, and smart homes as examples of AI."
+        },
+        {
+            id: 20,
+            lesson: 2,
+            isBook: true,
+            source: "كتاب الوزارة - صـ 49 + تحدى معلوماتك (2)-[2] صـ 50",
+            topic: "المحور 2: تعريف التعلّم الآلي (Machine Learning) 📖",
+            ar_q: "ما اسم «التقنية التي تتعلم فيها أجهزة الكمبيوتر (أو تحلل فيها الآلات) كميات كبيرة من البيانات لاستخراج القواعد والأنماط من البيانات»؟",
+            en_q: "What is the name of the 'technology in which computers learn from (or analyze) large amounts of data to extract rules and patterns'?",
+            options: [
+                { ar: "التعلّم الآلي (Machine Learning)", en: "Machine Learning" },
+                { ar: "الواقع المعزز (Augmented Reality)", en: "Augmented Reality" },
+                { ar: "الإجهاد التكنولوجي (Technostress)", en: "Technostress" },
+                { ar: "إنترنت الأشياء (IoT)", en: "Internet of Things (IoT)" }
+            ],
+            correct: 0,
+            exp_ar: "التعلّم الآلي (Machine Learning) هو تقنية تتعلم فيها أجهزة الكمبيوتر من كميات كبيرة من البيانات لاستخراج القواعد والأنماط من البيانات (صـ 49 و50).",
+            exp_en: "Machine Learning is the technology where computers learn from large datasets to extract underlying rules and patterns."
+        },
+        {
+            id: 21,
+            lesson: 2,
+            isBook: true,
+            source: "كتاب الوزارة - تمرين 3-(2) صـ 52",
+            topic: "المحور 2: تطبيقات تحليل البيانات الضخمة 📖",
+            ar_q: "اختر العبارة الواحدة «الأكثر عدم ملاءمة» فيما يتعلق بتحليل البيانات الضخمة (Big Data) من الخيارات التالية:",
+            en_q: "Choose the single 'MOST INAPPROPRIATE' statement regarding Big Data analysis from the following options:",
+            options: [
+                { ar: "الأطباء قادرون على إجراء تشخيصات سريعة ودقيقة من خلال توحيد المعلومات مثل تقدم العلاج ونتائج الاختبارات للمرضى", en: "Doctors can make fast, accurate diagnoses by consolidating treatment progress and test results" },
+                { ar: "مراقبة ظروف المرور في الوقت الفعلي، التنبؤ بالازدحام المروري، واقتراح المسارات المثلى", en: "Monitoring real-time traffic conditions, predicting congestion, and suggesting optimal routes" },
+                { ar: "تحليل أنماط سلوك المستهلك بناءً على نتائج المقابلات الجماعية", en: "Analyzing consumer behavior patterns based on the results of group interviews" },
+                { ar: "تحليل الحجم الكبير للمنشورات على وسائل التواصل الاجتماعي لتحديد الكلمات الرئيسية الشائعة وفهم الاتجاهات الحالية", en: "Analyzing large volumes of social media posts to identify trending keywords and current trends" }
+            ],
+            correct: 2,
+            exp_ar: "سؤال هام من تمرين الكتاب (صـ 52): تحليل نتائج المقابلات الجماعية (Group interviews) يعتمد على عدد محدود جداً من الأفراد ولا يُعد تحليلاً للبيانات الضخمة، بينما التشخيص الطبي الموحد، ومراقبة المرور اللحظية، وتحليل منشورات التواصل الاجتماعي كلها تطبيقات قياسية للبيانات الضخمة.",
+            exp_en: "Group interviews involve a small sample of people and do not constitute Big Data analysis, unlike medical data consolidation, real-time traffic prediction, and social media trend analysis."
+        },
+        {
+            id: 22,
+            lesson: 2,
+            isBook: false,
+            source: "سؤال إضافي على المحور 2 (صـ 49 و 52) ⭐",
+            topic: "المحور 2: العلاقة بين البيانات الضخمة والتعلّم الآلي والذكاء الاصطناعي ⭐",
+            ar_q: "كيف تتكامل كل من «البيانات الضخمة (Big Data)» و«التعلّم الآلي (Machine Learning)» و«الذكاء الاصطناعي (AI)» معاً؟",
+            en_q: "How do 'Big Data', 'Machine Learning (ML)', and 'Artificial Intelligence (AI)' work together?",
+            options: [
+                { ar: "يقوم التعلّم الآلي بتحليل كميات كبيرة من البيانات الضخمة لاستخراج القواعد والأنماط، مما يمكّن أنظمة الذكاء الاصطناعي من تقليد السلوك الفكري البشري واتخاذ قرارات ذكية", en: "ML analyzes massive Big Data to extract rules and patterns, enabling AI systems to imitate human intellect and make smart decisions" },
+                { ar: "البيانات الضخمة تمسح الذكاء الاصطناعي وتمنع عمل التعلّم الآلي", en: "Big Data deletes AI and blocks Machine Learning from operating" },
+                { ar: "التعلّم الآلي يستخدم فقط في العصور الحجرية ولا علاقة له بالكمبيوتر", en: "Machine Learning was only used in the Stone Age and has nothing to do with computers" },
+                { ar: "جميعها أسماء لأمراض جسدية تصيب العين والكتف", en: "All three are names of physical disorders affecting the eyes and shoulders" }
+            ],
+            correct: 0,
+            exp_ar: "توفر البيانات الضخمة المادة الخام (حجم وتنوع ووتيرة)، ويقوم التعلّم الآلي بتحليلها واستخراج القواعد والأنماط منها، فيتمكن الذكاء الاصطناعي من محاكاة السلوك الفكري البشري وتقديم حلول ذكية.",
+            exp_en: "Big Data provides massive datasets, Machine Learning extracts patterns and rules from them, and AI uses that knowledge to mimic human intellectual decision-making."
+        },
+        {
+            id: 23,
+            lesson: 2,
+            isBook: false,
+            source: "سؤال إضافي على المحور 2 (صـ 49 و 52) ⭐",
+            topic: "المحور 2: عنصر وتيرة التوليد/التحديث في المرور الذكي ⭐",
+            ar_q: "عندما يقوم نظام الملاحة بمراقبة ظروف المرور «في الوقت الفعلي» (Real-time) والتنبؤ بالازدحام المروري لحظة بلحظة، فإن ذلك يبرز أهمية أي عنصر من عناصر البيانات الضخمة؟",
+            en_q: "When a navigation system monitors traffic in 'real-time' and predicts congestion moment by moment, which element of Big Data is most highlighted?",
+            options: [
+                { ar: "وتيرة التوليد / التحديث العالية (Generation/update frequency)", en: "High generation / update frequency" },
+                { ar: "عدم الحاجة إلى الاتصال بالإنترنت", en: "Lack of internet connectivity" },
+                { ar: "الفجوة الرقمية (Digital Divide)", en: "Digital Divide" },
+                { ar: "رهاب التكنولوجيا (Technophobia)", en: "Technophobia" }
+            ],
+            correct: 0,
+            exp_ar: "مراقبة المرور في الوقت الفعلي تعتمد على تدفق البيانات وتحديثها المستمر كل ثانية، وهو ما يمثل عنصر «وتيرة التوليد/التحديث» (Generation/update frequency) في البيانات الضخمة.",
+            exp_en: "Real-time traffic monitoring relies on continuous, high-speed data streams, exemplifying the 'generation/update frequency' element of Big Data."
+        },
+        {
+            id: 24,
+            lesson: 2,
+            isBook: false,
+            source: "سؤال إضافي على المحور 2 (صـ 49 و 52) ⭐",
+            topic: "المحور 2: عنصر التنوع (Variety) في البيانات الضخمة ⭐",
+            ar_q: "تشتمل البيانات الضخمة على نصوص منشورات التواصل الاجتماعي، صور وفيديوهات الكاميرات، سجلات الفحوصات الطبية، وإحداثيات GPS. هذا الاختلاف في الأشكال والخصائص يُسمى:",
+            en_q: "Big Data includes social media text posts, camera images/videos, medical test records, and GPS coordinates. This diversity of forms is called:",
+            options: [
+                { ar: "تنوع البيانات (Variety)", en: "Data Variety" },
+                { ar: "اضطراب VDT", en: "VDT Disorder" },
+                { ar: "الإدمان التكنولوجي", en: "Techno-Addiction" },
+                { ar: "المجتمع الزراعي", en: "Agrarian Society" }
+            ],
+            correct: 0,
+            exp_ar: "وجود البيانات في أشكال مختلفة وبخصائص متنوعة (نصوص، أرقام، صور، صوت، فيديو، موقع جغرافي) هو ما يُعرف بعنصر «تنوع البيانات» (Variety).",
+            exp_en: "Having data in multiple formats and characteristics (text, images, video, audio, location) defines the 'Variety' element of Big Data."
+        },
+        {
+            id: 25,
+            lesson: 2,
+            isBook: false,
+            source: "سؤال إضافي على المحور 2 (صـ 49) ⭐",
+            topic: "المحور 2: الطب عن بُعد والزراعة الذكية ⭐",
+            ar_q: "استخدام الطائرات بدون طيار والمستشعرات وأنظمة الذكاء الاصطناعي لمراقبة نمو المحاصيل وتحسين الري والتسميد تلقائياً يُعد مثالاً على:",
+            en_q: "Using sensors and AI systems to monitor crop growth and optimize irrigation automatically is an example of:",
+            options: [
+                { ar: "الزراعة الذكية (Smart Agriculture) وهي من تطبيقات الذكاء الاصطناعي و IoT", en: "Smart Agriculture, an application of AI and IoT" },
+                { ar: "مجتمع الصيادين-الجامعين في العصر الحجري", en: "Hunter-gatherer society in the Stone Age" },
+                { ar: "رهاب التكنولوجيا (Technophobia)", en: "Technophobia" },
+                { ar: "الفجوة الرقمية (Digital Divide)", en: "Digital Divide" }
+            ],
+            correct: 0,
+            exp_ar: "وردت «الزراعة الذكية» و«الطب عن بُعد» و«القيادة الذاتية» و«المنزل الذكي» في صـ 49 كأمثلة رئيسية لتطبيقات الذكاء الاصطناعي الحديثة.",
+            exp_en: "Smart agriculture, telemedicine, autonomous driving, and smart homes are cited on p. 49 as prime examples of AI applications."
+        },
+        {
+            id: 26,
+            lesson: 2,
+            isBook: false,
+            source: "سؤال إضافي على المحور 2 (صـ 49) ⭐",
+            topic: "المحور 2: الفرق الدقيق بين تعريف AI وتعريف ML ⭐",
+            ar_q: "في أسئلة المصطلحات بالامتحان، كيف تفرق بدقة بين جملة تعريف «الذكاء الاصطناعي (AI)» وجملة تعريف «التعلّم الآلي (Machine Learning)»؟",
+            en_q: "In exam terminology questions, how do you distinguish the exact textbook definition of 'AI' from 'Machine Learning'?",
+            options: [
+                { ar: "الذكاء الاصطناعي يذكر «تقليد السلوك الفكري البشري بشكل مصطنع» | بينما التعلّم الآلي يذكر «استخراج القواعد والأنماط من كميات كبيرة من البيانات»", en: "AI states 'artificially imitating human intellectual behavior' | ML states 'extracting rules and patterns from large amounts of data'" },
+                { ar: "الذكاء الاصطناعي يربط الثلاجة بالإنترنت | والتعلّم الآلي يسبب ألم الكتف", en: "AI connects fridges to the internet | ML causes shoulder pain" },
+                { ar: "كلاهما يُعرّف بأنه الفجوة بين من يستخدمون الإنترنت ومن لا يستطيعون", en: "Both are defined as the gap between internet users and non-users" },
+                { ar: "الذكاء الاصطناعي يخص العصر الزراعي | والتعلّم الآلي يخص العصر الحجري", en: "AI belongs to the Agrarian era | ML belongs to the Stone Age" }
+            ],
+            correct: 0,
+            exp_ar: "مفتاح الحل السريع للطلاب (صـ 49): إذا قرأت في السؤال «تقليد السلوك الفكري البشري بشكل مصطنع» فالإجابة هي الذكاء الاصطناعي (AI)؛ وإذا قرأت «استخراج القواعد والأنماط من البيانات» فالإجابة هي التعلّم الآلي (Machine Learning).",
+            exp_en: "Key exam distinction (p. 49): 'artificially imitating human intellectual behavior' = AI; 'extracting rules and patterns from data' = Machine Learning."
+        },
+
+        // ============================================================
+        // المحور 3: إنترنت الأشياء، المنزل الذكي، والواقع الافتراضي والمعزز (27 - 38)
+        // ============================================================
+        {
+            id: 27,
+            lesson: 3,
+            isBook: true,
+            source: "كتاب الوزارة - صـ 50 + تحدى معلوماتك (2)-[1] + تمرين 3-(1)-[1] صـ 52",
+            topic: "المحور 3: تعريف إنترنت الأشياء (IoT) 📖",
+            ar_q: "ما هو المصطلح الذي يُطلق على «التقنية التي تربط جميع الأشياء (مثل الأجهزة المنزلية وغيرها من العناصر) بالإنترنت، مما يسمح للأجهزة بالتواصل مع بعضها البعض»؟",
+            en_q: "What term refers to the 'technology that connects all things (such as home appliances and other items) to the internet, allowing devices to communicate with each other'?",
+            options: [
+                { ar: "إنترنت الأشياء (Internet of Things - IoT)", en: "Internet of Things (IoT)" },
+                { ar: "الواقع الافتراضي (Virtual Reality - VR)", en: "Virtual Reality (VR)" },
+                { ar: "الفجوة الرقمية (Digital Divide)", en: "Digital Divide" },
+                { ar: "اضطراب VDT", en: "VDT Disorder" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 50، 51، 52): إنترنت الأشياء (IoT - Internet of Things) هو تقنية تدعم الحياة اليومية من خلال ربط الأجهزة المنزلية وغيرها من العناصر بالإنترنت، مما يسمح للأجهزة بالتواصل مع بعضها البعض.",
+            exp_en: "Textbook (pp. 50–52): The Internet of Things (IoT) connects everyday objects and home appliances to the internet so they can communicate with each other."
+        },
+        {
+            id: 28,
+            lesson: 3,
+            isBook: true,
+            source: "كتاب الوزارة - صـ 50 + جرب بنفسك 2-(1)-[4] صـ 51",
+            topic: "المحور 3: تعريف المنزل الذكي (Smart Home) 📖",
+            ar_q: "ما هو المصطلح الذي يُطلق على «المساكن التي تستخدم تكنولوجيات إنترنت الأشياء (IoT) والذكاء الاصطناعي (AI) لتحقيق بيئة معيشة أكثر راحة»؟",
+            en_q: "What term refers to 'residences that use IoT and AI technologies to achieve a more comfortable living environment'?",
+            options: [
+                { ar: "المنزل الذكي (Smart Home)", en: "Smart Home" },
+                { ar: "الواقع المعزز (Augmented Reality)", en: "Augmented Reality" },
+                { ar: "المجتمع الزراعي (Agrarian Society)", en: "Agrarian Society" },
+                { ar: "رهاب التكنولوجيا (Technophobia)", en: "Technophobia" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 50 و51): المنزل الذكي (Smart Home) هو مسكن يستخدم تقنيات IoT و AI لتوفير بيئة معيشة أكثر راحة.",
+            exp_en: "Textbook (pp. 50 & 51): A Smart Home is a residence that uses IoT and AI technologies to provide a more comfortable living environment."
+        },
+        {
+            id: 29,
+            lesson: 3,
+            isBook: true,
+            source: "كتاب الوزارة - صـ 50 + تحدى معلوماتك (2)-[4] + تمرين 3-(1)-[3] صـ 52",
+            topic: "المحور 3: تعريف الواقع الافتراضي (VR) 📖",
+            ar_q: "ما اسم «التقنية التي تسمح للمستخدمين بتجربة وهم الواقع في بيئة محاكاة (أو بناء فضاء افتراضي وبيئات افتراضية بواسطة كمبيوتر يمكن أن يعيشها البشر)»؟",
+            en_q: "What is the name of the 'technology that allows users to experience the illusion of reality in a simulated environment (building virtual environments that humans can experience)'?",
+            options: [
+                { ar: "الواقع الافتراضي (Virtual Reality - VR)", en: "Virtual Reality (VR)" },
+                { ar: "الواقع المعزز (Augmented Reality - AR)", en: "Augmented Reality (AR)" },
+                { ar: "إنترنت الأشياء (IoT)", en: "Internet of Things (IoT)" },
+                { ar: "البيانات الضخمة (Big Data)", en: "Big Data" }
+            ],
+            correct: 0,
+            exp_ar: "الواقع الافتراضي (VR - Virtual Reality) هو تقنية تسمح للمستخدمين بتجربة وهم الواقع في بيئة محاكاة، أي فضاء افتراضي يتم إنشاؤه بواسطة كمبيوتر ويسمح بتجارب تشبه الواقع.",
+            exp_en: "Virtual Reality (VR) creates a computer-simulated virtual environment that allows users to experience the illusion of reality."
+        },
+        {
+            id: 30,
+            lesson: 3,
+            isBook: true,
+            source: "كتاب الوزارة - صـ 50 + جرب بنفسك 2-(1)-[3] صـ 51 + تمرين 3-(1)-[4] صـ 52",
+            topic: "المحور 3: تعريف الواقع المعزز (AR) 📖",
+            ar_q: "ما اسم «التقنية التي تستخدم معالجة الكمبيوتر لتعزيز البيئة الواقعية التي تدركها الحواس البشرية عن طريق إضافة معلومات (صور ثابتة، مقاطع فيديو، إلخ) إلى البيئات الواقعية»؟",
+            en_q: "What is the name of the 'technology that uses computer processing to enhance the real-world environment perceived by human senses by adding information (still images, videos, etc.) to real environments'?",
+            options: [
+                { ar: "الواقع المعزز (Augmented Reality - AR)", en: "Augmented Reality (AR)" },
+                { ar: "الواقع الافتراضي (Virtual Reality - VR)", en: "Virtual Reality (VR)" },
+                { ar: "التعلّم الآلي (Machine Learning)", en: "Machine Learning" },
+                { ar: "الإدمان التكنولوجي (Techno-Addiction)", en: "Techno-Addiction" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 50، 51، 52): الواقع المعزز (AR - Augmented Reality) هو تقنية تعزز الواقع باستخدام أجهزة الكمبيوتر لإضافة المعلومات (صور ثابتة، مقاطع فيديو، إلخ) إلى البيئات الواقعية.",
+            exp_en: "Augmented Reality (AR) enhances the real physical environment perceived by human senses by overlaying digital information, images, or videos."
+        },
+        {
+            id: 31,
+            lesson: 3,
+            isBook: true,
+            source: "كتاب الوزارة - تحدى معلوماتك (2) صـ 50",
+            topic: "المحور 3: مطابقة التقنيات الأربع (تحدى معلوماتك صـ 50) 📖",
+            ar_q: "اختر المطابقة الصحيحة للجمل الأربع من (تحدى معلوماتك صـ 50): [1] تقنية تربط جميع الأشياء بالإنترنت، [2] تقنية تحلل فيها الآلات البيانات لاستخراج القواعد والأنماط، [3] كمية هائلة من البيانات يصعب على البشر فهمها بالكامل، [4] فضاء افتراضي يتم إنشاؤه بواسطة كمبيوتر ويسمح بتجارب تشبه الواقع:",
+            en_q: "Match the four descriptions from p. 50: [1] Connects all things to the internet, [2] Machines analyze data to extract rules/patterns, [3] Massive amount of data, [4] Computer-generated virtual space:",
+            options: [
+                { ar: "[1] إنترنت الأشياء (IoT) | [2] التعلّم الآلي | [3] البيانات الضخمة | [4] الواقع الافتراضي", en: "[1] IoT | [2] Machine Learning | [3] Big Data | [4] Virtual Reality" },
+                { ar: "[1] الواقع المعزز | [2] البيانات الضخمة | [3] إنترنت الأشياء | [4] التعلّم الآلي", en: "[1] AR | [2] Big Data | [3] IoT | [4] Machine Learning" },
+                { ar: "[1] التعلّم الآلي | [2] الواقع الافتراضي | [3] الواقع المعزز | [4] البيانات الضخمة", en: "[1] Machine Learning | [2] VR | [3] AR | [4] Big Data" },
+                { ar: "[1] البيانات الضخمة | [2] إنترنت الأشياء | [3] الواقع الافتراضي | [4] التعلّم الآلي", en: "[1] Big Data | [2] IoT | [3] VR | [4] Machine Learning" }
+            ],
+            correct: 0,
+            exp_ar: "الحل الرسمي في كتاب الوزارة (صـ 51): [1] (ت) إنترنت الأشياء (IoT)، [2] (أ) التعلّم الآلي، [3] (ب) البيانات الضخمة، [4] (ث) الواقع الافتراضي.",
+            exp_en: "Official textbook key (p. 51): [1] IoT, [2] Machine Learning, [3] Big Data, [4] Virtual Reality."
+        },
+        {
+            id: 32,
+            lesson: 3,
+            isBook: true,
+            source: "كتاب الوزارة - جرب بنفسك 2-(1) صـ 51",
+            topic: "المحور 3: مطابقة التقنيات الأربع (جرب بنفسك صـ 51) 📖",
+            ar_q: "اختر المطابقة الصحيحة للجمل الأربع من (جرب بنفسك صـ 51): [1] كميات ضخمة من البيانات يتم جمعها وتحليلها لحل المشكلات، [2] بيئة تكون جميع الأشياء متصلة بالإنترنت وتتواصل معاً، [3] تكنولوجيا تعزز الواقع بإضافة المعلومات إلى البيئات الواقعية، [4] مساكن تستخدم IoT و AI لتحقيق بيئة معيشة أكثر راحة:",
+            en_q: "Match the four items from Try It Yourself (p. 51): [1] Massive accumulated data analyzed to solve problems, [2] All things connected to the internet, [3] Enhances reality by adding info to real environments, [4] Residences using IoT & AI:",
+            options: [
+                { ar: "[1] البيانات الضخمة | [2] إنترنت الأشياء (IoT) | [3] الواقع المعزز (AR) | [4] المنزل الذكي", en: "[1] Big Data | [2] IoT | [3] Augmented Reality (AR) | [4] Smart Home" },
+                { ar: "[1] الذكاء الاصطناعي | [2] الواقع الافتراضي | [3] المنزل الذكي | [4] البيانات الضخمة", en: "[1] AI | [2] VR | [3] Smart Home | [4] Big Data" },
+                { ar: "[1] المنزل الذكي | [2] الواقع المعزز | [3] إنترنت الأشياء | [4] الواقع الافتراضي", en: "[1] Smart Home | [2] AR | [3] IoT | [4] VR" },
+                { ar: "[1] الواقع الافتراضي | [2] الذكاء الاصطناعي | [3] البيانات الضخمة | [4] إنترنت الأشياء", en: "[1] VR | [2] AI | [3] Big Data | [4] IoT" }
+            ],
+            correct: 0,
+            exp_ar: "حل جرب بنفسك 2-(1) صـ 51: [1] (ح) البيانات الضخمة، [2] (ث) إنترنت الأشياء (IoT)، [3] (ب) الواقع المعزز، [4] (ج) المنزل الذكي.",
+            exp_en: "Solution to Try It Yourself 2-(1) on p. 51: [1] Big Data, [2] IoT, [3] Augmented Reality, [4] Smart Home."
+        },
+        {
+            id: 33,
+            lesson: 3,
+            isBook: true,
+            source: "كتاب الوزارة - تمرين 3-(1) صـ 52",
+            topic: "المحور 3: مطابقة التقنيات الأربع (تمرين صـ 52) 📖",
+            ar_q: "اختر المطابقة الصحيحة للجمل الأربع من (تمرين 3 صـ 52): [1] بيئة حيث تكون جميع الأشياء متصلة بالإنترنت وتتواصل معاً، [2] تكنولوجيا تستخدم الكمبيوتر لتقليد السلوك الفكري البشري اصطناعياً، [3] تكنولوجيا لبناء بيئات افتراضية يعيشها البشر، [4] تكنولوجيا تضيف معلومات (صور، فيديو) إلى البيئات الواقعية:",
+            en_q: "Match the four items from Exercise 3 (p. 52): [1] Environment where all things connect to the internet, [2] Artificially imitates human intellect, [3] Builds virtual environments, [4] Adds images/videos to real environments:",
+            options: [
+                { ar: "[1] إنترنت الأشياء (IoT) | [2] الذكاء الاصطناعي (AI) | [3] الواقع الافتراضي (VR) | [4] الواقع المعزز (AR)", en: "[1] IoT | [2] Artificial Intelligence (AI) | [3] Virtual Reality (VR) | [4] Augmented Reality (AR)" },
+                { ar: "[1] الواقع الافتراضي | [2] الواقع المعزز | [3] إنترنت الأشياء | [4] الذكاء الاصطناعي", en: "[1] VR | [2] AR | [3] IoT | [4] AI" },
+                { ar: "[1] الذكاء الاصطناعي | [2] إنترنت الأشياء | [3] الواقع المعزز | [4] الواقع الافتراضي", en: "[1] AI | [2] IoT | [3] AR | [4] VR" },
+                { ar: "[1] الواقع المعزز | [2] الواقع الافتراضي | [3] الذكاء الاصطناعي | [4] إنترنت الأشياء", en: "[1] AR | [2] VR | [3] AI | [4] IoT" }
+            ],
+            correct: 0,
+            exp_ar: "حل تمرين 3-(1) صـ 52: [1] (ب) إنترنت الأشياء (IoT)، [2] (د) الذكاء الاصطناعي، [3] (أ) الواقع الافتراضي، [4] (ت) الواقع المعزز.",
+            exp_en: "Solution to Exercise 3-(1) on p. 52: [1] IoT, [2] Artificial Intelligence, [3] Virtual Reality, [4] Augmented Reality."
+        },
+        {
+            id: 34,
+            lesson: 3,
+            isBook: false,
+            source: "سؤال إضافي على المحور 3 (صـ 50) ⭐",
+            topic: "المحور 3: سيناريو تطبيقي على الواقع المعزز (AR) ⭐",
+            ar_q: "عند توجيه كاميرا هاتفك الذكي نحو قطعة أثاث في غرفتك الحقيقية، فيظهر على الشاشة مجسم ثلاثي الأبعاد لأريكة جديدة فوق أرضية غرفتك لتجربة شكلها قبل الشراء؛ فإن هذا التطبيق يعتمد على تقنية:",
+            en_q: "When you point your smartphone camera at your real room and a 3D sofa model appears overlaid on your actual floor, which technology is being used?",
+            options: [
+                { ar: "الواقع المعزز (Augmented Reality - AR)", en: "Augmented Reality (AR)" },
+                { ar: "الفجوة الرقمية (Digital Divide)", en: "Digital Divide" },
+                { ar: "اضطراب VDT", en: "VDT Disorder" },
+                { ar: "رهاب التكنولوجيا (Technophobia)", en: "Technophobia" }
+            ],
+            correct: 0,
+            exp_ar: "إضافة عناصر رقمية (صور أو مجسمات أو فيديو) إلى البيئة الواقعية الحقيقية لتعزيز ما تراه العين البشرية هو تطبيق مباشر لتقنية «الواقع المعزز» (AR).",
+            exp_en: "Overlaying digital images or 3D objects onto the real physical environment is a classic application of Augmented Reality (AR)."
+        },
+        {
+            id: 35,
+            lesson: 3,
+            isBook: false,
+            source: "سؤال إضافي على المحور 3 (صـ 50) ⭐",
+            topic: "المحور 3: سيناريو تطبيقي على الواقع الافتراضي (VR) ⭐",
+            ar_q: "ارتداء نظارة إلكترونية خاصة تنقلك بالكامل إلى داخل محاكاة لمحطة الفضاء الدولية بحيث ترى الفضاء حولك في كل الاتجاهات وكأنك تعيش بداخله فعلياً يُعد مثالاً على:",
+            en_q: "Wearing a headset that completely immerses you inside a simulated International Space Station is an example of:",
+            options: [
+                { ar: "الواقع الافتراضي (Virtual Reality - VR)", en: "Virtual Reality (VR)" },
+                { ar: "الإجهاد التكنولوجي (Technostress)", en: "Technostress" },
+                { ar: "الفجوة الرقمية (Digital Divide)", en: "Digital Divide" },
+                { ar: "المجتمع الزراعي (Agrarian society)", en: "Agrarian society" }
+            ],
+            correct: 0,
+            exp_ar: "تجربة وهم الواقع في بيئة محاكاة افتراضية بالكامل تم إنشاؤها بواسطة الكمبيوتر هي تقنية «الواقع الافتراضي» (VR).",
+            exp_en: "Experiencing the illusion of reality inside a completely computer-simulated environment is Virtual Reality (VR)."
+        },
+        {
+            id: 36,
+            lesson: 3,
+            isBook: false,
+            source: "سؤال إضافي على المحور 3 (صـ 50) ⭐",
+            topic: "المحور 3: سيناريو تطبيقي على إنترنت الأشياء والمنزل الذكي ⭐",
+            ar_q: "في منزلك، عندما يستشعر مكيف الهواء اقترابك من المنزل عبر الإنترنت فيعمل تلقائياً، وتقوم الثلاجة الذكية بإرسال تنبيه لهاتفك بنقص الحليب؛ فإن هذا المسكن يُسمى [1] ويعتمد على تقنيتي [2]:",
+            en_q: "When your AC turns on automatically as you approach home and your smart fridge alerts your phone, this residence is called [1] and relies on [2]:",
+            options: [
+                { ar: "[1] المنزل الذكي (Smart Home) — [2] إنترنت الأشياء (IoT) والذكاء الاصطناعي (AI)", en: "[1] Smart Home — [2] IoT and AI" },
+                { ar: "[1] المجتمع الصناعي — [2] المحرك البخاري والفحم", en: "[1] Industrialized society — [2] Steam engine and coal" },
+                { ar: "[1] الفجوة الرقمية — [2] رهاب التكنولوجيا واضطراب VDT", en: "[1] Digital Divide — [2] Technophobia and VDT disorder" },
+                { ar: "[1] مجتمع الصيد — [2] الفؤوس الحجرية والأقواس", en: "[1] Hunting society — [2] Stone axes and bows" }
+            ],
+            correct: 0,
+            exp_ar: "ربط الأجهزة المنزلية بالإنترنت لتتواصل مع بعضها هو «إنترنت الأشياء (IoT)»، والمسكن الذي يدمج تقنيتي IoT و AI لتوفير بيئة معيشة مريحة هو «المنزل الذكي (Smart Home)».",
+            exp_en: "Connecting home appliances to the internet is IoT, and a residence combining IoT and AI for comfort is a Smart Home."
+        },
+        {
+            id: 37,
+            lesson: 3,
+            isBook: false,
+            source: "سؤال إضافي على المحور 3 (صـ 50) ⭐",
+            topic: "المحور 3: الحواس البشرية والواقع المعزز ⭐",
+            ar_q: "وفقاً لنص الكتاب المدرسي (صـ 50)، أي تقنية «تستخدم معالجة الكمبيوتر لتعزيز البيئة الواقعية التي تدركها الحواس البشرية (الرؤية، إلخ)»؟",
+            en_q: "According to the textbook (p. 50), which technology 'uses computer processing to enhance the real environment perceived by human senses (vision, etc.)'?",
+            options: [
+                { ar: "الواقع المعزز (Augmented Reality - AR)", en: "Augmented Reality (AR)" },
+                { ar: "الإدمان التكنولوجي (Techno-Addiction)", en: "Techno-Addiction" },
+                { ar: "الفجوة الرقمية (Digital Divide)", en: "Digital Divide" },
+                { ar: "المحرك البخاري (Steam Engine)", en: "Steam Engine" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب الحرفي في صـ 50: «الواقع المعزز (AR - Augmented Reality): تقنية تستخدم معالجة الكمبيوتر لتعزيز البيئة الواقعية التي تدركها الحواس البشرية (الرؤية، إلخ)».",
+            exp_en: "Verbatim from p. 50: 'Augmented Reality (AR): A technology that uses computer processing to enhance the real environment perceived by human senses (vision, etc.).'"
+        },
+        {
+            id: 38,
+            lesson: 3,
+            isBook: false,
+            source: "سؤال إضافي على المحور 3 (صـ 49 و 50) ⭐",
+            topic: "المحور 3: دور إنترنت الأشياء في جمع البيانات الضخمة ⭐",
+            ar_q: "ما الدور الذي تلعبه أجهزة «إنترنت الأشياء» (IoT) في منظومة البيانات الضخمة ومجتمع الجيل الخامس؟",
+            en_q: "What role do 'Internet of Things' (IoT) devices play in Big Data and Society 5.0?",
+            options: [
+                { ar: "تعمل كمستشعرات متصلة بالإنترنت تجمع البيانات الضخمة تلقائياً وعلى مدار الساعة من الفضاء المادي وترسلها للفضاء الافتراضي لتحليلها", en: "They act as internet-connected sensors that collect Big Data 24/7 from physical space and send it to cyberspace for analysis" },
+                { ar: "تقوم بقطع الاتصال بالإنترنت لمنع تدفق البيانات", en: "They disconnect the internet to stop data flow" },
+                { ar: "تقتصر وظيفتها على طباعة الكتب الورقية بالبخار", en: "Their sole function is steam-powered book printing" },
+                { ar: "تسبب الفجوة الرقمية بين الدول المتقدمة والنامية", en: "They cause the digital divide between nations" }
+            ],
+            correct: 0,
+            exp_ar: "ترتبط الأشياء والأجهزة في الفضاء الحقيقي بالإنترنت عبر تقنية IoT، مما يسمح بجمع وتراكم البيانات الضخمة تلقائياً وإرسالها للفضاء الافتراضي ليحللها الذكاء الاصطناعي.",
+            exp_en: "IoT devices in physical space continuously gather and transmit data to cyberspace, fueling Big Data analytics and AI in Society 5.0."
+        },
+
+        // ============================================================
+        // المحور 4: التغيرات في الحياة (الإجهاد التكنولوجي والفجوة الرقمية) (39 - 50)
+        // ============================================================
+        {
+            id: 39,
+            lesson: 4,
+            isBook: true,
+            source: "كتاب الوزارة - النقاط الرئيسية صـ 50",
+            topic: "المحور 4: مفهوم الإجهاد التكنولوجي (Technostress) 📖",
+            ar_q: "ما هو «المصطلح العام للمشاكل العقلية والجسدية التي تنشأ من استخدام أجهزة الكمبيوتر»؟",
+            en_q: "What is the 'general term for mental and physical problems arising from the use of computers'?",
+            diagram: "technostress_tree",
+            options: [
+                { ar: "الإجهاد التكنولوجي (Technostress)", en: "Technostress" },
+                { ar: "الفجوة الرقمية (Digital Divide)", en: "Digital Divide" },
+                { ar: "الواقع الافتراضي (Virtual Reality)", en: "Virtual Reality" },
+                { ar: "إنترنت الأشياء (IoT)", en: "Internet of Things (IoT)" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 50): الإجهاد التكنولوجي (Technostress) هو المصطلح العام للمشاكل العقلية والجسدية التي تنشأ من استخدام أجهزة الكمبيوتر.",
+            exp_en: "Textbook (p. 50): Technostress is the general umbrella term for mental and physical problems caused by computer use."
+        },
+        {
+            id: 40,
+            lesson: 4,
+            isBook: true,
+            source: "كتاب الوزارة - تمرين 4 صـ 52",
+            topic: "المحور 4: سؤال تمرين 4 صـ 52 حول الإجهاد التكنولوجي 📖",
+            ar_q: "اختر المصطلح الذي يناسب الفراغ في نص الكتاب (تمرين 4 صـ 52): «القلق والإحباط من عدم القدرة على التكيف مع تشغيل أجهزة المعلومات مثل أجهزة الكمبيوتر أو الهواتف الذكية، يشار إليها باسم (........)»:",
+            en_q: "Fill in the blank (Exercise 4, p. 52): 'Anxiety and frustration from the inability to adapt to operating information devices such as computers or smartphones is referred to as (........)':",
+            options: [
+                { ar: "(أ) الإجهاد التكنولوجي (Technostress)", en: "(A) Technostress" },
+                { ar: "(ب) الفجوة الرقمية (Digital Divide)", en: "(B) Digital Divide" },
+                { ar: "(ج) اضطراب VDT (VDT Disorder)", en: "(C) VDT Disorder" },
+                { ar: "(د) الإدمان التكنولوجي (Techno-Addiction)", en: "(D) Techno-Addiction" }
+            ],
+            correct: 0,
+            exp_ar: "في تمرين 4 صـ 52 (حيث لا يوجد خيار رهاب التكنولوجيا ضمن الاختيارات الأربعة أ، ب، ج، د)، المصطلح الصحيح الذي يشمل القلق والإحباط النفسي من عدم القدرة على التكيف مع أجهزة المعلومات هو (أ) الإجهاد التكنولوجي (Technostress).",
+            exp_en: "In Exercise 4 on p. 52, among the four given choices, (A) Technostress is the correct term describing anxiety and frustration from failing to adapt to information devices."
+        },
+        {
+            id: 41,
+            lesson: 4,
+            isBook: true,
+            source: "كتاب الوزارة - النقاط الرئيسية صـ 50",
+            topic: "المحور 4: رهاب التكنولوجيا (Technophobia) 📖",
+            ar_q: "ما هو المصطلح الدقيق الذي يصف «حالة من القلق أو الخوف من استخدام أجهزة الكمبيوتر بسبب الشعور بعدم الارتياح أو قلة الثقة في التعامل معها»؟",
+            en_q: "What specific term describes 'a state of anxiety or fear of using computers due to feeling uncomfortable or lacking confidence in handling them'?",
+            options: [
+                { ar: "رهاب التكنولوجيا (Technophobia)", en: "Technophobia" },
+                { ar: "الإدمان التكنولوجي (Techno-Addiction)", en: "Techno-Addiction" },
+                { ar: "اضطراب VDT (VDT Disorder)", en: "VDT Disorder" },
+                { ar: "الفجوة الرقمية (Digital Divide)", en: "Digital Divide" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 50): رهاب التكنولوجيا (Technophobia) هو حالة من القلق أو الخوف من استخدام أجهزة الكمبيوتر بسبب الشعور بعدم الارتياح أو قلة الثقة في التعامل معها.",
+            exp_en: "Textbook (p. 50): Technophobia is a state of anxiety or fear of using computers due to discomfort or lack of confidence."
+        },
+        {
+            id: 42,
+            lesson: 4,
+            isBook: true,
+            source: "كتاب الوزارة - النقاط الرئيسية صـ 50",
+            topic: "المحور 4: الإدمان التكنولوجي (Techno-Addiction) 📖",
+            ar_q: "ما هو المصطلح الذي يصف «الاعتماد المفرط على أجهزة الكمبيوتر» والانغماس الزائد في استخدامها؟",
+            en_q: "What term describes 'excessive dependence on computers'?",
+            options: [
+                { ar: "الإدمان التكنولوجي (Techno-Addiction)", en: "Techno-Addiction" },
+                { ar: "رهاب التكنولوجيا (Technophobia)", en: "Technophobia" },
+                { ar: "الفجوة الرقمية (Digital Divide)", en: "Digital Divide" },
+                { ar: "التعلّم الآلي (Machine Learning)", en: "Machine Learning" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 50): الإدمان التكنولوجي (Techno-Addiction) هو الاعتماد المفرط على أجهزة الكمبيوتر.",
+            exp_en: "Textbook (p. 50): Techno-Addiction is defined as excessive dependence on computers."
+        },
+        {
+            id: 43,
+            lesson: 4,
+            isBook: true,
+            source: "كتاب الوزارة - النقاط الرئيسية صـ 50",
+            topic: "المحور 4: اضطراب VDT (VDT Disorder) 📖",
+            ar_q: "ما هو المصطلح الذي يُطلق على «تصلّب الكتف وإجهاد العين الناتج عن استخدام الكمبيوتر لفترات طويلة»؟",
+            en_q: "What term refers to 'shoulder stiffness and eye strain resulting from using a computer for long periods'?",
+            options: [
+                { ar: "اضطراب VDT (VDT Disorder)", en: "VDT Disorder" },
+                { ar: "الفجوة الرقمية (Digital Divide)", en: "Digital Divide" },
+                { ar: "رهاب التكنولوجيا (Technophobia)", en: "Technophobia" },
+                { ar: "الواقع الافتراضي (Virtual Reality)", en: "Virtual Reality" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 50): اضطراب VDT (VDT Disorder) هو تصلّب الكتف وإجهاد العين الناتج عن استخدام الكمبيوتر لفترات طويلة.",
+            exp_en: "Textbook (p. 50): VDT Disorder refers to shoulder stiffness and eye strain caused by prolonged computer use."
+        },
+        {
+            id: 44,
+            lesson: 4,
+            isBook: true,
+            source: "كتاب الوزارة - تحدى معلوماتك (3) صـ 50 + جرب بنفسك 3 صـ 52",
+            topic: "المحور 4: الفجوة الرقمية (Digital Divide) 📖",
+            ar_q: "ما هو المصطلح الذي يشير إلى «الفجوة أو التفاوت الذي ينشأ بين أولئك الذين يمكنهم الاستفادة من تكنولوجيا المعلومات والاتصالات (مثل الإنترنت وأجهزة الكمبيوتر) وأولئك الذين لا يستطيعون»؟",
+            en_q: "What term refers to the 'gap or disparity between those who can benefit from ICT (such as the internet and computers) and those who cannot'?",
+            options: [
+                { ar: "الفجوة الرقمية (Digital Divide)", en: "Digital Divide" },
+                { ar: "الإجهاد التكنولوجي (Technostress)", en: "Technostress" },
+                { ar: "اضطراب VDT (VDT Disorder)", en: "VDT Disorder" },
+                { ar: "الإدمان التكنولوجي (Techno-Addiction)", en: "Techno-Addiction" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 50، 51، 52): الفجوة الرقمية (Digital Divide) هي الفجوة (أو التفاوت) بين أولئك الذين يمكنهم الاستفادة من تكنولوجيا المعلومات والاتصالات وأولئك الذين لا يستطيعون.",
+            exp_en: "Textbook (pp. 50–52): Digital Divide is the gap between people who can utilize information technology and those who cannot."
+        },
+        {
+            id: 45,
+            lesson: 4,
+            isBook: false,
+            source: "سؤال إضافي على المحور 4 (صـ 50) ⭐",
+            topic: "المحور 4: تصنيف المشكلات الجسدية مقابل النفسية في الإجهاد التكنولوجي ⭐",
+            ar_q: "ينقسم «الإجهاد التكنولوجي» (Technostress) إلى مشاكل عقلية/نفسية ومشاكل جسدية؛ أي مما يلي يُعد مثالاً واضحاً على «المشاكل الجسدية» الناتجة عن طول الجلوس أمام شاشة الكمبيوتر؟",
+            en_q: "Technostress includes both mental and physical problems. Which of the following is a clear example of a 'physical problem' caused by prolonged screen use?",
+            options: [
+                { ar: "اضطراب VDT (تصلّب الكتف وإجهاد العين)", en: "VDT Disorder (shoulder stiffness and eye strain)" },
+                { ar: "الفجوة الرقمية بين الريف والمدن", en: "Digital Divide between rural and urban areas" },
+                { ar: "استخراج القواعد والأنماط بالتعلّم الآلي", en: "Extracting rules and patterns via Machine Learning" },
+                { ar: "دمج الفضاء الافتراضي والفضاء الحقيقي", en: "Merging virtual space and real space" }
+            ],
+            correct: 0,
+            exp_ar: "اضطراب VDT يمثل الجانب الجسدي من الإجهاد التكنولوجي لأنه يسبب أعراضاً بدنية ملموسة وهي تصلّب الكتف وإجهاد العين نتيجة استخدام الكمبيوتر لفترات طويلة.",
+            exp_en: "VDT Disorder represents the physical aspect of technostress, manifesting as shoulder stiffness and eye strain."
+        },
+        {
+            id: 46,
+            lesson: 4,
+            isBook: false,
+            source: "سؤال إضافي على المحور 4 (صـ 50) ⭐",
+            topic: "المحور 4: الوقاية من اضطراب VDT ⭐",
+            ar_q: "لتجنب الإصابة بـ «اضطراب VDT» (تصلّب الكتف وإجهاد العين) أثناء العمل أو المذاكرة على الكمبيوتر، ما هي الممارسة الصحية الأنسب؟",
+            en_q: "To prevent 'VDT Disorder' (shoulder stiffness and eye strain) while working on a computer, what is the best healthy practice?",
+            options: [
+                { ar: "أخذ فترات راحة منتظمة لإراحة العينين، وضبط وضعية الجلوس والمسافة والإضاءة المناسبة للشاشة", en: "Taking regular breaks to rest the eyes, and maintaining proper posture, screen distance, and lighting" },
+                { ar: "النظر المتواصل للشاشة لمدة 10 ساعات في غرفة مظلمة دون حراك", en: "Staring continuously at the screen for 10 hours in a dark room without moving" },
+                { ar: "إلغاء برنامج مكافحة الفيروسات من الجهاز", en: "Uninstalling the antivirus software from the computer" },
+                { ar: "تقليل دقة الشاشة إلى النظام الثنائي", en: "Reducing screen resolution to binary numbers" }
+            ],
+            correct: 0,
+            exp_ar: "بما أن اضطراب VDT ينتج عن استخدام الكمبيوتر لفترات طويلة، فإن أخذ فترات راحة منتظمة وضبط وضعية الجلوس السليمة يحمي العينين والكتفين من الإجهاد.",
+            exp_en: "Since VDT disorder is caused by prolonged screen use, taking regular breaks and maintaining ergonomic posture prevents eye strain and shoulder stiffness."
+        },
+        {
+            id: 47,
+            lesson: 4,
+            isBook: false,
+            source: "سؤال إضافي على المحور 4 (صـ 50) ⭐",
+            topic: "المحور 4: مقارنة رهاب التكنولوجيا والإدمان التكنولوجي ⭐",
+            ar_q: "موظف يرفض استخدام نظام الكمبيوتر الجديد في الشركة ويشعر بخوف وقلق شديد لعدم ثقته في التعامل معه يعاني من [1]، بينما طالب لا يستطيع ترك حاسوبه وهاتفه طوال اليوم ويعاني من اعتماد مفرط عليهما يعاني من [2]:",
+            en_q: "An employee who fears using a new computer system due to lack of confidence suffers from [1], whereas a student excessively dependent on their computer all day suffers from [2]:",
+            options: [
+                { ar: "[1] رهاب التكنولوجيا (Technophobia) — [2] الإدمان التكنولوجي (Techno-Addiction)", en: "[1] Technophobia — [2] Techno-Addiction" },
+                { ar: "[1] الإدمان التكنولوجي — [2] رهاب التكنولوجيا", en: "[1] Techno-Addiction — [2] Technophobia" },
+                { ar: "[1] الواقع الافتراضي — [2] الواقع المعزز", en: "[1] Virtual Reality — [2] Augmented Reality" },
+                { ar: "[1] التعلّم الآلي — [2] إنترنت الأشياء", en: "[1] Machine Learning — [2] Internet of Things" }
+            ],
+            correct: 0,
+            exp_ar: "الخوف والقلق من استخدام الكمبيوتر لقلة الثقة هو «رهاب التكنولوجيا (Technophobia)»، أما الاعتماد المفرط على الكمبيوتر فهو «الإدمان التكنولوجي (Techno-Addiction)».",
+            exp_en: "Fear/anxiety toward using computers is Technophobia, while excessive dependence on them is Techno-Addiction."
+        },
+        {
+            id: 48,
+            lesson: 4,
+            isBook: false,
+            source: "سؤال إضافي على المحور 4 (صـ 50) ⭐",
+            topic: "المحور 4: سيناريو واقعي على الفجوة الرقمية ⭐",
+            ar_q: "قرية نائية لا تتوفر بها شبكة إنترنت عالية السرعة ولا يمتلك سكانها المهارات أو الأجهزة اللازمة للتعلم والعمل عن بُعد مقارنة بسكان المدن الكبرى؛ هذه المشكلة الاجتماعية تُسمى:",
+            en_q: "A remote village lacks high-speed internet and its residents lack the devices or skills for remote learning compared to big cities. This social issue is called:",
+            options: [
+                { ar: "الفجوة الرقمية (Digital Divide)", en: "Digital Divide" },
+                { ar: "اضطراب VDT (VDT Disorder)", en: "VDT Disorder" },
+                { ar: "الواقع المعزز (Augmented Reality)", en: "Augmented Reality" },
+                { ar: "التعلّم الآلي (Machine Learning)", en: "Machine Learning" }
+            ],
+            correct: 0,
+            exp_ar: "هذا التفاوت في القدرة على الوصول إلى تكنولوجيا المعلومات والإنترنت والاستفادة منها هو مثال واقعي مباشر على «الفجوة الرقمية» (Digital Divide).",
+            exp_en: "Disparity in access to and ability to benefit from ICT and the internet is a direct example of the Digital Divide."
+        },
+        {
+            id: 49,
+            lesson: 4,
+            isBook: false,
+            source: "سؤال شامل على المحور 4 والوحدة الأولى ⭐",
+            topic: "مراجعة شاملة: ربط التصميم الشامل بسد الفجوة الرقمية ⭐",
+            ar_q: "كيف تساهم مبادئ «إمكانية الوصول (Accessibility)» وتوفير البنية التحتية للتعليم الرقمي في مواجهة مشكلة «الفجوة الرقمية (Digital Divide)»؟",
+            en_q: "How do digital literacy training and universal accessibility help address the 'Digital Divide'?",
+            options: [
+                { ar: "تمكّن جميع الأفراد (بمن فيهم كبار السن وذوو الاحتياجات وسكان المناطق البعيدة) من استخدام تكنولوجيا المعلومات والاستفادة منها، مما يقلص التفاوت بينهم", en: "They empower all individuals (including seniors and remote residents) to use and benefit from IT, narrowing the gap" },
+                { ar: "تمنع الناس من استخدام الإنترنت نهائياً", en: "They completely block people from using the internet" },
+                { ar: "تزيد من تصلب الكتف وإجهاد العين", en: "They increase shoulder stiffness and eye strain" },
+                { ar: "تعيد المجتمع إلى عصر الصيد والجمع", en: "They return society to the hunting and gathering era" }
+            ],
+            correct: 0,
+            exp_ar: "تنشأ الفجوة الرقمية بين من يستطيعون الاستفادة من تكنولوجيا المعلومات ومن لا يستطيعون؛ ولذلك فإن نشر البنية التحتية وتبسيط استخدام الأجهزة وتدريب الأفراد يساعد على تقليص هذه الفجوة.",
+            exp_en: "Expanding infrastructure, simplifying interfaces, and providing digital training enable everyone to benefit from ICT, bridging the Digital Divide."
+        },
+        {
+            id: 50,
+            lesson: 4,
+            isBook: false,
+            source: "سؤال تطبيقي شامل على الوحدة الرابعة بالكامل ⭐",
+            topic: "مراجعة شاملة: سيناريو متكامل على الوحدة الرابعة ⭐",
+            ar_q: "في مدينة حديثة تطبق مفهوم «مجتمع الجيل الخامس (Society 5.0)»، تجمع مستشعرات «IoT» بيانات حركة السيارات «Big Data» ليحللها «التعلّم الآلي والذكاء الاصطناعي» ويقترح أسرع مسار للسائق على زجاج سيارته الأمامي بتقنية «AR». ما الترتيب الصحيح لوظيفة كل تقنية في هذا السيناريو؟",
+            en_q: "In a Society 5.0 smart city, IoT sensors collect traffic Big Data, ML/AI analyzes it, and AR projects the optimal route onto the car windshield. Which option accurately summarizes each role?",
+            options: [
+                { ar: "IoT: ربط المستشعرات بالإنترنت | Big Data: تراكم بيانات ضخمة وعالية الوتيرة | AI/ML: استخراج الأنماط والتنبؤ بالمسار | AR: عرض المعلومات فوق البيئة الواقعية", en: "IoT: Connects sensors | Big Data: High-frequency massive data | AI/ML: Extracts patterns & predicts route | AR: Overlays info onto real view" },
+                { ar: "IoT: بناء واقع خيالي | Big Data: ألم الكتف | AI: البحث في المهملات | AR: الفجوة الرقمية", en: "IoT: Virtual world | Big Data: Shoulder pain | AI: Dumper diving | AR: Digital Divide" },
+                { ar: "جميع التقنيات المذكورة تنتمي إلى العصر الحجري ومجتمع الصيد والجمع", en: "All mentioned technologies belong to the Stone Age hunter-gatherer society" },
+                { ar: "AR: يقطع الإنترنت | IoT: يسبب رهاب التكنولوجيا | Big Data: يقلل حجم البيانات", en: "AR: Cuts internet | IoT: Causes technophobia | Big Data: Reduces data volume" }
+            ],
+            correct: 0,
+            exp_ar: "هذا السيناريو يلخص ببراعة تكامل تقنيات الوحدة الرابعة في «مجتمع الجيل الخامس (Society 5.0)»: حيث تربط تقنية IoT الأشياء بالإنترنت لجمع البيانات الضخمة (Big Data)، ويقوم التعلّم الآلي والذكاء الاصطناعي (AI/ML) بتحليلها واستخراج الأنماط، بينما يعرض الواقع المعزز (AR) الإرشادات فوق البيئة الواقعية للسائق!",
+            exp_en: "This scenario integrates all Unit 4 concepts in Society 5.0: IoT sensors gather real-time Big Data, AI/ML analyzes patterns to find optimal routes, and AR overlays directions onto the driver's real-world view."
+        }
+    ];
+
+    let userAnswers = new Array(questions.length).fill(null);
+    let filteredIndices = questions.map((_, idx) => idx);
+    let currentFilterPos = 0;
+    let currentFilterMode = 'all';
+    let teacherMode = false;
+    let fontScale = 1;
+
+    function safeGetStorage(key) {
+        try {
+            return localStorage.getItem(key);
+        } catch (e) {
+            return null;
+        }
+    }
+
+    function safeSetStorage(key, val) {
+        try {
+            localStorage.setItem(key, val);
+        } catch (e) {}
+    }
+
+    function loadScores() {
+        const storedHigh = safeGetStorage('unit4_50q_highscore');
+        const high = storedHigh ? parseInt(storedHigh, 10) : 0;
+        document.getElementById('highScore').innerText = high;
+
+        const storedFirst = safeGetStorage('unit4_50q_first_score');
+        if (storedFirst !== null) {
+            document.getElementById('firstScore').innerText = storedFirst;
+        } else {
+            document.getElementById('firstScore').innerText = "--";
+        }
+        return { high, first: storedFirst };
+    }
+
+    function saveScores(finalScore) {
+        let isFirstTime = false;
+        if (safeGetStorage('unit4_50q_first_score') === null) {
+            safeSetStorage('unit4_50q_first_score', finalScore);
+            document.getElementById('firstScore').innerText = finalScore;
+            isFirstTime = true;
+        }
+
+        const currentHigh = parseInt(safeGetStorage('unit4_50q_highscore') || '0', 10);
+        let isNewHigh = false;
+        if (finalScore > currentHigh) {
+            safeSetStorage('unit4_50q_highscore', finalScore);
+            document.getElementById('highScore').innerText = finalScore;
+            isNewHigh = true;
+        }
+
+        return { isFirstTime, isNewHigh };
+    }
+
+    function calculateScore() {
+        let s = 0;
+        for (let i = 0; i < questions.length; i++) {
+            if (userAnswers[i] !== null && userAnswers[i] === questions[i].correct) {
+                s++;
+            }
+        }
+        document.getElementById('score').innerText = s;
+        return s;
+    }
+
+    function getDiagramHTML(type) {
+        if (type === 'society_timeline') {
+            return `
+                <div class="diagram-box">
+                    <div class="diagram-title">📊 مخطط الكتاب المدرسي (صـ 49 و50): تدفق التطور المجتمعي عبر التاريخ</div>
+                    <div class="flow-grid">
+                        <div class="flow-node"><span class="tag">Society 1.0</span><div>🏹 مجتمع الصيادين-الجامعين<br><small>(منذ ولادة البشرية)</small></div></div>
+                        <div class="flow-arrow">⬅️</div>
+                        <div class="flow-node"><span class="tag">Society 2.0</span><div>🌾 المجتمع الزراعي<br><small>(منذ 13,000 ق.م)</small></div></div>
+                        <div class="flow-arrow">⬅️</div>
+                        <div class="flow-node"><span class="tag">Society 3.0</span><div>⚙️ المجتمع الصناعي<br><small>(منتصف القرن 18)</small></div></div>
+                        <div class="flow-arrow">⬅️</div>
+                        <div class="flow-node"><span class="tag">Society 4.0</span><div>💻 مجتمع المعلومات<br><small>(النصف الثاني ق 20)</small></div></div>
+                        <div class="flow-arrow">⬅️</div>
+                        <div class="flow-node"><span class="tag">Society 5.0</span><div>🌐 مجتمع الجيل الخامس<br><small>(دمج الافتراضي والحقيقي)</small></div></div>
+                    </div>
+                </div>
+            `;
+        }
+        if (type === 'society_5') {
+            return `
+                <div class="diagram-box">
+                    <div class="diagram-title">📊 مخطط آلية عمل «مجتمع الجيل الخامس (Society 5.0)» - صـ 49 و51</div>
+                    <div class="flow-grid">
+                        <div class="flow-node"><span class="tag">الفضاء الحقيقي (المادي)</span><div>🌍 مستشعرات وأجهزة IoT تجمع البيانات</div></div>
+                        <div class="flow-arrow">⬅️</div>
+                        <div class="flow-node"><span class="tag">الفضاء الافتراضي (الإلكتروني)</span><div>☁️ تراكم البيانات الضخمة (Big Data)</div></div>
+                        <div class="flow-arrow">⬅️</div>
+                        <div class="flow-node"><span class="tag">التحليل الذكي</span><div>🤖 الذكاء الاصطناعي (AI) والتعلم الآلي</div></div>
+                        <div class="flow-arrow">⬅️</div>
+                        <div class="flow-node"><span class="tag">الهدف النهائي</span><div>🤝 حل القضايا الاجتماعية + التنمية الاقتصادية</div></div>
+                    </div>
+                </div>
+            `;
+        }
+        if (type === 'big_data_3v') {
+            return `
+                <div class="diagram-box">
+                    <div class="diagram-title">📊 مخطط الكتاب المدرسي (صـ 49): العناصر الثلاثة للبيانات الضخمة (Big Data)</div>
+                    <div class="flow-grid">
+                        <div class="flow-node"><span class="tag">العنصر الأول</span><div>📦 حجم / كمية البيانات<br>(Volume)</div></div>
+                        <div class="flow-arrow">➕</div>
+                        <div class="flow-node"><span class="tag">العنصر الثاني</span><div>🎨 تنوع البيانات<br>(Variety)</div></div>
+                        <div class="flow-arrow">➕</div>
+                        <div class="flow-node"><span class="tag">العنصر الثالث</span><div>⚡ وتيرة التوليد / التحديث<br>(Generation/update frequency)</div></div>
+                    </div>
+                </div>
+            `;
+        }
+        if (type === 'technostress_tree') {
+            return `
+                <div class="diagram-box">
+                    <div class="diagram-title">📊 مخطط الكتاب المدرسي (صـ 50): أقسام الإجهاد التكنولوجي (Technostress)</div>
+                    <div class="flow-grid">
+                        <div class="flow-node"><span class="tag">1. جانب نفسي (خوف)</span><div>😰 رهاب التكنولوجيا<br>(Technophobia)</div></div>
+                        <div class="flow-node"><span class="tag">2. جانب سلوكي (إفراط)</span><div>📱 الإدمان التكنولوجي<br>(Techno-Addiction)</div></div>
+                        <div class="flow-node"><span class="tag">3. جانب جسدي (شاشات)</span><div>👁️ اضطراب VDT<br>(تصلب الكتف وإجهاد العين)</div></div>
+                    </div>
+                </div>
+            `;
+        }
+        return '';
+    }
+
+    function applyFilter(mode, searchQuery = '') {
+        currentFilterMode = mode;
+        const query = searchQuery.trim().toLowerCase();
+
+        filteredIndices = [];
+        questions.forEach((q, idx) => {
+            let matchMode = false;
+            if (mode === 'all') matchMode = true;
+            else if (mode === 'book') matchMode = q.isBook === true;
+            else if (mode === 'wrong') matchMode = (userAnswers[idx] !== null && userAnswers[idx] !== q.correct);
+            else matchMode = (q.lesson === parseInt(mode, 10));
+
+            let matchSearch = true;
+            if (query !== '') {
+                const haystack = (q.ar_q + ' ' + q.en_q + ' ' + q.topic + ' ' + q.exp_ar + ' ' + q.options.map(o => o.ar + ' ' + o.en).join(' ')).toLowerCase();
+                matchSearch = haystack.includes(query);
+            }
+
+            if (matchMode && matchSearch) {
+                filteredIndices.push(idx);
+            }
+        });
+
+        document.querySelectorAll('.lesson-tab').forEach(btn => {
+            btn.classList.toggle('active', btn.getAttribute('data-filter') === String(mode));
+        });
+
+        if (filteredIndices.length === 0) {
+            document.getElementById('quizCard').style.display = 'block';
+            document.getElementById('resultsCard').style.display = 'none';
+            document.getElementById('qCurrent').innerText = '0';
+            document.getElementById('qTotalFiltered').innerText = '0';
+            document.getElementById('questionTextAr').innerText = mode === 'wrong'
+                ? '🎉 لا توجد لديك أي إجابات خاطئة حالياً! أحسنت!'
+                : 'لا توجد أسئلة مطابقة لبحثك. جرب كلمة أخرى أو اختر (الكل).';
+            document.getElementById('questionTextEn').innerText = mode === 'wrong'
+                ? 'No wrong answers recorded yet! Great job!'
+                : 'No matching questions found.';
+            document.getElementById('optionsContainer').innerHTML = '';
+            document.getElementById('diagramContainer').style.display = 'none';
+            document.getElementById('explanationText').style.display = 'none';
+            return;
+        }
+
+        currentFilterPos = 0;
+        document.getElementById('resultsCard').style.display = 'none';
+        document.getElementById('quizCard').style.display = 'block';
+        displayQuestion();
+    }
+
+    function displayQuestion() {
+        if (filteredIndices.length === 0) return;
+
+        const actualIdx = filteredIndices[currentFilterPos];
+        const q = questions[actualIdx];
+
+        document.getElementById('qCurrent').innerText = currentFilterPos + 1;
+        document.getElementById('qTotalFiltered').innerText = filteredIndices.length;
+        document.getElementById('topicBadge').innerText = q.topic;
+
+        const sourceBadge = document.getElementById('sourceBadge');
+        sourceBadge.innerText = q.source;
+        sourceBadge.className = 'source-badge ' + (q.isBook ? 'book' : 'extra');
+
+        document.getElementById('questionTextAr').innerText = "س" + q.id + ": " + q.ar_q;
+        document.getElementById('questionTextEn').innerText = "Q" + q.id + ": " + q.en_q;
+
+        // Diagram check
+        const diagBox = document.getElementById('diagramContainer');
+        if (q.diagram) {
+            diagBox.innerHTML = getDiagramHTML(q.diagram);
+            diagBox.style.display = 'block';
+        } else {
+            diagBox.style.display = 'none';
+            diagBox.innerHTML = '';
+        }
+
+        const answeredCount = userAnswers.filter(a => a !== null).length;
+        const pct = (answeredCount / questions.length) * 100;
+        document.getElementById('progressBar').style.width = pct + '%';
+
+        const container = document.getElementById('optionsContainer');
+        container.innerHTML = '';
+
+        const expBox = document.getElementById('explanationText');
+        const statusIndicator = document.getElementById('qStatusIndicator');
+        const prevAns = userAnswers[actualIdx];
+
+        if (prevAns === null && !teacherMode) {
+            statusIndicator.innerText = "لم يُجب بعد / Not answered";
+            statusIndicator.style.color = "var(--text-muted)";
+            expBox.style.display = 'none';
+        } else if (prevAns !== null) {
+            statusIndicator.innerText = prevAns === q.correct ? "✅ إجابة صحيحة مسجلة" : "❌ إجابة خاطئة مسجلة";
+            statusIndicator.style.color = prevAns === q.correct ? "var(--success)" : "var(--danger)";
+            showExplanation(q, prevAns === q.correct);
+        } else if (teacherMode) {
+            statusIndicator.innerText = "👨‍🏫 وضع الشرح مفعل (الإجابة الصحيحة موضحة)";
+            statusIndicator.style.color = "var(--primary)";
+            showExplanation(q, true);
+        }
+
+        q.options.forEach((opt, idx) => {
+            const btn = document.createElement('button');
+            btn.className = 'opt-btn';
+            btn.innerHTML = `
+                <div class="opt-ar">${['أ', 'ب', 'ج', 'د'][idx]}) ${opt.ar}</div>
+                <div class="opt-en">${['A', 'B', 'C', 'D'][idx]}) ${opt.en}</div>
+            `;
+
+            if (prevAns !== null) {
+                btn.disabled = true;
+                if (idx === q.correct) {
+                    btn.classList.add('correct');
+                } else if (idx === prevAns) {
+                    btn.classList.add('wrong');
+                }
+            } else if (teacherMode && idx === q.correct) {
+                btn.classList.add('correct');
+                btn.addEventListener('click', () => selectAnswer(idx));
+            } else {
+                btn.addEventListener('click', () => selectAnswer(idx));
+            }
+            container.appendChild(btn);
+        });
+
+        document.getElementById('prevBtn').disabled = (currentFilterPos === 0);
+        document.getElementById('nextBtn').innerText = (currentFilterPos === filteredIndices.length - 1)
+            ? "إنهاء وعرض النتيجة / Finish 🏁"
+            : "التالي / Next ⬅️";
+    }
+
+    function selectAnswer(chosenIdx) {
+        const actualIdx = filteredIndices[currentFilterPos];
+        if (userAnswers[actualIdx] !== null) return;
+
+        userAnswers[actualIdx] = chosenIdx;
+        calculateScore();
+
+        const q = questions[actualIdx];
+        const isCorrect = (chosenIdx === q.correct);
+
+        const buttons = document.querySelectorAll('.opt-btn');
+        buttons.forEach(b => b.disabled = true);
+
+        if (isCorrect) {
+            buttons[chosenIdx].classList.add('correct');
+        } else {
+            buttons[chosenIdx].classList.add('wrong');
+            buttons[q.correct].classList.add('correct');
+        }
+
+        showExplanation(q, isCorrect);
+
+        const statusIndicator = document.getElementById('qStatusIndicator');
+        statusIndicator.innerText = isCorrect ? "✅ إجابة صحيحة مسجلة" : "❌ إجابة خاطئة مسجلة";
+        statusIndicator.style.color = isCorrect ? "var(--success)" : "var(--danger)";
+
+        const answeredCount = userAnswers.filter(a => a !== null).length;
+        document.getElementById('progressBar').style.width = ((answeredCount / questions.length) * 100) + '%';
+    }
+
+    function showExplanation(q, isCorrect) {
+        const expBox = document.getElementById('explanationText');
+        if (isCorrect) {
+            expBox.innerHTML = `
+                <b>✅ الشرح والتفسير طبقاً لكتاب الوزارة:</b><br>
+                <div>${q.exp_ar}</div>
+                <div class="exp-en">${q.exp_en}</div>
+            `;
+            expBox.style.borderRightColor = 'var(--success)';
+        } else {
+            expBox.innerHTML = `
+                <b>❌ إجابة غير دقيقة!</b><br>
+                <div>الإجابة الصحيحة المعتمدة هي: <b>${q.options[q.correct].ar}</b></div>
+                <div class="exp-en">Correct answer: <b>${q.options[q.correct].en}</b></div>
+                <div style="margin-top: 6px;">${q.exp_ar}</div>
+                <div class="exp-en">${q.exp_en}</div>
+            `;
+            expBox.style.borderRightColor = 'var(--danger)';
+        }
+        expBox.style.display = 'block';
+    }
+
+    function retryCurrentQuestion() {
+        if (filteredIndices.length === 0) return;
+        const actualIdx = filteredIndices[currentFilterPos];
+        userAnswers[actualIdx] = null;
+        calculateScore();
+        displayQuestion();
+    }
+
+    function nextQuestion() {
+        if (currentFilterPos < filteredIndices.length - 1) {
+            currentFilterPos++;
+            displayQuestion();
+        } else {
+            showFinalResults();
+        }
+    }
+
+    function prevQuestion() {
+        if (currentFilterPos > 0) {
+            currentFilterPos--;
+            displayQuestion();
+        }
+    }
+
+    function openIndexModal() {
+        buildIndexGrid();
+        document.getElementById('indexModal').style.display = 'flex';
+    }
+
+    function closeIndexModal() {
+        document.getElementById('indexModal').style.display = 'none';
+    }
+
+    function buildIndexGrid() {
+        const grid = document.getElementById('gridIndexContainer');
+        grid.innerHTML = '';
+        const currentActual = filteredIndices[currentFilterPos];
+
+        for (let i = 0; i < questions.length; i++) {
+            const pill = document.createElement('div');
+            pill.className = 'index-pill';
+            pill.innerText = (i + 1);
+
+            if (i === currentActual) {
+                pill.classList.add('active');
+            }
+
+            if (userAnswers[i] !== null) {
+                if (userAnswers[i] === questions[i].correct) {
+                    pill.classList.add('solved-correct');
+                } else {
+                    pill.classList.add('solved-wrong');
+                }
+            }
+
+            pill.addEventListener('click', () => {
+                const posInFilter = filteredIndices.indexOf(i);
+                if (posInFilter !== -1) {
+                    currentFilterPos = posInFilter;
+                } else {
+                    applyFilter('all');
+                    currentFilterPos = i;
+                }
+                document.getElementById('resultsCard').style.display = 'none';
+                document.getElementById('quizCard').style.display = 'block';
+                displayQuestion();
+                closeIndexModal();
+            });
+
+            grid.appendChild(pill);
+        }
+    }
+
+    function showFinalResults() {
+        document.getElementById('quizCard').style.display = 'none';
+        document.getElementById('progressBar').style.width = '100%';
+
+        const resultsCard = document.getElementById('resultsCard');
+        resultsCard.style.display = 'block';
+
+        const finalScore = calculateScore();
+        document.getElementById('finalScore').innerText = finalScore;
+        const res = saveScores(finalScore);
+        const scores = loadScores();
+
+        const notice = document.getElementById('highScoreNotice');
+        const msg = document.getElementById('resultMsg');
+        const icon = document.getElementById('trophyIcon');
+
+        let textDetails = `🎯 أول محاولة مسجلة (First Attempt): ${scores.first} من 50<br>`;
+        if (res.isNewHigh && finalScore > 0) {
+            textDetails += `🏆 مبروك! حققت رقماً قياسياً جديداً (New High Score): ${finalScore} من 50!`;
+        } else {
+            textDetails += `🏆 أعلى نتيجة على هذا الجهاز (Best Score): ${scores.high} من 50`;
+        }
+        notice.innerHTML = textDetails;
+
+        if (finalScore >= 45) {
+            msg.innerText = "ممتاز ومحترف! إتقان تام لوحدة تكنولوجيا المعلومات والمجتمع 🌟";
+            icon.innerText = "👑";
+        } else if (finalScore >= 35) {
+            msg.innerText = "جيد جداً! استيعاب رائع لمجتمع الجيل الخامس وتقنيات المعلومات الجديدة 👏";
+            icon.innerText = "🎉";
+        } else if (finalScore >= 25) {
+            msg.innerText = "مستوى جيد! راجع مقارنات التقنيات ومراحل التطور المجتمعي لمزيد من التفوق 📖";
+            icon.innerText = "👍";
+        } else {
+            msg.innerText = "يُنصح بمراجعة ملخص الوحدة الرابعة وإعادة الاختبار 💡";
+            icon.innerText = "💡";
+        }
+    }
+
+    function restartQuiz() {
+        userAnswers = new Array(questions.length).fill(null);
+        calculateScore();
+        applyFilter('all', document.getElementById('searchInput').value);
+    }
+
+    function updateComparisonExplorer() {
+        const val = document.getElementById('compareSelect').value;
+        const box = document.getElementById('compareResultDisplay');
+        if (val === 'vr_ar') {
+            box.innerHTML = `🥽 <b>VR (الواقع الافتراضي):</b> يبني بيئة افتراضية كاملة يعيشها المستخدم كوهم للواقع | 📱 <b>AR (الواقع المعزز):</b> يعزز البيئة الواقعية الحقيقية بإضافة صور ومعلومات رقمية فوقها.`;
+        } else if (val === 'ai_ml') {
+            box.innerHTML = `🤖 <b>AI (الذكاء الاصطناعي):</b> تقنية تستخدم الكمبيوتر لتقليد السلوك الفكري البشري بشكل مصطنع | 📈 <b>ML (التعلّم الآلي):</b> تقنية تتعلم فيها أجهزة الكمبيوتر من كميات كبيرة من البيانات لاستخراج القواعد والأنماط.`;
+        } else {
+            box.innerHTML = `💻 <b>مجتمع المعلومات (4.0):</b> ظهر في النصف الثاني من القرن 20 وعزز الأتمتة بالكمبيوتر والإنترنت | 🌐 <b>مجتمع الجيل الخامس (5.0):</b> يدمج الفضاء الافتراضي والفضاء الحقيقي بـ IoT و Big Data و AI لحل القضايا الاجتماعية وتحقيق التنمية الاقتصادية.`;
+        }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        loadScores();
+        displayQuestion();
+
+        document.getElementById('prevBtn').addEventListener('click', prevQuestion);
+        document.getElementById('nextBtn').addEventListener('click', nextQuestion);
+        document.getElementById('retryQuestionBtn').addEventListener('click', retryCurrentQuestion);
+        document.getElementById('openIndexBtn').addEventListener('click', openIndexModal);
+        document.getElementById('closeIndexBtn').addEventListener('click', closeIndexModal);
+        document.getElementById('restartQuizBtn').addEventListener('click', restartQuiz);
+
+        document.getElementById('reviewWrongBtn').addEventListener('click', () => {
+            applyFilter('wrong');
+        });
+
+        // Close modals on overlay click
+        document.getElementById('indexModal').addEventListener('click', (e) => {
+            if (e.target.id === 'indexModal') closeIndexModal();
+        });
+        document.getElementById('studyModal').addEventListener('click', (e) => {
+            if (e.target.id === 'studyModal') document.getElementById('studyModal').style.display = 'none';
+        });
+
+        // Study Modal
+        document.getElementById('openStudyBtn').addEventListener('click', () => {
+            document.getElementById('studyModal').style.display = 'flex';
+        });
+        document.getElementById('closeStudyBtn').addEventListener('click', () => {
+            document.getElementById('studyModal').style.display = 'none';
+        });
+
+        // Study Tabs
+        document.querySelectorAll('.study-tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.study-tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.study-pane').forEach(p => p.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(btn.getAttribute('data-pane')).classList.add('active');
+            });
+        });
+
+        // Comparison Explorer
+        document.getElementById('compareSelect').addEventListener('change', updateComparisonExplorer);
+
+        // Teacher Mode Toggle
+        document.getElementById('teacherModeBtn').addEventListener('click', () => {
+            teacherMode = !teacherMode;
+            const btn = document.getElementById('teacherModeBtn');
+            const lbl = document.getElementById('teacherModeLabel');
+            btn.classList.toggle('active-mode', teacherMode);
+            lbl.innerText = teacherMode ? 'وضع شرح المعلم: مفعل ✅' : 'وضع شرح المعلم: مغلق';
+            displayQuestion();
+        });
+
+        // Lesson Filter Tabs
+        document.querySelectorAll('.lesson-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                applyFilter(tab.getAttribute('data-filter'), document.getElementById('searchInput').value);
+            });
+        });
+
+        // Search Box
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            applyFilter(currentFilterMode, e.target.value);
+        });
+
+        // Font Size Zoom
+        document.getElementById('zoomInBtn').addEventListener('click', () => {
+            if (fontScale < 1.35) {
+                fontScale = +(fontScale + 0.08).toFixed(2);
+                document.documentElement.style.setProperty('--font-scale', fontScale);
+            }
+        });
+        document.getElementById('zoomOutBtn').addEventListener('click', () => {
+            if (fontScale > 0.85) {
+                fontScale = +(fontScale - 0.08).toFixed(2);
+                document.documentElement.style.setProperty('--font-scale', fontScale);
+            }
+        });
+
+        // Dark Mode Toggle
+        document.getElementById('darkModeBtn').addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            document.getElementById('darkModeBtn').innerText = isDark ? '☀️' : '🌙';
+        });
+    });
+</script>
+
+</body>
+</html>
