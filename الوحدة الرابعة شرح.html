@@ -1,0 +1,2088 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الوحدة الرابعة: تكنولوجيا المعلومات والمجتمع - منصة الشرح التفاعلية</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #3730a3;
+            --primary-light: #e0e7ff;
+            --secondary: #0891b2;
+            --secondary-light: #cffafe;
+            --accent: #d97706;
+            --accent-light: #fef3c7;
+            --danger: #dc2626;
+            --danger-light: #fee2e2;
+            --success: #16a34a;
+            --success-light: #dcfce7;
+            --purple: #7c3aed;
+            --purple-light: #ede9fe;
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --surface-alt: #f1f5f9;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border: #e2e8f0;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+            --font-scale: 1;
+        }
+
+        body.dark-mode {
+            --primary: #6366f1;
+            --primary-dark: #818cf8;
+            --primary-light: rgba(99, 102, 241, 0.2);
+            --secondary: #06b6d4;
+            --secondary-light: rgba(6, 182, 212, 0.2);
+            --accent: #f59e0b;
+            --accent-light: rgba(245, 158, 11, 0.2);
+            --danger: #ef4444;
+            --danger-light: rgba(239, 68, 68, 0.2);
+            --success: #22c55e;
+            --success-light: rgba(34, 197, 94, 0.2);
+            --purple: #a78bfa;
+            --purple-light: rgba(167, 139, 250, 0.2);
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --surface-alt: #334155;
+            --text-main: #f8fafc;
+            --text-muted: #cbd5e1;
+            --border: #334155;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.8;
+            overflow-x: hidden;
+            font-size: calc(16px * var(--font-scale));
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Top Reading Progress Bar */
+        .progress-bar-container {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.15);
+            z-index: 2000;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #22d3ee, #818cf8, #f472b6);
+            transition: width 0.15s ease-out;
+        }
+
+        /* Teacher Floating Toolbar */
+        .teacher-toolbar {
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 8px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            font-size: 0.9rem;
+        }
+
+        .toolbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            color: #38bdf8;
+        }
+
+        .toolbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tool-btn {
+            background: rgba(255, 255, 255, 0.12);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 6px 13px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tool-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* Hero Banner */
+        .hero {
+            background: linear-gradient(135deg, #090d16 0%, #1e1b4b 45%, #3730a3 80%, #0891b2 100%);
+            color: white;
+            padding: 50px 20px 45px;
+            text-align: center;
+            box-shadow: 0 4px 30px rgba(79, 70, 229, 0.25);
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: calc(2.25rem * var(--font-scale));
+            font-weight: 900;
+            margin-bottom: 12px;
+            animation: fadeInDown 0.7s ease;
+        }
+
+        .hero p {
+            font-size: calc(1.1rem * var(--font-scale));
+            color: #cbd5e1;
+            max-width: 920px;
+            margin: 0 auto 22px;
+        }
+
+        .hero-tags {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .hero-tag {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        /* Navigation Bar */
+        .nav-wrapper {
+            position: sticky;
+            top: 12px;
+            z-index: 1000;
+            max-width: 1240px;
+            margin: -26px auto 30px;
+            padding: 0 16px;
+        }
+
+        .nav-glass {
+            background: var(--surface);
+            opacity: 0.98;
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            display: flex;
+            gap: 6px;
+            padding: 8px;
+            box-shadow: var(--shadow);
+            overflow-x: auto;
+        }
+
+        .nav-item {
+            flex: 1;
+            min-width: 155px;
+            text-align: center;
+            padding: 11px 12px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            font-weight: 800;
+            font-size: 0.9rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-item:hover {
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .nav-item.active {
+            background: var(--primary);
+            color: white !important;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.35);
+        }
+
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 16px 80px;
+        }
+
+        .content-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 35px;
+            margin-bottom: 35px;
+            box-shadow: var(--shadow);
+            scroll-margin-top: 95px;
+        }
+
+        @media (max-width: 768px) {
+            .content-card {
+                padding: 22px 16px;
+            }
+        }
+
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 800;
+            margin-bottom: 14px;
+        }
+
+        .section-title {
+            font-size: calc(1.65rem * var(--font-scale));
+            color: var(--text-main);
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            font-size: calc(1.02rem * var(--font-scale));
+            margin-bottom: 24px;
+        }
+
+        /* كتاب الوزارة المدرسي */
+        .book-def-box {
+            background: var(--surface-alt);
+            border-right: 5px solid var(--primary);
+            border-radius: 12px;
+            padding: 18px 22px;
+            margin-bottom: 20px;
+        }
+
+        .book-def-title {
+            font-size: calc(1.12rem * var(--font-scale));
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .book-exact-text {
+            font-size: calc(1.03rem * var(--font-scale));
+            color: var(--text-main);
+            font-weight: 700;
+            line-height: 1.9;
+        }
+
+        .explanation-bubble {
+            background: var(--primary-light);
+            border-radius: 10px;
+            padding: 12px 18px;
+            margin-top: 10px;
+            font-size: calc(0.95rem * var(--font-scale));
+            color: var(--primary-dark);
+            border: 1px dashed var(--primary);
+        }
+
+        /* Interactive Society Evolution Cards (5 Stages) */
+        .soc-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 14px;
+            margin: 22px 0;
+        }
+
+        @media (max-width: 1020px) {
+            .soc-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 560px) {
+            .soc-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .soc-card {
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 18px 14px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-align: right;
+            position: relative;
+        }
+
+        .soc-card:hover, .soc-card.active {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(79, 70, 229, 0.14);
+        }
+
+        .soc-step-num {
+            width: 42px;
+            height: 42px;
+            border-radius: 11px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .soc-detail-panel {
+            background: var(--surface-alt);
+            border: 2px solid var(--primary);
+            border-radius: 16px;
+            padding: 22px;
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
+        }
+
+        /* 3Vs Interactive Grid */
+        .cia-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin: 24px 0;
+        }
+
+        @media (max-width: 850px) {
+            .cia-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .cia-card {
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 22px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+            text-align: right;
+        }
+
+        .cia-card:hover, .cia-card.active {
+            border-color: var(--secondary);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(8, 145, 178, 0.15);
+        }
+
+        .cia-letter {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: 900;
+            margin-bottom: 12px;
+        }
+
+        /* Interactive Filter Hub */
+        .filter-hub {
+            background: var(--surface-alt);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 25px 0;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 9px 16px;
+            border-radius: 10px;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.92rem;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .items-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+            gap: 15px;
+        }
+
+        .item-badge-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 18px;
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+
+        .item-badge-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .item-cat {
+            font-size: 0.78rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .cat-data { background: #dbeafe; color: #1e40af; }
+        .cat-ai { background: #ede9fe; color: #5b21b6; }
+        .cat-iot { background: #dcfce7; color: #166534; }
+        .cat-xr { background: #fef3c7; color: #92400e; }
+        .cat-stress { background: #fee2e2; color: #991b1b; }
+
+        /* Tables */
+        .table-responsive {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .rich-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .rich-table th {
+            background: var(--surface-alt);
+            color: var(--text-main);
+            padding: 15px 18px;
+            text-align: right;
+            font-weight: 800;
+            font-size: 0.98rem;
+        }
+
+        .rich-table td {
+            padding: 15px 18px;
+            border-top: 1px solid var(--border);
+            background: var(--surface);
+            font-size: 0.95rem;
+        }
+
+        /* 3D Expandable Cards */
+        .cards-3d-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 18px;
+            margin: 22px 0;
+        }
+
+        .animated-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 22px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .animated-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .animated-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 28px rgba(0,0,0,0.08);
+        }
+
+        .card-icon-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .circle-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: var(--primary-light);
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .expandable-hint {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.88rem;
+        }
+
+        .hidden-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background: var(--surface-alt);
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .animated-card.active .hidden-details {
+            max-height: 320px;
+            padding: 14px;
+            border: 1px dashed var(--border);
+        }
+
+        /* Interactive Labs & Simulators */
+        .lab-box {
+            background: var(--surface-alt);
+            border: 2px dashed var(--primary);
+            border-radius: 20px;
+            padding: 26px;
+            margin: 25px 0;
+        }
+
+        .preset-btns {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .preset-btn {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            border: 1px solid var(--primary);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .preset-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .blank-slot {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            border: 1px dashed var(--primary);
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-weight: 800;
+            cursor: pointer;
+            margin: 3px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .blank-slot.revealed {
+            background: var(--success-light);
+            color: var(--success);
+            border-style: solid;
+            border-color: var(--success);
+        }
+
+        /* Society 5.0 Diagram Flow */
+        .Diagram-flow {
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 22px;
+            margin: 20px 0;
+        }
+
+        .flow-nodes {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+        }
+
+        .flow-box {
+            flex: 1;
+            min-width: 140px;
+            background: var(--surface-alt);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 10px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .flow-box.highlight-cyber {
+            border-color: var(--purple);
+            background: var(--purple-light);
+        }
+
+        .flow-box.highlight-phys {
+            border-color: var(--secondary);
+            background: var(--secondary-light);
+        }
+
+        .flow-arrow {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--primary);
+        }
+
+        /* Sorter Game */
+        .sorter-game {
+            background: var(--surface-alt);
+            border: 2px dashed var(--border);
+            border-radius: 20px;
+            padding: 28px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .sorter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .sorter-score {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--primary);
+            background: var(--surface);
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .current-token {
+            background: var(--surface);
+            padding: 20px 26px;
+            border-radius: 16px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text-main);
+            border: 2px solid var(--primary);
+            display: inline-block;
+            margin-bottom: 22px;
+            box-shadow: 0 10px 20px rgba(79,70,229,0.1);
+            max-width: 760px;
+        }
+
+        .target-bins {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        @media (max-width: 900px) {
+            .target-bins {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 550px) {
+            .target-bins {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .bin-btn {
+            background: var(--surface);
+            border: 2px solid var(--border);
+            padding: 15px 10px;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            color: var(--text-main);
+        }
+
+        .bin-btn:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            transform: translateY(-3px);
+        }
+
+        .bin-btn h5 {
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .bin-btn span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: block;
+        }
+
+        .game-status-msg {
+            margin-top: 15px;
+            min-height: 28px;
+            font-weight: 800;
+            font-size: 1.05rem;
+        }
+
+        /* Quiz App */
+        .quiz-container {
+            background: var(--surface-alt);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 26px;
+        }
+
+        .quiz-item-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 22px;
+            margin-bottom: 18px;
+        }
+
+        .q-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 14px;
+        }
+
+        .q-choices {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .choice-btn {
+            background: var(--surface-alt);
+            border: 1px solid var(--border);
+            padding: 13px 18px;
+            border-radius: 10px;
+            text-align: right;
+            font-size: 0.98rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .choice-btn:hover:not(:disabled) {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .choice-btn.correct-choice {
+            background: #dcfce7 !important;
+            border-color: #22c55e !important;
+            color: #15803d !important;
+            font-weight: 800;
+        }
+
+        .choice-btn.wrong-choice {
+            background: #fee2e2 !important;
+            border-color: #ef4444 !important;
+            color: #b91c1c !important;
+        }
+
+        .choice-feedback {
+            display: none;
+            margin-top: 12px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 0.94rem;
+            background: var(--primary-light);
+            border-right: 4px solid var(--primary);
+            color: var(--primary-dark);
+        }
+
+        .btn-action {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 11px 24px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s;
+            font-size: 0.95rem;
+        }
+
+        .btn-action:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Glossary Modal */
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(6px);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-backdrop.open {
+            display: flex;
+        }
+
+        .modal-box {
+            background: var(--surface);
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 28px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+        }
+
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .glossary-item {
+            background: var(--surface-alt);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-18px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Reading Progress Bar -->
+    <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progressBar" style="width: 0%;"></div>
+    </div>
+
+    <!-- Teacher Classroom Bar -->
+    <div class="teacher-toolbar">
+        <div class="toolbar-brand">
+            <span>🌐 منصة المعلم التفاعلية • الصف الأول الثانوي</span>
+            <span style="background:rgba(56,189,248,0.2); padding:2px 10px; border-radius:20px; font-size:0.8rem;">الوحدة الرابعة: تكنولوجيا المعلومات والمجتمع</span>
+        </div>
+        <div class="toolbar-actions">
+            <button class="tool-btn" onclick="openGlossaryModal()">📖 قاموس مصطلحات الوحدة (EN/AR)</button>
+            <button class="tool-btn" onclick="changeFontScale(0.08)">🔍 تكبير الخط A+</button>
+            <button class="tool-btn" onclick="changeFontScale(-0.08)">🔎 تصغير الخط A-</button>
+            <button class="tool-btn" id="darkModeBtn" onclick="toggleDarkMode()">🌙 الوضع الليلي للسبورة</button>
+        </div>
+    </div>
+
+    <!-- Hero Header -->
+    <header class="hero">
+        <h1>الوحدة الرابعة: تكنولوجيا المعلومات والمجتمع (IT &amp; Society)</h1>
+        <p>منصة تعليمية تفاعلية متكاملة لشرح مراحل التطور المجتمعي، مجتمع الجيل الخامس (Society 5.0)، البيانات الضخمة (Big Data)، الذكاء الاصطناعي والتعلم الآلي، إنترنت الأشياء، الواقع الافتراضي والمعزز، الإجهاد التكنولوجي، والفجوة الرقمية</p>
+        <div class="hero-tags">
+            <span class="hero-tag">أ. التطور المجتمعي ومجتمع الجيل الخامس (Society 5.0)</span>
+            <span class="hero-tag">ب. البيانات الضخمة والذكاء الاصطناعي والتعلم الآلي</span>
+            <span class="hero-tag">ب. إنترنت الأشياء (IoT) و VR / AR</span>
+            <span class="hero-tag">ت. الإجهاد التكنولوجي والفجوة الرقمية</span>
+            <span class="hero-tag">تدريبات وتمارين كتاب الوزارة (صـ 48 - 52)</span>
+        </div>
+    </header>
+
+    <!-- Sticky Glass Navigation -->
+    <div class="nav-wrapper">
+        <nav class="nav-glass">
+            <a href="#tab1" class="nav-item active" data-target="tab1">1. التطور المجتمعي و Society 5.0</a>
+            <a href="#tab2" class="nav-item" data-target="tab2">2. البيانات الضخمة و AI و ML</a>
+            <a href="#tab3" class="nav-item" data-target="tab3">3. إنترنت الأشياء و VR / AR</a>
+            <a href="#tab4" class="nav-item" data-target="tab4">4. الإجهاد التكنولوجي والفجوة الرقمية</a>
+            <a href="#tab5" class="nav-item" data-target="tab5">5. تدريبات الكتاب التفاعلية</a>
+            <a href="#tab6" class="nav-item" data-target="tab6">6. بنك التحدي الشامل (15 سؤالاً)</a>
+        </nav>
+    </div>
+
+    <div class="container">
+
+        <!-- =========================================================
+             القسم الأول: أ. التقدم في تكنولوجيا المعلومات والمجتمع المستقبلي (صـ 49)
+             ========================================================= -->
+        <section id="tab1" class="content-card">
+            <div class="section-badge">المحور الأول • الدرس 1 (4-1) • صـ 49 و 51</div>
+            <h2 class="section-title">أ. التقدم في تكنولوجيا المعلومات وتدفق التطور المجتمعي (Society 1.0 → 5.0)</h2>
+            <p class="section-desc">مراحل تطور المجتمعات البشرية عبر التاريخ وصولاً إلى مجتمع الجيل الخامس بنص كتاب الوزارة المدرسي:</p>
+
+            <!-- الخط الزمني التفاعلي للمجتمعات الخمسة -->
+            <h3 style="font-size:1.18rem; margin: 16px 0 10px;">⏳ اضغط على أي مرحلة من مراحل التطور المجتمعي الخمس لاستعراض تفاصيلها وأدواتها المؤثرة من الكتاب:</h3>
+            <div class="soc-grid">
+                <div class="soc-card active" id="soc_1" onclick="selectSociety(1)">
+                    <div class="soc-step-num" style="background:#fef3c7; color:#b45309;">1.0</div>
+                    <h4 style="font-size:1.05rem; margin-bottom:4px;">مجتمع الصيادين-الجامعين</h4>
+                    <p style="font-size:0.84rem; color:var(--text-muted);">Hunter-gatherer society</p>
+                </div>
+                <div class="soc-card" id="soc_2" onclick="selectSociety(2)">
+                    <div class="soc-step-num" style="background:#dcfce7; color:#15803d;">2.0</div>
+                    <h4 style="font-size:1.05rem; margin-bottom:4px;">المجتمع الزراعي</h4>
+                    <p style="font-size:0.84rem; color:var(--text-muted);">Agrarian society</p>
+                </div>
+                <div class="soc-card" id="soc_3" onclick="selectSociety(3)">
+                    <div class="soc-step-num" style="background:#dbeafe; color:#1d4ed8;">3.0</div>
+                    <h4 style="font-size:1.05rem; margin-bottom:4px;">المجتمع الصناعي</h4>
+                    <p style="font-size:0.84rem; color:var(--text-muted);">Industrialized society</p>
+                </div>
+                <div class="soc-card" id="soc_4" onclick="selectSociety(4)">
+                    <div class="soc-step-num" style="background:#ede9fe; color:#5b21b6;">4.0</div>
+                    <h4 style="font-size:1.05rem; margin-bottom:4px;">مجتمع المعلومات</h4>
+                    <p style="font-size:0.84rem; color:var(--text-muted);">Information society</p>
+                </div>
+                <div class="soc-card" id="soc_5" onclick="selectSociety(5)">
+                    <div class="soc-step-num" style="background:#cffafe; color:#0e7490;">5.0</div>
+                    <h4 style="font-size:1.05rem; margin-bottom:4px;">مجتمع الجيل الخامس</h4>
+                    <p style="font-size:0.84rem; color:var(--text-muted);">Society 5.0</p>
+                </div>
+            </div>
+
+            <div class="soc-detail-panel" id="socDetailBox">
+                <h4 style="font-size:1.22rem; color:var(--primary-dark); margin-bottom:8px;">[1] مجتمع الصيادين-الجامعين (Hunter-gatherer society) — Society 1.0</h4>
+                <p style="font-weight:800; margin-bottom:8px;">📖 الحقبة الزمنية والشرح (صـ 49): "منذ ولادة البشرية • مجتمع يعيش الناس فيه من خلال الصيد وجمع النباتات."</p>
+                <p style="color:var(--secondary); font-weight:700; font-size:0.96rem; margin-bottom:6px;">🛠️ التقنيات والأدوات المؤثرة: الفؤوس الحجرية، الأقواس والسهام، تقنيات إشعال النار، اللغة، إلخ.</p>
+                <p style="color:var(--text-muted); font-size:0.92rem;">💡 في هذه المرحلة اعتمد البشر على الطبيعة مباشرة والتنقل المستمر لصيد الحيوانات وجمع الثمار.</p>
+            </div>
+
+            <!-- جدول تدفق التطور المجتمعي من الكتاب صـ 49 -->
+            <h3 style="margin-top:26px; margin-bottom:12px;">📊 جدول تدفق التطور المجتمعي الرسمي في كتاب الوزارة (صـ 49 و 52):</h3>
+            <div class="table-responsive">
+                <table class="rich-table">
+                    <thead>
+                        <tr>
+                            <th>المرحلة</th>
+                            <th>اسم المجتمع (بالعربية والإنجليزية)</th>
+                            <th>الحقبة الزمنية والشرح بنص الكتاب</th>
+                            <th>التقنيات والأدوات المؤثرة</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1.0</strong></td>
+                            <td><strong>مجتمع الصيادين-الجامعين<br>(Hunter-gatherer society)</strong></td>
+                            <td>• منذ ولادة البشرية.<br>• مجتمع يعيش الناس فيه من خلال الصيد وجمع النباتات.</td>
+                            <td>الفؤوس الحجرية، الأقواس والسهام، تقنيات إشعال النار، اللغة، إلخ.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2.0</strong></td>
+                            <td><strong>المجتمع الزراعي<br>(Agrarian society)</strong></td>
+                            <td>• منذ حوالي <strong>13,000 قبل الميلاد</strong>.<br>• مجتمع يقود الناس فيه حياة مستقرة من خلال زراعة الغذاء وحصاده.</td>
+                            <td>الأدوات الزراعية، الري، اختراع الكتابة، علم الفلك، إلخ.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3.0</strong></td>
+                            <td><strong>المجتمع الصناعي<br>(Industrialized society)</strong></td>
+                            <td>• منذ <strong>منتصف القرن الثامن عشر</strong> (بعد الثورة الصناعية في بريطانيا).<br>• مجتمع تقدمت فيه الصناعة من خلال الإنتاج الضخم باستخدام الآلات، بفضل اختراع المحرك البخاري والكهرباء.</td>
+                            <td>المحركات البخارية، الآلات الصناعية، تكنولوجيا الطباعة، النقل، إلخ.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4.0</strong></td>
+                            <td><strong>مجتمع المعلومات<br>(Information society)</strong></td>
+                            <td>• منذ <strong>النصف الثاني من القرن العشرين</strong>.<br>• مجتمع تم فيه تعزيز الأتمتة (Automation) من خلال تقدم أجهزة الكمبيوتر وتطور الراديو والتلفزيون.</td>
+                            <td>أجهزة الكمبيوتر، الإنترنت، الوسائط، إلخ.</td>
+                        </tr>
+                        <tr style="background:var(--primary-light);">
+                            <td><strong>5.0</strong></td>
+                            <td><strong>مجتمع الجيل الخامس<br>(Society 5.0)</strong></td>
+                            <td>• المجتمع المستقبلي الجديد الذي يرتكز على الإنسان.<br>• يتم فيه دمج <strong>الفضاء الافتراضي (الفضاء الإلكتروني)</strong> و<strong>الفضاء الحقيقي (الفضاء المادي)</strong> لحل مختلف القضايا الاجتماعية وتحقيق التنمية الاقتصادية.</td>
+                            <td>إنترنت الأشياء (IoT)، البيانات الضخمة (Big Data)، الذكاء الاصطناعي (AI)، الروبوتات.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- محاكي دورة عمل مجتمع الجيل الخامس Society 5.0 -->
+            <div class="Diagram-flow">
+                <h3 style="font-size:1.18rem; margin-bottom:8px;">🔄 كيف يعمل «مجتمع الجيل الخامس (Society 5.0)» على دمج الفضاء المادي والفضاء الإلكتروني؟</h3>
+                <p style="font-size:0.93rem; color:var(--text-muted);">
+                    في مجتمع المعلومات (4.0) كان البشر يجمعون المعلومات ويحللونها بأنفسهم، أما في <strong>مجتمع الجيل الخامس (5.0)</strong> فتتدفق البيانات تلقائياً في دورة متكاملة لخدمة الإنسان:
+                </p>
+                <div class="flow-nodes">
+                    <div class="flow-box highlight-phys">
+                        <div style="font-size:1.5rem;">🌍 الفضاء الحقيقي (المادي)</div>
+                        <strong>الناس والأشياء والمجتمع</strong>
+                        <div style="font-size:0.84rem; margin-top:4px;">جمع البيانات عبر مستشعرات <strong>إنترنت الأشياء (IoT)</strong></div>
+                    </div>
+                    <div class="flow-arrow">⬅️</div>
+                    <div class="flow-box highlight-cyber">
+                        <div style="font-size:1.5rem;">☁️ الفضاء الافتراضي (الإلكتروني)</div>
+                        <strong>تراكم البيانات الضخمة (Big Data)</strong>
+                        <div style="font-size:0.84rem; margin-top:4px;">تخزين كميات هائلة ومتنوعة من البيانات عالية الوتيرة</div>
+                    </div>
+                    <div class="flow-arrow">⬅️</div>
+                    <div class="flow-box highlight-cyber">
+                        <div style="font-size:1.5rem;">🧠 التحليل الذكي</div>
+                        <strong>الذكاء الاصطناعي (AI) والتعلم الآلي</strong>
+                        <div style="font-size:0.84rem; margin-top:4px;">استخراج القواعد والأنماط واقتراح الحلول المثلى</div>
+                    </div>
+                    <div class="flow-arrow">⬅️</div>
+                    <div class="flow-box highlight-phys" style="border-color:var(--success); background:var(--success-light);">
+                        <div style="font-size:1.5rem;">🤝 العودة للفضاء الحقيقي</div>
+                        <strong>حل القضايا الاجتماعية + التنمية الاقتصادية</strong>
+                        <div style="font-size:0.84rem; margin-top:4px;">قيادة ذاتية، طب عن بُعد، زراعة ذكية، منزل ذكي</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             القسم الثاني: ب. تقنيات المعلومات الجديدة (1): البيانات الضخمة و AI و ML (صـ 49)
+             ========================================================= -->
+        <section id="tab2" class="content-card">
+            <div class="section-badge" style="background:#ccfbf1; color:#0f766e;">المحور الثاني • الدرس 1 (4-1) • صـ 49 و 51 و 52</div>
+            <h2 class="section-title">ب. تقنيات المعلومات الجديدة (1): البيانات الضخمة (Big Data)، الذكاء الاصطناعي (AI)، والتعلم الآلي (ML)</h2>
+            <p class="section-desc">العناصر الثلاثة للبيانات الضخمة (3Vs)، وكيف يقلد الذكاء الاصطناعي السلوك الفكري البشري ويتعلم من البيانات:</p>
+
+            <div class="book-def-box" style="border-right-color: var(--secondary);">
+                <div class="book-def-title" style="color: var(--secondary);">📌 (1) البيانات الضخمة (Big Data):</div>
+                <div class="book-exact-text">
+                    "مجموعات ضخمة من البيانات في أشكال مختلفة، بخصائص مختلفة وأنواع متنوعة. تتكون البيانات من ثلاثة عناصر: <strong>حجم البيانات (Volume)</strong>، و<strong>تنوع البيانات (Variety)</strong>، و<strong>وتيرة التوليد/التحديث (Generation/update frequency)</strong>."
+                </div>
+            </div>
+
+            <!-- مثلث خصائص البيانات الضخمة الثلاثة (3Vs) -->
+            <h3 style="font-size:1.18rem; margin: 18px 0 10px;">📊 اضغط على كل عنصر من العناصر الثلاثة للبيانات الضخمة (3Vs) لمعرفة تفاصيله وملاحظة الامتحان الهامة:</h3>
+            <div class="cia-grid">
+                <div class="cia-card active" id="bd_vol" onclick="selectBigData('vol')">
+                    <div class="cia-letter" style="background:#dbeafe; color:#1d4ed8;">V1</div>
+                    <h4 style="font-size:1.15rem; margin-bottom:4px;">[1] حجم / كمية البيانات (Volume)</h4>
+                    <p style="font-size:0.9rem; color:var(--text-muted);">كمية هائلة من البيانات التي يصعب على البشر فهمها بالكامل.</p>
+                </div>
+                <div class="cia-card" id="bd_var" onclick="selectBigData('var')">
+                    <div class="cia-letter" style="background:#dcfce7; color:#15803d;">V2</div>
+                    <h4 style="font-size:1.15rem; margin-bottom:4px;">[2] تنوع البيانات (Variety)</h4>
+                    <p style="font-size:0.9rem; color:var(--text-muted);">بيانات في أشكال مختلفة وبخصائص مختلفة (نصوص، صور، فيديو، موقع).</p>
+                </div>
+                <div class="cia-card" id="bd_vel" onclick="selectBigData('vel')">
+                    <div class="cia-letter" style="background:#fef3c7; color:#b45309;">V3</div>
+                    <h4 style="font-size:1.15rem; margin-bottom:4px;">[3] وتيرة التوليد/التحديث (Velocity / Frequency)</h4>
+                    <p style="font-size:0.9rem; color:var(--text-muted);">البيانات لها وتيرة عالية في التوليد والتحديث المستمر في الوقت الفعلي.</p>
+                </div>
+            </div>
+
+            <div class="soc-detail-panel" id="bdDetailBox" style="border-color:var(--secondary);">
+                <h4 style="font-size:1.2rem; color:var(--secondary); margin-bottom:8px;">[1] حجم / كمية البيانات (Volume)</h4>
+                <p style="font-weight:800; margin-bottom:8px;">📖 شرح الكتاب: تشير إلى الكميات الضخمة والهائلة من البيانات المتراكمة من الناس والأشياء والمجتمع والطبيعة عبر الإنترنت والمستشعرات.</p>
+                <p style="color:var(--danger); font-weight:700; font-size:0.95rem;">⚠️ تنبيه امتحاني هام (جرب بنفسك صـ 51): عناصر البيانات الضخمة الثلاثة هي: (1) حجم/كمية البيانات، (2) تنوع البيانات، (3) وتيرة التوليد/التحديث العالية. وفي سؤال الاختيار بين (أ: تنوع، ب: كمية، ت: أنواع البيانات، ث: وتيرة عالية) نختار <strong>(ت) أنواع البيانات</strong> كخيار غير مطابق للعناصر الثلاثة القياسية (أو نركز على الحجم والتنوع والوتيرة)!</p>
+            </div>
+
+            <!-- الذكاء الاصطناعي والتعلم الآلي -->
+            <div class="cards-3d-grid" style="margin-top:24px;">
+                <div class="animated-card" onclick="toggleCard(this)">
+                    <div class="card-icon-title">
+                        <div class="circle-icon" style="background:#ede9fe; color:var(--purple);">🤖</div>
+                        <div>
+                            <h4 style="font-size:1.15rem;">(2) الذكاء الاصطناعي (AI - Artificial Intelligence)</h4>
+                            <span style="font-size:0.8rem; color:var(--text-muted);">تقليد السلوك الفكري البشري</span>
+                        </div>
+                    </div>
+                    <p class="book-exact-text" style="font-size:0.96rem;">
+                        "تقنية تستخدم أجهزة الكمبيوتر <strong>لتقليد السلوك الفكري البشري بشكل مصطنع</strong>."<br>
+                        • <strong>الأمثلة المعتمدة في الكتاب:</strong> القيادة الذاتية، الطب عن بُعد، الزراعة الذكية، المنزل الذكي، إلخ.
+                    </p>
+                    <div class="expandable-hint">👈 اضغط لمعرفة تطبيقاته في الحياة اليومية</div>
+                    <div class="hidden-details">
+                        يدعم الذكاء الاصطناعي الأطباء في التشخيص السريع، ويقود السيارات ذاتياً، ويدير استهلاك الطاقة والأجهزة في المنازل الذكية والمزارع الحديثة.
+                    </div>
+                </div>
+
+                <div class="animated-card" onclick="toggleCard(this)">
+                    <div class="card-icon-title">
+                        <div class="circle-icon" style="background:#dbeafe; color:var(--primary);">📈</div>
+                        <div>
+                            <h4 style="font-size:1.15rem;">(3) التعلّم الآلي (Machine Learning - ML)</h4>
+                            <span style="font-size:0.8rem; color:var(--text-muted);">استخراج القواعد والأنماط</span>
+                        </div>
+                    </div>
+                    <p class="book-exact-text" style="font-size:0.96rem;">
+                        "تقنية <strong>تتعلم فيها أجهزة الكمبيوتر من كميات كبيرة من البيانات لاستخراج القواعد والأنماط من البيانات</strong>."
+                    </p>
+                    <div class="expandable-hint">👈 كيف يرتبط التعلّم الآلي بالبيانات الضخمة و AI؟</div>
+                    <div class="hidden-details">
+                        يُعد التعلّم الآلي المحرك التحليلي للذكاء الاصطناعي؛ فهو يغذي الكمبيوتر بالبيانات الضخمة (Big Data) ليكتشف الأنماط والقواعد تلقائياً ويبني عليها قرارات وتوقعات ذكية.
+                    </div>
+                </div>
+            </div>
+
+            <!-- مختبر تحليل الحالات التطبيقية للبيانات الضخمة (تمرين 3-(2) صـ 52) -->
+            <div class="lab-box">
+                <h3 style="font-size:1.2rem; margin-bottom:8px;">🔬 مختبر تطبيقات تحليل البيانات الضخمة (سؤال تمرين الكتاب صـ 52)</h3>
+                <p style="font-size:0.94rem; color:var(--text-muted); margin-bottom:14px;">
+                    في صـ 52 يسألك الكتاب: <strong>"اختر عبارة واحدة الأكثر عدم ملاءمة فيما يتعلق بتحليل البيانات الضخمة"</strong>. اضغط على كل حالة من الحالات الأربع التالية لترى لماذا تُعد ثلاث منها تطبيقات حقيقية للبيانات الضخمة بينما واحدة منها ليست كذلك:
+                </p>
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:12px;">
+                    <button class="filter-btn active" id="caseBtn_1" onclick="showBigDataCase(1)">أ) التشخيص الطبي الموحد للمرضى</button>
+                    <button class="filter-btn" id="caseBtn_2" onclick="showBigDataCase(2)">ب) مراقبة المرور الفورية والمسارات المثلى</button>
+                    <button class="filter-btn" id="caseBtn_3" onclick="showBigDataCase(3)">ج) تحليل المقابلات الجماعية (انتبه! ⚠️)</button>
+                    <button class="filter-btn" id="caseBtn_4" onclick="showBigDataCase(4)">د) تحليل منشورات التواصل الاجتماعي</button>
+                </div>
+                <div id="bigDataCaseOutput" style="margin-top:16px; background:var(--surface); padding:18px; border-radius:14px; border:2px solid var(--success);">
+                    <h4 style="color:var(--success); margin-bottom:6px;">✅ (أ) تطبيق صحيح لتحليل البيانات الضخمة في الطب:</h4>
+                    <p style="font-weight:700;">"الأطباء قادرون على إجراء تشخيصات سريعة ودقيقة من خلال توحيد المعلومات مثل تقدم العلاج ونتائج الاختبارات للمرضى."</p>
+                    <p style="font-size:0.9rem; color:var(--text-muted); margin-top:6px;">السبب: يجمع آلاف السجلات الطبية المتنوعة ونتائج الفحوصات المستمرة (حجم + تنوع + وتيرة).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             القسم الثالث: ب. تقنيات المعلومات الجديدة (2): إنترنت الأشياء والمنزل الذكي و VR و AR (صـ 50)
+             ========================================================= -->
+        <section id="tab3" class="content-card">
+            <div class="section-badge" style="background:#fef3c7; color:#92400e;">المحور الثالث • الدرس 1 (4-1) • صـ 50 إلى 52</div>
+            <h2 class="section-title">ب. تقنيات المعلومات الجديدة (2): إنترنت الأشياء (IoT)، المنزل الذكي، والواقع الافتراضي (VR) والمعزز (AR)</h2>
+            <p class="section-desc">التعريفات الدقيقة بنص كتاب الوزارة والمقارنة الحاسمة بين التقنيات الست الجديدة:</p>
+
+            <div class="book-def-box" style="border-right-color: var(--accent);">
+                <div class="book-def-title" style="color: var(--accent);">📌 (4) إنترنت الأشياء (IoT) والمنزل الذكي (Smart Home) - صـ 50:</div>
+                <div class="book-exact-text">
+                    • <strong>إنترنت الأشياء (IoT - Internet of Things):</strong> "تقنية تدعم الحياة اليومية من خلال ربط الأجهزة المنزلية وغيرها من العناصر بالإنترنت، مما يسمح للأجهزة بالتواصل مع بعضها البعض."<br>
+                    • <strong>المنزل الذكي (Smart Home):</strong> "مسكن يستخدم تقنيات <strong>IoT و AI</strong> لتوفير بيئة معيشة أكثر راحة."
+                </div>
+            </div>
+
+            <!-- المقارنة التفاعلية بين الواقع الافتراضي VR والواقع المعزز AR -->
+            <h3 style="margin-top:24px; margin-bottom:12px;">🥽 (5) و (6) المقارنة الجوهرية بين الواقع الافتراضي (VR) والواقع المعزز (AR) - صـ 50:</h3>
+            <div class="table-responsive">
+                <table class="rich-table">
+                    <thead>
+                        <tr>
+                            <th>وجه المقارنة</th>
+                            <th>الواقع الافتراضي (VR - Virtual Reality)</th>
+                            <th>الواقع المعزز (AR - Augmented Reality)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>التعريف الرسمي بالكتاب (صـ 50)</strong></td>
+                            <td>"تقنية تسمح للمستخدمين <strong>بتجربة وهم الواقع في بيئة محاكاة</strong>."</td>
+                            <td>"تقنية تستخدم معالجة الكمبيوتر <strong>لتعزيز البيئة الواقعية التي تدركها الحواس البشرية (الرؤية، إلخ)</strong>."</td>
+                        </tr>
+                        <tr>
+                            <td><strong>صياغة أسئلة الكتاب (صـ 50-52)</strong></td>
+                            <td>• فضاء افتراضي يتم إنشاؤه بواسطة كمبيوتر ويسمح بتجارب تشبه الواقع.<br>• تكنولوجيا لبناء <strong>بيئات افتراضية</strong> يمكن أن يعيشها البشر.</td>
+                            <td>• تكنولوجيا تعزز الواقع باستخدام أجهزة الكمبيوتر <strong>لإضافة المعلومات (صور ثابتة، مقاطع فيديو، إلخ) إلى البيئات الواقعية</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>البيئة التي يراها المستخدم</strong></td>
+                            <td>عالم خيالي/محاكى بالكامل (يفصل المستخدم عن الغرفة الحقيقية حوله).</td>
+                            <td>العالم الحقيقي نفسه مع إضافة عناصر رقمية فوقه عبر الكاميرا أو النظارة.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- مركز تصفية واستعراض التقنيات الست -->
+            <div class="filter-hub">
+                <h4 style="font-size:1.08rem; margin-bottom:14px;">🔍 مركز المراجعة السريعة لجميع تقنيات المعلومات الجديدة في الوحدة الرابعة (6 تقنيات):</h4>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" onclick="filterTech('all', this)">عرض الكل (6 تقنيات)</button>
+                    <button class="filter-btn" onclick="filterTech('data_ai', this)">البيانات والذكاء (Big Data / AI / ML)</button>
+                    <button class="filter-btn" onclick="filterTech('iot_home', this)">الأجهزة المتصلة (IoT / Smart Home)</button>
+                    <button class="filter-btn" onclick="filterTech('xr', this)">الواقع الممتد (VR / AR)</button>
+                </div>
+                <div class="items-showcase" id="techShowcase"></div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             القسم الرابع: ت. التغيرات في الحياة التي تسببها تكنولوجيا المعلومات (صـ 50)
+             ========================================================= -->
+        <section id="tab4" class="content-card">
+            <div class="section-badge" style="background:#fee2e2; color:#991b1b;">المحور الرابع • الدرس 1 (4-1) • صـ 50 إلى 52</div>
+            <h2 class="section-title">ت. التغيرات والمشكلات الناتجة عن تكنولوجيا المعلومات: الإجهاد التكنولوجي والفجوة الرقمية</h2>
+            <p class="section-desc">المصطلحات الصحية والاجتماعية الخمسة المرتبطة باستخدام الكمبيوتر والإنترنت بنص الكتاب المدرسي:</p>
+
+            <div class="book-def-box" style="border-right-color: var(--danger);">
+                <div class="book-def-title" style="color: var(--danger);">📌 (1) الإجهاد التكنولوجي (Technostress) وأنواعه الفرعية الثلاثة (صـ 50):</div>
+                <div class="book-exact-text">
+                    • <strong>الإجهاد التكنولوجي (Technostress):</strong> "المصطلح العام للمشاكل العقلية والجسدية التي تنشأ من استخدام أجهزة الكمبيوتر." (ويشمل أيضاً القلق والإحباط من عدم القدرة على التكيف مع تشغيل أجهزة المعلومات مثل الكمبيوتر أو الهواتف الذكية - صـ 52).<br>
+                    ويندرج تحته في الكتاب المدرسي 3 مظاهر محددة:
+                </div>
+            </div>
+
+            <div class="cards-3d-grid">
+                <div class="animated-card" onclick="toggleCard(this)">
+                    <div class="card-icon-title">
+                        <div class="circle-icon" style="background:#fef3c7; color:var(--accent);">😰</div>
+                        <div>
+                            <h4 style="font-size:1.1rem;">1. رهاب التكنولوجيا (Technophobia)</h4>
+                            <span style="font-size:0.8rem; color:var(--text-muted);">جانب نفسي (خوف وقلق)</span>
+                        </div>
+                    </div>
+                    <p class="book-exact-text" style="font-size:0.95rem;">
+                        "حالة من <strong>القلق أو الخوف</strong> من استخدام أجهزة الكمبيوتر بسبب الشعور بعدم الارتياح أو قلة الثقة في التعامل معها."
+                    </p>
+                    <div class="expandable-hint">👈 اضغط للتفاصيل</div>
+                    <div class="hidden-details">
+                        يحدث غالباً للأشخاص غير المعتادين على الأجهزة الحديثة فيشعرون بالرهبة والخوف من الضغط على زر خاطئ أو إتلاف الجهاز.
+                    </div>
+                </div>
+
+                <div class="animated-card" onclick="toggleCard(this)">
+                    <div class="card-icon-title">
+                        <div class="circle-icon" style="background:#ede9fe; color:var(--purple);">📱</div>
+                        <div>
+                            <h4 style="font-size:1.1rem;">2. الإدمان التكنولوجي (Techno-Addiction)</h4>
+                            <span style="font-size:0.8rem; color:var(--text-muted);">جانب سلوكي ونفسي</span>
+                        </div>
+                    </div>
+                    <p class="book-exact-text" style="font-size:0.95rem;">
+                        "<strong>الاعتماد المفرط</strong> على أجهزة الكمبيوتر (والهواتف الذكية)."
+                    </p>
+                    <div class="expandable-hint">👈 اضغط للتفاصيل</div>
+                    <div class="hidden-details">
+                        حالة معاكسة لرهاب التكنولوجيا، حيث يصبح الشخص منغمساً ومعتمداً بشكل مفرط على الأجهزة التكنولوجية في كل لحظة ولا يستطيع الاستغناء عنها.
+                    </div>
+                </div>
+
+                <div class="animated-card" onclick="toggleCard(this)">
+                    <div class="card-icon-title">
+                        <div class="circle-icon" style="background:#fee2e2; color:var(--danger);">👁️</div>
+                        <div>
+                            <h4 style="font-size:1.1rem;">3. اضطراب VDT (VDT Disorder)</h4>
+                            <span style="font-size:0.8rem; color:var(--text-muted);">جانب جسدي (شاشات العرض)</span>
+                        </div>
+                    </div>
+                    <p class="book-exact-text" style="font-size:0.95rem;">
+                        "<strong>تصلّب الكتف وإجهاد العين</strong> الناتج عن استخدام الكمبيوتر لفترات طويلة."
+                    </p>
+                    <div class="expandable-hint">👈 ما معنى اختصار VDT؟</div>
+                    <div class="hidden-details">
+                        يرمز VDT إلى (Visual Display Terminal) أي طرفيات العرض المرئي (الشاشات)، ويحدث الاضطراب بسبب الجلوس الطويل أمام الشاشة دون راحة.
+                    </div>
+                </div>
+            </div>
+
+            <div class="book-def-box" style="border-right-color: var(--primary); margin-top:22px;">
+                <div class="book-def-title">📌 (2) الفجوة الرقمية (Digital Divide) - سؤال متكرر في كل صفحات التدريبات (صـ 50، 51، 52):</div>
+                <div class="book-exact-text">
+                    "<strong>الفجوة (أو التفاوت) بين أولئك الذين يمكنهم الاستفادة من تكنولوجيا المعلومات والاتصالات (مثل الإنترنت وأجهزة الكمبيوتر) وأولئك الذين لا يستطيعون.</strong>"
+                </div>
+                <div class="explanation-bubble">
+                    💡 <strong>لماذا تنشأ الفجوة الرقمية؟</strong> قد تنشأ بسبب اختلاف الموقع الجغرافي (ضعف البنية التحتية للإنترنت في المناطق النائية)، أو الظروف الاقتصادية، أو العمر، أو مستوى المهارة التقنية، مما يؤدي إلى تفاوت الفرص الاقتصادية والاجتماعية.
+                </div>
+            </div>
+
+            <!-- لعبة التصنيف التفاعلية للوحدة الرابعة -->
+            <div class="sorter-game">
+                <div class="sorter-header">
+                    <h3 style="font-size:1.18rem; color:var(--text-main);">🎯 مختبر التصنيف التفاعلي للطلاب: صنّف المفهوم أو الحالة في الوحدة الرابعة</h3>
+                    <div class="sorter-score" id="u4ScoreBoard">النقاط: 0 / 8</div>
+                </div>
+
+                <p style="color:var(--text-muted); font-size:0.95rem; margin-bottom:14px;">اقرأ العبارة المعروضة واختر التصنيف الصحيح لها حسب منهج الوحدة الرابعة:</p>
+                <div class="current-token" id="u4TokenText">مجتمع جديد يتم فيه دمج الفضاء الافتراضي والفضاء الحقيقي لحل القضايا الاجتماعية وتحقيق التنمية الاقتصادية</div>
+
+                <div class="target-bins">
+                    <button class="bin-btn" onclick="checkU4Sort('society')">
+                        <div style="font-size:1.5rem; margin-bottom:4px;">🏛️</div>
+                        <h5>التطور المجتمعي و Society 5.0</h5>
+                        <span>(الصيد / الزراعي / الصناعي / المعلومات / الجيل 5)</span>
+                    </button>
+                    <button class="bin-btn" onclick="checkU4Sort('data_ai')">
+                        <div style="font-size:1.5rem; margin-bottom:4px;">🤖</div>
+                        <h5>البيانات الضخمة و AI و ML</h5>
+                        <span>(حجم وتنوع ووتيرة / تقليد الفكر / استخراج أنماط)</span>
+                    </button>
+                    <button class="bin-btn" onclick="checkU4Sort('iot_xr')">
+                        <div style="font-size:1.5rem; margin-bottom:4px;">🥽</div>
+                        <h5>إنترنت الأشياء و VR / AR</h5>
+                        <span>(ربط الأجهزة IoT / منزل ذكي / واقع افتراضي ومعزز)</span>
+                    </button>
+                    <button class="bin-btn" onclick="checkU4Sort('changes')">
+                        <div style="font-size:1.5rem; margin-bottom:4px;">⚡</div>
+                        <h5>الإجهاد التكنولوجي والفجوة الرقمية</h5>
+                        <span>(رهاب / إدمان / اضطراب VDT / فجوة رقمية)</span>
+                    </button>
+                </div>
+
+                <div class="game-status-msg" id="u4StatusMsg"></div>
+                <div style="margin-top:12px;">
+                    <button class="preset-btn" onclick="resetU4Sorter()">🔄 إعادة تشغيل اللعبة من البداية</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             القسم الخامس: تدريبات الكتاب التفاعلية (ملء الفراغات صـ 51 و 52)
+             ========================================================= -->
+        <section id="tab5" class="content-card">
+            <div class="section-badge" style="background:#ede9fe; color:#5b21b6;">المحور الخامس • حل تدريبات الكتاب المدرسي (صـ 51 و 52)</div>
+            <h2 class="section-title">تدريبات الفقرات والجداول التفاعلية من كتاب الوزارة (صـ 51 و 52)</h2>
+            <p class="section-desc">اضغط على أي فراغ للكشف عن الإجابة النموذجية أمام الطلاب أو استخدم أزرار الإظهار والإخفاء:</p>
+
+            <!-- تدريب 1: فقرة جرب بنفسك صـ 51 -->
+            <div class="lab-box" style="border-color: var(--purple);">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+                    <h3 style="font-size:1.16rem;">📝 تدريب (1) من «جرب بنفسك» صـ 51: فقرة التطور المجتمعي ومجتمع الجيل الخامس</h3>
+                    <div>
+                        <button class="preset-btn" onclick="toggleAllBlanks('passageBlanks', true)">👁️ إظهار جميع الإجابات</button>
+                        <button class="preset-btn" onclick="toggleAllBlanks('passageBlanks', false)">🙈 إخفاء لاختبار الطلاب</button>
+                    </div>
+                </div>
+                <div id="passageBlanks" style="background:var(--surface); padding:18px; border-radius:14px; border:1px solid var(--border); line-height:2.3;">
+                    • في العصور القديمة، عاش الناس على صيد الحيوانات وجمع النباتات. في مثل هذا
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[1] (ب) صيد وجمع">[1] اضغط للكشف</span>
+                    المجتمع، دعمت التقنيات مثل الفؤوس الحجرية، والأقواس والسهام، وتقنيات إشعال النار، واللغة نفسها المجتمع.<br>
+                    • في النهاية، استقرت البشرية على الأراضي الخصبة وقادت حياة زراعة المحاصيل. في هذا النوع من
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[2] (ج) زراعي">[2] اضغط للكشف</span>
+                    المجتمع، دعم المجتمع تقنيات مثل اختراع الكتابة، والأدوات الزراعية، وعلم الفلك، والري.<br>
+                    • من منتصف القرن الثامن عشر، عندما تم اختراع المحرك البخاري في بريطانيا، حدثت
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[3] (أ) صناعية (ثورة صناعية)">[3] اضغط للكشف</span>
+                    ثورة، مما أدى إلى تشكيل
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[4] (ح) صناعي (مجتمع صناعي)">[4] اضغط للكشف</span>
+                    مجتمع. تم تحفيز الأنشطة الاقتصادية من خلال تشغيل الآلات الصناعية في المصانع الكبيرة ومن خلال الإنتاج الضخم.<br>
+                    • حوالي منتصف القرن العشرين، مع تطور الوسائط مثل الراديو والتلفزيون واختراع الكمبيوتر، ظهر مجتمع
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[5] (ت) معلومات (مجتمع المعلومات)">[5] اضغط للكشف</span>.<br>
+                    • تسعى البشرية حالياً لتحقيق <u>(أ) مجتمع معلوماتي جديد يرتكز على الإنسان ويوائم التنمية الاقتصادية مع حل القضايا الاجتماعية من خلال أنظمة تدمج بشكل عالٍ الفضاء الإلكتروني (الفضاء الافتراضي) والفضاء المادي (الفضاء الحقيقي)</u>، ويُسمى هذا المجتمع بـ:
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="(أ) مجتمع الجيل الخامس (Society 5.0)">[(أ)] اضغط للكشف</span>.
+                </div>
+            </div>
+
+            <!-- تدريب 2: جدول تمرين 1 صـ 52 + المطابقات -->
+            <div class="lab-box" style="border-color: var(--secondary);">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+                    <h3 style="font-size:1.16rem;">📝 تدريب (2) من «تمرين» صـ 52: إكمال جدول التطور المجتمعي ومطابقة التقنيات</h3>
+                    <div>
+                        <button class="preset-btn" onclick="toggleAllBlanks('tableBlanks', true)">👁️ إظهار جميع الإجابات</button>
+                        <button class="preset-btn" onclick="toggleAllBlanks('tableBlanks', false)">🙈 إخفاء لاختبار الطلاب</button>
+                    </div>
+                </div>
+                <div id="tableBlanks" style="background:var(--surface); padding:18px; border-radius:14px; border:1px solid var(--border); line-height:2.2;">
+                    <strong>أولاً: إكمال جدول التطور المجتمعي (تمرين 1 صـ 52):</strong><br>
+                    • منذ ولادة البشرية، مجتمع يعيش الناس من خلال الصيد = <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[1] مجتمع الصيادين-الجامعين">[1] اضغط للكشف</span><br>
+                    • منذ حوالي 13,000 قبل الميلاد، مجتمع يقود الناس حياة مستقرة من خلال زراعة الغذاء وحصاده = <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[2] المجتمع الزراعي">[2] اضغط للكشف</span><br>
+                    • منذ منتصف القرن الثامن عشر (بعد الثورة الصناعية)، تقدم الصناعة والإنتاج الضخم بفضل المحرك البخاري والكهرباء = <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[3] المجتمع الصناعي">[3] اضغط للكشف</span><br>
+                    • منذ النصف الثاني من القرن العشرين، مجتمع تم فيه تعزيز الأتمتة من خلال تقدم أجهزة الكمبيوتر = <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[4] مجتمع المعلومات">[4] اضغط للكشف</span><br><br>
+                    <strong>ثانياً: مطابقة التقنيات (تمرين 3-(1) صـ 52):</strong><br>
+                    • [1] بيئة حيث تكون جميع الأشياء متصلة بالإنترنت وتتواصل مع بعضها البعض = <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[1] (ب) إنترنت الأشياء (IoT)">[1] اضغط للكشف</span><br>
+                    • [2] تكنولوجيا تستخدم أجهزة الكمبيوتر لتقليد اصطناعياً السلوك الفكري البشري = <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[2] (د) الذكاء الاصطناعي (AI)">[2] اضغط للكشف</span><br>
+                    • [3] تكنولوجيا لبناء بيئات افتراضية يمكن أن يعيشها البشر = <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[3] (أ) الواقع الافتراضي (VR)">[3] اضغط للكشف</span><br>
+                    • [4] تكنولوجيا تضيف معلومات (صور ثابتة، مقاطع فيديو، إلخ) باستخدام أجهزة الكمبيوتر إلى البيئات الواقعية = <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[4] (ت) الواقع المعزز (AR)">[4] اضغط للكشف</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             القسم السادس: بنك التحدي الشامل للوحدة الرابعة (15 سؤالاً)
+             ========================================================= -->
+        <section id="tab6" class="content-card">
+            <div class="section-badge" style="background:#d1fae5; color:#065f46;">المحور السادس • اختبار شامل للوحدة الرابعة</div>
+            <h2 class="section-title">بنك التحدي التفاعلي الشامل (أسئلة وتدريبات كتاب الوزارة - 15 سؤالاً)</h2>
+            <p class="section-desc">جميع الأسئلة مستخرجة من فقرات "تحدى معلوماتك" و"جرب بنفسك" و"تمرين" بالكتاب المدرسي للوحدة الرابعة (صـ 49 إلى 52):</p>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:20px; background:var(--surface-alt); padding:14px 20px; border-radius:14px; border:1px solid var(--border);">
+                <div class="filter-buttons" style="margin-bottom:0;">
+                    <button class="filter-btn active" onclick="filterQuiz('all', this)">كل المحاور (15 سؤالاً)</button>
+                    <button class="filter-btn" onclick="filterQuiz('S1', this)">المحور أ (التطور المجتمعي و Society 5.0)</button>
+                    <button class="filter-btn" onclick="filterQuiz('S2', this)">المحور ب (Big Data و AI و IoT و VR/AR)</button>
+                    <button class="filter-btn" onclick="filterQuiz('S3', this)">المحور ت (الإجهاد التكنولوجي والفجوة الرقمية)</button>
+                </div>
+                <div style="font-weight:900; color:var(--primary); font-size:1.05rem;" id="quizScoreTracker">النتيجة الحالية: 0 / 15</div>
+            </div>
+
+            <div class="quiz-container" id="quizContainer"></div>
+
+            <div style="text-align:center; margin-top:25px;">
+                <button class="btn-action" onclick="reloadQuiz()">
+                    🔄 إعادة تعيين الإجابات وبدء اختبار جديد
+                </button>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Modal القاموس السريع لمصطلحات الوحدة الرابعة -->
+    <div class="modal-backdrop" id="glossaryModal" onclick="if(event.target===this) closeGlossaryModal()">
+        <div class="modal-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); padding-bottom:14px;">
+                <h3 style="font-size:1.3rem; color:var(--primary);">📖 القاموس الشامل لمصطلحات الوحدة الرابعة (عربي / إنجليزي)</h3>
+                <button class="btn-action" style="padding:6px 14px; background:var(--danger);" onclick="closeGlossaryModal()">✖ إغلاق</button>
+            </div>
+            <p style="font-size:0.92rem; color:var(--text-muted); margin-top:10px;">ابحث بسرعة عن أي مصطلح في الوحدة الرابعة لمراجعته مع الطلاب:</p>
+            <input type="text" id="glossarySearchInput" placeholder="🔍 ابحث عن مصطلح بالعربية أو الإنجليزية (مثال: Big Data أو الفجوة الرقمية أو VDT أو IoT)..." style="width:100%; padding:12px 16px; margin-top:10px; border-radius:10px; border:2px solid var(--border); font-size:0.98rem; background:var(--surface-alt); color:var(--text-main);" oninput="renderGlossary()">
+            <div class="glossary-grid" id="glossaryGrid"></div>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // 1. أدوات المعلم (الخط، الوضع الليلي، شريط التقدم)
+        // ==========================================
+        let currentFontScale = 1;
+
+        function changeFontScale(delta) {
+            currentFontScale = Math.min(1.35, Math.max(0.85, currentFontScale + delta));
+            document.documentElement.style.setProperty('--font-scale', currentFontScale);
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            document.getElementById('darkModeBtn').innerText = isDark ? '☀️ الوضع النهاري' : '🌙 الوضع الليلي للسبورة';
+        }
+
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
+        function toggleCard(card) {
+            card.classList.toggle('active');
+        }
+
+        function toggleAllBlanks(containerId, reveal) {
+            const slots = document.querySelectorAll(`#${containerId} .blank-slot`);
+            slots.forEach(s => {
+                if (reveal) {
+                    s.classList.add('revealed');
+                    s.innerText = s.getAttribute('data-ans');
+                } else {
+                    s.classList.remove('revealed');
+                    const num = s.getAttribute('data-ans').split(' ')[0];
+                    s.innerText = `${num} اضغط للكشف`;
+                }
+            });
+        }
+
+        document.addEventListener('click', (e) => {
+            if (e.target && e.target.classList.contains('blank-slot')) {
+                const s = e.target;
+                if (s.classList.contains('revealed')) {
+                    s.innerText = s.getAttribute('data-ans');
+                } else {
+                    const num = s.getAttribute('data-ans').split(' ')[0];
+                    s.innerText = `${num} اضغط للكشف`;
+                }
+            }
+        });
+
+        // ==========================================
+        // 2. مراحل التطور المجتمعي الخمس (Society 1.0 -> 5.0)
+        // ==========================================
+        const societyData = {
+            1: {
+                title: "[1] مجتمع الصيادين-الجامعين (Hunter-gatherer society) — Society 1.0",
+                era: "منذ ولادة البشرية • مجتمع يعيش الناس فيه من خلال الصيد وجمع النباتات.",
+                tools: "الفؤوس الحجرية، الأقواس والسهام، تقنيات إشعال النار، اللغة، إلخ.",
+                note: "في هذه المرحلة اعتمد البشر على الطبيعة مباشرة والتنقل المستمر لصيد الحيوانات وجمع الثمار."
+            },
+            2: {
+                title: "[2] المجتمع الزراعي (Agrarian society) — Society 2.0",
+                era: "منذ حوالي 13,000 قبل الميلاد • مجتمع يقود الناس فيه حياة مستقرة من خلال زراعة الغذاء وحصاده.",
+                tools: "الأدوات الزراعية، الري، اختراع الكتابة، علم الفلك، إلخ.",
+                note: "استقرت البشرية على الأراضي الخصبة حول الأنهار وبدأت الحضارات الزراعية المستقرة."
+            },
+            3: {
+                title: "[3] المجتمع الصناعي (Industrialized society) — Society 3.0",
+                era: "منذ منتصف القرن الثامن عشر (بعد الثورة الصناعية في بريطانيا) • مجتمع تقدمت فيه الصناعة من خلال الإنتاج الضخم باستخدام الآلات، بفضل اختراع المحرك البخاري والكهرباء.",
+                tools: "المحركات البخارية، الآلات الصناعية، تكنولوجيا الطباعة، النقل، إلخ.",
+                note: "حفزت الآلات الصناعية في المصانع الكبيرة الأنشطة الاقتصادية والإنتاج الضخم والاستهلاك الواسع للسلع."
+            },
+            4: {
+                title: "[4] مجتمع المعلومات (Information society) — Society 4.0",
+                era: "منذ النصف الثاني من القرن العشرين • مجتمع تم فيه تعزيز الأتمتة (Automation) من خلال تقدم أجهزة الكمبيوتر وتطور الراديو والتلفزيون.",
+                tools: "أجهزة الكمبيوتر، الإنترنت، وسائل الإعلام، إلخ.",
+                note: "ربطت شبكات المعلومات العالم وزادت قيمة المعلومات والبرمجيات في إدارة الأعمال والحياة."
+            },
+            5: {
+                title: "[5] مجتمع الجيل الخامس (Society 5.0) — المجتمع المستقبلي",
+                era: "مجتمع جديد يرتكز على الإنسان ويتم فيه دمج الفضاء الافتراضي (الفضاء الإلكتروني) والفضاء الحقيقي (الفضاء المادي) لحل مختلف القضايا الاجتماعية وتحقيق التنمية الاقتصادية.",
+                tools: "إنترنت الأشياء (IoT)، البيانات الضخمة (Big Data)، الذكاء الاصطناعي (AI)، التعلم الآلي (ML)، الواقع الافتراضي والمعزز.",
+                note: "يوازن بين التنمية الاقتصادية وحل المشكلات الاجتماعية مثل شيخوخة المجتمع، الازدحام المروري، والرعاية الصحية."
+            }
+        };
+
+        function selectSociety(step) {
+            [1, 2, 3, 4, 5].forEach(k => {
+                document.getElementById('soc_' + k).classList.toggle('active', k === step);
+            });
+            const d = societyData[step];
+            document.getElementById('socDetailBox').innerHTML = `
+                <h4 style="font-size:1.22rem; color:var(--primary-dark); margin-bottom:8px;">${d.title}</h4>
+                <p style="font-weight:800; margin-bottom:8px;">📖 الحقبة الزمنية والشرح (صـ 49): "${d.era}"</p>
+                <p style="color:var(--secondary); font-weight:700; font-size:0.96rem; margin-bottom:6px;">🛠️ التقنيات والأدوات المؤثرة: ${d.tools}</p>
+                <p style="color:var(--text-muted); font-size:0.92rem;">💡 ${d.note}</p>
+            `;
+        }
+
+        // ==========================================
+        // 3. عناصر البيانات الضخمة الثلاثة (3Vs) + مختبر الحالات
+        // ==========================================
+        const bigDataElements = {
+            vol: {
+                title: "[1] حجم / كمية البيانات (Volume)",
+                desc: "تشير إلى الكميات الضخمة والهائلة من البيانات المتراكمة من الناس والأشياء والمجتمع والطبيعة عبر الإنترنت والمستشعرات.",
+                examTip: "في سؤال الكتاب (تحدى معلوماتك صـ 50): تُعرف البيانات الضخمة بأنها «كمية هائلة من البيانات التي يصعب على البشر فهمها بالكامل»."
+            },
+            var: {
+                title: "[2] تنوع البيانات (Variety)",
+                desc: "تشير إلى أن البيانات الضخمة تأتي في أشكال مختلفة وبخصائص متنوعة (نصوص، صور، مقاطع فيديو، سجلات مواقع GPS، قراءات مستشعرات IoT).",
+                examTip: "انتبه في سؤال (جرب بنفسك صـ 51): العناصر الثلاثة هي (حجم البيانات، وتنوع البيانات، ووتيرة التوليد/التحديث)."
+            },
+            vel: {
+                title: "[3] وتيرة التوليد / التحديث (Generation / Update Frequency)",
+                desc: "تشير إلى السرعة والوتيرة العالية التي تتولد بها البيانات وتتحدث باستمرار في الوقت الفعلي (Real-time) مثل بيانات حركة المرور والمنشورات اللحظية.",
+                examTip: "بفضل الوتيرة العالية للتحديث، يمكن التنبؤ بالازدحام المروري واقتراح المسارات المثلى في الوقت الفعلي (صـ 52)."
+            }
+        };
+
+        function selectBigData(key) {
+            ['vol', 'var', 'vel'].forEach(k => {
+                document.getElementById('bd_' + k).classList.toggle('active', k === key);
+            });
+            const d = bigDataElements[key];
+            document.getElementById('bdDetailBox').innerHTML = `
+                <h4 style="font-size:1.2rem; color:var(--secondary); margin-bottom:8px;">${d.title}</h4>
+                <p style="font-weight:800; margin-bottom:8px;">📖 شرح الكتاب: ${d.desc}</p>
+                <p style="color:var(--primary-dark); font-weight:700; font-size:0.95rem;">💡 ملاحظة الامتحان: ${d.examTip}</p>
+            `;
+        }
+
+        const bigDataCases = {
+            1: {
+                valid: true,
+                title: "✅ (أ) تطبيق صحيح لتحليل البيانات الضخمة في الطب:",
+                text: "الأطباء قادرون على إجراء تشخيصات سريعة ودقيقة من خلال توحيد المعلومات مثل تقدم العلاج ونتائج الاختبارات للمرضى.",
+                reason: "لأنه يعتمد على تجميع وتوحيد سجلات طبية ضخمة ومتنوعة لملايين المرضى واستخلاص أنماط التشخيص منها."
+            },
+            2: {
+                valid: true,
+                title: "✅ (ب) تطبيق صحيح لتحليل البيانات الضخمة في النقل والمرور:",
+                text: "مراقبة ظروف المرور في الوقت الفعلي، التنبؤ بالازدحام المروري، واقتراح المسارات المثلى.",
+                reason: "لأنه يحلل بيانات GPS ومستشعرات السيارات المتدفقة بوتيرة عالية في الوقت الفعلي (Real-time)."
+            },
+            3: {
+                valid: false,
+                title: "❌ (ج) العبارة غير الملائمة لتحليل البيانات الضخمة (وهي الإجابة المطلوبة في تمرين صـ 52!):",
+                text: "تحليل أنماط سلوك المستهلك بناءً على نتائج المقابلات الجماعية.",
+                reason: "المقابلات الجماعية التقليدية (Group Interviews) تضم عدداً محدوداً جداً من الأشخاص ولا تمثل بيانات ضخمة (Big Data) ذات حجم هائل وتوليد لحظي!"
+            },
+            4: {
+                valid: true,
+                title: "✅ (د) تطبيق صحيح لتحليل البيانات الضخمة على وسائل التواصل الاجتماعي:",
+                text: "تحليل الحجم الكبير للمنشورات على وسائل التواصل الاجتماعي لتحديد الكلمات الرئيسية الشائعة وفهم الاتجاهات الحالية.",
+                reason: "لأن منشورات التواصل الاجتماعي تتميز بالحجم الضخم والتنوع والوتيرة العالية على مدار الساعة."
+            }
+        };
+
+        function showBigDataCase(num) {
+            [1, 2, 3, 4].forEach(n => {
+                document.getElementById('caseBtn_' + n).classList.toggle('active', n === num);
+            });
+            const c = bigDataCases[num];
+            const box = document.getElementById('bigDataCaseOutput');
+            box.style.borderColor = c.valid ? 'var(--success)' : 'var(--danger)';
+            box.innerHTML = `
+                <h4 style="color:${c.valid ? 'var(--success)' : 'var(--danger)'}; margin-bottom:6px;">${c.title}</h4>
+                <p style="font-weight:700;">"${c.text}"</p>
+                <p style="font-size:0.9rem; color:var(--text-muted); margin-top:6px;"><strong>التفسير المنهجي:</strong> ${c.reason}</p>
+            `;
+        }
+
+        // ==========================================
+        // 4. فلتر التقنيات الست الجديدة في الوحدة الرابعة
+        // ==========================================
+        const techList = [
+            { name: "البيانات الضخمة (Big Data)", cat: "data_ai", catName: "بيانات وذكاء", badge: "cat-data", desc: "مجموعات ضخمة من البيانات في أشكال مختلفة وبخصائص متنوعة، تتكون من 3 عناصر: الحجم (Volume)، التنوع (Variety)، ووتيرة التوليد/التحديث." },
+            { name: "الذكاء الاصطناعي (AI)", cat: "data_ai", catName: "بيانات وذكاء", badge: "cat-ai", desc: "تقنية تستخدم أجهزة الكمبيوتر لتقليد السلوك الفكري البشري بشكل مصطنع (مثل القيادة الذاتية، الطب عن بُعد، الزراعة الذكية، المنزل الذكي)." },
+            { name: "التعلّم الآلي (Machine Learning)", cat: "data_ai", catName: "بيانات وذكاء", badge: "cat-ai", desc: "تقنية تتعلم فيها أجهزة الكمبيوتر من كميات كبيرة من البيانات لاستخراج القواعد والأنماط من البيانات." },
+            { name: "إنترنت الأشياء (IoT)", cat: "iot_home", catName: "أجهزة متصلة", badge: "cat-iot", desc: "تقنية تدعم الحياة اليومية من خلال ربط الأجهزة المنزلية وغيرها من العناصر بالإنترنت، مما يسمح للأجهزة بالتواصل مع بعضها البعض." },
+            { name: "المنزل الذكي (Smart Home)", cat: "iot_home", catName: "أجهزة متصلة", badge: "cat-iot", desc: "مسكن يستخدم تقنيات إنترنت الأشياء (IoT) والذكاء الاصطناعي (AI) لتوفير بيئة معيشة أكثر راحة." },
+            { name: "الواقع الافتراضي (VR)", cat: "xr", catName: "واقع افتراضي ومعزز", badge: "cat-xr", desc: "تقنية تسمح للمستخدمين بتجربة وهم الواقع في بيئة محاكاة (بناء بيئات افتراضية كاملة بواسطة الكمبيوتر)." },
+            { name: "الواقع المعزز (AR)", cat: "xr", catName: "واقع افتراضي ومعزز", badge: "cat-xr", desc: "تقنية تستخدم معالجة الكمبيوتر لتعزيز البيئة الواقعية التي تدركها الحواس البشرية بإضافة معلومات وصور وفيديو للواقع." }
+        ];
+
+        function filterTech(filter, btn) {
+            if (btn) {
+                btn.parentElement.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            }
+            const container = document.getElementById('techShowcase');
+            container.innerHTML = '';
+            const items = filter === 'all' ? techList : techList.filter(i => i.cat === filter);
+            items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'item-badge-card';
+                card.innerHTML = `
+                    <span class="item-cat ${item.badge}">${item.catName}</span>
+                    <h4 style="font-size:1.05rem; margin-bottom:6px;">${item.name}</h4>
+                    <p style="font-size:0.89rem; color:var(--text-muted);">${item.desc}</p>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // ==========================================
+        // 5. لعبة التصنيف التفاعلية للوحدة الرابعة
+        // ==========================================
+        const u4GameItems = [
+            { text: "مجتمع جديد يتم فيه دمج الفضاء الافتراضي والفضاء الحقيقي لحل القضايا الاجتماعية وتحقيق التنمية الاقتصادية", type: "society" },
+            { text: "تقنية تتعلم فيها أجهزة الكمبيوتر من كميات كبيرة من البيانات لاستخراج القواعد والأنماط من البيانات (التعلّم الآلي)", type: "data_ai" },
+            { text: "تصلّب الكتف وإجهاد العين الناتج عن استخدام الكمبيوتر لفترات طويلة (اضطراب VDT)", type: "changes" },
+            { text: "تقنية تستخدم معالجة الكمبيوتر لإضافة صور ومعلومات لتعزيز البيئة الواقعية التي تدركها الحواس البشرية (AR)", type: "iot_xr" },
+            { text: "الفجوة بين أولئك الذين يمكنهم الاستفادة من تكنولوجيا المعلومات والإنترنت وأولئك الذين لا يستطيعون (Digital Divide)", type: "changes" },
+            { text: "مسكن يستخدم تقنيات IoT و AI لتوفير بيئة معيشة أكثر راحة (المنزل الذكي)", type: "iot_xr" },
+            { text: "مجتمع ظهر منذ منتصف القرن الثامن عشر وتقدمت فيه الصناعة بالإنتاج الضخم بفضل المحرك البخاري والكهرباء", type: "society" },
+            { text: "حالة من القلق أو الخوف من استخدام أجهزة الكمبيوتر بسبب الشعور بعدم الارتياح أو قلة الثقة (Technophobia)", type: "changes" }
+        ];
+
+        let u4Idx = 0;
+        let u4Score = 0;
+
+        function initU4Sorter() {
+            if (u4Idx < u4GameItems.length) {
+                document.getElementById('u4TokenText').innerText = u4GameItems[u4Idx].text;
+                document.getElementById('u4StatusMsg').innerText = "";
+            } else {
+                document.getElementById('u4TokenText').innerText = "🏆 ممتاز! أتممت تصنيف جميع مفاهيم الوحدة الرابعة بنجاح!";
+                document.getElementById('u4StatusMsg').innerHTML = `<span style="color:var(--success);">الدرجة النهائية: ${u4Score} من ${u4GameItems.length}</span>`;
+            }
+            document.getElementById('u4ScoreBoard').innerText = `النقاط: ${u4Score} / ${u4GameItems.length}`;
+        }
+
+        function checkU4Sort(chosen) {
+            if (u4Idx >= u4GameItems.length) return;
+            const correct = u4GameItems[u4Idx].type;
+            const msg = document.getElementById('u4StatusMsg');
+            const names = {
+                society: "التطور المجتمعي ومجتمع الجيل الخامس (Society 5.0)",
+                data_ai: "البيانات الضخمة والذكاء الاصطناعي والتعلم الآلي",
+                iot_xr: "إنترنت الأشياء والمنزل الذكي و VR / AR",
+                changes: "الإجهاد التكنولوجي والفجوة الرقمية"
+            };
+            if (chosen === correct) {
+                u4Score++;
+                msg.style.color = "var(--success)";
+                msg.innerText = "✅ إجابة صحيحة ومطابقة لكتاب الوزارة!";
+            } else {
+                msg.style.color = "var(--danger)";
+                msg.innerText = `❌ غير صحيح! هذه العبارة تُصنف ضمن: ${names[correct]}.`;
+            }
+            u4Idx++;
+            setTimeout(initU4Sorter, 1200);
+        }
+
+        function resetU4Sorter() {
+            u4Idx = 0;
+            u4Score = 0;
+            initU4Sorter();
+        }
+
+        // ==========================================
+        // 6. بنك الأسئلة الشامل للوحدة الرابعة (15 سؤالاً من الكتاب صـ 50 - 52)
+        // ==========================================
+        const unit4Questions = [
+            {
+                lesson: "S1",
+                q: "1. (صـ 50 - تحدى معلوماتك) اختر التسلسل الزمني الأكثر ملاءمة للتطور المجتمعي عبر التاريخ:",
+                choices: [
+                    "أ) مجتمع الصيد والجمع ← المجتمع الزراعي ← المجتمع الصناعي ← مجتمع المعلومات",
+                    "ب) المجتمع الزراعي ← مجتمع الصيد والجمع ← مجتمع المعلومات ← المجتمع الصناعي",
+                    "ج) المجتمع الزراعي ← مجتمع الصيد والجمع ← المجتمع الصناعي ← مجتمع المعلومات",
+                    "د) مجتمع الصيد والجمع ← المجتمع الزراعي ← مجتمع المعلومات ← المجتمع الصناعي"
+                ],
+                correct: 0,
+                reason: "التسلسل التاريخي الصحيح في الكتاب (صـ 49 و50): مجتمع الصيادين-الجامعين (منذ ولادة البشرية) ← المجتمع الزراعي (منذ 13,000 ق.م) ← المجتمع الصناعي (منتصف القرن 18) ← مجتمع المعلومات (النصف الثاني من القرن 20) ← ثم مجتمع الجيل الخامس."
+            },
+            {
+                lesson: "S1",
+                q: "2. (صـ 49 و 52 - تمرين 1) في أي مجتمع تقدمت الصناعة من خلال الإنتاج الضخم باستخدام الآلات بفضل اختراع المحرك البخاري والكهرباء منذ منتصف القرن الثامن عشر؟",
+                choices: [
+                    "أ) مجتمع الصيادين-الجامعين (Hunter-gatherer society)",
+                    "ب) المجتمع الزراعي (Agrarian society)",
+                    "ج) المجتمع الصناعي (Industrialized society)",
+                    "د) مجتمع المعلومات (Information society)"
+                ],
+                correct: 2,
+                reason: "المجتمع الصناعي ظهر منذ منتصف القرن الثامن عشر بعد الثورة الصناعية في بريطانيا بفضل اختراع المحرك البخاري والكهرباء والآلات الصناعية."
+            },
+            {
+                lesson: "S1",
+                q: "3. (صـ 49 و 52 - تمرين 1) المجتمع الذي ظهر منذ النصف الثاني من القرن العشرين وتم فيه تعزيز الأتمتة (Automation) من خلال تقدم أجهزة الكمبيوتر والإنترنت هو:",
+                choices: [
+                    "أ) مجتمع المعلومات (Information society)",
+                    "ب) المجتمع الزراعي (Agrarian society)",
+                    "ج) مجتمع الصيادين-الجامعين",
+                    "د) المجتمع الحجري"
+                ],
+                correct: 0,
+                reason: "مجتمع المعلومات (Information society) بدأ منذ النصف الثاني من القرن العشرين، وتم فيه تعزيز الأتمتة بفضل تقدم أجهزة الكمبيوتر والإنترنت."
+            },
+            {
+                lesson: "S1",
+                q: "4. (صـ 49 و 51 - جرب بنفسك 1) ما هو المصطلح الذي يصف مجتمعاً معلوماتياً جديداً يرتكز على الإنسان ويدمج الفضاء الافتراضي (الإلكتروني) والفضاء الحقيقي (المادي) لحل القضايا الاجتماعية وتحقيق التنمية الاقتصادية؟",
+                choices: [
+                    "أ) مجتمع الجيل الخامس (Society 5.0)",
+                    "ب) المجتمع الصناعي الأول",
+                    "ج) المجتمع الزراعي التقليدي",
+                    "د) الفجوة الرقمية (Digital Divide)"
+                ],
+                correct: 0,
+                reason: "مجتمع الجيل الخامس (Society 5.0) هو المجتمع المستقبلي الذي يدمج الفضاء الافتراضي والفضاء الحقيقي لحل القضايا الاجتماعية وتحقيق التنمية الاقتصادية."
+            },
+            {
+                lesson: "S2",
+                q: "5. (صـ 49 و 51 - جرب بنفسك 2) تتكون «البيانات الضخمة» (Big Data) من ثلاثة عناصر أساسية؛ أي مما يلي يمثل هذه العناصر الثلاثة بدقة؟",
+                choices: [
+                    "أ) حجم البيانات (Volume)، وتنوع البيانات (Variety)، ووتيرة التوليد/التحديث (Generation/update frequency)",
+                    "ب) السرية (Confidentiality)، والسلامة (Integrity)، والتوافرية (Availability)",
+                    "ج) الفؤوس الحجرية، والمحركات البخارية، والري الزراعي",
+                    "د) عرض النطاق، سرعة المعالج، وحجم الشاشة"
+                ],
+                correct: 0,
+                reason: "نص الكتاب (صـ 49): تتكون البيانات الضخمة من ثلاثة عناصر: حجم البيانات (Volume)، وتنوع البيانات (Variety)، ووتيرة التوليد/التحديث (Generation/update frequency)."
+            },
+            {
+                lesson: "S2",
+                q: "6. (صـ 51 - جرب بنفسك 2-(2)) اختر الخيار الذي ليس خاصية من خصائص البيانات الضخمة الثلاث من الخيارات التالية:",
+                choices: [
+                    "أ) البيانات لها تنوع (Variety)",
+                    "ب) كمية / حجم البيانات (Volume)",
+                    "ج) أنواع البيانات (Data types)",
+                    "د) البيانات لها وتيرة عالية (High frequency)"
+                ],
+                correct: 2,
+                reason: "سؤال مباشر من الكتاب (صـ 51): الخصائص الثلاث للبيانات الضخمة هي: التنوع (أ)، كمية/حجم البيانات (ب)، والوتيرة العالية (ث). أما (ت: أنواع البيانات) فليست اسم الخاصية القياسية."
+            },
+            {
+                lesson: "S2",
+                q: "7. (صـ 50 - تحدى معلوماتك 2) ما اسم التقنية التي تتعلم فيها أجهزة الكمبيوتر وتحلل كميات كبيرة من البيانات لاستخراج القواعد والأنماط من البيانات؟",
+                choices: [
+                    "أ) التعلّم الآلي (Machine Learning)",
+                    "ب) الواقع الافتراضي (Virtual Reality)",
+                    "ج) إنترنت الأشياء (IoT)",
+                    "د) اضطراب VDT"
+                ],
+                correct: 0,
+                reason: "التعلّم الآلي (Machine Learning) هو التقنية التي تتعلم فيها الآلات وأجهزة الكمبيوتر من كميات كبيرة من البيانات لاستخراج القواعد والأنماط."
+            },
+            {
+                lesson: "S2",
+                q: "8. (صـ 49 و 52 - تمرين 3) التقنية التي تستخدم أجهزة الكمبيوتر لتقليد السلوك الفكري البشري بشكل مصطنع (ومن أمثلتها القيادة الذاتية والطب عن بُعد والزراعة الذكية) تُسمى:",
+                choices: [
+                    "أ) الذكاء الاصطناعي (Artificial Intelligence - AI)",
+                    "ب) الواقع المعزز (Augmented Reality - AR)",
+                    "ج) الفجوة الرقمية (Digital Divide)",
+                    "د) رهاب التكنولوجيا (Technophobia)"
+                ],
+                correct: 0,
+                reason: "الذكاء الاصطناعي (AI) هو تقنية تستخدم أجهزة الكمبيوتر لتقليد السلوك الفكري البشري بشكل مصطنع."
+            },
+            {
+                lesson: "S2",
+                q: "9. (صـ 50 و 51 - جرب بنفسك 2) التقنية التي تربط جميع الأشياء والأجهزة المنزلية بالإنترنت للتواصل مع بعضها هي [1]، والمسكن الذي يستخدم تقنيات IoT و AI لتحقيق بيئة معيشة أكثر راحة يُسمى [2]:",
+                choices: [
+                    "أ) [1] إنترنت الأشياء (IoT) — [2] المنزل الذكي (Smart Home)",
+                    "ب) [1] الواقع الافتراضي (VR) — [2] المجتمع الزراعي",
+                    "ج) [1] البيانات الضخمة — [2] اضطراب VDT",
+                    "د) [1] التعلّم الآلي — [2] الفجوة الرقمية"
+                ],
+                correct: 0,
+                reason: "إنترنت الأشياء (IoT) يربط الأجهزة بالإنترنت لتتواصل معاً، والمنزل الذكي (Smart Home) هو مسكن يوظف تقنيتي IoT و AI لتوفير بيئة معيشة أكثر راحة."
+            },
+            {
+                lesson: "S2",
+                q: "10. (صـ 50 و 52 - تمرين 3) قارن بدقة: التكنولوجيا المستخدمة لبناء «بيئات افتراضية» يعيشها البشر في محاكاة هي [1]، بينما التكنولوجيا التي تضيف معلومات وصوراً إلى «البيئات الواقعية» لتعزيزها هي [2]:",
+                choices: [
+                    "أ) [1] الواقع الافتراضي (VR) — [2] الواقع المعزز (AR)",
+                    "ب) [1] الواقع المعزز (AR) — [2] الواقع الافتراضي (VR)",
+                    "ج) [1] إنترنت الأشياء (IoT) — [2] التعلّم الآلي (ML)",
+                    "د) [1] البيانات الضخمة — [2] الذكاء الاصطناعي"
+                ],
+                correct: 0,
+                reason: "الواقع الافتراضي (VR) ينشئ فضاءً افتراضياً بالكامل لتجربة وهم الواقع في بيئة محاكاة، بينما الواقع المعزز (AR) يضيف معلومات وصوراً فوق البيئة الواقعية الحقيقية لتعزيزها."
+            },
+            {
+                lesson: "S2",
+                q: "11. (صـ 52 - تمرين 3-(2)) اختر العبارة الواحدة الأكثر «عدم ملاءمة» فيما يتعلق بتحليل البيانات الضخمة (Big Data):",
+                choices: [
+                    "أ) الأطباء قادرون على إجراء تشخيصات سريعة ودقيقة من خلال توحيد معلومات تقدم العلاج ونتائج الاختبارات للمرضى",
+                    "ب) مراقبة ظروف المرور في الوقت الفعلي، التنبؤ بالازدحام المروري، واقتراح المسارات المثلى",
+                    "ج) تحليل أنماط سلوك المستهلك بناءً على نتائج المقابلات الجماعية",
+                    "د) تحليل الحجم الكبير للمنشورات على وسائل التواصل الاجتماعي لتحديد الكلمات الرئيسية الشائعة وفهم الاتجاهات الحالية"
+                ],
+                correct: 2,
+                reason: "تحليل نتائج المقابلات الجماعية (ج) يعتمد على عينة صغيرة ومحدودة جداً، فلا يُعد من تطبيقات تحليل البيانات الضخمة (Big Data)."
+            },
+            {
+                lesson: "S3",
+                q: "12. (صـ 50 و 52 - تمرين 4) المصطلح العام للمشاكل العقلية والجسدية التي تنشأ من استخدام أجهزة الكمبيوتر (والقلق والإحباط من عدم القدرة على التكيف مع تشغيل أجهزة المعلومات) يُسمى:",
+                choices: [
+                    "أ) الإجهاد التكنولوجي (Technostress)",
+                    "ب) الفجوة الرقمية (Digital Divide)",
+                    "ج) الواقع المعزز (Augmented Reality)",
+                    "د) مجتمع الجيل الخامس (Society 5.0)"
+                ],
+                correct: 0,
+                reason: "الإجهاد التكنولوجي (Technostress) هو المصطلح العام للمشاكل العقلية والجسدية الناتجة عن استخدام أجهزة الكمبيوتر أو القلق والإحباط من عدم القدرة على التكيف معها."
+            },
+            {
+                lesson: "S3",
+                q: "13. (صـ 50 - النقاط الرئيسية) ما الفرق بين «رهاب التكنولوجيا» (Technophobia) و«الإدمان التكنولوجي» (Techno-Addiction)؟",
+                choices: [
+                    "أ) رهاب التكنولوجيا هو القلق أو الخوف من استخدام أجهزة الكمبيوتر لقلة الثقة، بينما الإدمان التكنولوجي هو الاعتماد المفرط على أجهزة الكمبيوتر",
+                    "ب) كلاهما يعني آلام الكتف والرقبة الناتجة عن الشاشات",
+                    "ج) رهاب التكنولوجيا هو سرعة الكتابة، والإدمان التكنولوجي هو انقطاع الإنترنت",
+                    "د) رهاب التكنولوجيا يصيب الشبكات، والإدمان التكنولوجي يصيب الطابعات"
+                ],
+                correct: 0,
+                reason: "نص الكتاب (صـ 50): رهاب التكنولوجيا (Technophobia) هو حالة من القلق أو الخوف من استخدام الكمبيوتر لعدم الارتياح أو قلة الثقة، أما الإدمان التكنولوجي (Techno-Addiction) فهو الاعتماد المفرط على أجهزة الكمبيوتر."
+            },
+            {
+                lesson: "S3",
+                q: "14. (صـ 50 - النقاط الرئيسية) ما هو المصطلح الطبي/التقني الذي يصف «تصلّب الكتف وإجهاد العين الناتج عن استخدام الكمبيوتر لفترات طويلة»؟",
+                choices: [
+                    "أ) اضطراب VDT (VDT Disorder)",
+                    "ب) الفجوة الرقمية (Digital Divide)",
+                    "ج) التعلّم الآلي (Machine Learning)",
+                    "د) المنزل الذكي (Smart Home)"
+                ],
+                correct: 0,
+                reason: "اضطراب VDT (VDT Disorder) هو تصلّب الكتف وإجهاد العين الناتج عن الجلوس واستخدام شاشات الكمبيوتر لفترات طويلة."
+            },
+            {
+                lesson: "S3",
+                q: "15. (صـ 50، 51، 52 - تحدى معلوماتك وجرب بنفسك) ما هو المصطلح الذي يشير إلى التفاوت أو الفجوة بين أولئك الذين يمكنهم الاستفادة من تكنولوجيا المعلومات والاتصالات (مثل الإنترنت والكمبيوتر) وأولئك الذين لا يستطيعون؟",
+                choices: [
+                    "أ) الفجوة الرقمية (Digital Divide)",
+                    "ب) الإجهاد التكنولوجي (Technostress)",
+                    "ج) اضطراب VDT (VDT Disorder)",
+                    "د) الإدمان التكنولوجي (Techno-Addiction)"
+                ],
+                correct: 0,
+                reason: "الفجوة الرقمية (Digital Divide) هي التفاوت أو الفجوة بين أولئك الذين يمكنهم استخدام والاستفادة من تكنولوجيا المعلومات والاتصالات وأولئك الذين لا يستطيعون."
+            }
+        ];
+
+        let currentQuizFilter = 'all';
+        let answeredCorrectly = new Set();
+
+        function renderExam() {
+            const container = document.getElementById('quizContainer');
+            container.innerHTML = "";
+
+            unit4Questions.forEach((item, qIdx) => {
+                if (currentQuizFilter !== 'all' && item.lesson !== currentQuizFilter) return;
+                const qBox = document.createElement('div');
+                qBox.className = 'quiz-item-box';
+                qBox.innerHTML = `
+                    <div class="q-title">${item.q}</div>
+                    <div class="q-choices" id="choiceGroup_${qIdx}">
+                        ${item.choices.map((c, cIdx) => `
+                            <button class="choice-btn" onclick="validateAnswer(${qIdx}, ${cIdx}, this)">${c}</button>
+                        `).join('')}
+                    </div>
+                    <div class="choice-feedback" id="feedback_${qIdx}">📖 <strong>الشرح المنهجي من كتاب الوزارة:</strong> ${item.reason}</div>
+                `;
+                container.appendChild(qBox);
+            });
+            updateQuizScoreDisplay();
+        }
+
+        function filterQuiz(lesson, btn) {
+            currentQuizFilter = lesson;
+            if (btn) {
+                btn.parentElement.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            }
+            renderExam();
+        }
+
+        function validateAnswer(qIdx, cIdx, btn) {
+            const group = document.getElementById(`choiceGroup_${qIdx}`);
+            const buttons = group.querySelectorAll('.choice-btn');
+            const feedback = document.getElementById(`feedback_${qIdx}`);
+            const correctIdx = unit4Questions[qIdx].correct;
+
+            buttons.forEach(b => b.disabled = true);
+
+            if (cIdx === correctIdx) {
+                btn.classList.add('correct-choice');
+                answeredCorrectly.add(qIdx);
+            } else {
+                btn.classList.add('wrong-choice');
+                buttons[correctIdx].classList.add('correct-choice');
+            }
+
+            feedback.style.display = 'block';
+            updateQuizScoreDisplay();
+        }
+
+        function updateQuizScoreDisplay() {
+            document.getElementById('quizScoreTracker').innerText = `النتيجة الحالية: ${answeredCorrectly.size} / ${unit4Questions.length}`;
+        }
+
+        function reloadQuiz() {
+            answeredCorrectly.clear();
+            renderExam();
+        }
+
+        // ==========================================
+        // 7. قاموس مصطلحات الوحدة الرابعة (Modal)
+        // ==========================================
+        const glossaryTerms = [
+            { ar: "مجتمع الصيادين-الجامعين", en: "Hunter-gatherer society (Society 1.0)", desc: "منذ ولادة البشرية؛ مجتمع يعيش الناس فيه من خلال الصيد وجمع النباتات (الفؤوس الحجرية، الأقواس، النار، اللغة)." },
+            { ar: "المجتمع الزراعي", en: "Agrarian society (Society 2.0)", desc: "منذ حوالي 13,000 ق.م؛ مجتمع يقود الناس فيه حياة مستقرة من خلال زراعة الغذاء وحصاده (الأدوات الزراعية، الري، الكتابة)." },
+            { ar: "المجتمع الصناعي", en: "Industrialized society (Society 3.0)", desc: "منذ منتصف القرن 18 بعد الثورة الصناعية؛ تقدمت فيه الصناعة بالإنتاج الضخم بفضل المحرك البخاري والكهرباء." },
+            { ar: "مجتمع المعلومات", en: "Information society (Society 4.0)", desc: "منذ النصف الثاني من القرن 20؛ مجتمع تم فيه تعزيز الأتمتة من خلال تقدم أجهزة الكمبيوتر والإنترنت." },
+            { ar: "مجتمع الجيل الخامس", en: "Society 5.0", desc: "مجتمع جديد يدمج الفضاء الافتراضي (الإلكتروني) والفضاء الحقيقي (المادي) لحل القضايا الاجتماعية وتحقيق التنمية الاقتصادية." },
+            { ar: "الفضاء الافتراضي / الإلكتروني", en: "Cyberspace / Virtual Space", desc: "البيئة الرقمية على شبكات الكمبيوتر والإنترنت حيث تُجمع وتُحلل البيانات الضخمة بواسطة الذكاء الاصطناعي." },
+            { ar: "الفضاء الحقيقي / المادي", en: "Physical Space / Real Space", desc: "العالم الواقعي الملموس الذي يعيش فيه البشر وتعمل فيه الأجهزة والمستشعرات." },
+            { ar: "البيانات الضخمة", en: "Big Data", desc: "مجموعات ضخمة من البيانات بأشكال وخصائص متنوعة، تتكون من 3 عناصر: الحجم (Volume)، التنوع (Variety)، ووتيرة التوليد/التحديث." },
+            { ar: "حجم البيانات", en: "Volume", desc: "أحد عناصر البيانات الضخمة الثلاثة، ويشير إلى الكمية الهائلة من البيانات المتراكمة." },
+            { ar: "تنوع البيانات", en: "Variety", desc: "أحد عناصر البيانات الضخمة الثلاثة، ويشير إلى تعدد أشكال البيانات (نصوص، صور، فيديو، صوت، مواقع)." },
+            { ar: "وتيرة التوليد / التحديث", en: "Generation / Update Frequency", desc: "أحد عناصر البيانات الضخمة الثلاثة، ويشير إلى السرعة والتدفق المستمر للبيانات في الوقت الفعلي." },
+            { ar: "الذكاء الاصطناعي", en: "Artificial Intelligence (AI)", desc: "تقنية تستخدم أجهزة الكمبيوتر لتقليد السلوك الفكري البشري بشكل مصطنع (كالقيادة الذاتية والطب عن بُعد)." },
+            { ar: "التعلّم الآلي", en: "Machine Learning (ML)", desc: "تقنية تتعلم فيها أجهزة الكمبيوتر من كميات كبيرة من البيانات لاستخراج القواعد والأنماط." },
+            { ar: "إنترنت الأشياء", en: "Internet of Things (IoT)", desc: "تقنية تدعم الحياة اليومية بربط الأجهزة المنزلية وغيرها من العناصر بالإنترنت لتتواصل مع بعضها البعض." },
+            { ar: "المنزل الذكي", en: "Smart Home", desc: "مسكن يستخدم تقنيات IoT و AI لتوفير بيئة معيشة أكثر راحة وأماناً." },
+            { ar: "الواقع الافتراضي", en: "Virtual Reality (VR)", desc: "تقنية تسمح للمستخدمين بتجربة وهم الواقع في بيئة محاكاة افتراضية بالكامل." },
+            { ar: "الواقع المعزز", en: "Augmented Reality (AR)", desc: "تقنية تستخدم معالجة الكمبيوتر لتعزيز البيئة الواقعية التي تدركها الحواس بإضافة صور ومعلومات رقمية للواقع." },
+            { ar: "الإجهاد التكنولوجي", en: "Technostress", desc: "المصطلح العام للمشاكل العقلية والجسدية التي تنشأ من استخدام أجهزة الكمبيوتر أو عدم القدرة على التكيف معها." },
+            { ar: "رهاب التكنولوجيا", en: "Technophobia", desc: "حالة من القلق أو الخوف من استخدام أجهزة الكمبيوتر بسبب الشعور بعدم الارتياح أو قلة الثقة." },
+            { ar: "الإدمان التكنولوجي", en: "Techno-Addiction", desc: "الاعتماد المفرط على أجهزة الكمبيوتر والهواتف الذكية." },
+            { ar: "اضطراب VDT", en: "VDT Disorder", desc: "تصلّب الكتف وإجهاد العين الناتج عن استخدام شاشات الكمبيوتر لفترات طويلة." },
+            { ar: "الفجوة الرقمية", en: "Digital Divide", desc: "الفجوة أو التفاوت بين أولئك الذين يمكنهم الاستفادة من تكنولوجيا المعلومات والاتصالات وأولئك الذين لا يستطيعون." }
+        ];
+
+        function openGlossaryModal() {
+            document.getElementById('glossaryModal').classList.add('open');
+            renderGlossary();
+        }
+
+        function closeGlossaryModal() {
+            document.getElementById('glossaryModal').classList.remove('open');
+        }
+
+        function renderGlossary() {
+            const q = (document.getElementById('glossarySearchInput').value || '').trim().toLowerCase();
+            const grid = document.getElementById('glossaryGrid');
+            grid.innerHTML = '';
+            const filtered = glossaryTerms.filter(t => t.ar.includes(q) || t.en.toLowerCase().includes(q) || t.desc.includes(q));
+            filtered.forEach(t => {
+                const div = document.createElement('div');
+                div.className = 'glossary-item';
+                div.innerHTML = `
+                    <div style="font-weight:900; color:var(--primary); font-size:0.98rem;">${t.ar}</div>
+                    <div style="font-size:0.82rem; font-weight:700; color:var(--secondary); direction:ltr; text-align:right; margin-bottom:4px;">${t.en}</div>
+                    <div style="font-size:0.86rem; color:var(--text-muted);">${t.desc}</div>
+                `;
+                grid.appendChild(div);
+            });
+        }
+
+        // ==========================================
+        // تهيئة المنصة عند التحميل
+        // ==========================================
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section.content-card');
+            const navLinks = document.querySelectorAll('.nav-glass .nav-item');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        navLinks.forEach(link => {
+                            link.classList.toggle('active', link.getAttribute('data-target') === id);
+                        });
+                    }
+                });
+            }, { rootMargin: '-80px 0px -50% 0px', threshold: 0 });
+
+            sections.forEach(s => observer.observe(s));
+
+            selectSociety(1);
+            selectBigData('vol');
+            showBigDataCase(1);
+            filterTech('all', null);
+            initU4Sorter();
+            renderExam();
+        });
+    </script>
+
+</body>
+</html>
