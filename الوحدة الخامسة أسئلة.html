@@ -1,0 +1,2669 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة الوحدة الخامسة التفاعلية: الاتصالات (50 سؤالاً + ملخص ومخططات الشرح)</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #3730a3;
+            --primary-light: #eef2ff;
+            --accent: #f59e0b;
+            --success: #16a34a;
+            --success-bg: #dcfce7;
+            --danger: #dc2626;
+            --danger-bg: #fee2e2;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --code-bg: #f1f5f9;
+            --font-scale: 1;
+        }
+
+        body.dark-mode {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #1e1b4b;
+            --accent: #fbbf24;
+            --success: #22c55e;
+            --success-bg: rgba(34, 197, 94, 0.18);
+            --danger: #ef4444;
+            --danger-bg: rgba(239, 68, 68, 0.18);
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --code-bg: #0f172a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', 'Cairo', 'Inter', Tahoma, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 18px;
+            min-height: 100vh;
+            transition: background-color 0.25s ease, color 0.25s ease;
+            font-size: calc(16px * var(--font-scale));
+        }
+
+        .container {
+            max-width: 1040px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 45%, #4f46e5 100%);
+            color: white;
+            padding: 26px 24px;
+            border-radius: 22px;
+            text-align: center;
+            box-shadow: 0 12px 28px -6px rgba(79, 70, 229, 0.35);
+            margin-bottom: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header h1 {
+            font-size: calc(1.62rem * var(--font-scale));
+            font-weight: 900;
+            margin-bottom: 6px;
+        }
+
+        header p {
+            font-size: calc(0.95rem * var(--font-scale));
+            color: #e0e7ff;
+            direction: ltr;
+            margin-bottom: 14px;
+        }
+
+        .header-badges {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .header-pill {
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #fff;
+            padding: 4px 14px;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+
+        /* Teacher & Controls Toolbar */
+        .teacher-toolbar {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 14px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.04);
+        }
+
+        .toolbar-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tool-btn {
+            background: var(--code-bg);
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 7px 13px;
+            border-radius: 10px;
+            font-size: 0.86rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .tool-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .tool-btn.active-mode {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+
+        .tool-btn.study-btn {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #fff;
+            border: none;
+        }
+
+        .tool-btn.study-btn:hover {
+            opacity: 0.93;
+            color: #fff;
+        }
+
+        .search-box {
+            position: relative;
+            flex: 1;
+            min-width: 200px;
+            max-width: 310px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 7px 14px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--code-bg);
+            color: var(--text);
+            font-size: 0.86rem;
+            font-weight: 600;
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary);
+        }
+
+        /* Lesson Filter Tabs */
+        .lesson-tabs {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 6px;
+            margin-bottom: 14px;
+            scrollbar-width: thin;
+        }
+
+        .lesson-tab {
+            background: var(--card);
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            padding: 8px 14px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .lesson-tab:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .lesson-tab.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 14px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 18px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: block;
+        }
+
+        .stat-val {
+            font-size: calc(1.3rem * var(--font-scale));
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .stat-val.high {
+            color: var(--accent);
+        }
+
+        .btn-index {
+            background: var(--primary-light);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 0.92rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-index:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 6px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: width 0.3s ease;
+        }
+
+        /* Question Card */
+        .q-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 26px;
+            box-shadow: 0 10px 20px -3px rgba(0,0,0,0.06);
+            margin-bottom: 24px;
+        }
+
+        .q-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .badge-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .q-badge {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.86rem;
+            font-weight: 800;
+        }
+
+        .source-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .source-badge.book {
+            background: #fef3c7;
+            color: #b45309;
+            border: 1px solid #fde68a;
+        }
+
+        .source-badge.extra {
+            background: #e0f2fe;
+            color: #0369a1;
+            border: 1px solid #bae6fd;
+        }
+
+        body.dark-mode .source-badge.book {
+            background: rgba(245, 158, 11, 0.2);
+            color: #fcd34d;
+            border-color: rgba(245, 158, 11, 0.4);
+        }
+
+        body.dark-mode .source-badge.extra {
+            background: rgba(14, 165, 233, 0.2);
+            color: #7dd3fc;
+            border-color: rgba(14, 165, 233, 0.4);
+        }
+
+        .q-text-ar {
+            font-size: calc(1.22rem * var(--font-scale));
+            font-weight: 800;
+            line-height: 1.8;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .q-text-en {
+            font-size: calc(1.02rem * var(--font-scale));
+            font-weight: 600;
+            line-height: 1.6;
+            margin-bottom: 18px;
+            color: var(--text-muted);
+            direction: ltr;
+            text-align: left;
+            border-left: 3px solid var(--primary);
+            padding-left: 12px;
+        }
+
+        /* Embedded Textbook Diagrams */
+        .diagram-box {
+            background: var(--code-bg);
+            border: 2px dashed var(--border);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .diagram-title {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .flow-grid {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .flow-node {
+            background: var(--card);
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 10px 14px;
+            min-width: 125px;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .flow-node .tag {
+            background: var(--primary);
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-bottom: 4px;
+        }
+
+        .flow-arrow {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--accent);
+        }
+
+        /* Options */
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .opt-btn {
+            background: var(--code-bg);
+            border: 2px solid var(--border);
+            padding: 14px 18px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            text-align: right;
+        }
+
+        .opt-btn:hover:not(:disabled) {
+            background: var(--primary-light);
+            border-color: var(--primary);
+            transform: translateX(-4px);
+        }
+
+        .opt-btn.correct {
+            background: var(--success-bg) !important;
+            border-color: var(--success) !important;
+        }
+
+        .opt-btn.wrong {
+            background: var(--danger-bg) !important;
+            border-color: var(--danger) !important;
+        }
+
+        .opt-ar {
+            font-size: calc(1.04rem * var(--font-scale));
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .opt-en {
+            font-size: calc(0.9rem * var(--font-scale));
+            font-weight: 600;
+            color: var(--text-muted);
+            direction: ltr;
+            text-align: left;
+        }
+
+        .opt-btn.correct .opt-ar, .opt-btn.correct .opt-en {
+            color: var(--success) !important;
+        }
+
+        .opt-btn.wrong .opt-ar, .opt-btn.wrong .opt-en {
+            color: var(--danger) !important;
+        }
+
+        .explanation {
+            margin-top: 20px;
+            padding: 16px 18px;
+            border-radius: 12px;
+            font-size: calc(0.98rem * var(--font-scale));
+            line-height: 1.75;
+            display: none;
+            background: var(--code-bg);
+            border-right: 5px solid var(--primary);
+        }
+
+        .exp-en {
+            direction: ltr;
+            text-align: left;
+            color: var(--text-muted);
+            margin-top: 8px;
+            font-size: calc(0.9rem * var(--font-scale));
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 24px;
+        }
+
+        .btn-nav {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-nav:hover:not(:disabled) {
+            background: var(--primary-dark);
+        }
+
+        .btn-nav:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .btn-retry-q {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: 0.86rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .btn-retry-q:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Modals */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 23, 42, 0.65);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            background: var(--card);
+            color: var(--text);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 920px;
+            max-height: 88vh;
+            overflow-y: auto;
+            padding: 26px;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.25);
+            border: 1px solid var(--border);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .modal-header h3 {
+            font-size: 1.22rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .close-btn {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+        }
+
+        .close-btn:hover {
+            background: var(--danger-bg);
+            color: var(--danger);
+        }
+
+        .legend {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .legend-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 4px;
+        }
+
+        .grid-index {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .index-pill {
+            background: var(--code-bg);
+            border: 2px solid var(--border);
+            padding: 9px 2px;
+            border-radius: 10px;
+            font-size: 0.92rem;
+            font-weight: 700;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            color: var(--text);
+            position: relative;
+        }
+
+        .index-pill:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .index-pill.active {
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.25);
+            font-weight: 900;
+        }
+
+        .index-pill.solved-correct {
+            background: var(--success-bg) !important;
+            border-color: var(--success) !important;
+            color: var(--success) !important;
+        }
+
+        .index-pill.solved-wrong {
+            background: var(--danger-bg) !important;
+            border-color: var(--danger) !important;
+            color: var(--danger) !important;
+        }
+
+        /* Study Guide Modal Styles */
+        .study-tabs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .study-tab-btn {
+            background: var(--code-bg);
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: 0.86rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .study-tab-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .study-pane {
+            display: none;
+            line-height: 1.75;
+        }
+
+        .study-pane.active {
+            display: block;
+        }
+
+        .study-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0 18px;
+            font-size: 0.9rem;
+        }
+
+        .study-table th, .study-table td {
+            border: 1px solid var(--border);
+            padding: 10px 12px;
+            text-align: right;
+        }
+
+        .study-table th {
+            background: var(--primary-light);
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        .calc-box {
+            background: var(--code-bg);
+            border: 2px solid var(--primary);
+            border-radius: 14px;
+            padding: 16px;
+            margin-top: 14px;
+        }
+
+        .calc-controls {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .calc-controls select {
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .results-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .trophy {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+
+        .score-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            border: 6px solid var(--primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 20px auto;
+        }
+
+        .score-num {
+            font-size: 2.3rem;
+            font-weight: 900;
+            color: var(--primary);
+        }
+
+        .btn-restart {
+            background: var(--accent);
+            color: #000;
+            border: none;
+            padding: 14px 34px;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.2s;
+        }
+
+        .btn-restart:hover {
+            transform: scale(1.03);
+        }
+
+        @media (max-width: 640px) {
+            body { padding: 10px; }
+            .q-card { padding: 18px; }
+            .stats-bar { padding: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>📡 منصة الوحدة الخامسة التفاعلية: الاتصالات (50 سؤالاً)</h1>
+        <p>Unit 5 Interactive Platform: Development of Communication, Communication Forms (Direct/Indirect, Sync/Async), Internet Tools (Email To/CC/BCC, BBS, Blog) &amp; Online Characteristics</p>
+        <div class="header-badges">
+            <span class="header-pill">📖 شاملة جميع أسئلة كتاب الوزارة (صفحات 53 - 60)</span>
+            <span class="header-pill">⭐ أسئلة إضافية ومخططات تفاعلية للشرح</span>
+            <span class="header-pill">👨‍🏫 وضع خاص للمعلم لشرح الدروس للطلاب</span>
+        </div>
+    </header>
+
+    <!-- Teacher & Classroom Toolbar -->
+    <div class="teacher-toolbar">
+        <div class="toolbar-group">
+            <button class="tool-btn study-btn" id="openStudyBtn">
+                <span>📚</span>
+                <span>ملخص ومخططات الوحدة الخامسة للشرح</span>
+            </button>
+            <button class="tool-btn" id="teacherModeBtn" title="إظهار الشرح الفوري ومفتاح الإجابة للشرح أمام الطلاب">
+                <span>👨‍🏫</span>
+                <span id="teacherModeLabel">وضع شرح المعلم: مغلق</span>
+            </button>
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 ابحث في الـ 50 سؤالاً (مثال: مورس، غوتنبرغ، BCC، متزامن، مدونة)...">
+        </div>
+
+        <div class="toolbar-group">
+            <button class="tool-btn" id="zoomInBtn" title="تكبير الخط للشاشة الذكية">A+</button>
+            <button class="tool-btn" id="zoomOutBtn" title="تصغير الخط">A-</button>
+            <button class="tool-btn" id="darkModeBtn" title="تبديل الوضع الليلي">🌙</button>
+        </div>
+    </div>
+
+    <!-- Lesson Filter Tabs -->
+    <div class="lesson-tabs" id="lessonTabs">
+        <button class="lesson-tab active" data-filter="all">الكل (50 سؤالاً)</button>
+        <button class="lesson-tab" data-filter="1">الدرس 1: تطوير وسائل الاتصال (16)</button>
+        <button class="lesson-tab" data-filter="2">الدرس 2: الاتصال وأشكاله (16)</button>
+        <button class="lesson-tab" data-filter="3">الدرس 3: الإنترنت والاتصالات (18)</button>
+        <button class="lesson-tab" data-filter="book">📖 أسئلة الكتاب المدرسي (32)</button>
+        <button class="lesson-tab" data-filter="wrong">❌ أخطائي للمراجعة</button>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <span class="stat-label">رقم السؤال / Question</span>
+            <div><span class="stat-val" id="qCurrent">1</span> / <span id="qTotalFiltered">50</span></div>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">أول محاولة / 1st Score 🎯</span>
+            <span class="stat-val" id="firstScore">--</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">الدرجة الكلية / Score</span>
+            <div><span class="stat-val" id="score">0</span> / 50</div>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">أعلى نتيجة / High Score 🏆</span>
+            <span class="stat-val high" id="highScore">0</span>
+        </div>
+        <div>
+            <button class="btn-index" id="openIndexBtn">
+                <span>📑</span>
+                <span>فهرس الأسئلة (1-50)</span>
+            </button>
+        </div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar" style="width: 0%;"></div>
+        </div>
+    </div>
+
+    <!-- Main Question Card -->
+    <div class="q-card" id="quizCard">
+        <div class="q-header">
+            <div class="badge-group">
+                <span class="q-badge" id="topicBadge">الدرس 1: تطوير وسائل الاتصال 📖</span>
+                <span class="source-badge book" id="sourceBadge">كتاب الوزارة - تحدى معلوماتك صـ 54</span>
+            </div>
+            <span style="color: var(--text-muted); font-size: 0.9rem; font-weight: 700;" id="qStatusIndicator">لم يُجب بعد / Not answered</span>
+        </div>
+
+        <div class="q-text-ar" id="questionTextAr"></div>
+        <div class="q-text-en" id="questionTextEn"></div>
+
+        <!-- Dynamic Diagram Container -->
+        <div id="diagramContainer" style="display: none;"></div>
+
+        <div class="options-list" id="optionsContainer"></div>
+
+        <div class="explanation" id="explanationText" style="display: none;"></div>
+
+        <div class="actions">
+            <button class="btn-nav" id="prevBtn" disabled="">➡️ السابق / Prev</button>
+            <button class="btn-retry-q" id="retryQuestionBtn" title="إعادة تصفير هذا السؤال لتجربته مرة أخرى أمام الطلاب">🔄 إعادة حل هذا السؤال</button>
+            <button class="btn-nav" id="nextBtn">التالي / Next ⬅️</button>
+        </div>
+    </div>
+
+    <!-- Final Results Card -->
+    <div class="results-card" id="resultsCard">
+        <div class="trophy" id="trophyIcon">🎉</div>
+        <h2 id="resultMsg" style="font-size: 1.8rem; margin-bottom: 8px;">أحسنت صنعاً!</h2>
+        <p id="resultSubtitle" style="color: var(--text-muted);">You completed all 50 questions for Unit 5: Communications!</p>
+
+        <div class="score-circle">
+            <div class="score-num" id="finalScore">0</div>
+            <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted);">/ 50</span>
+        </div>
+
+        <p id="highScoreNotice" style="font-weight: 700; font-size: 1.1rem; color: var(--accent); margin-top: 10px;"></p>
+
+        <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 20px;">
+            <button class="btn-restart" id="restartQuizBtn">إعادة الاختبار بالكامل من البداية 🔄</button>
+            <button class="btn-nav" id="reviewWrongBtn" style="margin-top: 20px; padding: 14px 26px;">مراجعة الأسئلة الخاطئة فقط ❌</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 1: Question Index (1-50) -->
+<div class="modal-overlay" id="indexModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>📑 فهرس أسئلة الوحدة الخامسة: الاتصالات (50 سؤالاً)</h3>
+            <button class="close-btn" id="closeIndexBtn">✕</button>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item"><div class="legend-dot" style="background: #22c55e;"></div><span>إجابة صحيحة</span></div>
+            <div class="legend-item"><div class="legend-dot" style="background: #ef4444;"></div><span>إجابة خاطئة</span></div>
+            <div class="legend-item"><div class="legend-dot" style="background: #4f46e5;"></div><span>السؤال الحالي</span></div>
+            <div class="legend-item"><div class="legend-dot" style="background: #cbd5e1;"></div><span>لم يُحل بعد</span></div>
+        </div>
+
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px;">انقر على أي رقم سؤال للانتقال إليه مباشرة (الأسئلة من 1 إلى 50 مرتبة حسب دروس الوحدة الخامسة الثلاثة):</p>
+
+        <div class="grid-index" id="gridIndexContainer"></div>
+    </div>
+</div>
+
+<!-- Modal 2: Teacher Interactive Study Guide & Diagrams -->
+<div class="modal-overlay" id="studyModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>📚 دليل المعلم والطالب: ملخص ومخططات الوحدة الخامسة (الاتصالات)</h3>
+            <button class="close-btn" id="closeStudyBtn">✕</button>
+        </div>
+
+        <div class="study-tabs" id="studyTabs">
+            <button class="study-tab-btn active" data-pane="pane1">1️⃣ الدرس 1: تطوير وسائل الاتصال</button>
+            <button class="study-tab-btn" data-pane="pane2">2️⃣ الدرس 2: الاتصال وأشكاله</button>
+            <button class="study-tab-btn" data-pane="pane3">3️⃣ الدرس 3: أدوات الاتصال عبر الإنترنت</button>
+            <button class="study-tab-btn" data-pane="pane4">4️⃣ خصائص التواصل ومستكشف المقارنات</button>
+        </div>
+
+        <!-- Pane 1 -->
+        <div class="study-pane active" id="pane1">
+            <h4 style="color: var(--primary); margin-bottom: 8px;">أولاً: الجدول الزمني لتطوير وسائل الاتصال والاتصال الجماهيري والإنترنت (صـ 54 - 55)</h4>
+            <table class="study-table">
+                <thead>
+                    <tr>
+                        <th>التاريخ / الحقبة</th>
+                        <th>الحدث / الاختراع والمخترع</th>
+                        <th>الشرح والأهمية (كتاب الوزارة)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>العصور القديمة</b></td>
+                        <td><b>نيران الإشارة (Signal fires) وضرب الطبول</b></td>
+                        <td>نقل المعلومات الأساسية قبل وجود الاتصالات السلكية واللاسلكية.</td>
+                    </tr>
+                    <tr>
+                        <td><b>بعد تطوير الكتابة</b></td>
+                        <td><b>الورق (Paper) والرسل والحمام الزاجل</b></td>
+                        <td>كتابة الرسائل على الورق وتسليمها باستخدام الرسل أو الحمام الزاجل.</td>
+                    </tr>
+                    <tr>
+                        <td><b>منتصف القرن 15</b></td>
+                        <td><b>طابعة الحروف المتحركة (Movable-type printing press)</b></td>
+                        <td>اخترعها الألماني <b>غوتنبرغ (Gutenberg)</b>، مما مكّن من إنتاج الصحف والكتب بكميات كبيرة.</td>
+                    </tr>
+                    <tr>
+                        <td><b>عام 1837</b></td>
+                        <td><b>تلغراف مورس (Morse telegraph)</b></td>
+                        <td>اخترعه الأمريكي <b>مورس (Morse)</b> لإرسال واستقبال الرموز عبر الاتصالات السلكية واللاسلكية.</td>
+                    </tr>
+                    <tr>
+                        <td><b>عام 1840</b></td>
+                        <td><b>نظام البريد الحديث (Modern postal system)</b></td>
+                        <td>إنشاء نظام البريد الحديث لتسليم الرسائل بانتظام.</td>
+                    </tr>
+                    <tr>
+                        <td><b>عام 1876</b></td>
+                        <td><b>الهاتف (Telephone)</b></td>
+                        <td>اخترعه الأمريكي <b>بيل (Bell / Bill)</b> للتواصل الصوتي ثنائي الاتجاه.</td>
+                    </tr>
+                    <tr>
+                        <td><b>عام 1895</b></td>
+                        <td><b>التلغراف اللاسلكي (Wireless telegraph)</b></td>
+                        <td>اخترعه الإيطالي <b>ماركوني (Marconi / Marcony)</b>، وتطور لاحقاً للراديو والتلفزيون والهواتف المحمولة.</td>
+                    </tr>
+                    <tr>
+                        <td><b>عام 1906</b></td>
+                        <td><b>الراديو (Radio)</b></td>
+                        <td>إجراء أول بث تجريبي للراديو في الولايات المتحدة (اتصال جماهيري أحادي الاتجاه).</td>
+                    </tr>
+                    <tr>
+                        <td><b>عام 1928</b></td>
+                        <td><b>التلفزيون (Television)</b></td>
+                        <td>إجراء أول بث تجريبي للتلفزيون في الولايات المتحدة (اتصال جماهيري أحادي الاتجاه).</td>
+                    </tr>
+                    <tr>
+                        <td><b>عام 1946</b></td>
+                        <td><b>الهواتف الخلوية / المحمولة (Cellular phones)</b></td>
+                        <td>بدء استخدام خدمة الهاتف المحمول في الولايات المتحدة.</td>
+                    </tr>
+                    <tr>
+                        <td><b>عام 1969</b></td>
+                        <td><b>شبكة أربانت (ARPANET) ← الإنترنت (Internet)</b></td>
+                        <td>بدعم من وزارة الدفاع الأمريكية، استُخدمت في البداية بواسطة <b>مؤسسات البحث (Research institutions)</b>، ثم انتشرت لعامة الناس في التسعينيات.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pane 2 -->
+        <div class="study-pane" id="pane2">
+            <h4 style="color: var(--primary); margin-bottom: 8px;">ثانياً: تصنيف الاتصال وأشكاله (صـ 56 - 57)</h4>
+            <table class="study-table">
+                <thead>
+                    <tr>
+                        <th>أساس التصنيف</th>
+                        <th>النوع والمصطلح الإنجليزي</th>
+                        <th>التعريف والأمثلة من كتاب الوزارة (صـ 56)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="4"><b>[1] حسب عدد المرسلين والمستلمين</b></td>
+                        <td><b>واحد إلى واحد - نوع فردي<br>(One-to-one / Individual type)</b></td>
+                        <td>مرسل واحد إلى مستلم واحد.<br><b>أمثلة:</b> الرسائل، الهواتف، إلخ.</td>
+                    </tr>
+                    <tr>
+                        <td><b>واحد إلى العديد - وسائل الاتصال الجماهيرية<br>(One-to-many / Mass media type)</b></td>
+                        <td>مرسل واحد إلى مستلمين متعددين.<br><b>أمثلة:</b> الصحف، الراديو، التلفزيون، صفحات الويب، إلخ.</td>
+                    </tr>
+                    <tr>
+                        <td><b>متعدد إلى واحد - وسائل الاتصال العكسية<br>(Many-to-one / Reverse mass media type)</b></td>
+                        <td>مرسلون متعددون إلى مستلم واحد.<br><b>أمثلة:</b> جدولة الاستبيانات، الاستفسارات، إلخ.</td>
+                    </tr>
+                    <tr>
+                        <td><b>متعدد إلى متعدد - نوع مؤتمر<br>(Many-to-many / Conference type)</b></td>
+                        <td>مرسلون متعددون إلى مستلمين متعددين.<br><b>أمثلة:</b> مؤتمرات الفيديو، المكالمات الجماعية، وسائل التواصل الاجتماعي، إلخ.</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2"><b>[2] حسب علاقة الموقع</b></td>
+                        <td><b>الاتصال المباشر (Direct communication)</b></td>
+                        <td>المرسل والمستلم وجهاً لوجه مباشرة (يمكن مراقبة ردود الفعل مباشرة، لكن هناك قيود على الوقت والموقع).<br><b>أمثلة:</b> المحادثات، العروض التقديمية، إلخ.</td>
+                    </tr>
+                    <tr>
+                        <td><b>الاتصال غير المباشر (Indirect communication)</b></td>
+                        <td>المرسل والمستلم منفصلان (يزيل قيود الوقت والموقع، لكن لا يمكن رؤية ردود الفعل مباشرة).<br><b>أمثلة:</b> الهواتف، البريد الإلكتروني، صفحات الويب، إلخ.</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2"><b>[3] حسب التزامن</b></td>
+                        <td><b>متزامن (Synchronous)</b></td>
+                        <td>يشارك المرسل والمستلم المعلومات في وقت واحد تقريباً.<br><b>أمثلة:</b> المحادثة، الهواتف، العروض التقديمية، مكالمات الفيديو، البث التلفزيوني المباشر.</td>
+                    </tr>
+                    <tr>
+                        <td><b>غير متزامن (Asynchronous)</b></td>
+                        <td>يتم إرسال المعلومات واستقبالها في أوقات مناسبة لكل من المرسل والمستلم.<br><b>أمثلة:</b> الرسائل، البريد الإلكتروني، لوحات الإعلانات الإلكترونية، تطبيقات المراسلة، وسائل التواصل الاجتماعي.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pane 3 -->
+        <div class="study-pane" id="pane3">
+            <h4 style="color: var(--primary); margin-bottom: 8px;">ثالثاً: أدوات الاتصال عبر الإنترنت وحقول البريد الإلكتروني (صـ 58 - 60)</h4>
+            <table class="study-table">
+                <thead>
+                    <tr>
+                        <th>الأداة / المفهوم</th>
+                        <th>التعريف الرسمي في كتاب الوزارة (صـ 58)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>البريد الإلكتروني (Email) وقدرة البث (Broadcast capability)</b></td>
+                        <td>أداة لإرسال واستقبال الرسائل القائمة على النص والملفات المرفقة عبر الإنترنت، وتتميز بـ <b>قدرة البث (Broadcast capability)</b> لإرسال الرسائل إلى مستلمين متعددين:<br>
+                        • <b>إلى (To):</b> عنوان المستلم (المستلمين) الرئيسي.<br>
+                        • <b>نسخة (CC):</b> لمشاركة محتوى البريد مع مستلمين آخرين (تظهر العناوين للجميع).<br>
+                        • <b>نسخة مخفية (BCC):</b> لمشاركة المحتوى مع مستلمين دون أن يرى المستلمون الآخرون عناوينهم.</td>
+                    </tr>
+                    <tr>
+                        <td><b>نظام لوحة الإعلانات (BBS - Bulletin board system)</b></td>
+                        <td>أداة تسمح للمستخدم بنشر الرسائل وكتابة الردود على الرسائل الأخرى.</td>
+                    </tr>
+                    <tr>
+                        <td><b>تطبيق المراسلة (Messaging app)</b></td>
+                        <td>أدوات تمكّن تبادل النصوص والصور ومقاطع الفيديو للأفراد أو المجموعات (مثل SMS، و LINE).</td>
+                    </tr>
+                    <tr>
+                        <td><b>مكالمة الفيديو (Video call)</b></td>
+                        <td>أداة تسمح بالمحادثة في الوقت الفعلي أثناء مشاهدة فيديو الشخص الآخر عبر الإنترنت.</td>
+                    </tr>
+                    <tr>
+                        <td><b>مدونة (Blog = Web + Log)</b></td>
+                        <td>كلمة صيغت بدمج <b>"web"</b> و <b>"log"</b>، وهي خدمة ويب تسمح بتجميع ونشر كتابات مثل يومياتك على الإنترنت.</td>
+                    </tr>
+                    <tr>
+                        <td><b>وسائل التواصل الاجتماعي (Social Media)</b></td>
+                        <td>خدمات توفر منصات حيث يمكن للأفراد التواصل مع بعضهم البعض على الإنترنت.</td>
+                    </tr>
+                    <tr>
+                        <td><b>منصة مشاركة الفيديو (Video sharing platform)</b></td>
+                        <td>خدمة تسمح لجمهور واسع غير محدد بمشاركة ومشاهدة مقاطع الفيديو المنشورة بواسطة مستخدمين غير محددين آخرين على الإنترنت.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pane 4 -->
+        <div class="study-pane" id="pane4">
+            <h4 style="color: var(--primary); margin-bottom: 8px;">رابعاً: خصائص التواصل على الإنترنت الأربعة (صـ 58)</h4>
+            <table class="study-table">
+                <thead>
+                    <tr>
+                        <th>الخاصية</th>
+                        <th>الشرح والمزايا والعيوب (صـ 58)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>1. إخفاء الهوية (Anonymity)</b></td>
+                        <td>يسمح للمستخدم بإخفاء المعلومات التي تؤدي للتعرف الشخصي (الاسم، الانتماء، إلخ).<br>
+                        • <b>المزايا:</b> التعبير عن النفس بحرية بغض النظر عن العمر أو الوضع الاجتماعي.<br>
+                        • <b>العيوب:</b> [1] <b>الإساءة عبر الإنترنت</b> (تركز التعليقات النقدية على المنشورات)، [2] <b>الأخبار المزيفة</b> (نشر معلومات كاذبة).</td>
+                    </tr>
+                    <tr>
+                        <td><b>2. الفورية (Immediacy)</b></td>
+                        <td>يسمح للمستخدم باستجابة فورية من الطرف الآخر.</td>
+                    </tr>
+                    <tr>
+                        <td><b>3. الملائمة / الراحة (Convenience)</b></td>
+                        <td>يسمح للمستخدم بالتواصل بسلاسة.</td>
+                    </tr>
+                    <tr>
+                        <td><b>4. القابلية للتسجيل (Recordability)</b></td>
+                        <td>إرسال واستقبال المعلومات على الإنترنت يترك سجلاً (log) ولا يمكن محو المعلومات المنشورة بالكامل بسهولة.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="calc-box">
+                <h4 style="color: var(--primary);">🔍 مستكشف المقارنات السريع للشرح في الفصل</h4>
+                <div class="calc-controls">
+                    <label>اختر المقارنة لعرضها للطلاب:
+                        <select id="compareSelect">
+                            <option value="sync_async">مقارنة: الاتصال المتزامن (Synchronous) مقابل غير المتزامن (Asynchronous)</option>
+                            <option value="direct_indirect">مقارنة: الاتصال المباشر (Direct) مقابل غير المباشر (Indirect)</option>
+                            <option value="to_cc_bcc">مقارنة: حقول البريد الإلكتروني (To مقابل CC مقابل BCC)</option>
+                            <option value="one_two_way">مقارنة: وسائل الاتصال الجماهيري (اتجاه واحد) مقابل الاتصال ثنائي الاتجاه</option>
+                        </select>
+                    </label>
+                </div>
+                <div id="compareResultDisplay" style="font-size: 0.96rem; font-weight: 700; color: var(--text); margin-top: 8px; background: var(--card); padding: 12px; border-radius: 10px;">
+                    ⏱️ <b>المتزامن (Synchronous):</b> تشارك المعلومات في وقت واحد تقريباً (محادثة، هاتف، مكالمة فيديو، بث مباشر) | 📩 <b>غير المتزامن (Asynchronous):</b> إرسال واستقبال في أوقات مناسبة لكل طرف (رسالة، بريد إلكتروني، تطبيق مراسلة، لوحة إعلانات، تواصل اجتماعي).
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const questions = [
+        // ============================================================
+        // الدرس 1: تطوير وسائل الاتصال (الأسئلة 1 - 16)
+        // ============================================================
+        {
+            id: 1,
+            lesson: 1,
+            isBook: true,
+            source: "كتاب الوزارة - تحدى معلوماتك صـ 54",
+            topic: "الدرس 1: المخترعون والاختراعات الأربعة 📖",
+            ar_q: "اختر المصطلحات التي تناسب الفراغات [1] إلى [4] في سؤال (تحدى معلوماتك صـ 54): [1] في منتصف القرن 15 اخترع Gutenberg... | [2] في عام 1837 اخترع مورس... | [3] في عام 1876 اخترع بيل Bill... | [4] في عام 1895 اخترع ماركوني...",
+            en_q: "Match the inventions to [1]–[4] (p. 54): [1] Mid-15th century Gutenberg invented... | [2] In 1837 Morse invented... | [3] In 1876 Bell invented... | [4] In 1895 Marconi invented...",
+            diagram: "comm_timeline",
+            options: [
+                { ar: "[1] طابعة الحروف المتحركة | [2] التلغراف المورسي | [3] الهاتف | [4] التلغراف اللاسلكي", en: "[1] Movable-type printing press | [2] Morse telegraph | [3] Telephone | [4] Wireless telegraph" },
+                { ar: "[1] الهاتف | [2] التلغراف اللاسلكي | [3] طابعة الحروف المتحركة | [4] التلغراف المورسي", en: "[1] Telephone | [2] Wireless telegraph | [3] Printing press | [4] Morse telegraph" },
+                { ar: "[1] التلغراف اللاسلكي | [2] الهاتف | [3] التلغراف المورسي | [4] طابعة الحروف المتحركة", en: "[1] Wireless telegraph | [2] Telephone | [3] Morse telegraph | [4] Printing press" },
+                { ar: "[1] التلغراف المورسي | [2] طابعة الحروف المتحركة | [3] التلغراف اللاسلكي | [4] الهاتف", en: "[1] Morse telegraph | [2] Printing press | [3] Wireless telegraph | [4] Telephone" }
+            ],
+            correct: 0,
+            exp_ar: "الحل الرسمي في كتاب الوزارة (صـ 54): [1] (ت) طابعة الحروف المتحركة (غوتنبرغ - منتصف القرن 15)، [2] (ب) التلغراف المورسي (مورس - 1837)، [3] (ث) الهاتف (بيل - 1876)، [4] (أ) التلغراف اللاسلكي (ماركوني - 1895).",
+            exp_en: "Official textbook key (p. 54): [1] Movable-type printing press (Gutenberg), [2] Morse telegraph (1837), [3] Telephone (Bell, 1876), [4] Wireless telegraph (Marconi, 1895)."
+        },
+        {
+            id: 2,
+            lesson: 1,
+            isBook: true,
+            source: "كتاب الوزارة - صـ 54 + جرب بنفسك (1) صـ 55",
+            topic: "الدرس 1: وسائل الاتصال في العصور القديمة 📖",
+            ar_q: "في العصور القديمة (قبل وجود الاتصالات السلكية واللاسلكية وتطوير الكتابة)، كيف كان الناس ينقلون المعلومات الأساسية إلى الآخرين؟",
+            en_q: "In ancient times (before wired/wireless communications and writing), how did people transmit basic information to others?",
+            options: [
+                { ar: "بإشعال نيران الإشارة (Signal fires) أو ضرب الطبول", en: "By lighting signal fires or beating drums" },
+                { ar: "باستخدام التلغراف اللاسلكي وموجات الراديو", en: "By using wireless telegraphy and radio waves" },
+                { ar: "عبر شبكة أربانت (ARPANET) والألياف الضوئية", en: "Via ARPANET and fiber-optic cables" },
+                { ar: "عن طريق طابعة الحروف المتحركة لغوتنبرغ", en: "Through Gutenberg's movable-type printing press" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 54 و55): في العصور القديمة، تم نقل المعلومات الأساسية بإشعال نيران الإشارة (Signal fires) أو ضرب الطبول.",
+            exp_en: "Textbook (pp. 54–55): In ancient times, basic information was transmitted by lighting signal fires or beating drums."
+        },
+        {
+            id: 3,
+            lesson: 1,
+            isBook: true,
+            source: "كتاب الوزارة - صـ 54 + جرب بنفسك (1) صـ 55",
+            topic: "الدرس 1: الورق والرسل والحمام الزاجل 📖",
+            ar_q: "بعد تطوير الكتابة، على أي وسط كُتبت الرسائل وحُملت الأحرف والرموز ليتم تسليمها باستخدام الرسل أو الحمام الزاجل؟ ومتى أُنشئ نظام البريد الحديث؟",
+            en_q: "After writing was developed, on what medium were letters written to be delivered by messengers or carrier pigeons, and when was the modern postal system established?",
+            options: [
+                { ar: "كُتبت على الورق (Paper) — وأُنشئ نظام البريد الحديث في عام 1840", en: "Written on Paper — and the modern postal system was established in 1840" },
+                { ar: "كُتبت على الأقراص المدمجة — وأُنشئ نظام البريد في عام 1969", en: "Written on CDs — and the postal system was established in 1969" },
+                { ar: "كُتبت على شاشات الكريستال — وأُنشئ نظام البريد في عام 1946", en: "Written on LCD screens — and the postal system was established in 1946" },
+                { ar: "كُتبت عبر التلغراف اللاسلكي — وأُنشئ نظام البريد في عام 1928", en: "Written via wireless telegraph — and established in 1928" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 54 و55): بعد تطوير الكتابة، كُتبت الرسائل على الورق (Paper) وتم تسليمها باستخدام الرسل أو الحمام الزاجل، وتم إنشاء نظام البريد الحديث (Modern postal system) في عام 1840.",
+            exp_en: "Textbook (pp. 54–55): After writing developed, messages were written on paper and delivered by messengers or carrier pigeons; the modern postal system was established in 1840."
+        },
+        {
+            id: 4,
+            lesson: 1,
+            isBook: true,
+            source: "كتاب الوزارة - صـ 54 + جرب بنفسك (1) صـ 55",
+            topic: "الدرس 1: غوتنبرغ وطابعة الحروف المتحركة 📖",
+            ar_q: "في منتصف القرن الخامس عشر، من هو المخترع الألماني الذي اخترع «طابعة الحروف المتحركة» (Movable-type printing press) مما جعل من الممكن نشر الصحف والكتب بكميات كبيرة؟",
+            en_q: "In the mid-15th century, which German inventor created the 'movable-type printing press', enabling mass production of books and newspapers?",
+            options: [
+                { ar: "غوتنبرغ (Gutenberg)", en: "Gutenberg" },
+                { ar: "مورس (Morse)", en: "Morse" },
+                { ar: "ماركوني (Marconi)", en: "Marconi" },
+                { ar: "بيل (Bell)", en: "Bell" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 54 و55): في منتصف القرن الخامس عشر، اخترع ألماني يدعى غوتنبرغ (Gutenberg) طابعة الحروف المتحركة، فأصبح من الممكن إعادة إنتاج كميات كبيرة من المعلومات كمواد مطبوعة ونشر الصحف والكتب.",
+            exp_en: "In the mid-15th century, German inventor Johannes Gutenberg invented the movable-type printing press."
+        },
+        {
+            id: 5,
+            lesson: 1,
+            isBook: true,
+            source: "كتاب الوزارة - صـ 54 + جرب بنفسك (1) صـ 55",
+            topic: "الدرس 1: مورس وتلغراف مورس (1837) 📖",
+            ar_q: "في عام 1837، اخترع أمريكي يدعى [1] تقنية [2] لإرسال واستقبال الرموز عبر الاتصالات السلكية واللاسلكية. ما هما [1] و [2]؟",
+            en_q: "In 1837, an American named [1] invented [2] to send and receive codes over wired and wireless communications. What are [1] and [2]?",
+            options: [
+                { ar: "[1] مورس (Morse) — [2] تلغراف مورس (Morse telegraph)", en: "[1] Morse — [2] Morse telegraph" },
+                { ar: "[1] غوتنبرغ (Gutenberg) — [2] طابعة الحروف المتحركة", en: "[1] Gutenberg — [2] Movable-type printing press" },
+                { ar: "[1] ماركوني (Marconi) — [2] التلفزيون", en: "[1] Marconi — [2] Television" },
+                { ar: "[1] بيل (Bell) — [2] الحمام الزاجل", en: "[1] Bell — [2] Carrier pigeons" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 54 و55): في عام 1837، اخترع أمريكي يدعى مورس (Morse) تلغراف مورس (Morse telegraph) لإرسال واستقبال الرموز عبر الاتصالات السلكية واللاسلكية.",
+            exp_en: "In 1837, American inventor Samuel Morse invented the Morse telegraph for transmitting and receiving codes."
+        },
+        {
+            id: 6,
+            lesson: 1,
+            isBook: true,
+            source: "كتاب الوزارة - صـ 54 + جرب بنفسك (1) صـ 55",
+            topic: "الدرس 1: ماركوني والتلغراف اللاسلكي (1895) 📖",
+            ar_q: "في نهاية القرن التاسع عشر (عام 1895)، اخترع إيطالي يدعى ماركوني (Marcony) تقنية [1]، والتي تطورت لاحقاً إلى أجهزة الراديو، و [2]، والهواتف المحمولة:",
+            en_q: "In 1895, an Italian named Marconi invented [1], which later evolved into radio, [2], and mobile phones:",
+            options: [
+                { ar: "[1] التلغراف اللاسلكي (Wireless telegraph) — [2] التلفزيون (Television)", en: "[1] Wireless telegraph — [2] Television" },
+                { ar: "[1] طابعة الحروف المتحركة — [2] الورق", en: "[1] Printing press — [2] Paper" },
+                { ar: "[1] نظام البريد الحديث — [2] نيران الإشارة", en: "[1] Modern postal system — [2] Signal fires" },
+                { ar: "[1] الفونوجراف — [2] الطبول", en: "[1] Phonograph — [2] Drums" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 54 و55): في عام 1895، اخترع إيطالي يدعى ماركوني (Marcony) التلغراف اللاسلكي (Wireless telegraph)، الذي تطور لاحقاً إلى أجهزة الراديو، والتلفزيون، والهواتف المحمولة.",
+            exp_en: "In 1895, Italian inventor Marconi invented the wireless telegraph, which later led to radio, television, and mobile phones."
+        },
+        {
+            id: 7,
+            lesson: 1,
+            isBook: true,
+            source: "كتاب الوزارة - جرب بنفسك (1) صـ 55",
+            topic: "الدرس 1: فقرة تطور وسائل الاتصال [1] إلى [9] 📖",
+            ar_q: "اختر الترتيب الصحيح تماماً للفراغات من [1] إلى [9] في فقرة (جرب بنفسك صـ 55): إشعال [1] ← وسط يسمى [2] ← بفضل [3] الذي اخترع [4] ← أمريكي يدعى [5] اخترع [6] ← اخترع بيل [7] ← اخترع ماركوني [8] ← تطور إلى الراديو و[9]:",
+            en_q: "Choose the exact sequence for blanks [1] to [9] in the Try It Yourself passage on page 55:",
+            options: [
+                { ar: "[1] نيران الإشارة | [2] الورق | [3] غوتنبرج | [4] طابعة الحروف المتحركة | [5] مورس | [6] تليغراف مورس | [7] الهاتف | [8] التلغراف اللاسلكي | [9] التلفزيون", en: "[1] Signal fires | [2] Paper | [3] Gutenberg | [4] Printing press | [5] Morse | [6] Morse telegraph | [7] Telephone | [8] Wireless telegraph | [9] Television" },
+                { ar: "[1] الورق | [2] نيران الإشارة | [3] أديسون | [4] فونوجراف | [5] واطسون | [6] الهاتف | [7] التلفزيون | [8] مورس | [9] طابعة الحروف", en: "[1] Paper | [2] Signal fires | [3] Edison | [4] Phonograph | [5] Watson | [6] Telephone | [7] TV | [8] Morse | [9] Printing press" },
+                { ar: "[1] التلفزيون | [2] الهاتف | [3] مورس | [4] الورق | [5] غوتنبرج | [6] نيران الإشارة | [7] الفونوجراف | [8] أديسون | [9] واطسون", en: "[1] TV | [2] Phone | [3] Morse | [4] Paper | [5] Gutenberg | [6] Signal fires | [7] Phonograph | [8] Edison | [9] Watson" },
+                { ar: "[1] نيران الإشارة | [2] التلفزيون | [3] ماركوني | [4] الهاتف | [5] بيل | [6] الورق | [7] تليغراف مورس | [8] غوتنبرج | [9] طابعة الحروف", en: "[1] Signal fires | [2] TV | [3] Marconi | [4] Phone | [5] Bell | [6] Paper | [7] Morse telegraph | [8] Gutenberg | [9] Printing press" }
+            ],
+            correct: 0,
+            exp_ar: "حل فقرة جرب بنفسك (1) صـ 55 بالكامل: [1] (ت) نيران الإشارة، [2] (ث) الورق، [3] (ذ) غوتنبرج، [4] (أ) طابعة الحروف المتحركة، [5] (ز) مورس، [6] (ج) تليغراف مورس، [7] (خ) الهاتف، [8] (ح) التلغراف اللاسلكي، [9] (ب) التلفزيون.",
+            exp_en: "Complete solution to Try It Yourself (1) on p. 55: [1] Signal fires, [2] Paper, [3] Gutenberg, [4] Movable-type printing press, [5] Morse, [6] Morse telegraph, [7] Telephone, [8] Wireless telegraph, [9] Television."
+        },
+        {
+            id: 8,
+            lesson: 1,
+            isBook: true,
+            source: "كتاب الوزارة - صـ 54 + جرب بنفسك (2) صـ 55",
+            topic: "الدرس 1: تطور الإنترنت من شبكة ARPANET 📖",
+            ar_q: "أكمل الجملتين من سؤال (جرب بنفسك 2 صـ 55): «تطور الإنترنت من شبكة [1] التي تم إنشاؤها بواسطة وزارة الدفاع الأمريكية في عام 1969. وفي البداية، تم استخدامها بشكل رئيسي بواسطة [2]، ولكن بحلول التسعينيات بدأت في الانتشار بين عامة الناس»:",
+            en_q: "Complete the sentences (p. 55): 'The Internet evolved from [1] created by the US Department of Defense in 1969. Initially, it was mainly used by [2], before spreading to the general public in the 1990s':",
+            options: [
+                { ar: "[1] أربانت (ARPANET) — [2] مؤسسات البحث (Research institutions)", en: "[1] ARPANET — [2] Research institutions" },
+                { ar: "[1] نظام البريد الحديث — [2] الحمام الزاجل", en: "[1] Modern postal system — [2] Carrier pigeons" },
+                { ar: "[1] التلغراف المورسي — [2] دور السينما", en: "[1] Morse telegraph — [2] Movie theaters" },
+                { ar: "[1] طابعة غوتنبرغ — [2] محطات التلفزيون", en: "[1] Gutenberg press — [2] Television stations" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 54 و55): في عام 1969، بدعم من وزارة الدفاع الأمريكية، تم إجراء تجربة على شبكة كمبيوتر تسمى أربانت (ARPANET)، واستُخدمت في البداية بشكل رئيسي من قبل مؤسسات البحث (Research institutions).",
+            exp_en: "Textbook (pp. 54–55): In 1969, backed by the US Department of Defense, ARPANET was created and initially used mainly by research institutions."
+        },
+        {
+            id: 9,
+            lesson: 1,
+            isBook: true,
+            source: "كتاب الوزارة - تمرين 1-(1) صـ 55",
+            topic: "الدرس 1: الاتصال الجماهيري مقابل الاتصال ثنائي الاتجاه 📖",
+            ar_q: "في تمرين الكتاب (صـ 55): يُطلق على تبادل المعلومات اسم [1]، ووسيلة إرسال المعلومات لعدد كبير من الناس في وقت واحد هي [2]، وعلى غرار [3] و [4] فإنها تنقل المعلومات في اتجاه واحد، بينما [5] و [6] تمكّنان تبادل المعلومات في اتجاهين:",
+            en_q: "In Exercise 1-(1) on p. 55: Information exchange is called [1]. Sending info to many people at once is [2]; like [3] and [4] it is one-way, whereas [5] and [6] enable two-way exchange:",
+            options: [
+                { ar: "[1] الاتصال | [2] وسائل الاتصال الجماهيري | [3] و [4] الصحف والتلفزيون | [5] و [6] الهاتف والإنترنت", en: "[1] Communication | [2] Mass media | [3] & [4] Newspapers & Television | [5] & [6] Telephone & Internet" },
+                { ar: "[1] التلفزيون | [2] الهاتف | [3] و [4] الهاتف والإنترنت | [5] و [6] الصحف والتلفزيون", en: "[1] Television | [2] Telephone | [3] & [4] Phone & Internet | [5] & [6] Newspapers & TV" },
+                { ar: "[1] الإنترنت | [2] الصحف | [3] و [4] الاتصال والهاتف | [5] و [6] وسائل الاتصال الجماهيري", en: "[1] Internet | [2] Newspapers | [3] & [4] Communication & Phone | [5] & [6] Mass media" },
+                { ar: "[1] وسائل الاتصال الجماهيري | [2] الاتصال | [3] و [4] الإنترنت والهاتف | [5] و [6] الصحف والراديو", en: "[1] Mass media | [2] Communication | [3] & [4] Internet & Phone | [5] & [6] Newspapers & Radio" }
+            ],
+            correct: 0,
+            exp_ar: "حل تمرين 1-(1) صـ 55: [1] (أ) الاتصال، [2] (ب) وسائل الاتصال الجماهيري، [3] و [4] (ت) الصحف و (ح) التلفزيون (أحادي الاتجاه)، بينما [5] و [6] هما (ج) الهاتف و (ج/خ) الإنترنت (ثنائي الاتجاه).",
+            exp_en: "Exercise 1-(1) on p. 55: [1] Communication, [2] Mass communication/media, [3]/[4] Newspapers & Television (one-way), [5]/[6] Telephone & Internet (two-way)."
+        },
+        {
+            id: 10,
+            lesson: 1,
+            isBook: true,
+            source: "كتاب الوزارة - تمرين 1-(2) صـ 55",
+            topic: "الدرس 1: الترتيب الزمني لتطور وسائل الاتصال 📖",
+            ar_q: "ضع الأحداث الأربعة التالية في ترتيبها الزمني الصحيح من الأقدم إلى الأحدث (تمرين 1-(2) صـ 55): (أ) تم اختراع الهاتف، (ب) تم إنشاء نظام البريد الحديث، (ت) تم نقل المعلومات بإشعال نيران الإشارة أو ضرب الطبول، (ث) أصبحت الهواتف الخلوية منتشرة:",
+            en_q: "Place the following four events in chronological order from oldest to newest (Exercise 1-(2), p. 55):",
+            options: [
+                { ar: "(ت) نيران الإشارة والطبول ← (ب) نظام البريد الحديث (1840) ← (أ) اختراع الهاتف (1876) ← (ث) الهواتف الخلوية (1946)", en: "(ت) Signal fires & drums → (ب) Modern postal system (1840) → (أ) Telephone (1876) → (ث) Cellular phones (1946)" },
+                { ar: "(أ) اختراع الهاتف ← (ب) نظام البريد الحديث ← (ت) نيران الإشارة ← (ث) الهواتف الخلوية", en: "(أ) Telephone → (ب) Modern postal system → (ت) Signal fires → (ث) Cellular phones" },
+                { ar: "(ب) نظام البريد الحديث ← (ت) نيران الإشارة ← (ث) الهواتف الخلوية ← (أ) اختراع الهاتف", en: "(ب) Modern postal system → (ت) Signal fires → (ث) Cellular phones → (أ) Telephone" },
+                { ar: "(ت) نيران الإشارة ← (أ) اختراع الهاتف ← (ب) نظام البريد الحديث ← (ث) الهواتف الخلوية", en: "(ت) Signal fires → (أ) Telephone → (ب) Modern postal system → (ث) Cellular phones" }
+            ],
+            correct: 0,
+            exp_ar: "حل تمرين 1-(2) صـ 55 بالتواريخ الدقيقة من صـ 54: (ت) نيران الإشارة والطبول (العصور القديمة) ← (ب) نظام البريد الحديث (عام 1840) ← (أ) اختراع الهاتف لبيل (عام 1876) ← (ث) الهواتف الخلوية (عام 1946). إذن الترتيب: ت ← ب ← أ ← ث.",
+            exp_en: "Chronological order per p. 54: (ت) Signal fires/drums (Ancient times) → (ب) Modern postal system (1840) → (أ) Telephone (1876) → (ث) Cellular phones (1946)."
+        },
+        {
+            id: 11,
+            lesson: 1,
+            isBook: false,
+            source: "سؤال إضافي على الدرس 1 (صـ 54) ⭐",
+            topic: "الدرس 1: تواريخ البث التجريبي للراديو والتلفزيون ⭐",
+            ar_q: "وفقاً للنقاط الرئيسية في كتاب الوزارة (صـ 54)، متى وأين تم إجراء أول بث تجريبي لكل من «الراديو (Radio)» و«التلفزيون (Television)»؟",
+            en_q: "According to the textbook Key Points (p. 54), when and where were the first experimental broadcasts of 'Radio' and 'Television' conducted?",
+            options: [
+                { ar: "الراديو في عام 1906، والتلفزيون في عام 1928 (كلاهما في الولايات المتحدة)", en: "Radio in 1906, and Television in 1928 (both in the United States)" },
+                { ar: "الراديو في عام 1837، والتلفزيون في عام 1840 (في ألمانيا)", en: "Radio in 1837, and Television in 1840 (in Germany)" },
+                { ar: "الراديو في عام 1969، والتلفزيون في عام 1995 (في إيطاليا)", en: "Radio in 1969, and Television in 1995 (in Italy)" },
+                { ar: "كلاهما في منتصف القرن الخامس عشر على يد غوتنبرغ", en: "Both in the mid-15th century by Gutenberg" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 54 تحت تطور الاتصال الجماهيري): في عام 1906 تم إجراء أول بث تجريبي للراديو في الولايات المتحدة، وفي عام 1928 تم إجراء أول بث تجريبي للتلفزيون في الولايات المتحدة.",
+            exp_en: "Textbook (p. 54): The first experimental radio broadcast took place in 1906 in the US, and the first experimental television broadcast took place in 1928 in the US."
+        },
+        {
+            id: 12,
+            lesson: 1,
+            isBook: false,
+            source: "سؤال إضافي على الدرس 1 (صـ 54) ⭐",
+            topic: "الدرس 1: بدء استخدام الهواتف الخلوية (1946) ⭐",
+            ar_q: "في أي عام بدأ استخدام خدمة الهاتف المحمول (الهواتف الخلوية - Cellular phones) في الولايات المتحدة طبقاً لكتاب الوزارة (صـ 54)؟",
+            en_q: "In which year did mobile phone service (cellular phones) begin operating in the United States according to the textbook (p. 54)?",
+            options: [
+                { ar: "في عام 1946", en: "In 1946" },
+                { ar: "في عام 1837", en: "In 1837" },
+                { ar: "في عام 1840", en: "In 1840" },
+                { ar: "في عام 1450", en: "In 1450" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 54): «في عام 1946، بدأ استخدام خدمة الهاتف المحمول (الهواتف الخلوية - cellular phones) في الولايات المتحدة».",
+            exp_en: "Textbook (p. 54): In 1946, mobile phone service (cellular phones) began operating in the United States."
+        },
+        {
+            id: 13,
+            lesson: 1,
+            isBook: false,
+            source: "سؤال إضافي على الدرس 1 (صـ 54) ⭐",
+            topic: "الدرس 1: تعريف الاتصال الجماهيري (Mass communication) ⭐",
+            ar_q: "ما هو المصطلح الذي يُطلق على «وسيلة لإرسال المعلومات إلى عدد كبير من الناس في وقت واحد، ومن أمثلتها الصحف والمجلات والبث الإذاعي والتلفزيوني»؟",
+            en_q: "What term refers to 'a means of sending information to a large number of people at the same time, such as newspapers, magazines, radio, and TV broadcasting'?",
+            options: [
+                { ar: "الاتصال الجماهيري / وسائل الاتصال الجماهيري (Mass communication / Mass media)", en: "Mass communication (Mass media)" },
+                { ar: "الاتصال الفردي (One-to-one communication)", en: "Individual (One-to-one) communication" },
+                { ar: "وسائل الاتصال العكسية (Reverse mass media)", en: "Reverse mass media" },
+                { ar: "نسخة مخفية (BCC)", en: "Blind Carbon Copy (BCC)" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 54): الاتصال الجماهيري (وسائل الاتصال الجماهيري - Mass communication / Mass media) هو وسيلة لإرسال المعلومات إلى عدد كبير من الناس في وقت واحد، مثل الصحف والمجلات والبث الإذاعي والتلفزيوني.",
+            exp_en: "Textbook (p. 54): Mass communication (Mass media) is a method of sending information to a large number of people simultaneously."
+        },
+        {
+            id: 14,
+            lesson: 1,
+            isBook: false,
+            source: "سؤال إضافي على الدرس 1 (صـ 54) ⭐",
+            topic: "الدرس 1: جنسيات المخترعين في الدرس الأول ⭐",
+            ar_q: "أي من المطابقات التالية بين «المخترع» و«جنسيته» و«اختراعه» صحيحة تماماً كما وردت في كتاب الوزارة (صـ 54)؟",
+            en_q: "Which matching between the 'inventor', 'nationality', and 'invention' is completely accurate per page 54?",
+            options: [
+                { ar: "غوتنبرغ (ألماني: طابعة الحروف المتحركة) | مورس (أمريكي: تلغراف مورس) | بيل (أمريكي: الهاتف) | ماركوني (إيطالي: التلغراف اللاسلكي)", en: "Gutenberg (German: Printing press) | Morse (American: Morse telegraph) | Bell (American: Telephone) | Marconi (Italian: Wireless telegraph)" },
+                { ar: "غوتنبرغ (إيطالي: الهاتف) | مورس (ألماني: التلفزيون) | ماركوني (أمريكي: الطباعة)", en: "Gutenberg (Italian: Phone) | Morse (German: TV) | Marconi (American: Printing)" },
+                { ar: "جميع المخترعين الأربعة من بريطانيا واخترعوا شبكة أربانت", en: "All four inventors were British and invented ARPANET" },
+                { ar: "بيل (إيطالي: التلغراف اللاسلكي) | ماركوني (ألماني: نظام البريد الحديث)", en: "Bell (Italian: Wireless telegraph) | Marconi (German: Modern postal system)" }
+            ],
+            correct: 0,
+            exp_ar: "ذكر الكتاب (صـ 54) نصاً: غوتنبرغ (ألماني - طابعة الحروف المتحركة)، مورس (أمريكي - تلغراف مورس 1837)، بيل (أمريكي - الهاتف 1876)، ماركوني (إيطالي - التلغراف اللاسلكي 1895).",
+            exp_en: "Page 54 explicitly specifies: Gutenberg (German), Morse (American), Bell (American), and Marconi (Italian)."
+        },
+        {
+            id: 15,
+            lesson: 1,
+            isBook: false,
+            source: "سؤال إضافي على الدرس 1 (صـ 54 و 55) ⭐",
+            topic: "الدرس 1: الفرق بين تلغراف مورس والتلغراف اللاسلكي ⭐",
+            ar_q: "ما الفرق التاريخي والتقني بين اختراع «مورس (1837)» واختراع «ماركوني (1895)» وفقاً لكتاب الوزارة؟",
+            en_q: "What is the historical and technical distinction between Morse's invention (1837) and Marconi's invention (1895) per the textbook?",
+            options: [
+                { ar: "اخترع مورس «تلغراف مورس» عام 1837 لإرسال الرموز، بينما اخترع الإيطالي ماركوني «التلغراف اللاسلكي» عام 1895 الذي تطور لاحقاً للراديو والتلفزيون والهواتف المحمولة", en: "Morse invented the Morse telegraph in 1837 for codes, while Marconi invented the wireless telegraph in 1895 which evolved into radio, TV, and mobile phones" },
+                { ar: "اخترع مورس التلفزيون الملون، بينما اخترع ماركوني الحمام الزاجل", en: "Morse invented color TV, while Marconi invented carrier pigeons" },
+                { ar: "كلاهما اخترع طابعة الحروف المتحركة في القرن الخامس عشر", en: "Both invented the movable-type printing press in the 15th century" },
+                { ar: "اختراع ماركوني سبق اختراع مورس بمئتي عام", en: "Marconi's invention preceded Morse's by 200 years" }
+            ],
+            correct: 0,
+            exp_ar: "في عام 1837 اخترع الأمريكي مورس تلغراف مورس لإرسال واستقبال الرموز، وفي عام 1895 اخترع الإيطالي ماركوني التلغراف اللاسلكي الذي مهّد الطريق لأجهزة الراديو والتلفزيون والهواتف المحمولة (صـ 54 و55).",
+            exp_en: "Morse invented the Morse telegraph in 1837, whereas Marconi invented the wireless telegraph in 1895, paving the way for radio, TV, and cellular phones."
+        },
+        {
+            id: 16,
+            lesson: 1,
+            isBook: false,
+            source: "سؤال إضافي على الدرس 1 (صـ 54 و 55) ⭐",
+            topic: "الدرس 1: مراحل تطور شبكة الإنترنت ⭐",
+            ar_q: "بدأت نواة الإنترنت في عام 1969 بشبكة «ARPANET» بدعم من وزارة الدفاع الأمريكية؛ في أي عقد بدأ الإنترنت في الانتشار على نطاق واسع بين عامة الناس؟",
+            en_q: "The Internet began in 1969 as ARPANET backed by the US Department of Defense; in which decade did it begin spreading widely among the general public?",
+            options: [
+                { ar: "بحلول التسعينيات (1990s) بعد أن كان يُستخدم أساساً بواسطة مؤسسات البحث", en: "By the 1990s, after initially being used mainly by research institutions" },
+                { ar: "في أربعينيات القرن التاسع عشر (1840s) مع نظام البريد الحديث", en: "In the 1840s alongside the modern postal system" },
+                { ar: "في منتصف القرن الخامس عشر مع طابعة غوتنبرغ", en: "In the mid-15th century with Gutenberg's press" },
+                { ar: "في عام 1906 بالتزامن مع أول بث تجريبي للراديو", en: "In 1906 alongside the first experimental radio broadcast" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 55 - جرب بنفسك 2): «في البداية، تم استخدامها بشكل رئيسي بواسطة مؤسسات البحث، ولكن بحلول التسعينيات، بدأت في الانتشار على نطاق واسع بين عامة الناس».",
+            exp_en: "Textbook (p. 55): Initially used mainly by research institutions, the Internet began spreading widely among the general public by the 1990s."
+        },
+
+        // ============================================================
+        // الدرس 2: الاتصال وأشكاله (الأسئلة 17 - 32)
+        // ============================================================
+        {
+            id: 17,
+            lesson: 2,
+            isBook: true,
+            source: "كتاب الوزارة - النقاط الرئيسية صـ 56",
+            topic: "الدرس 2: تعريف الاتصال (Communication) 📖",
+            ar_q: "ما هو المصطلح الذي يُعرّفه كتاب الوزارة (صـ 56) بأنه «عملية استقبال وتبادل المعلومات بين الناس»؟",
+            en_q: "What term is defined in the textbook (p. 56) as 'the process of receiving and exchanging information between people'?",
+            options: [
+                { ar: "الاتصال (Communication)", en: "Communication" },
+                { ar: "إخفاء الهوية (Anonymity)", en: "Anonymity" },
+                { ar: "التلغراف اللاسلكي (Wireless telegraph)", en: "Wireless telegraph" },
+                { ar: "المدونة (Blog)", en: "Blog" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 56): الاتصال (Communication) هو عملية استقبال وتبادل المعلومات بين الناس.",
+            exp_en: "Textbook (p. 56): Communication is the process of receiving and exchanging information between people."
+        },
+        {
+            id: 18,
+            lesson: 2,
+            isBook: true,
+            source: "كتاب الوزارة - صـ 56 + تمرين 1-(1) صـ 57",
+            topic: "الدرس 2: التصنيف حسب عدد المرسلين والمستلمين (الأشكال الأربعة) 📖",
+            ar_q: "عند تصنيف الاتصال حسب عدد المرسلين والمستلمين (صـ 56)، ما هي الأنواع الأربعة المعتمدة في كتاب الوزارة؟",
+            en_q: "When classifying communication by the number of senders and recipients (p. 56), what are the four official types in the textbook?",
+            diagram: "comm_types_grid",
+            options: [
+                { ar: "واحد إلى واحد (نوع فردي) | واحد إلى العديد (وسائل الاتصال الجماهيرية) | متعدد إلى واحد (وسائل الاتصال العكسية) | متعدد إلى متعدد (نوع مؤتمر)", en: "One-to-one (Individual) | One-to-many (Mass media) | Many-to-one (Reverse mass media) | Many-to-many (Conference)" },
+                { ar: "سلكي | لاسلكي | بريدي | ورقي", en: "Wired | Wireless | Postal | Paper" },
+                { ar: "إلى (To) | نسخة (CC) | نسخة مخفية (BCC) | مرفق", en: "To | CC | BCC | Attachment" },
+                { ar: "أولي | ثانوي | ثالثي | رباعي", en: "Primary | Secondary | Tertiary | Quaternary" }
+            ],
+            correct: 0,
+            exp_ar: "طبقاً لكتاب الوزارة (صـ 56): يُصنف الاتصال حسب عدد المرسلين والمستلمين إلى 4 أنواع: (1) واحد إلى واحد (نوع فردي)، (2) واحد إلى العديد (وسائل الاتصال الجماهيرية)، (3) متعدد إلى واحد (وسائل الاتصال العكسية)، (4) متعدد إلى متعدد (نوع مؤتمر).",
+            exp_en: "Per page 56, communication by sender/recipient count is divided into: One-to-one (Individual), One-to-many (Mass media), Many-to-one (Reverse mass media), and Many-to-many (Conference)."
+        },
+        {
+            id: 19,
+            lesson: 2,
+            isBook: true,
+            source: "كتاب الوزارة - تمرين 1-(1) صـ 57",
+            topic: "الدرس 2: الفردي مقابل وسائل الإعلام الجماهيرية 📖",
+            ar_q: "اختر الطريقة الأكثر ملاءمة للفراغات [1] و [2] في تمرين الكتاب (صـ 57): «الاتصال مع مرسل واحد لمستلم واحد نوعه يسمى الفردي، ويشمل الرسائل و [1]. أما الاتصال مع مرسل واحد ومستلمين متعددين فيسمى وسائل الإعلام الجماهيرية، ويشمل الصحف، و [2]، وصفحات الويب»:",
+            en_q: "Fill in blanks [1] and [2] (Exercise 1-(1), p. 57): 'One-to-one communication is called Individual and includes letters and [1]. One-to-many is called Mass media and includes newspapers, [2], and web pages':",
+            options: [
+                { ar: "[1] (ج) الهاتف — [2] (ب) التلفزيون", en: "[1] Telephone — [2] Television" },
+                { ar: "[1] (أ) مؤتمرات الفيديو — [2] (د) جدولة الاستبيانات", en: "[1] Video conferencing — [2] Questionnaire scheduling" },
+                { ar: "[1] (ب) التلفزيون — [2] (ج) الهاتف", en: "[1] Television — [2] Telephone" },
+                { ar: "[1] (د) جدولة الاستبيانات — [2] (أ) مؤتمرات الفيديو", en: "[1] Questionnaire scheduling — [2] Video conferencing" }
+            ],
+            correct: 0,
+            exp_ar: "حل تمرين 1-(1) صـ 57: الاتصال الفردي (واحد إلى واحد) يشمل الرسائل والهاتف [1: ج]، بينما وسائل الإعلام الجماهيرية (واحد إلى العديد) تشمل الصحف والتلفزيون [2: ب] والراديو وصفحات الويب.",
+            exp_en: "Exercise 1-(1) on p. 57: Individual (one-to-one) includes letters and the telephone [1], while mass media (one-to-many) includes newspapers, television [2], and web pages."
+        },
+        {
+            id: 20,
+            lesson: 2,
+            isBook: true,
+            source: "كتاب الوزارة - النقاط الرئيسية صـ 56",
+            topic: "الدرس 2: متعدد إلى واحد (وسائل الاتصال العكسية) 📖",
+            ar_q: "ما هو نوع الاتصال الذي ينتقل فيه المحتوى من «مرسلين متعددين إلى مستلم واحد» (Many-to-one)، ومن أمثلته في الكتاب المدرسي «جدولة الاستبيانات والاستفسارات»؟",
+            en_q: "What type of communication involves 'multiple senders to a single recipient' (Many-to-one), with examples like 'questionnaire scheduling and inquiries'?",
+            options: [
+                { ar: "متعدد إلى واحد - وسائل الاتصال العكسية (Many-to-one / Reverse mass media type)", en: "Many-to-one (Reverse mass media type)" },
+                { ar: "واحد إلى واحد - نوع فردي (One-to-one / Individual type)", en: "One-to-one (Individual type)" },
+                { ar: "واحد إلى العديد - وسائل الاتصال الجماهيرية (One-to-many / Mass media type)", en: "One-to-many (Mass media type)" },
+                { ar: "متعدد إلى متعدد - نوع مؤتمر (Many-to-many / Conference type)", en: "Many-to-many (Conference type)" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 56): متعدد إلى واحد نوع (وسائل الاتصال العكسية - Reverse mass media type): مرسلون متعددون إلى مستلم واحد، ومن أمثلته جدولة الاستبيانات، والاستفسارات، إلخ.",
+            exp_en: "Textbook (p. 56): Many-to-one (Reverse mass media type) involves multiple senders communicating to one recipient, such as questionnaires and inquiries."
+        },
+        {
+            id: 21,
+            lesson: 2,
+            isBook: true,
+            source: "كتاب الوزارة - النقاط الرئيسية صـ 56",
+            topic: "الدرس 2: متعدد إلى متعدد (نوع مؤتمر) 📖",
+            ar_q: "تُصنّف كل من «مؤتمرات الفيديو، والمكالمات الجماعية، ووسائل التواصل الاجتماعي» ضمن أي نوع من الاتصال حسب عدد المرسلين والمستلمين؟",
+            en_q: "Under which sender/recipient category are 'video conferences, group calls, and social media' classified?",
+            options: [
+                { ar: "متعدد إلى متعدد - نوع مؤتمر (Many-to-many / Conference type)", en: "Many-to-many (Conference type)" },
+                { ar: "واحد إلى واحد - نوع فردي (One-to-one / Individual type)", en: "One-to-one (Individual type)" },
+                { ar: "متعدد إلى واحد - وسائل الاتصال العكسية (Many-to-one)", en: "Many-to-one (Reverse mass media)" },
+                { ar: "واحد إلى العديد - البث التلفزيوني فقط", en: "One-to-many (TV broadcasting only)" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 56): متعدد إلى متعدد نوع (مؤتمر - Conference type): مرسلون متعددون إلى مستلمين متعددين، ومن أمثلته مؤتمرات الفيديو، المكالمات الجماعية، وسائل التواصل الاجتماعي، إلخ.",
+            exp_en: "Textbook (p. 56): Many-to-many (Conference type) involves multiple senders and multiple recipients, such as video conferences, group calls, and social media."
+        },
+        {
+            id: 22,
+            lesson: 2,
+            isBook: true,
+            source: "كتاب الوزارة - النقاط الرئيسية صـ 56",
+            topic: "الدرس 2: الاتصال المباشر مقابل غير المباشر 📖",
+            ar_q: "عند تصنيف الاتصال بناءً على «علاقة الموقع بين المرسل والمستلم» (صـ 56)، ما الفرق بين الاتصال المباشر (Direct) والاتصال غير المباشر (Indirect)؟",
+            en_q: "When classifying communication based on 'location relationship between sender and recipient' (p. 56), what is the difference between Direct and Indirect communication?",
+            options: [
+                { ar: "المباشر يكون وجهاً لوجه مع مراقبة ردود الفعل (لكن بقيود على الوقت والموقع كالمحادثة والعروض التقديمية) | وغير المباشر يكون الطرفان منفصلين ويزيل قيود الوقت والموقع (كالهاتف والبريد الإلكتروني وصفحات الويب)", en: "Direct is face-to-face observing reactions (with time/place limits) | Indirect is separated, removing time/place limits (phone, email, web)" },
+                { ar: "المباشر يتم عبر البريد الإلكتروني فقط | وغير المباشر يتطلب التواجد في نفس الغرفة وجهاً لوجه", en: "Direct is via email only | Indirect requires being in the same room face-to-face" },
+                { ar: "المباشر لا يسمح برؤية ردود الفعل | وغير المباشر يفرض قيوداً مشددة على الموقع الجغرافي", en: "Direct prevents seeing reactions | Indirect imposes strict location limits" },
+                { ar: "لا يوجد أي فرق بينهما في الموقع أو رؤية ردود الفعل", en: "There is no difference between them in location or reactions" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 56): في الاتصال المباشر يكون المرسل والمستلم وجهاً لوجه مباشرة (يمكن مراقبة ردود الفعل، ولكن هناك قيود على الوقت والموقع مثل المحادثات والعروض التقديمية)، بينما في غير المباشر يكونان منفصلين (تُزال قيود الوقت والموقع مثل الهواتف والبريد الإلكتروني وصفحات الويب).",
+            exp_en: "Direct communication is face-to-face (allowing observation of reactions but constrained by time/location), while Indirect communication occurs when parties are separated (removing time/location constraints)."
+        },
+        {
+            id: 23,
+            lesson: 2,
+            isBook: true,
+            source: "كتاب الوزارة - النقاط الرئيسية صـ 56",
+            topic: "الدرس 2: الاتصال المتزامن مقابل غير المتزامن 📖",
+            ar_q: "عند تصنيف الاتصال حسب «التزامن» (صـ 56)، ما الفرق بين الاتصال المتزامن (Synchronous) والاتصال غير المتزامن (Asynchronous)؟",
+            en_q: "When classifying communication by 'synchronization' (p. 56), what is the difference between Synchronous and Asynchronous communication?",
+            options: [
+                { ar: "المتزامن: يتشارك المرسل والمستلم المعلومات في وقت واحد تقريباً (كالمحادثة، الهاتف، مكالمة الفيديو، البث المباشر) | وغير المتزامن: يتم الإرسال والاستقبال في أوقات مناسبة لكل طرف (كالرسائل، البريد الإلكتروني، لوحات الإعلانات، تطبيقات المراسلة)", en: "Synchronous: sharing info at nearly the same time (chat, phone, video call, live TV) | Asynchronous: sending/receiving at convenient times (letters, email, BBS, messaging apps)" },
+                { ar: "المتزامن: يقتصر على الرسائل الورقية والبريد الإلكتروني | وغير المتزامن: يقتصر على المكالمات الهاتفية", en: "Synchronous is limited to paper letters & email | Asynchronous is limited to phone calls" },
+                { ar: "كلاهما يشترط تواجد المرسل والمستلم في نفس الغرفة وجهاً لوجه", en: "Both require sender and recipient to be in the same room face-to-face" },
+                { ar: "غير المتزامن يشترط الرد في نفس اللحظة وإلا تُحذف الرسالة", en: "Asynchronous requires an instant reply or the message is deleted" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 56): المتزامن (Synchronous) يتشارك فيه المرسل والمستلم المعلومات في وقت واحد تقريباً، بينما غير المتزامن (Asynchronous) يتم فيه إرسال المعلومات واستقبالها في أوقات مناسبة لكل من المرسل والمستلم.",
+            exp_en: "Synchronous communication shares information simultaneously in real time, whereas Asynchronous communication allows sending and receiving at each party's convenience."
+        },
+        {
+            id: 24,
+            lesson: 2,
+            isBook: true,
+            source: "كتاب الوزارة - تحدى معلوماتك صـ 56 و 57",
+            topic: "الدرس 2: تصنيف تطبيق المراسلة والمحادثة ومكالمة الفيديو 📖",
+            ar_q: "اختر الشكل الأكثر ملاءمة للاتصال لكل من الطرق التالية (تحدى معلوماتك صـ 56): (1) تطبيق مراسلة، (2) محادثة وجهاً لوجه، (3) مكالمة فيديو:",
+            en_q: "Choose the most appropriate communication form for each method (p. 56): (1) Messaging app, (2) Face-to-face conversation, (3) Video call:",
+            diagram: "sync_direct_matrix",
+            options: [
+                { ar: "(1) تطبيق مراسلة: غير مباشر وغير متزامن | (2) محادثة: مباشر ومتزامن | (3) مكالمة فيديو: غير مباشر ومتزامن", en: "(1) Messaging app: Indirect & Asynchronous | (2) Conversation: Direct & Synchronous | (3) Video call: Indirect & Synchronous" },
+                { ar: "(1) تطبيق مراسلة: مباشر ومتزامن | (2) محادثة: غير مباشر وغير متزامن | (3) مكالمة فيديو: مباشر وغير متزامن", en: "(1) Messaging app: Direct & Sync | (2) Conversation: Indirect & Async | (3) Video call: Direct & Async" },
+                { ar: "(1) تطبيق مراسلة: غير مباشر ومتزامن | (2) محادثة: غير مباشر ومتزامن | (3) مكالمة فيديو: مباشر ومتزامن", en: "(1) Messaging app: Indirect & Sync | (2) Conversation: Indirect & Sync | (3) Video call: Direct & Sync" },
+                { ar: "جميع الطرق الثلاثة تُصنّف على أنها اتصال مباشر ومتزامن", en: "All three methods are classified as Direct and Synchronous" }
+            ],
+            correct: 0,
+            exp_ar: "الحل الرسمي في كتاب الوزارة (صـ 57): (1) تطبيق المراسلة: غير مباشر وغير متزامن، (2) المحادثة: مباشر ومتزامن (وجهاً لوجه وفي نفس الوقت)، (3) مكالمة الفيديو: غير مباشر ومتزامن (عن بُعد وفي نفس الوقت).",
+            exp_en: "Official textbook solution (p. 57): (1) Messaging app = Indirect & Asynchronous, (2) Conversation = Direct & Synchronous, (3) Video call = Indirect & Synchronous."
+        },
+        {
+            id: 25,
+            lesson: 2,
+            isBook: true,
+            source: "كتاب الوزارة - جرب بنفسك (1) صـ 57",
+            topic: "الدرس 2: جدول المتزامن وغير المتزامن مع الفردي والجماهيري 📖",
+            ar_q: "أكمل الجدول في سؤال (جرب بنفسك 1 صـ 57) من الخيارات: [1] واحد إلى واحد (متزامن)، [2] واحد إلى واحد (غير متزامن)، [3] واحد إلى كثير (متزامن)، [4] واحد إلى كثير (غير متزامن):",
+            en_q: "Complete the matrix in Try It Yourself (1) on p. 57: [1] One-to-one (Synchronous), [2] One-to-one (Asynchronous), [3] One-to-many (Synchronous), [4] One-to-many (Asynchronous):",
+            options: [
+                { ar: "[1] (ب) الهاتف | [2] (أ) الرسالة | [3] (ت) البث التلفزيوني المباشر | [4] (ث) وسائل التواصل الاجتماعي", en: "[1] Telephone | [2] Letter/Message | [3] Live TV broadcast | [4] Social media" },
+                { ar: "[1] (أ) الرسالة | [2] (ب) الهاتف | [3] (ث) وسائل التواصل الاجتماعي | [4] (ت) البث التلفزيوني المباشر", en: "[1] Letter | [2] Telephone | [3] Social media | [4] Live TV broadcast" },
+                { ar: "[1] (ت) البث التلفزيوني المباشر | [2] (ث) وسائل التواصل الاجتماعي | [3] (ب) الهاتف | [4] (أ) الرسالة", en: "[1] Live TV | [2] Social media | [3] Telephone | [4] Letter" },
+                { ar: "[1] (ث) وسائل التواصل الاجتماعي | [2] (ت) البث التلفزيوني المباشر | [3] (أ) الرسالة | [4] (ب) الهاتف", en: "[1] Social media | [2] Live TV | [3] Letter | [4] Telephone" }
+            ],
+            correct: 0,
+            exp_ar: "حل جدول جرب بنفسك (1) صـ 57: واحد إلى واحد متزامن = [1] (ب) الهاتف؛ واحد إلى واحد غير متزامن = [2] (أ) الرسالة؛ واحد إلى كثير متزامن = [3] (ت) البث التلفزيوني المباشر؛ واحد إلى كثير غير متزامن = [4] (ث) وسائل التواصل الاجتماعي.",
+            exp_en: "Matrix solution (p. 57): [1] One-to-one Sync = Telephone; [2] One-to-one Async = Letter/Message; [3] One-to-many Sync = Live TV broadcast; [4] One-to-many Async = Social media."
+        },
+        {
+            id: 26,
+            lesson: 2,
+            isBook: true,
+            source: "كتاب الوزارة - جرب بنفسك (2) صـ 57",
+            topic: "الدرس 2: تصنيف 6 وسائل حسب المباشرة والتزامن 📖",
+            ar_q: "في سؤال (جرب بنفسك 2 صـ 57)، اختر التوزيع الصحيح للوسائل الست (أ: الهاتف، ب: البريد الإلكتروني، ت: المحادثة، ث: لوحة الإعلانات الإلكترونية، ج: تطبيق المراسلة، ح: مكالمة الفيديو) على الفئات الثلاث:",
+            en_q: "In Try It Yourself (2) on p. 57, match the six methods (Phone, Email, Conversation, BBS, Messaging app, Video call) to the three categories:",
+            options: [
+                { ar: "[1] مباشر ومتزامن: (ت) المحادثة | [2] غير مباشر ومتزامن: (أ) الهاتف و(ح) مكالمة الفيديو | [3] غير مباشر وغير متزامن: (ب) البريد الإلكتروني و(ث) لوحة الإعلانات و(ج) تطبيق المراسلة", en: "[1] Direct & Sync: Conversation | [2] Indirect & Sync: Phone & Video call | [3] Indirect & Async: Email, BBS, & Messaging app" },
+                { ar: "[1] مباشر ومتزامن: الهاتف والبريد | [2] غير مباشر ومتزامن: المحادثة | [3] غير مباشر وغير متزامن: مكالمة الفيديو", en: "[1] Direct & Sync: Phone & Email | [2] Indirect & Sync: Conversation | [3] Indirect & Async: Video call" },
+                { ar: "[1] مباشر ومتزامن: لوحة الإعلانات | [2] غير مباشر ومتزامن: تطبيق المراسلة | [3] غير مباشر وغير متزامن: المحادثة والهاتف", en: "[1] Direct & Sync: BBS | [2] Indirect & Sync: Messaging app | [3] Indirect & Async: Conversation & Phone" },
+                { ar: "[1] مباشر ومتزامن: مكالمة الفيديو | [2] غير مباشر ومتزامن: البريد الإلكتروني | [3] غير مباشر وغير متزامن: الهاتف", en: "[1] Direct & Sync: Video call | [2] Indirect & Sync: Email | [3] Indirect & Async: Phone" }
+            ],
+            correct: 0,
+            exp_ar: "حل جرب بنفسك (2) صـ 57: [1] مباشر ومتزامن = (ت) المحادثة؛ [2] غير مباشر ومتزامن = (أ) الهاتف، و(ح) مكالمة الفيديو؛ [3] غير مباشر وغير متزامن = (ب) البريد الإلكتروني، و(ث) لوحة الإعلانات الإلكترونية، و(ج) تطبيق المراسلة.",
+            exp_en: "Try It Yourself (2) on p. 57: [1] Direct & Sync = Conversation; [2] Indirect & Sync = Phone & Video call; [3] Indirect & Async = Email, BBS, & Messaging app."
+        },
+        {
+            id: 27,
+            lesson: 2,
+            isBook: true,
+            source: "كتاب الوزارة - تمرين 1-(2) صـ 57",
+            topic: "الدرس 2: تصنيف البريد الإلكتروني والعرض التقديمي ومكالمة الفيديو 📖",
+            ar_q: "اختر الشكل الأكثر ملاءمة للاتصال لكل من الطرق التالية (تمرين 1-(2) صـ 57): [1] البريد الإلكتروني، [2] العرض التقديمي (في قاعة أمام الحضور)، [3] مكالمة الفيديو:",
+            en_q: "Choose the most appropriate communication form for each method (Exercise 1-(2), p. 57): [1] Email, [2] In-person Presentation, [3] Video call:",
+            options: [
+                { ar: "[1] البريد الإلكتروني: (ج) غير مباشر وغير متزامن | [2] العرض التقديمي: (أ) مباشر ومتزامن | [3] مكالمة الفيديو: (ب) غير مباشر ومتزامن", en: "[1] Email: Indirect & Asynchronous | [2] Presentation: Direct & Synchronous | [3] Video call: Indirect & Synchronous" },
+                { ar: "[1] البريد الإلكتروني: (أ) مباشر ومتزامن | [2] العرض التقديمي: (ب) غير مباشر ومتزامن | [3] مكالمة الفيديو: (ج) غير مباشر وغير متزامن", en: "[1] Email: Direct & Sync | [2] Presentation: Indirect & Sync | [3] Video call: Indirect & Async" },
+                { ar: "[1] البريد الإلكتروني: (ب) غير مباشر ومتزامن | [2] العرض التقديمي: (ج) غير مباشر وغير متزامن | [3] مكالمة الفيديو: (أ) مباشر ومتزامن", en: "[1] Email: Indirect & Sync | [2] Presentation: Indirect & Async | [3] Video call: Direct & Sync" },
+                { ar: "جميعها غير مباشرة ومتزامنة", en: "All of them are Indirect and Synchronous" }
+            ],
+            correct: 0,
+            exp_ar: "حل تمرين 1-(2) صـ 57 (بناءً على صـ 56): [1] البريد الإلكتروني = (ج) غير مباشر وغير متزامن؛ [2] العرض التقديمي = (أ) مباشر ومتزامن؛ [3] مكالمة الفيديو = (ب) غير مباشر ومتزامن.",
+            exp_en: "Exercise 1-(2) on p. 57: [1] Email = Indirect & Asynchronous, [2] Presentation = Direct & Synchronous, [3] Video call = Indirect & Synchronous."
+        },
+        {
+            id: 28,
+            lesson: 2,
+            isBook: false,
+            source: "سؤال إضافي على الدرس 2 (صـ 56) ⭐",
+            topic: "الدرس 2: مزايا وقيود الاتصال المباشر ⭐",
+            ar_q: "وفقاً لكتاب الوزارة (صـ 56)، ما هي الميزة الأساسية لـ «الاتصال المباشر» (Direct communication) وما هو القيد المرتبط به؟",
+            en_q: "According to the textbook (p. 56), what is the main advantage of 'Direct communication' and what is its limitation?",
+            options: [
+                { ar: "الميزة: إمكانية الاتصال أثناء مراقبة ردود فعل الشخص الآخر مباشرة | القيد: وجود قيود على الوقت والموقع", en: "Advantage: Observing the other person's reactions directly | Limitation: Constraints on time and location" },
+                { ar: "الميزة: إزالة قيود الوقت والموقع تماماً | القيد: استحالة رؤية ردود فعل الطرف الآخر", en: "Advantage: Removing time and location limits | Limitation: Inability to see reactions" },
+                { ar: "الميزة: عدم الحاجة لتواجد الطرفين في نفس المكان | القيد: انقطاع الإنترنت", en: "Advantage: No need to be in the same place | Limitation: Internet outage" },
+                { ar: "الميزة: إخفاء الهوية الكامل | القيد: عدم وجود صوت", en: "Advantage: Complete anonymity | Limitation: Lack of audio" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 56): في الاتصال المباشر يكون المرسل والمستلم وجهاً لوجه مباشرة، وتمكّن هذه الطريقة من الاتصال أثناء مراقبة ردود فعل الشخص الآخر، ولكن هناك قيود على الوقت والموقع.",
+            exp_en: "Textbook (p. 56): Direct communication allows observing the other person's reactions directly, but imposes constraints on time and location."
+        },
+        {
+            id: 29,
+            lesson: 2,
+            isBook: false,
+            source: "سؤال إضافي على الدرس 2 (صـ 56) ⭐",
+            topic: "الدرس 2: مزايا وقيود الاتصال غير المباشر ⭐",
+            ar_q: "ما الميزة التي يوفرها «الاتصال غير المباشر» (Indirect communication) وما الجانب الذي يفتقده مقارنة بالاتصال المباشر (صـ 56)؟",
+            en_q: "What advantage does 'Indirect communication' offer, and what does it lack compared to direct communication (p. 56)?",
+            options: [
+                { ar: "الميزة: إزالة قيود الوقت والموقع لأن المرسل والمستلم منفصلان | ما يفتقده: ليس من الممكن رؤية ردود فعل الشخص الآخر مباشرة وجهاً لوجه", en: "Advantage: Removes time and location constraints | Lacks: Cannot see the other person's face-to-face reactions directly" },
+                { ar: "الميزة: التواجد وجهاً لوجه في نفس القاعة | ما يفتقده: إمكانية إرسال النصوص", en: "Advantage: Being face-to-face in the same hall | Lacks: Ability to send text" },
+                { ar: "الميزة: يعمل فقط في العصور القديمة | ما يفتقده: استخدام الكهرباء", en: "Advantage: Works only in ancient times | Lacks: Electricity" },
+                { ar: "لا يزيل قيود الموقع ولا يسمح بنقل المعلومات", en: "Neither removes location constraints nor transmits information" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 56): الاتصال غير المباشر يكون فيه المرسل والمستلم منفصلين؛ وبينما ليس من الممكن رؤية ردود فعل الشخص الآخر مباشرة، فإنه يمكن إزالة قيود الوقت والموقع.",
+            exp_en: "Textbook (p. 56): In Indirect communication, sender and recipient are separated; while direct reactions cannot be observed face-to-face, time and location constraints are removed."
+        },
+        {
+            id: 30,
+            lesson: 2,
+            isBook: false,
+            source: "سؤال إضافي على الدرس 2 (صـ 56) ⭐",
+            topic: "الدرس 2: تصنيف صفحات الويب (Web pages) ⭐",
+            ar_q: "في كتاب الوزارة (صـ 56 و57)، كيف تُصنّف «صفحات الويب» (Web pages) من حيث عدد المرسلين والمستلمين ومن حيث علاقة الموقع؟",
+            en_q: "In the textbook (pp. 56–57), how are 'Web pages' classified in terms of sender/recipient count and location relationship?",
+            options: [
+                { ar: "واحد إلى العديد (وسائل الاتصال الجماهيرية - One-to-many) + اتصال غير مباشر (Indirect communication)", en: "One-to-many (Mass media type) + Indirect communication" },
+                { ar: "واحد إلى واحد (نوع فردي) + اتصال مباشر وجهاً لوجه", en: "One-to-one (Individual type) + Direct face-to-face communication" },
+                { ar: "متعدد إلى واحد (وسائل الاتصال العكسية) + اتصال مباشر", en: "Many-to-one (Reverse mass media) + Direct communication" },
+                { ar: "اتصال مباشر ومتزامن يتطلب تواجد القارئ والكاتب في غرفة واحدة", en: "Direct and synchronous requiring reader and writer in the same room" }
+            ],
+            correct: 0,
+            exp_ar: "وردت «صفحات الويب» في صـ 56 و57 كمثال صريح على: (1) واحد إلى العديد نوع (وسائل الاتصال الجماهيرية) مع الصحف والراديو والتلفزيون، و(2) الاتصال غير المباشر مع الهواتف والبريد الإلكتروني.",
+            exp_en: "Web pages are explicitly listed on pp. 56–57 as both One-to-many (Mass media type) and Indirect communication."
+        },
+        {
+            id: 31,
+            lesson: 2,
+            isBook: false,
+            source: "سؤال إضافي على الدرس 2 (صـ 56) ⭐",
+            topic: "الدرس 2: سيناريو تطبيقي على وسائل الاتصال العكسية ⭐",
+            ar_q: "قامت إدارة المدرسة بنشر نموذج استبيان إلكتروني لأولياء الأمور، فقام 500 ولي أمر بإرسال ردودهم واستفساراتهم إلى إدارة المدرسة. يُصنّف هذا النمط من الاتصال على أنه:",
+            en_q: "A school administration posted a survey form, and 500 parents submitted their responses and inquiries to the school. This communication pattern is classified as:",
+            options: [
+                { ar: "متعدد إلى واحد - نوع وسائل الاتصال العكسية (Many-to-one / Reverse mass media type)", en: "Many-to-one (Reverse mass media type)" },
+                { ar: "واحد إلى واحد - نوع فردي (One-to-one / Individual type)", en: "One-to-one (Individual type)" },
+                { ar: "اتصال مباشر وجهاً لوجه (Direct communication)", en: "Direct face-to-face communication" },
+                { ar: "بث تلفزيوني مباشر (Live TV broadcast)", en: "Live television broadcast" }
+            ],
+            correct: 0,
+            exp_ar: "انتقال البيانات من مرسلين متعددين (500 ولي أمر) إلى مستلم واحد (إدارة المدرسة) عبر الاستبيانات والاستفسارات هو تعريف «متعدد إلى واحد - وسائل الاتصال العكسية» (صـ 56).",
+            exp_en: "Multiple senders submitting questionnaires or inquiries to a single recipient defines Many-to-one (Reverse mass media type) on p. 56."
+        },
+        {
+            id: 32,
+            lesson: 2,
+            isBook: false,
+            source: "سؤال إضافي على الدرس 2 (صـ 56 و 57) ⭐",
+            topic: "الدرس 2: لماذا تُعد مكالمة الفيديو غير مباشرة ومتزامنة؟ ⭐",
+            ar_q: "لماذا يُصنّف الكتاب المدرسي «مكالمة الفيديو» (Video call) و«الهاتف» على أنهما «اتصال غير مباشر ومتزامن» (Indirect & Synchronous)؟",
+            en_q: "Why does the textbook classify 'Video calls' and 'Telephone calls' as 'Indirect and Synchronous'?",
+            options: [
+                { ar: "غير مباشر لأن المرسل والمستلم منفصلان في الموقع الجغرافي (عبر جهاز/شبكة)، ومتزامن لأنهما يتشاركان المعلومات في نفس الوقت الفعلي", en: "Indirect because sender and recipient are physically separated, and Synchronous because they exchange information in real time" },
+                { ar: "غير مباشر لأنه لا يوجد صوت، ومتزامن لأن الرسالة تصل بعد عدة أيام", en: "Indirect because there is no sound, and Synchronous because messages arrive days later" },
+                { ar: "لأنهما يشترطان جلوس الشخصين في نفس الغرفة وجهاً لوجه بدون أجهزة", en: "Because both require the two people to sit in the same room without devices" },
+                { ar: "لأنهما من وسائل الاتصال الجماهيري أحادية الاتجاه مثل الصحف", en: "Because both are one-way mass media like newspapers" }
+            ],
+            correct: 0,
+            exp_ar: "المعيار في الكتاب المدرسي (صـ 56): «المباشر» يشترط التواجد وجهاً لوجه في نفس المكان (كالمحادثة والعرض التقديمي)، أما التواصل عبر وسيط تقني عن بُعد (كالهاتف ومكالمة الفيديو) فهو «غير مباشر» ولكنه «متزامن» لأنه يحدث في الوقت الفعلي.",
+            exp_en: "Per p. 56, 'Direct' requires physical face-to-face presence in the same place, so remote phone/video calls are 'Indirect', while being real-time makes them 'Synchronous'."
+        },
+
+        // ============================================================
+        // الدرس 3: الإنترنت والاتصالات (الأسئلة 33 - 50)
+        // ============================================================
+        {
+            id: 33,
+            lesson: 3,
+            isBook: true,
+            source: "كتاب الوزارة - صـ 58 + تمرين 1-(1) صـ 60",
+            topic: "الدرس 3: البريد الإلكتروني وحقول To و CC و BCC وقدرة البث 📖",
+            ar_q: "أكمل الجمل التالية من (تمرين 1-(1) صـ 60): «مستلمو البريد الإلكتروني لديهم حقول To، و [1]، و [2]، وكلها تتميز بـ [3] التي تسمح للمستخدم بإرسال رسائل البريد الإلكتروني إلى عناوين متعددة. ومع ذلك، إذا كنت لا تريد أن يرى المستلمون الآخرون عناوين البريد الإلكتروني، فأنت بحاجة إلى اختيار [2]»:",
+            en_q: "Complete Exercise 1-(1) on p. 60: 'Email recipients have fields To, [1], and [2], all featuring [3] allowing sending to multiple addresses. If you do not want other recipients to see the email addresses, choose [2]':",
+            diagram: "email_fields",
+            options: [
+                { ar: "[1] نسخة (CC) — [2] نسخة مخفية (BCC) — [3] قدرة البث (Broadcast capability)", en: "[1] CC — [2] BCC — [3] Broadcast capability" },
+                { ar: "[1] مدونة (Blog) — [2] لوحة إعلانات (BBS) — [3] إخفاء الهوية", en: "[1] Blog — [2] BBS — [3] Anonymity" },
+                { ar: "[1] نسخة مخفية (BCC) — [2] إلى (To) — [3] القابلية للتسجيل", en: "[1] BCC — [2] To — [3] Recordability" },
+                { ar: "[1] SMS — [2] LINE — [3] الفورية (Immediacy)", en: "[1] SMS — [2] LINE — [3] Immediacy" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 58 و60): يتميز البريد الإلكتروني بـ «قدرة البث (Broadcast capability)» عبر الحقول To و CC و BCC، ويُستخدم حقل «BCC (نسخة مخفية)» عندما لا تريد أن يرى المستلمون الآخرون عناوين البريد الإلكتروني.",
+            exp_en: "Textbook (pp. 58 & 60): Email features 'broadcast capability' using To, CC, and BCC. 'BCC' (Blind Carbon Copy) hides recipient addresses from other recipients."
+        },
+        {
+            id: 34,
+            lesson: 3,
+            isBook: true,
+            source: "كتاب الوزارة - النقاط الرئيسية صـ 58",
+            topic: "الدرس 3: الفرق الدقيق بين حقل To وحقل CC وحقل BCC 📖",
+            ar_q: "في البريد الإلكتروني (صـ 58)، متى نستخدم الحقل «CC (نسخة)» ومتى نستخدم الحقل «BCC (نسخة مخفية)»؟",
+            en_q: "In Email (p. 58), when do we use the 'CC' field versus the 'BCC' field?",
+            options: [
+                { ar: "نستخدم CC لمشاركة محتوى البريد مع مستلمين مع إظهار عناوينهم، ونستخدم BCC لمشاركة محتوى البريد مع مستلمين دون أن يرى المستلمون الآخرون عناوينهم", en: "CC shares the email with recipients visibly, while BCC shares the email without letting other recipients see those addresses" },
+                { ar: "نستخدم CC لإخفاء العناوين تماماً، ونستخدم BCC لإظهار جميع العناوين للعامة", en: "CC hides addresses completely, while BCC shows all addresses publicly" },
+                { ar: "كلاهما يستخدم فقط لإرفاق ملفات الفيديو ولا علاقة لهما بعناوين المستلمين", en: "Both are used only for video attachments and have nothing to do with recipient addresses" },
+                { ar: "حقل To يخفي الهوية، بينما حقل BCC ينشر الرسالة في لوحة الإعلانات", en: "To hides identity, while BCC posts the message on a bulletin board" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 58): [1] إلى (To): للمستلم الرئيسي، [2] نسخة (CC): للمستلمين الذين تريد مشاركة محتوى البريد معهم، [3] نسخة مخفية (BCC): للمستلمين الذين تريد مشاركة المحتوى معهم ولكن لا تريد أن يرى المستلمون الآخرون عناوينهم.",
+            exp_en: "Textbook (p. 58): CC shares the email content with secondary recipients visibly, whereas BCC hides the BCC recipients' email addresses from all other recipients."
+        },
+        {
+            id: 35,
+            lesson: 3,
+            isBook: true,
+            source: "كتاب الوزارة - صـ 58 + تحدى معلوماتك (1)-[1] صـ 59",
+            topic: "الدرس 3: نظام لوحة الإعلانات (BBS) 📖",
+            ar_q: "ما هو المصطلح الذي يُطلق على «الأداة التي تسمح للمستخدم بنشر الرسائل وكتابة الردود على الرسائل الأخرى على الإنترنت»؟",
+            en_q: "What term refers to 'a tool that allows a user to post messages and write replies to other messages on the internet'?",
+            options: [
+                { ar: "نظام لوحة الإعلانات (Bulletin board system - BBS)", en: "Bulletin board system (BBS)" },
+                { ar: "مكالمة الفيديو (Video call)", en: "Video call" },
+                { ar: "التلغراف اللاسلكي (Wireless telegraph)", en: "Wireless telegraph" },
+                { ar: "طابعة الحروف المتحركة (Movable-type printing press)", en: "Movable-type printing press" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 58 و59): نظام لوحة الإعلانات (BBS - Bulletin board system) هو أداة تسمح للمستخدم بنشر الرسائل وكتابة الردود على الرسائل الأخرى.",
+            exp_en: "Textbook (pp. 58–59): A Bulletin Board System (BBS) is a tool that allows users to post messages and write replies to other messages."
+        },
+        {
+            id: 36,
+            lesson: 3,
+            isBook: true,
+            source: "كتاب الوزارة - صـ 58 + تمرين 1-(2)-[2] صـ 60",
+            topic: "الدرس 3: تطبيق المراسلة (Messaging app) والبريد الإلكتروني 📖",
+            ar_q: "ما هي الأداة التي «تمكّن تبادل النصوص والصور ومقاطع الفيديو وتسهّل الاتصال للأفراد أو المجموعات، ومن أمثلتها خدمة الرسائل القصيرة (SMS) وتطبيق LINE»؟",
+            en_q: "Which tool 'enables exchanging text, images, and videos, facilitating communication for individuals or groups, with examples like SMS and LINE'?",
+            options: [
+                { ar: "تطبيق المراسلة (Messaging app)", en: "Messaging app" },
+                { ar: "نظام لوحة الإعلانات (BBS)", en: "Bulletin board system (BBS)" },
+                { ar: "المدونة (Blog)", en: "Blog" },
+                { ar: "منصة مشاركة الفيديو (Video sharing platform)", en: "Video sharing platform" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 58): تطبيق المراسلة (Messaging app) هو أدوات تمكّن تبادل النصوص والصور ومقاطع الفيديو للأفراد أو المجموعات، ومن أمثلته SMS و LINE.",
+            exp_en: "Textbook (p. 58): Messaging apps enable exchanging text, photos, and videos for individuals or groups, such as SMS and LINE."
+        },
+        {
+            id: 37,
+            lesson: 3,
+            isBook: true,
+            source: "كتاب الوزارة - صـ 58 + جرب بنفسك (1)-[1] صـ 59 + تمرين 1-(2)-[3] صـ 60",
+            topic: "الدرس 3: المدونة (Blog = Web + Log) 📖",
+            ar_q: "ما هي الكلمة التي تمت صياغتها بدمج كلمتي «web» و «log»، وهي «خدمة ويب تسمح لك بتجميع ونشر كتابات مثل يومياتك على الإنترنت»؟",
+            en_q: "What word was coined by combining 'web' and 'log', defined as 'a web service that allows you to compile and publish writings such as your diary on the internet'?",
+            options: [
+                { ar: "مدونة (Blog)", en: "Blog" },
+                { ar: "مكالمة الفيديو (Video call)", en: "Video call" },
+                { ar: "نسخة مخفية (BCC)", en: "Blind Carbon Copy (BCC)" },
+                { ar: "شبكة أربانت (ARPANET)", en: "ARPANET" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 58، 59، 60): المدونة (Blog) هي كلمة تم صياغتها بدمج \"web\" و \"log\"، وهي خدمة ويب تسمح لك بتجميع ونشر كتابات مثل يومياتك على الإنترنت.",
+            exp_en: "Textbook (pp. 58–60): A Blog (coined from 'web' + 'log') is a web service allowing users to compile and publish diary-like writings online."
+        },
+        {
+            id: 38,
+            lesson: 3,
+            isBook: true,
+            source: "كتاب الوزارة - صـ 58 + تحدى معلوماتك (1)-[3] صـ 59",
+            topic: "الدرس 3: منصة مشاركة الفيديو (Video sharing platform) 📖",
+            ar_q: "ما اسم «الخدمة التي تسمح لجمهور واسع غير محدد بمشاركة ومشاهدة مقاطع الفيديو المنشورة بواسطة مستخدمين غير محددين آخرين على الإنترنت»؟",
+            en_q: "What is the name of the 'service that allows a wide, unspecified audience to share and watch videos posted by other unspecified users on the internet'?",
+            options: [
+                { ar: "منصة مشاركة الفيديو (Video sharing platform)", en: "Video sharing platform" },
+                { ar: "نظام لوحة الإعلانات (BBS)", en: "Bulletin board system (BBS)" },
+                { ar: "البريد الإلكتروني (Email)", en: "Electronic mail (Email)" },
+                { ar: "التلغراف المورسي (Morse telegraph)", en: "Morse telegraph" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 58 و59): منصة مشاركة الفيديو (Video sharing platform) هي خدمة تسمح لجمهور واسع غير محدد بمشاركة ومشاهدة مقاطع الفيديو المنشورة بواسطة مستخدمين غير محددين آخرين على الإنترنت.",
+            exp_en: "Textbook (pp. 58–59): A Video sharing platform allows a wide, unspecified audience to share and view videos uploaded by other users online."
+        },
+        {
+            id: 39,
+            lesson: 3,
+            isBook: true,
+            source: "كتاب الوزارة - تحدى معلوماتك (1) صـ 59",
+            topic: "الدرس 3: مطابقة طرق الاتصال الثلاث (تحدى معلوماتك صـ 59) 📖",
+            ar_q: "اختر الشرح الأكثر ملاءمة لكل من طرق الاتصال التالية (تحدى معلوماتك 1 صـ 59): [1] نظام لوحة الإعلانات، [2] وسائل التواصل الاجتماعي، [3] منصة مشاركة الفيديو:",
+            en_q: "Match the three internet communication methods from p. 59: [1] Bulletin board system (BBS), [2] Social media, [3] Video sharing platform:",
+            options: [
+                { ar: "[1] (ت) أداة لنشر الرسائل وكتابة الردود | [2] (ب) منصات لتواصل الأفراد مع بعضهم | [3] (ث) خدمة لجمهور واسع لمشاركة ومشاهدة مقاطع الفيديو", en: "[1] Post messages & replies | [2] Platforms for individuals to communicate | [3] Wide audience sharing & watching videos" },
+                { ar: "[1] (أ) محادثة فيديو في الوقت الفعلي | [2] (ث) مشاركة الفيديو | [3] (ت) نشر الرسائل النصية", en: "[1] Real-time video call | [2] Video sharing | [3] Posting text messages" },
+                { ar: "[1] (ب) منصات تواصل | [2] (ت) لوحة إعلانات | [3] (أ) مكالمة فيديو", en: "[1] Social platforms | [2] Bulletin board | [3] Video call" },
+                { ar: "[1] (ث) مشاركة الفيديو | [2] (أ) مكالمة فيديو | [3] (ب) منصات تواصل", en: "[1] Video sharing | [2] Video call | [3] Social platforms" }
+            ],
+            correct: 0,
+            exp_ar: "الحل الرسمي في كتاب الوزارة (صـ 59): [1] نظام لوحة الإعلانات = (ت)، [2] وسائل التواصل الاجتماعي = (ب)، [3] منصة مشاركة الفيديو = (ث). بينما الخيار (أ) يخص مكالمة الفيديو.",
+            exp_en: "Official textbook key (p. 59): [1] BBS = (ت), [2] Social media = (ب), [3] Video sharing platform = (ث)."
+        },
+        {
+            id: 40,
+            lesson: 3,
+            isBook: true,
+            source: "كتاب الوزارة - جرب بنفسك (1) صـ 59",
+            topic: "الدرس 3: مطابقة المدونة والتواصل الاجتماعي ومكالمة الفيديو 📖",
+            ar_q: "اختر الشرح الأكثر ملاءمة لكل من (جرب بنفسك 1 صـ 59): [1] المدونة (Blog)، [2] وسائل التواصل الاجتماعي (Social Media)، [3] مكالمة الفيديو (Video call):",
+            en_q: "Match each method from Try It Yourself (1) on p. 59: [1] Blog, [2] Social Media, [3] Video call:",
+            options: [
+                { ar: "[1] المدونة: (ب) تجميع ونشر كتابات مثل يومياتك | [2] التواصل الاجتماعي: (ت) منصات لتواصل الأفراد | [3] مكالمة الفيديو: (أ) محادثة في الوقت الفعلي أثناء مشاهدة فيديو الطرف الآخر", en: "[1] Blog: Compile & publish diary writings | [2] Social Media: Platforms for individuals to connect | [3] Video call: Real-time chat while watching video" },
+                { ar: "[1] المدونة: (أ) محادثة فيديو | [2] التواصل الاجتماعي: (ب) نشر يومياتك | [3] مكالمة الفيديو: (ت) منصات تواصل", en: "[1] Blog: Video chat | [2] Social Media: Publish diary | [3] Video call: Social platforms" },
+                { ar: "[1] المدونة: (ت) منصات تواصل | [2] التواصل الاجتماعي: (أ) محادثة فيديو | [3] مكالمة الفيديو: (ب) نشر يومياتك", en: "[1] Blog: Social platforms | [2] Social Media: Video chat | [3] Video call: Publish diary" },
+                { ar: "جميعها تشير إلى إرسال البرقيات الورقية بالحمام الزاجل", en: "All refer to sending paper telegrams via carrier pigeons" }
+            ],
+            correct: 0,
+            exp_ar: "حل جرب بنفسك (1) صـ 59: [1] المدونة = (ب) خدمة تسمح بتجميع ونشر كتابات مثل يومياتك؛ [2] وسائل التواصل الاجتماعي = (ت) خدمات توفر منصات لتواصل الأفراد؛ [3] مكالمة الفيديو = (أ) أداة تسمح بالمحادثة في الوقت الفعلي أثناء مشاهدة فيديو الشخص الآخر.",
+            exp_en: "Try It Yourself (1) on p. 59: [1] Blog = (ب), [2] Social Media = (ت), [3] Video call = (أ)."
+        },
+        {
+            id: 41,
+            lesson: 3,
+            isBook: true,
+            source: "كتاب الوزارة - تمرين 1-(2) صـ 60",
+            topic: "الدرس 3: مطابقة الأدوات الأربع (تمرين صـ 60) 📖",
+            ar_q: "اختر الشرح الأكثر ملاءمة لكل من الجمل الأربع في (تمرين 1-(2) صـ 60): [1] محادثة في الوقت الفعلي أثناء مشاهدة فيديو الشخص الآخر، [2] أداة تسمح بإرفاق وإرسال النص والصور والفيديو وملفات المستندات، [3] خدمة لتجميع ونشر كتابات مثل يومياتك، [4] منصات لتواصل الأفراد مع بعضهم:",
+            en_q: "Match the four descriptions in Exercise 1-(2) on p. 60: [1] Real-time video conversation, [2] Tool to attach & send text, images, video, and document files, [3] Diary-like web publishing, [4] Platforms for individuals to communicate:",
+            options: [
+                { ar: "[1] (ح) مكالمة الفيديو | [2] (ت) البريد الإلكتروني (أو ب: تطبيق المراسلة) | [3] (ث) المدونة | [4] (ج) وسائل التواصل الاجتماعي", en: "[1] Video call | [2] Email (or Messaging app) | [3] Blog | [4] Social Media" },
+                { ar: "[1] (ث) المدونة | [2] (أ) منصة مشاركة الفيديو | [3] (ح) مكالمة الفيديو | [4] (ت) البريد الإلكتروني", en: "[1] Blog | [2] Video sharing platform | [3] Video call | [4] Email" },
+                { ar: "[1] (ج) وسائل التواصل الاجتماعي | [2] (ث) المدونة | [3] (ب) تطبيق المراسلة | [4] (ح) مكالمة الفيديو", en: "[1] Social Media | [2] Blog | [3] Messaging app | [4] Video call" },
+                { ar: "[1] (أ) منصة مشاركة الفيديو | [2] (ح) مكالمة الفيديو | [3] (ج) وسائل التواصل الاجتماعي | [4] (ث) المدونة", en: "[1] Video sharing platform | [2] Video call | [3] Social Media | [4] Blog" }
+            ],
+            correct: 0,
+            exp_ar: "حل تمرين 1-(2) صـ 60: [1] (ح) مكالمة الفيديو، [2] (ت) البريد الإلكتروني (حيث يتميز بإرفاق وإرسال ملفات المستندات والصور والفيديو مع النص، كما يدعم تطبيق المراسلة الصور والفيديو)، [3] (ث) المدونة، [4] (ج) وسائل التواصل الاجتماعي.",
+            exp_en: "Exercise 1-(2) on p. 60: [1] Video call, [2] Email (attaching documents, images, and videos), [3] Blog, [4] Social media."
+        },
+        {
+            id: 42,
+            lesson: 3,
+            isBook: true,
+            source: "كتاب الوزارة - صـ 58 + جرب بنفسك (2) صـ 59 و 60",
+            topic: "الدرس 3: خصائص التواصل على الإنترنت الأربعة 📖",
+            ar_q: "اختر الشرح الأكثر ملاءمة للجمل الثلاث في (جرب بنفسك 2 صـ 59-60): [1] إمكانية التواصل أثناء إخفاء معلومات مثل الاسم أو الانتماء، [2] المعلومات المنشورة على الإنترنت لا يمكن محوها بالكامل (وتترك سجلاً)، [3] تتلقى على الفور استجابة من الطرف الآخر:",
+            en_q: "Match the three statements on pp. 59–60 to the characteristics of online communication: [1] Communicating while hiding name/affiliation, [2] Posted info cannot be completely erased (leaves a log), [3] Receiving an immediate response:",
+            diagram: "online_traits",
+            options: [
+                { ar: "[1] (ج) إخفاء الهوية (Anonymity) | [2] (ب) القابلية للتسجيل (Recordability) | [3] (د) الفورية (Immediacy)", en: "[1] Anonymity | [2] Recordability | [3] Immediacy" },
+                { ar: "[1] (أ) الراحة (Convenience) | [2] (د) الفورية | [3] (ج) إخفاء الهوية", en: "[1] Convenience | [2] Immediacy | [3] Anonymity" },
+                { ar: "[1] (ب) القابلية للتسجيل | [2] (ج) إخفاء الهوية | [3] (أ) الراحة", en: "[1] Recordability | [2] Anonymity | [3] Convenience" },
+                { ar: "[1] (د) الفورية | [2] (أ) الراحة | [3] (ب) القابلية للتسجيل", en: "[1] Immediacy | [2] Convenience | [3] Recordability" }
+            ],
+            correct: 0,
+            exp_ar: "حل جرب بنفسك (2) صـ 59-60: [1] إخفاء الاسم أو الانتماء = (ج) إخفاء الهوية (Anonymity)؛ [2] عدم إمكانية محو المعلومات بالكامل وترك سجل (log) = (ب) القابلية للتسجيل (Recordability)؛ [3] تلقي استجابة فورية = (د) الفورية (Immediacy).",
+            exp_en: "Solution (pp. 59–60): [1] Hiding name/affiliation = Anonymity; [2] Leaving a log / cannot be completely erased = Recordability; [3] Instant response = Immediacy."
+        },
+        {
+            id: 43,
+            lesson: 3,
+            isBook: true,
+            source: "كتاب الوزارة - النقاط الرئيسية صـ 58",
+            topic: "الدرس 3: مزايا وعيوب إخفاء الهوية (Anonymity) 📖",
+            ar_q: "وفقاً للنقاط الرئيسية في كتاب الوزارة (صـ 58)، ما هي «الميزة» وما هي «العيوب» المرتبطة بخاصية «إخفاء الهوية» (Anonymity) على الإنترنت؟",
+            en_q: "According to the textbook Key Points (p. 58), what is the 'advantage' and what are the 'disadvantages' of 'Anonymity' on the internet?",
+            options: [
+                { ar: "الميزة: التعبير عن النفس بحرية بغض النظر عن العمر أو الوضع الاجتماعي | العيوب: [1] الإساءة عبر الإنترنت (تركز التعليقات النقدية) و [2] الأخبار المزيفة (نشر معلومات كاذبة)", en: "Advantage: Free self-expression regardless of age/status | Disadvantages: [1] Online abuse/flaming and [2] Fake news" },
+                { ar: "الميزة: نشر الأخبار المزيفة | العيوب: التواصل السلس والفورية", en: "Advantage: Spreading fake news | Disadvantages: Smooth communication and immediacy" },
+                { ar: "الميزة: كشف العنوان المنزلي للجميع | العيوب: عدم القدرة على الكتابة", en: "Advantage: Revealing home addresses | Disadvantages: Inability to type" },
+                { ar: "ليست لها أي مزايا أو عيوب في الكتاب المدرسي", en: "It has no advantages or disadvantages in the textbook" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 58): مزايا إخفاء الهوية أن المستخدمين يمكنهم التعبير عن أنفسهم بحرية بغض النظر عن العمر أو الوضع الاجتماعي؛ أما العيوب فهي: [1] الإساءة عبر الإنترنت (حيث تتركز التعليقات النقدية على المنشورات) و [2] الأخبار المزيفة (معلومات كاذبة يتم توزيعها ونشرها).",
+            exp_en: "Textbook (p. 58): Anonymity allows free expression regardless of age or social status, but its drawbacks are [1] Online abuse (concentrated critical comments) and [2] Fake news."
+        },
+        {
+            id: 44,
+            lesson: 3,
+            isBook: true,
+            source: "كتاب الوزارة - تحدى معلوماتك (2) صـ 59",
+            topic: "الدرس 3: صح أم خطأ حول خدمات الإنترنت (صـ 59) 📖",
+            ar_q: "حدد (صح) أم (خطأ) للعبارات الثلاث في (تحدى معلوماتك 2 صـ 59): (أ) بما أن المنشورات عبر الإنترنت يمكن أن تكون مجهولة، فلا بأس للمستخدمين بكتابة أي معلومات يريدون. (ب) عند تحميل مقاطع الفيديو لمنصة مشاركة الفيديو، هناك احتمال أن يتم التعرف على الأفراد من المباني أو اللافتات المرئية. (ت) في الاتصال عبر الإنترنت، بما أنه يتم الاحتفاظ بسجلات التفاعلات، فمن المهم أن تكون مراعياً وتضمن أن رسائلك لا تجعل المستلم يشعر بعدم الراحة:",
+            en_q: "Determine True or False for statements (أ), (ب), and (ت) in Challenge Yourself (2) on page 59:",
+            options: [
+                { ar: "(أ) خطأ ❌ | (ب) صح ✅ | (ت) صح ✅", en: "(أ) False ❌ | (ب) True ✅ | (ت) True ✅" },
+                { ar: "(أ) صح ✅ | (ب) خطأ ❌ | (ت) خطأ ❌", en: "(أ) True ✅ | (ب) False ❌ | (ت) False ❌" },
+                { ar: "(أ) صح ✅ | (ب) صح ✅ | (ت) خطأ ❌", en: "(أ) True ✅ | (ب) True ✅ | (ت) False ❌" },
+                { ar: "(أ) خطأ ❌ | (ب) خطأ ❌ | (ت) صح ✅", en: "(أ) False ❌ | (ب) False ❌ | (ت) True ✅" }
+            ],
+            correct: 0,
+            exp_ar: "الحل الرسمي في كتاب الوزارة (صـ 59): (أ) خطأ (لأنه عند النشر على الإنترنت يجب دائماً مراعاة وجهة نظر الشخص الآخر وإظهار التعاطف ومشاركة معلومات دقيقة)، (ب) صح (قد يتم التعرف على الأفراد والمواقع من المباني أو اللافتات في الفيديو)، (ت) صح.",
+            exp_en: "Official textbook solution (p. 59): (أ) False (must always consider others' perspectives and share accurate info), (ب) True, (ت) True."
+        },
+        {
+            id: 45,
+            lesson: 3,
+            isBook: true,
+            source: "كتاب الوزارة - تمرين 1-(3) صـ 60",
+            topic: "الدرس 3: صح أم خطأ حول خدمات الإنترنت (تمرين صـ 60) 📖",
+            ar_q: "حدد (صح) أم (خطأ) للعبارات الثلاث في (تمرين 1-(3) صـ 60): (أ) يمكن للشخص نشر المعلومات بحرية بغض النظر عن موقفهم (أو دون مراعاة الآخرين). (ب) لوحات الإعلانات الإلكترونية هي شكل من أشكال الاتصال القائم على النص بشكل رئيسي، لذلك قد يحدث سوء فهم. (ت) من الصعب محو المعلومات بالكامل بمجرد نشرها على الإنترنت:",
+            en_q: "Determine True or False for statements (أ), (ب), and (ت) in Exercise 1-(3) on page 60:",
+            options: [
+                { ar: "(أ) خطأ ❌ | (ب) صح ✅ | (ت) صح ✅", en: "(أ) False ❌ | (ب) True ✅ | (ت) True ✅" },
+                { ar: "(أ) صح ✅ | (ب) خطأ ❌ | (ت) صح ✅", en: "(أ) True ✅ | (ب) False ❌ | (ت) True ✅" },
+                { ar: "(أ) صح ✅ | (ب) صح ✅ | (ت) خطأ ❌", en: "(أ) True ✅ | (ب) True ✅ | (ت) False ❌" },
+                { ar: "(أ) خطأ ❌ | (ب) خطأ ❌ | (ت) خطأ ❌", en: "(أ) False ❌ | (ب) False ❌ | (ت) False ❌" }
+            ],
+            correct: 0,
+            exp_ar: "حل تمرين 1-(3) صـ 60: (أ) خطأ (لا يجوز نشر معلومات كاذبة أو مسيئة دون مسؤولية)، (ب) صح (لأن التواصل النصي يفتقر لتعبيرات الوجه ونبرة الصوت فقد يحدث سوء فهم)، (ت) صح (بسبب خاصية القابلية للتسجيل واستمرارية المعلومات على الإنترنت).",
+            exp_en: "Exercise 1-(3) on p. 60: (أ) False (users must act responsibly and consider others), (ب) True (text-based BBS can cause misunderstandings), (ت) True (posted information is difficult to erase completely)."
+        },
+        {
+            id: 46,
+            lesson: 3,
+            isBook: false,
+            source: "سؤال إضافي على الدرس 3 (صـ 58) ⭐",
+            topic: "الدرس 3: خاصية الملائمة / الراحة (Convenience) ⭐",
+            ar_q: "ما هو المصطلح الذي يُطلق في كتاب الوزارة (صـ 58) على خاصية التواصل عبر الإنترنت التي «تسمح للمستخدم بالتواصل بسلاسة» في أي وقت؟",
+            en_q: "What term is used in the textbook (p. 58) for the online communication characteristic that 'allows the user to communicate smoothly'?",
+            options: [
+                { ar: "الملائمة / الراحة (Convenience)", en: "Convenience" },
+                { ar: "الإساءة عبر الإنترنت (Online abuse)", en: "Online abuse" },
+                { ar: "التلغراف المورسي (Morse telegraph)", en: "Morse telegraph" },
+                { ar: "الأخبار المزيفة (Fake news)", en: "Fake news" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 58 و60): الملائمة / الراحة (Convenience) هي الخاصية التي تسمح للمستخدم بالتواصل بسلاسة.",
+            exp_en: "Textbook (pp. 58 & 60): Convenience is the characteristic that allows users to communicate smoothly."
+        },
+        {
+            id: 47,
+            lesson: 3,
+            isBook: false,
+            source: "سؤال إضافي على الدرس 3 (صـ 58) ⭐",
+            topic: "الدرس 3: الإساءة عبر الإنترنت والأخبار المزيفة ⭐",
+            ar_q: "ما الفرق بين «الإساءة عبر الإنترنت» و«الأخبار المزيفة» اللتين وردتا كعيوب لإخفاء الهوية في صفحة 58؟",
+            en_q: "What is the difference between 'Online abuse' and 'Fake news' listed as disadvantages of anonymity on page 58?",
+            options: [
+                { ar: "الإساءة عبر الإنترنت: حالة تتركز فيها التعليقات النقدية على المنشورات في منصات التواصل | الأخبار المزيفة: معلومات كاذبة يتم توزيعها ونشرها على وسائل التواصل الاجتماعي", en: "Online abuse: concentrated critical comments on posts | Fake news: false information distributed and spread on social media" },
+                { ar: "الإساءة عبر الإنترنت تعني سرعة الإنترنت | والأخبار المزيفة تعني البث التلفزيوني التجريبي عام 1928", en: "Online abuse means fast internet | Fake news means the 1928 experimental TV broadcast" },
+                { ar: "كلاهما من مزايا نظام البريد الحديث عام 1840", en: "Both are advantages of the 1840 modern postal system" },
+                { ar: "الإساءة عبر الإنترنت هي حقل CC | والأخبار المزيفة هي حقل BCC", en: "Online abuse is the CC field | Fake news is the BCC field" }
+            ],
+            correct: 0,
+            exp_ar: "نص الكتاب (صـ 58 تحت عيوب إخفاء الهوية): [1] الإساءة عبر الإنترنت: حالة حيث تتركز التعليقات النقدية على المنشورات على وسائل التواصل الاجتماعي والمنصات الأخرى، [2] الأخبار المزيفة: معلومات كاذبة يتم توزيعها ونشرها على وسائل التواصل الاجتماعي.",
+            exp_en: "Textbook (p. 58): [1] Online abuse is when critical comments concentrate on social media posts; [2] Fake news is false information distributed on social media."
+        },
+        {
+            id: 48,
+            lesson: 3,
+            isBook: false,
+            source: "سؤال إضافي على الدرس 3 (صـ 58 و 60) ⭐",
+            topic: "الدرس 3: سيناريو عملي على استخدام حقل BCC ⭐",
+            ar_q: "يريد معلم إرسال رسالة بريد إلكتروني واحدة تحتوي على موعد الامتحان إلى 50 ولي أمر في وقت واحد، مع الحفاظ على خصوصية عناوين بريدهم الإلكتروني بحيث لا يرى أي ولي أمر عناوين الآخرين. في أي حقل يجب أن يضع عناوين أولياء الأمور؟",
+            en_q: "A teacher wants to send a single exam schedule email to 50 parents simultaneously while keeping their email addresses private from one another. Which field should the teacher use?",
+            options: [
+                { ar: "حقل نسخة مخفية (BCC - Blind Carbon Copy)", en: "BCC (Blind Carbon Copy) field" },
+                { ar: "حقل نسخة عادية (CC - Carbon Copy)", en: "CC (Carbon Copy) field" },
+                { ar: "حقل إلى (To) لجميع الـ 50 عنواناً", en: "The To field for all 50 addresses" },
+                { ar: "حقل عنوان الموضوع (Subject)", en: "The Subject line field" }
+            ],
+            correct: 0,
+            exp_ar: "عند وضع العناوين في حقل «نسخة مخفية (BCC)»، تصل الرسالة إلى جميع المستلمين مستفيدة من قدرة البث، ولكن لا يمكن للمستلمين الآخرين رؤية عناوين البريد الإلكتروني لبعضهم البعض (صـ 58 و60).",
+            exp_en: "Placing addresses in the BCC field sends the email to everyone while hiding their addresses from other recipients (pp. 58 & 60)."
+        },
+        {
+            id: 49,
+            lesson: 3,
+            isBook: false,
+            source: "سؤال إضافي على الدرس 3 (صـ 58 و 59) ⭐",
+            topic: "الدرس 3: مخاطر الخصوصية عند رفع مقاطع الفيديو ⭐",
+            ar_q: "لماذا يحذر الكتاب المدرسي (صـ 59) المستخدمين عند تحميل مقاطع الفيديو إلى «منصة مشاركة الفيديو» حتى لو لم يذكروا أسماءهم صراحةً؟",
+            en_q: "Why does the textbook (p. 59) caution users when uploading videos to a 'video sharing platform' even if they don't state their names?",
+            options: [
+                { ar: "لأن هناك احتمالاً أن يتم التعرف على الأفراد أو أماكنهم من المباني أو اللافتات المرئية في الفيديو، وبمجرد نشر المعلومات يصعب محوها بالكامل", en: "Because individuals or their locations might be identified from visible buildings or signs in the video, and posted content is hard to erase" },
+                { ar: "لأن منصات مشاركة الفيديو تحول الفيديوهات إلى رسائل ورقية بالحمام الزاجل", en: "Because video platforms convert videos into carrier pigeon letters" },
+                { ar: "لأن الفيديو لا يمكن مشاهدته إلا من قبل شخص واحد فقط", en: "Because the video can only be watched by a single person" },
+                { ar: "لأن منصة مشاركة الفيديو تعمل بدون إنترنت", en: "Because video sharing platforms operate without the internet" }
+            ],
+            correct: 0,
+            exp_ar: "أشار الكتاب (صـ 59 - تحدى معلوماتك 2-ب) إلى أنه عند تحميل مقاطع الفيديو إلى منصة مشاركة الفيديو (التي يشاهدها جمهور واسع غير محدد)، هناك احتمال أن يتم التعرف على الأفراد من المباني أو اللافتات المرئية في الفيديو.",
+            exp_en: "Textbook (p. 59): When uploading videos to a video sharing platform, individuals may be identified from buildings or signs visible in the footage."
+        },
+        {
+            id: 50,
+            lesson: 3,
+            isBook: false,
+            source: "سؤال تطبيقي شامل على الوحدة الخامسة بالكامل ⭐",
+            topic: "مراجعة شاملة: سيناريو متكامل على دروس الوحدة الخامسة الثلاثة ⭐",
+            ar_q: "شركة بدأت قديماً بإرسال الإعلانات عبر «الصحف المطبوعة» [1]، ثم أنشأت «مدونة رسمية» لتجميع ونشر مقالاتها اليومية [2]، وعقدت اجتماعاً حياً بالصوت والصورة عن بُعد بين فروعها [3]، وأرسلت نشرتها البريدية لـ 1000 عميل مع إخفاء عناوينهم عن بعضهم [4]. ما التوصيف الدقيق لـ [1] و [2] و [3] و [4]؟",
+            en_q: "A company used printed newspapers [1], launched a daily articles blog [2], held a live remote video meeting across branches [3], and emailed 1,000 clients while hiding their addresses [4]. Identify [1]–[4]:",
+            options: [
+                { ar: "[1] اتصال جماهيري أحادي الاتجاه (بفضل طابعة غوتنبرغ) | [2] Blog (دمج web و log) | [3] غير مباشر ومتزامن (Video call) | [4] حقل BCC في البريد الإلكتروني", en: "[1] One-way mass media (Gutenberg press) | [2] Blog (web+log) | [3] Indirect & Synchronous (Video call) | [4] BCC field in Email" },
+                { ar: "[1] اتصال ثنائي الاتجاه | [2] تلغراف مورس | [3] مباشر وغير متزامن | [4] حقل To", en: "[1] Two-way communication | [2] Morse telegraph | [3] Direct & Async | [4] To field" },
+                { ar: "[1] وسائل اتصال عكسية | [2] نظام البريد 1840 | [3] نيران الإشارة | [4] حقل CC", en: "[1] Reverse mass media | [2] 1840 Postal system | [3] Signal fires | [4] CC field" },
+                { ar: "[1] شبكة أربانت | [2] التلغراف اللاسلكي | [3] لوحة إعلانات نصية | [4] إخفاء الهوية", en: "[1] ARPANET | [2] Wireless telegraph | [3] Text BBS | [4] Anonymity" }
+            ],
+            correct: 0,
+            exp_ar: "هذا السؤال الشامل يربط دروس الوحدة الخامسة الثلاثة: (1) الصحف من وسائل الاتصال الجماهيري أحادية الاتجاه التي انتشرت بفضل طابعة غوتنبرغ، (2) المدونة (Blog = web + log) لنشر اليوميات والمقالات، (3) مكالمة الفيديو اتصال غير مباشر ومتزامن، (4) حقل BCC لإرسال البريد لعدة مستلمين مع إخفاء عناوينهم.",
+            exp_en: "This comprehensive scenario integrates all three lessons of Unit 5: [1] Newspapers (one-way mass media enabled by Gutenberg's press), [2] Blog (web + log), [3] Video call (Indirect & Synchronous), and [4] BCC in Email."
+        }
+    ];
+
+    let userAnswers = new Array(questions.length).fill(null);
+    let filteredIndices = questions.map((_, idx) => idx);
+    let currentFilterPos = 0;
+    let currentFilterMode = 'all';
+    let teacherMode = false;
+    let fontScale = 1;
+
+    function safeGetStorage(key) {
+        try {
+            return localStorage.getItem(key);
+        } catch (e) {
+            return null;
+        }
+    }
+
+    function safeSetStorage(key, val) {
+        try {
+            localStorage.setItem(key, val);
+        } catch (e) {}
+    }
+
+    function loadScores() {
+        const storedHigh = safeGetStorage('unit5_50q_highscore');
+        const high = storedHigh ? parseInt(storedHigh, 10) : 0;
+        document.getElementById('highScore').innerText = high;
+
+        const storedFirst = safeGetStorage('unit5_50q_first_score');
+        if (storedFirst !== null) {
+            document.getElementById('firstScore').innerText = storedFirst;
+        } else {
+            document.getElementById('firstScore').innerText = "--";
+        }
+        return { high, first: storedFirst };
+    }
+
+    function saveScores(finalScore) {
+        let isFirstTime = false;
+        if (safeGetStorage('unit5_50q_first_score') === null) {
+            safeSetStorage('unit5_50q_first_score', finalScore);
+            document.getElementById('firstScore').innerText = finalScore;
+            isFirstTime = true;
+        }
+
+        const currentHigh = parseInt(safeGetStorage('unit5_50q_highscore') || '0', 10);
+        let isNewHigh = false;
+        if (finalScore > currentHigh) {
+            safeSetStorage('unit5_50q_highscore', finalScore);
+            document.getElementById('highScore').innerText = finalScore;
+            isNewHigh = true;
+        }
+
+        return { isFirstTime, isNewHigh };
+    }
+
+    function calculateScore() {
+        let s = 0;
+        for (let i = 0; i < questions.length; i++) {
+            if (userAnswers[i] !== null && userAnswers[i] === questions[i].correct) {
+                s++;
+            }
+        }
+        document.getElementById('score').innerText = s;
+        return s;
+    }
+
+    function getDiagramHTML(type) {
+        if (type === 'comm_timeline') {
+            return `
+                <div class="diagram-box">
+                    <div class="diagram-title">📊 مخطط الكتاب المدرسي (صـ 54 و55): التسلسل التاريخي لتطوير وسائل الاتصال</div>
+                    <div class="flow-grid">
+                        <div class="flow-node"><span class="tag">العصور القديمة</span><div>🔥 نيران الإشارة والطبول<br>📜 ثم الورق والحمام الزاجل</div></div>
+                        <div class="flow-arrow">⬅️</div>
+                        <div class="flow-node"><span class="tag">منتصف ق 15</span><div>🖨️ غوتنبرغ<br><small>طابعة الحروف المتحركة</small></div></div>
+                        <div class="flow-arrow">⬅️</div>
+                        <div class="flow-node"><span class="tag">1837 / 1840</span><div>⚡ تلغراف مورس (1837)<br>📮 البريد الحديث (1840)</div></div>
+                        <div class="flow-arrow">⬅️</div>
+                        <div class="flow-node"><span class="tag">1876 / 1895</span><div>☎️ الهاتف لبيل (1876)<br>📡 اللاسلكي لماركوني (1895)</div></div>
+                        <div class="flow-arrow">⬅️</div>
+                        <div class="flow-node"><span class="tag">القرن العشرون</span><div>📻 راديو (1906) • 📺 تلفزيون (1928)<br>📱 خلوي (1946) • 🌐 أربانت (1969)</div></div>
+                    </div>
+                </div>
+            `;
+        }
+        if (type === 'comm_types_grid') {
+            return `
+                <div class="diagram-box">
+                    <div class="diagram-title">📊 مخطط الكتاب المدرسي (صـ 56): تصنيف الاتصال حسب عدد المرسلين والمستلمين</div>
+                    <div class="flow-grid">
+                        <div class="flow-node"><span class="tag">1. واحد إلى واحد (فردي)</span><div>👤 ⬅️ 👤<br><small>الرسائل، الهواتف</small></div></div>
+                        <div class="flow-node"><span class="tag">2. واحد إلى العديد (جماهيري)</span><div>👤 ⬅️ 👥👥<br><small>الصحف، الراديو، التلفزيون، الويب</small></div></div>
+                        <div class="flow-node"><span class="tag">3. متعدد إلى واحد (عكسي)</span><div>👥👥 ⬅️ 👤<br><small>جدولة الاستبيانات، الاستفسارات</small></div></div>
+                        <div class="flow-node"><span class="tag">4. متعدد إلى متعدد (مؤتمر)</span><div>👥 ⬅️➡️ 👥<br><small>مؤتمرات الفيديو، التواصل الاجتماعي</small></div></div>
+                    </div>
+                </div>
+            `;
+        }
+        if (type === 'sync_direct_matrix') {
+            return `
+                <div class="diagram-box">
+                    <div class="diagram-title">📊 مخطط الكتاب المدرسي (صـ 56 و57): مصفوفة الموقع (مباشر/غير مباشر) والتزامن (متزامن/غير متزامن)</div>
+                    <div class="flow-grid">
+                        <div class="flow-node"><span class="tag">مباشر + متزامن</span><div>🗣️ المحادثة وجهاً لوجه<br>📊 العرض التقديمي</div></div>
+                        <div class="flow-arrow">⚡</div>
+                        <div class="flow-node"><span class="tag">غير مباشر + متزامن</span><div>📞 المكالمة الهاتفية<br>📹 مكالمة الفيديو • 📺 البث المباشر</div></div>
+                        <div class="flow-arrow">⚡</div>
+                        <div class="flow-node"><span class="tag">غير مباشر + غير متزامن</span><div>✉️ الرسائل والبريد الإلكتروني<br>💬 تطبيق المراسلة ولوحة الإعلانات</div></div>
+                    </div>
+                </div>
+            `;
+        }
+        if (type === 'email_fields') {
+            return `
+                <div class="diagram-box">
+                    <div class="diagram-title">📊 مخطط الكتاب المدرسي (صـ 58 و60): قدرة البث (Broadcast capability) وحقول البريد الإلكتروني</div>
+                    <div class="flow-grid">
+                        <div class="flow-node"><span class="tag">الحقل الأول: إلى (To)</span><div>🎯 المستلم الرئيسي للرسالة<br><small>(يظهر عنوانه للجميع)</small></div></div>
+                        <div class="flow-arrow">➕</div>
+                        <div class="flow-node"><span class="tag">الحقل الثاني: نسخة (CC)</span><div>👀 مشاركة المحتوى مع مستلمين<br><small>(تظهر عناوينهم لباقي المستلمين)</small></div></div>
+                        <div class="flow-arrow">➕</div>
+                        <div class="flow-node"><span class="tag">الحقل الثالث: نسخة مخفية (BCC)</span><div>🔒 مشاركة المحتوى مع إخفاء العناوين<br><small>(لا يرى المستلمون الآخرون عناوين BCC)</small></div></div>
+                    </div>
+                </div>
+            `;
+        }
+        if (type === 'online_traits') {
+            return `
+                <div class="diagram-box">
+                    <div class="diagram-title">📊 مخطط الكتاب المدرسي (صـ 58): الخصائص الأربع للتواصل على الإنترنت</div>
+                    <div class="flow-grid">
+                        <div class="flow-node"><span class="tag">1. إخفاء الهوية</span><div>🕵️ Anonymity<br><small>إخفاء الاسم والانتماء</small></div></div>
+                        <div class="flow-node"><span class="tag">2. الفورية</span><div>⚡ Immediacy<br><small>استجابة فورية من الطرف الآخر</small></div></div>
+                        <div class="flow-node"><span class="tag">3. الملائمة / الراحة</span><div>✨ Convenience<br><small>التواصل بسلاسة ويسر</small></div></div>
+                        <div class="flow-node"><span class="tag">4. القابلية للتسجيل</span><div>📝 Recordability<br><small>يترك سجلاً (log) ويصعب محوه</small></div></div>
+                    </div>
+                </div>
+            `;
+        }
+        return '';
+    }
+
+    function applyFilter(mode, searchQuery = '') {
+        currentFilterMode = mode;
+        const query = searchQuery.trim().toLowerCase();
+
+        filteredIndices = [];
+        questions.forEach((q, idx) => {
+            let matchMode = false;
+            if (mode === 'all') matchMode = true;
+            else if (mode === 'book') matchMode = q.isBook === true;
+            else if (mode === 'wrong') matchMode = (userAnswers[idx] !== null && userAnswers[idx] !== q.correct);
+            else matchMode = (q.lesson === parseInt(mode, 10));
+
+            let matchSearch = true;
+            if (query !== '') {
+                const haystack = (q.ar_q + ' ' + q.en_q + ' ' + q.topic + ' ' + q.exp_ar + ' ' + q.options.map(o => o.ar + ' ' + o.en).join(' ')).toLowerCase();
+                matchSearch = haystack.includes(query);
+            }
+
+            if (matchMode && matchSearch) {
+                filteredIndices.push(idx);
+            }
+        });
+
+        document.querySelectorAll('.lesson-tab').forEach(btn => {
+            btn.classList.toggle('active', btn.getAttribute('data-filter') === String(mode));
+        });
+
+        if (filteredIndices.length === 0) {
+            document.getElementById('quizCard').style.display = 'block';
+            document.getElementById('resultsCard').style.display = 'none';
+            document.getElementById('qCurrent').innerText = '0';
+            document.getElementById('qTotalFiltered').innerText = '0';
+            document.getElementById('questionTextAr').innerText = mode === 'wrong'
+                ? '🎉 لا توجد لديك أي إجابات خاطئة حالياً! أحسنت!'
+                : 'لا توجد أسئلة مطابقة لبحثك. جرب كلمة أخرى أو اختر (الكل).';
+            document.getElementById('questionTextEn').innerText = mode === 'wrong'
+                ? 'No wrong answers recorded yet! Great job!'
+                : 'No matching questions found.';
+            document.getElementById('optionsContainer').innerHTML = '';
+            document.getElementById('diagramContainer').style.display = 'none';
+            document.getElementById('explanationText').style.display = 'none';
+            return;
+        }
+
+        currentFilterPos = 0;
+        document.getElementById('resultsCard').style.display = 'none';
+        document.getElementById('quizCard').style.display = 'block';
+        displayQuestion();
+    }
+
+    function displayQuestion() {
+        if (filteredIndices.length === 0) return;
+
+        const actualIdx = filteredIndices[currentFilterPos];
+        const q = questions[actualIdx];
+
+        document.getElementById('qCurrent').innerText = currentFilterPos + 1;
+        document.getElementById('qTotalFiltered').innerText = filteredIndices.length;
+        document.getElementById('topicBadge').innerText = q.topic;
+
+        const sourceBadge = document.getElementById('sourceBadge');
+        sourceBadge.innerText = q.source;
+        sourceBadge.className = 'source-badge ' + (q.isBook ? 'book' : 'extra');
+
+        document.getElementById('questionTextAr').innerText = "س" + q.id + ": " + q.ar_q;
+        document.getElementById('questionTextEn').innerText = "Q" + q.id + ": " + q.en_q;
+
+        // Diagram check
+        const diagBox = document.getElementById('diagramContainer');
+        if (q.diagram) {
+            diagBox.innerHTML = getDiagramHTML(q.diagram);
+            diagBox.style.display = 'block';
+        } else {
+            diagBox.style.display = 'none';
+            diagBox.innerHTML = '';
+        }
+
+        const answeredCount = userAnswers.filter(a => a !== null).length;
+        const pct = (answeredCount / questions.length) * 100;
+        document.getElementById('progressBar').style.width = pct + '%';
+
+        const container = document.getElementById('optionsContainer');
+        container.innerHTML = '';
+
+        const expBox = document.getElementById('explanationText');
+        const statusIndicator = document.getElementById('qStatusIndicator');
+        const prevAns = userAnswers[actualIdx];
+
+        if (prevAns === null && !teacherMode) {
+            statusIndicator.innerText = "لم يُجب بعد / Not answered";
+            statusIndicator.style.color = "var(--text-muted)";
+            expBox.style.display = 'none';
+        } else if (prevAns !== null) {
+            statusIndicator.innerText = prevAns === q.correct ? "✅ إجابة صحيحة مسجلة" : "❌ إجابة خاطئة مسجلة";
+            statusIndicator.style.color = prevAns === q.correct ? "var(--success)" : "var(--danger)";
+            showExplanation(q, prevAns === q.correct);
+        } else if (teacherMode) {
+            statusIndicator.innerText = "👨‍🏫 وضع الشرح مفعل (الإجابة الصحيحة موضحة)";
+            statusIndicator.style.color = "var(--primary)";
+            showExplanation(q, true);
+        }
+
+        q.options.forEach((opt, idx) => {
+            const btn = document.createElement('button');
+            btn.className = 'opt-btn';
+            btn.innerHTML = `
+                <div class="opt-ar">${['أ', 'ب', 'ج', 'د'][idx]}) ${opt.ar}</div>
+                <div class="opt-en">${['A', 'B', 'C', 'D'][idx]}) ${opt.en}</div>
+            `;
+
+            if (prevAns !== null) {
+                btn.disabled = true;
+                if (idx === q.correct) {
+                    btn.classList.add('correct');
+                } else if (idx === prevAns) {
+                    btn.classList.add('wrong');
+                }
+            } else if (teacherMode && idx === q.correct) {
+                btn.classList.add('correct');
+                btn.addEventListener('click', () => selectAnswer(idx));
+            } else {
+                btn.addEventListener('click', () => selectAnswer(idx));
+            }
+            container.appendChild(btn);
+        });
+
+        document.getElementById('prevBtn').disabled = (currentFilterPos === 0);
+        document.getElementById('nextBtn').innerText = (currentFilterPos === filteredIndices.length - 1)
+            ? "إنهاء وعرض النتيجة / Finish 🏁"
+            : "التالي / Next ⬅️";
+    }
+
+    function selectAnswer(chosenIdx) {
+        const actualIdx = filteredIndices[currentFilterPos];
+        if (userAnswers[actualIdx] !== null) return;
+
+        userAnswers[actualIdx] = chosenIdx;
+        calculateScore();
+
+        const q = questions[actualIdx];
+        const isCorrect = (chosenIdx === q.correct);
+
+        const buttons = document.querySelectorAll('.opt-btn');
+        buttons.forEach(b => b.disabled = true);
+
+        if (isCorrect) {
+            buttons[chosenIdx].classList.add('correct');
+        } else {
+            buttons[chosenIdx].classList.add('wrong');
+            buttons[q.correct].classList.add('correct');
+        }
+
+        showExplanation(q, isCorrect);
+
+        const statusIndicator = document.getElementById('qStatusIndicator');
+        statusIndicator.innerText = isCorrect ? "✅ إجابة صحيحة مسجلة" : "❌ إجابة خاطئة مسجلة";
+        statusIndicator.style.color = isCorrect ? "var(--success)" : "var(--danger)";
+
+        const answeredCount = userAnswers.filter(a => a !== null).length;
+        document.getElementById('progressBar').style.width = ((answeredCount / questions.length) * 100) + '%';
+    }
+
+    function showExplanation(q, isCorrect) {
+        const expBox = document.getElementById('explanationText');
+        if (isCorrect) {
+            expBox.innerHTML = `
+                <b>✅ الشرح والتفسير طبقاً لكتاب الوزارة:</b><br>
+                <div>${q.exp_ar}</div>
+                <div class="exp-en">${q.exp_en}</div>
+            `;
+            expBox.style.borderRightColor = 'var(--success)';
+        } else {
+            expBox.innerHTML = `
+                <b>❌ إجابة غير دقيقة!</b><br>
+                <div>الإجابة الصحيحة المعتمدة هي: <b>${q.options[q.correct].ar}</b></div>
+                <div class="exp-en">Correct answer: <b>${q.options[q.correct].en}</b></div>
+                <div style="margin-top: 6px;">${q.exp_ar}</div>
+                <div class="exp-en">${q.exp_en}</div>
+            `;
+            expBox.style.borderRightColor = 'var(--danger)';
+        }
+        expBox.style.display = 'block';
+    }
+
+    function retryCurrentQuestion() {
+        if (filteredIndices.length === 0) return;
+        const actualIdx = filteredIndices[currentFilterPos];
+        userAnswers[actualIdx] = null;
+        calculateScore();
+        displayQuestion();
+    }
+
+    function nextQuestion() {
+        if (currentFilterPos < filteredIndices.length - 1) {
+            currentFilterPos++;
+            displayQuestion();
+        } else {
+            showFinalResults();
+        }
+    }
+
+    function prevQuestion() {
+        if (currentFilterPos > 0) {
+            currentFilterPos--;
+            displayQuestion();
+        }
+    }
+
+    function openIndexModal() {
+        buildIndexGrid();
+        document.getElementById('indexModal').style.display = 'flex';
+    }
+
+    function closeIndexModal() {
+        document.getElementById('indexModal').style.display = 'none';
+    }
+
+    function buildIndexGrid() {
+        const grid = document.getElementById('gridIndexContainer');
+        grid.innerHTML = '';
+        const currentActual = filteredIndices[currentFilterPos];
+
+        for (let i = 0; i < questions.length; i++) {
+            const pill = document.createElement('div');
+            pill.className = 'index-pill';
+            pill.innerText = (i + 1);
+
+            if (i === currentActual) {
+                pill.classList.add('active');
+            }
+
+            if (userAnswers[i] !== null) {
+                if (userAnswers[i] === questions[i].correct) {
+                    pill.classList.add('solved-correct');
+                } else {
+                    pill.classList.add('solved-wrong');
+                }
+            }
+
+            pill.addEventListener('click', () => {
+                const posInFilter = filteredIndices.indexOf(i);
+                if (posInFilter !== -1) {
+                    currentFilterPos = posInFilter;
+                } else {
+                    applyFilter('all');
+                    currentFilterPos = i;
+                }
+                document.getElementById('resultsCard').style.display = 'none';
+                document.getElementById('quizCard').style.display = 'block';
+                displayQuestion();
+                closeIndexModal();
+            });
+
+            grid.appendChild(pill);
+        }
+    }
+
+    function showFinalResults() {
+        document.getElementById('quizCard').style.display = 'none';
+        document.getElementById('progressBar').style.width = '100%';
+
+        const resultsCard = document.getElementById('resultsCard');
+        resultsCard.style.display = 'block';
+
+        const finalScore = calculateScore();
+        document.getElementById('finalScore').innerText = finalScore;
+        const res = saveScores(finalScore);
+        const scores = loadScores();
+
+        const notice = document.getElementById('highScoreNotice');
+        const msg = document.getElementById('resultMsg');
+        const icon = document.getElementById('trophyIcon');
+
+        let textDetails = `🎯 أول محاولة مسجلة (First Attempt): ${scores.first} من 50<br>`;
+        if (res.isNewHigh && finalScore > 0) {
+            textDetails += `🏆 مبروك! حققت رقماً قياسياً جديداً (New High Score): ${finalScore} من 50!`;
+        } else {
+            textDetails += `🏆 أعلى نتيجة على هذا الجهاز (Best Score): ${scores.high} من 50`;
+        }
+        notice.innerHTML = textDetails;
+
+        if (finalScore >= 45) {
+            msg.innerText = "ممتاز ومحترف! إتقان تام لوحدة الاتصالات 🌟";
+            icon.innerText = "👑";
+        } else if (finalScore >= 35) {
+            msg.innerText = "جيد جداً! استيعاب رائع لتطور وسائل الاتصال وأشكاله والإنترنت 👏";
+            icon.innerText = "🎉";
+        } else if (finalScore >= 25) {
+            msg.innerText = "مستوى جيد! راجع تصنيفات الاتصال وحقول البريد الإلكتروني لمزيد من التفوق 📖";
+            icon.innerText = "👍";
+        } else {
+            msg.innerText = "يُنصح بمراجعة ملخص الوحدة الخامسة وإعادة الاختبار 💡";
+            icon.innerText = "💡";
+        }
+    }
+
+    function restartQuiz() {
+        userAnswers = new Array(questions.length).fill(null);
+        calculateScore();
+        applyFilter('all', document.getElementById('searchInput').value);
+    }
+
+    function updateComparisonExplorer() {
+        const val = document.getElementById('compareSelect').value;
+        const box = document.getElementById('compareResultDisplay');
+        if (val === 'sync_async') {
+            box.innerHTML = `⏱️ <b>المتزامن (Synchronous):</b> تشارك المعلومات في وقت واحد تقريباً (محادثة، هاتف، مكالمة فيديو، بث مباشر) | 📩 <b>غير المتزامن (Asynchronous):</b> إرسال واستقبال في أوقات مناسبة لكل طرف (رسالة، بريد إلكتروني، تطبيق مراسلة، لوحة إعلانات، تواصل اجتماعي).`;
+        } else if (val === 'direct_indirect') {
+            box.innerHTML = `🤝 <b>الاتصال المباشر (Direct):</b> وجهاً لوجه مباشرة مع مراقبة ردود الفعل، ولكن بقيود على الوقت والموقع (محادثة، عرض تقديمي) | 🌐 <b>الاتصال غير المباشر (Indirect):</b> المرسل والمستلم منفصلان مما يزيل قيود الوقت والموقع (هاتف، بريد إلكتروني، صفحات ويب).`;
+        } else if (val === 'to_cc_bcc') {
+            box.innerHTML = `📧 <b>إلى (To):</b> المستلم الرئيسي | 👀 <b>نسخة (CC):</b> مشاركة المحتوى مع مستلمين مع ظهور عناوينهم للجميع | 🔒 <b>نسخة مخفية (BCC):</b> مشاركة المحتوى مع مستلمين دون أن يرى المستلمون الآخرون عناوينهم.`;
+        } else {
+            box.innerHTML = `📢 <b>وسائل الاتصال الجماهيري (اتجاه واحد):</b> نقل المعلومات من المرسل إلى مستقبلين متعددين في اتجاه واحد (الصحف، الراديو، التلفزيون) | 🔄 <b>الاتصال ثنائي الاتجاه:</b> تبادل المعلومات في اتجاهين بين المرسل والمستقبل (الهاتف، الإنترنت).`;
+        }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        loadScores();
+        displayQuestion();
+
+        document.getElementById('prevBtn').addEventListener('click', prevQuestion);
+        document.getElementById('nextBtn').addEventListener('click', nextQuestion);
+        document.getElementById('retryQuestionBtn').addEventListener('click', retryCurrentQuestion);
+        document.getElementById('openIndexBtn').addEventListener('click', openIndexModal);
+        document.getElementById('closeIndexBtn').addEventListener('click', closeIndexModal);
+        document.getElementById('restartQuizBtn').addEventListener('click', restartQuiz);
+
+        document.getElementById('reviewWrongBtn').addEventListener('click', () => {
+            applyFilter('wrong');
+        });
+
+        // Close modals on overlay click
+        document.getElementById('indexModal').addEventListener('click', (e) => {
+            if (e.target.id === 'indexModal') closeIndexModal();
+        });
+        document.getElementById('studyModal').addEventListener('click', (e) => {
+            if (e.target.id === 'studyModal') document.getElementById('studyModal').style.display = 'none';
+        });
+
+        // Study Modal
+        document.getElementById('openStudyBtn').addEventListener('click', () => {
+            document.getElementById('studyModal').style.display = 'flex';
+        });
+        document.getElementById('closeStudyBtn').addEventListener('click', () => {
+            document.getElementById('studyModal').style.display = 'none';
+        });
+
+        // Study Tabs
+        document.querySelectorAll('.study-tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.study-tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.study-pane').forEach(p => p.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(btn.getAttribute('data-pane')).classList.add('active');
+            });
+        });
+
+        // Comparison Explorer
+        document.getElementById('compareSelect').addEventListener('change', updateComparisonExplorer);
+
+        // Teacher Mode Toggle
+        document.getElementById('teacherModeBtn').addEventListener('click', () => {
+            teacherMode = !teacherMode;
+            const btn = document.getElementById('teacherModeBtn');
+            const lbl = document.getElementById('teacherModeLabel');
+            btn.classList.toggle('active-mode', teacherMode);
+            lbl.innerText = teacherMode ? 'وضع شرح المعلم: مفعل ✅' : 'وضع شرح المعلم: مغلق';
+            displayQuestion();
+        });
+
+        // Lesson Filter Tabs
+        document.querySelectorAll('.lesson-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                applyFilter(tab.getAttribute('data-filter'), document.getElementById('searchInput').value);
+            });
+        });
+
+        // Search Box
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            applyFilter(currentFilterMode, e.target.value);
+        });
+
+        // Font Size Zoom
+        document.getElementById('zoomInBtn').addEventListener('click', () => {
+            if (fontScale < 1.35) {
+                fontScale = +(fontScale + 0.08).toFixed(2);
+                document.documentElement.style.setProperty('--font-scale', fontScale);
+            }
+        });
+        document.getElementById('zoomOutBtn').addEventListener('click', () => {
+            if (fontScale > 0.85) {
+                fontScale = +(fontScale - 0.08).toFixed(2);
+                document.documentElement.style.setProperty('--font-scale', fontScale);
+            }
+        });
+
+        // Dark Mode Toggle
+        document.getElementById('darkModeBtn').addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            document.getElementById('darkModeBtn').innerText = isDark ? '☀️' : '🌙';
+        });
+    });
+</script>
+
+</body>
+</html>
