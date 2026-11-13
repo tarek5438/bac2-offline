@@ -1,0 +1,2246 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الوحدة الخامسة: الاتصالات - منصة الشرح التفاعلية</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #3730a3;
+            --primary-light: #e0e7ff;
+            --secondary: #0891b2;
+            --secondary-light: #cffafe;
+            --accent: #d97706;
+            --accent-light: #fef3c7;
+            --danger: #dc2626;
+            --danger-light: #fee2e2;
+            --success: #16a34a;
+            --success-light: #dcfce7;
+            --purple: #7c3aed;
+            --purple-light: #ede9fe;
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --surface-alt: #f1f5f9;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border: #e2e8f0;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+            --font-scale: 1;
+        }
+
+        body.dark-mode {
+            --primary: #6366f1;
+            --primary-dark: #818cf8;
+            --primary-light: rgba(99, 102, 241, 0.2);
+            --secondary: #06b6d4;
+            --secondary-light: rgba(6, 182, 212, 0.2);
+            --accent: #f59e0b;
+            --accent-light: rgba(245, 158, 11, 0.2);
+            --danger: #ef4444;
+            --danger-light: rgba(239, 68, 68, 0.2);
+            --success: #22c55e;
+            --success-light: rgba(34, 197, 94, 0.2);
+            --purple: #a78bfa;
+            --purple-light: rgba(167, 139, 250, 0.2);
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --surface-alt: #334155;
+            --text-main: #f8fafc;
+            --text-muted: #cbd5e1;
+            --border: #334155;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.8;
+            overflow-x: hidden;
+            font-size: calc(16px * var(--font-scale));
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Top Reading Progress Bar */
+        .progress-bar-container {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.15);
+            z-index: 2000;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #22d3ee, #818cf8, #f472b6);
+            transition: width 0.15s ease-out;
+        }
+
+        /* Teacher Floating Toolbar */
+        .teacher-toolbar {
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 8px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            font-size: 0.9rem;
+        }
+
+        .toolbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            color: #38bdf8;
+        }
+
+        .toolbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tool-btn {
+            background: rgba(255, 255, 255, 0.12);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 6px 13px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tool-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* Hero Banner */
+        .hero {
+            background: linear-gradient(135deg, #090d16 0%, #1e1b4b 45%, #3730a3 80%, #0891b2 100%);
+            color: white;
+            padding: 50px 20px 45px;
+            text-align: center;
+            box-shadow: 0 4px 30px rgba(79, 70, 229, 0.25);
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: calc(2.25rem * var(--font-scale));
+            font-weight: 900;
+            margin-bottom: 12px;
+            animation: fadeInDown 0.7s ease;
+        }
+
+        .hero p {
+            font-size: calc(1.1rem * var(--font-scale));
+            color: #cbd5e1;
+            max-width: 960px;
+            margin: 0 auto 22px;
+        }
+
+        .hero-tags {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .hero-tag {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        /* Navigation Bar */
+        .nav-wrapper {
+            position: sticky;
+            top: 12px;
+            z-index: 1000;
+            max-width: 1240px;
+            margin: -26px auto 30px;
+            padding: 0 16px;
+        }
+
+        .nav-glass {
+            background: var(--surface);
+            opacity: 0.98;
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            display: flex;
+            gap: 6px;
+            padding: 8px;
+            box-shadow: var(--shadow);
+            overflow-x: auto;
+        }
+
+        .nav-item {
+            flex: 1;
+            min-width: 155px;
+            text-align: center;
+            padding: 11px 12px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            font-weight: 800;
+            font-size: 0.9rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-item:hover {
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .nav-item.active {
+            background: var(--primary);
+            color: white !important;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.35);
+        }
+
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 16px 80px;
+        }
+
+        .content-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 35px;
+            margin-bottom: 35px;
+            box-shadow: var(--shadow);
+            scroll-margin-top: 95px;
+        }
+
+        @media (max-width: 768px) {
+            .content-card {
+                padding: 22px 16px;
+            }
+        }
+
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 800;
+            margin-bottom: 14px;
+        }
+
+        .section-title {
+            font-size: calc(1.65rem * var(--font-scale));
+            color: var(--text-main);
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            font-size: calc(1.02rem * var(--font-scale));
+            margin-bottom: 24px;
+        }
+
+        /* كتاب الوزارة المدرسي */
+        .book-def-box {
+            background: var(--surface-alt);
+            border-right: 5px solid var(--primary);
+            border-radius: 12px;
+            padding: 18px 22px;
+            margin-bottom: 20px;
+        }
+
+        .book-def-title {
+            font-size: calc(1.12rem * var(--font-scale));
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .book-exact-text {
+            font-size: calc(1.03rem * var(--font-scale));
+            color: var(--text-main);
+            font-weight: 700;
+            line-height: 1.9;
+        }
+
+        .explanation-bubble {
+            background: var(--primary-light);
+            border-radius: 10px;
+            padding: 12px 18px;
+            margin-top: 10px;
+            font-size: calc(0.95rem * var(--font-scale));
+            color: var(--primary-dark);
+            border: 1px dashed var(--primary);
+        }
+
+        /* Interactive Timeline Cards (4 Eras) */
+        .soc-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            margin: 22px 0;
+        }
+
+        @media (max-width: 1020px) {
+            .soc-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 560px) {
+            .soc-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .soc-card {
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 18px 14px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-align: right;
+            position: relative;
+        }
+
+        .soc-card:hover, .soc-card.active {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(79, 70, 229, 0.14);
+        }
+
+        .soc-step-num {
+            width: 44px;
+            height: 44px;
+            border-radius: 11px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .soc-detail-panel {
+            background: var(--surface-alt);
+            border: 2px solid var(--primary);
+            border-radius: 16px;
+            padding: 22px;
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
+        }
+
+        /* 3 Axes Interactive Grid */
+        .cia-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin: 24px 0;
+        }
+
+        @media (max-width: 850px) {
+            .cia-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .cia-card {
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 22px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+            text-align: right;
+        }
+
+        .cia-card:hover, .cia-card.active {
+            border-color: var(--secondary);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(8, 145, 178, 0.15);
+        }
+
+        .cia-letter {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            font-weight: 900;
+            margin-bottom: 12px;
+        }
+
+        /* Interactive Filter Hub */
+        .filter-hub {
+            background: var(--surface-alt);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 25px 0;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 9px 16px;
+            border-radius: 10px;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.92rem;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .items-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+            gap: 15px;
+        }
+
+        .item-badge-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 18px;
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+
+        .item-badge-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .item-cat {
+            font-size: 0.78rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .cat-text { background: #dbeafe; color: #1e40af; }
+        .cat-social { background: #ede9fe; color: #5b21b6; }
+        .cat-video { background: #dcfce7; color: #166534; }
+        .cat-web { background: #fef3c7; color: #92400e; }
+
+        /* Tables */
+        .table-responsive {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .rich-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .rich-table th {
+            background: var(--surface-alt);
+            color: var(--text-main);
+            padding: 15px 18px;
+            text-align: right;
+            font-weight: 800;
+            font-size: 0.98rem;
+        }
+
+        .rich-table td {
+            padding: 15px 18px;
+            border-top: 1px solid var(--border);
+            background: var(--surface);
+            font-size: 0.95rem;
+        }
+
+        /* 3D Expandable Cards */
+        .cards-3d-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+            gap: 18px;
+            margin: 22px 0;
+        }
+
+        .animated-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 22px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .animated-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .animated-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 28px rgba(0,0,0,0.08);
+        }
+
+        .card-icon-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .circle-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: var(--primary-light);
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .expandable-hint {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.88rem;
+        }
+
+        .hidden-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background: var(--surface-alt);
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .animated-card.active .hidden-details {
+            max-height: 340px;
+            padding: 14px;
+            border: 1px dashed var(--border);
+        }
+
+        /* Interactive Labs & Simulators */
+        .lab-box {
+            background: var(--surface-alt);
+            border: 2px dashed var(--primary);
+            border-radius: 20px;
+            padding: 26px;
+            margin: 25px 0;
+        }
+
+        .preset-btns {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .preset-btn {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            border: 1px solid var(--primary);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .preset-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .blank-slot {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            border: 1px dashed var(--primary);
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-weight: 800;
+            cursor: pointer;
+            margin: 3px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .blank-slot.revealed {
+            background: var(--success-light);
+            color: var(--success);
+            border-style: solid;
+            border-color: var(--success);
+        }
+
+        /* Flow Diagram */
+        .Diagram-flow {
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 22px;
+            margin: 20px 0;
+        }
+
+        .flow-nodes {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+        }
+
+        .flow-box {
+            flex: 1;
+            min-width: 150px;
+            background: var(--surface-alt);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 10px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .flow-box.highlight-cyber {
+            border-color: var(--purple);
+            background: var(--purple-light);
+        }
+
+        .flow-box.highlight-phys {
+            border-color: var(--secondary);
+            background: var(--secondary-light);
+        }
+
+        .flow-arrow {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--primary);
+        }
+
+        /* Sorter Game */
+        .sorter-game {
+            background: var(--surface-alt);
+            border: 2px dashed var(--border);
+            border-radius: 20px;
+            padding: 28px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .sorter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .sorter-score {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--primary);
+            background: var(--surface);
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .current-token {
+            background: var(--surface);
+            padding: 20px 26px;
+            border-radius: 16px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text-main);
+            border: 2px solid var(--primary);
+            display: inline-block;
+            margin-bottom: 22px;
+            box-shadow: 0 10px 20px rgba(79,70,229,0.1);
+            max-width: 780px;
+        }
+
+        .target-bins {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        @media (max-width: 900px) {
+            .target-bins {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 550px) {
+            .target-bins {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .bin-btn {
+            background: var(--surface);
+            border: 2px solid var(--border);
+            padding: 15px 10px;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            color: var(--text-main);
+        }
+
+        .bin-btn:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            transform: translateY(-3px);
+        }
+
+        .bin-btn h5 {
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .bin-btn span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: block;
+        }
+
+        .game-status-msg {
+            margin-top: 15px;
+            min-height: 28px;
+            font-weight: 800;
+            font-size: 1.05rem;
+        }
+
+        /* Quiz App */
+        .quiz-container {
+            background: var(--surface-alt);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 26px;
+        }
+
+        .quiz-item-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 22px;
+            margin-bottom: 18px;
+        }
+
+        .q-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 14px;
+        }
+
+        .q-choices {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .choice-btn {
+            background: var(--surface-alt);
+            border: 1px solid var(--border);
+            padding: 13px 18px;
+            border-radius: 10px;
+            text-align: right;
+            font-size: 0.98rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .choice-btn:hover:not(:disabled) {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .choice-btn.correct-choice {
+            background: #dcfce7 !important;
+            border-color: #22c55e !important;
+            color: #15803d !important;
+            font-weight: 800;
+        }
+
+        .choice-btn.wrong-choice {
+            background: #fee2e2 !important;
+            border-color: #ef4444 !important;
+            color: #b91c1c !important;
+        }
+
+        .choice-feedback {
+            display: none;
+            margin-top: 12px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 0.94rem;
+            background: var(--primary-light);
+            border-right: 4px solid var(--primary);
+            color: var(--primary-dark);
+        }
+
+        .btn-action {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 11px 24px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s;
+            font-size: 0.95rem;
+        }
+
+        .btn-action:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Glossary Modal */
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(6px);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-backdrop.open {
+            display: flex;
+        }
+
+        .modal-box {
+            background: var(--surface);
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            max-width: 920px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 28px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+        }
+
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .glossary-item {
+            background: var(--surface-alt);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-18px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Reading Progress Bar -->
+    <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progressBar" style="width: 0%;"></div>
+    </div>
+
+    <!-- Teacher Classroom Bar -->
+    <div class="teacher-toolbar">
+        <div class="toolbar-brand">
+            <span>📡 منصة المعلم التفاعلية • الصف الأول الثانوي</span>
+            <span style="background:rgba(56,189,248,0.2); padding:2px 10px; border-radius:20px; font-size:0.8rem;">الوحدة الخامسة: الاتصالات</span>
+        </div>
+        <div class="toolbar-actions">
+            <button class="tool-btn" onclick="openGlossaryModal()">📖 قاموس مصطلحات الوحدة (EN/AR)</button>
+            <button class="tool-btn" onclick="changeFontScale(0.08)">🔍 تكبير الخط A+</button>
+            <button class="tool-btn" onclick="changeFontScale(-0.08)">🔎 تصغير الخط A-</button>
+            <button class="tool-btn" id="darkModeBtn" onclick="toggleDarkMode()">🌙 الوضع الليلي للسبورة</button>
+        </div>
+    </div>
+
+    <!-- Hero Header -->
+    <header class="hero">
+        <h1>الوحدة الخامسة: الاتصالات (Communications)</h1>
+        <p>منصة تعليمية تفاعلية متكاملة لشرح تطوير وسائل الاتصال عبر التاريخ، الاتصال الجماهيري، أربانت والإنترنت، تصنيف الاتصال وأشكاله (العدد، الموقع، التزامن)، خدمات الاتصال عبر الإنترنت (Email, To/CC/BCC, BBS, Blog, SNS)، وخصائص التواصل على الإنترنت</p>
+        <div class="hero-tags">
+            <span class="hero-tag">الدرس 1 (5-1): تطوير وسائل الاتصال</span>
+            <span class="hero-tag">الدرس 2 (5-2): الاتصال وأشكاله</span>
+            <span class="hero-tag">الدرس 3 (5-3): الإنترنت والاتصالات (To / CC / BCC)</span>
+            <span class="hero-tag">خصائص التواصل على الإنترنت</span>
+            <span class="hero-tag">تدريبات وتمارين كتاب الوزارة (صـ 53 - 60)</span>
+        </div>
+    </header>
+
+    <!-- Sticky Glass Navigation -->
+    <div class="nav-wrapper">
+        <nav class="nav-glass">
+            <a href="#tab1" class="nav-item active" data-target="tab1">1. تطوير وسائل الاتصال</a>
+            <a href="#tab2" class="nav-item" data-target="tab2">2. الاتصال وأشكاله</a>
+            <a href="#tab3" class="nav-item" data-target="tab3">3. الاتصال عبر الإنترنت</a>
+            <a href="#tab4" class="nav-item" data-target="tab4">4. خصائص التواصل على الإنترنت</a>
+            <a href="#tab5" class="nav-item" data-target="tab5">5. تدريبات الكتاب التفاعلية</a>
+            <a href="#tab6" class="nav-item" data-target="tab6">6. بنك التحدي الشامل (18 سؤالاً)</a>
+        </nav>
+    </div>
+
+    <div class="container">
+
+        <!-- =========================================================
+             القسم الأول: الدرس 1 (5-1): تطوير وسائل الاتصال (صـ 54 و 55)
+             ========================================================= -->
+        <section id="tab1" class="content-card">
+            <div class="section-badge">المحور الأول • الدرس 1 (5-1) • صـ 54 و 55</div>
+            <h2 class="section-title">تطوير وسائل الاتصال: من العصور القديمة إلى الاتصال الجماهيري والإنترنت</h2>
+            <p class="section-desc">مراحل تطور وسائل الاتصال السلكية واللاسلكية، اختراعات العلماء، والاتصال الجماهيري بنص كتاب الوزارة المدرسي:</p>
+
+            <!-- الخط الزمني التفاعلي لأربع حقب رئيسية -->
+            <h3 style="font-size:1.18rem; margin: 16px 0 10px;">⏳ اضغط على أي مرحلة من مراحل تطور وسائل الاتصال الأربع لاستعراض تفاصيلها وتواريخها من الكتاب:</h3>
+            <div class="soc-grid">
+                <div class="soc-card active" id="era_1" onclick="selectCommEra(1)">
+                    <div class="soc-step-num" style="background:#fef3c7; color:#b45309;">1</div>
+                    <h4 style="font-size:1.05rem; margin-bottom:4px;">ما قبل الاتصالات السلكية واللاسلكية</h4>
+                    <p style="font-size:0.84rem; color:var(--text-muted);">نيران الإشارة • الورق • البريد 1840</p>
+                </div>
+                <div class="soc-card" id="era_2" onclick="selectCommEra(2)">
+                    <div class="soc-step-num" style="background:#dcfce7; color:#15803d;">2</div>
+                    <h4 style="font-size:1.05rem; margin-bottom:4px;">بداية الاتصالات السلكية واللاسلكية</h4>
+                    <p style="font-size:0.84rem; color:var(--text-muted);">مورس 1837 • بيل 1876 • ماركوني 1895</p>
+                </div>
+                <div class="soc-card" id="era_3" onclick="selectCommEra(3)">
+                    <div class="soc-step-num" style="background:#dbeafe; color:#1d4ed8;">3</div>
+                    <h4 style="font-size:1.05rem; margin-bottom:4px;">تطور الاتصال الجماهيري</h4>
+                    <p style="font-size:0.84rem; color:var(--text-muted);">غوتنبرغ ق15 • راديو 1906 • تلفزيون 1928</p>
+                </div>
+                <div class="soc-card" id="era_4" onclick="selectCommEra(4)">
+                    <div class="soc-step-num" style="background:#ede9fe; color:#5b21b6;">4</div>
+                    <h4 style="font-size:1.05rem; margin-bottom:4px;">تطور الإنترنت (ARPANET)</h4>
+                    <p style="font-size:0.84rem; color:var(--text-muted);">عام 1969 • مؤسسات البحث • التسعينيات</p>
+                </div>
+            </div>
+
+            <div class="soc-detail-panel" id="eraDetailBox">
+                <h4 style="font-size:1.22rem; color:var(--primary-dark); margin-bottom:8px;">[1] وسائل الاتصال قبل وجود الاتصالات السلكية واللاسلكية (صـ 54)</h4>
+                <p style="font-weight:800; margin-bottom:8px;">📖 النص الرسمي بالكتاب: "• في العصور القديمة، تم نقل المعلومات الأساسية بإشعال نيران الإشارة (signal fires) أو ضرب الطبول. • بعد تطوير الكتابة، كُتبت الرسائل على الورق (paper) وتم تسليمها باستخدام الرسل أو الحمام الزاجل. • تم إنشاء نظام البريد الحديث (modern postal system) في عام 1840."</p>
+                <p style="color:var(--secondary); font-weight:700; font-size:0.96rem; margin-bottom:6px;">🛠️ الوسائل الرئيسية: نيران الإشارة، ضرب الطبول، الورق، الرسل والحمام الزاجل، نظام البريد الحديث (1840).</p>
+                <p style="color:var(--text-muted); font-size:0.92rem;">💡 تذكر للامتحان: نظام البريد الحديث أُنشئ عام 1840، بينما تلغراف مورس اخترع عام 1837 والهاتف عام 1876.</p>
+            </div>
+
+            <!-- تعريف الاتصال الجماهيري ومقارنة اتجاه الاتصال -->
+            <div class="book-def-box" style="border-right-color: var(--secondary); margin-top:20px;">
+                <div class="book-def-title" style="color: var(--secondary);">📌 الاتصال الجماهيري (وسائل الاتصال الجماهيري) — Mass communication (Mass media) - صـ 54 و 55:</div>
+                <div class="book-exact-text">
+                    • <strong>التعريف الرسمي:</strong> "وسيلة لإرسال المعلومات إلى عدد كبير من الناس في وقت واحد."<br>
+                    • <strong>الأمثلة بالكتاب:</strong> الصحف والمجلات، البث الإذاعي (الراديو) والتلفزيوني، إلخ.<br>
+                    • <strong>مقارنة اتجاه النقل (تمرين 1 صـ 55):</strong> على غرار <strong>الصحف والتلفزيون</strong>، فإن وسائل الاتصال الجماهيري تسهل بشكل رئيسي نقل المعلومات في <strong>اتجاه واحد</strong> من المرسل إلى المستقبل. في المقابل، فإن <strong>الهاتف والإنترنت</strong> هما طريقتا اتصال معلوماتي تمكنان تبادل المعلومات في <strong>اتجاهين</strong>.
+                </div>
+            </div>
+
+            <!-- جدول شامل لجميع التواريخ والعلماء والاختراعات في الدرس 5-1 -->
+            <h3 style="margin-top:26px; margin-bottom:12px;">📊 الجدول المرجعي الشامل للتواريخ والعلماء والاختراعات في الدرس الأول (صـ 54 و 55):</h3>
+            <div class="table-responsive">
+                <table class="rich-table">
+                    <thead>
+                        <tr>
+                            <th>التاريخ / الحقبة</th>
+                            <th>الحدث أو الاختراع (بالعربية والإنجليزية)</th>
+                            <th>المخترع / الجنسية أو الجهة</th>
+                            <th>الأهمية والشرح بنص كتاب الوزارة</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>العصور القديمة</strong></td>
+                            <td><strong>نيران الإشارة (signal fires) وضرب الطبول، ثم الورق (paper)</strong></td>
+                            <td>الحضارات القديمة</td>
+                            <td>نقل المعلومات الأساسية بإشعال نيران الإشارة أو ضرب الطبول، وبعد تطوير الكتابة كُتبت الرسائل على الورق وسُلّمت بالرسل أو الحمام الزاجل.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>منتصف القرن 15</strong></td>
+                            <td><strong>طابعة الحروف المتحركة<br>(Movable-type printing press)</strong></td>
+                            <td><strong>غوتنبرغ (Gutenberg)</strong><br>(ألماني)</td>
+                            <td>أصبح من الممكن بسهولة إعادة إنتاج كميات كبيرة من المعلومات كمواد مطبوعة، ونشر الصحف والكتب لعدد كبير من الناس.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>عام 1837</strong></td>
+                            <td><strong>تلغراف مورس<br>(Morse telegraph)</strong></td>
+                            <td><strong>مورس (Morse)</strong><br>(أمريكي)</td>
+                            <td>تكنولوجيا لإرسال واستقبال الرموز عبر الاتصالات السلكية واللاسلكية.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>عام 1840</strong></td>
+                            <td><strong>نظام البريد الحديث<br>(modern postal system)</strong></td>
+                            <td>نظام البريد الرسمي</td>
+                            <td>تنظيم توصيل الرسائل الورقية عبر نظام البريد الحديث.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>عام 1876</strong></td>
+                            <td><strong>الهاتف<br>(telephone)</strong></td>
+                            <td><strong>بيل (Bill / Bell)</strong><br>(أمريكي)</td>
+                            <td>اختراع الهاتف لنقل الصوت مباشرة عبر الأسلاك (اتصال ثنائي الاتجاه).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>عام 1895</strong></td>
+                            <td><strong>التلغراف اللاسلكي<br>(Wireless telegraph)</strong></td>
+                            <td><strong>ماركوني (Marcony)</strong><br>(إيطالي)</td>
+                            <td>إرسال الإشارات لاسلكياً، وهو الذي تطور لاحقاً إلى أجهزة <strong>الراديو، والتلفزيون، والهواتف المحمولة</strong> (صـ 55).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>عام 1906</strong></td>
+                            <td><strong>أول بث تجريبي للراديو (radio)</strong></td>
+                            <td>الولايات المتحدة</td>
+                            <td>بداية البث الإذاعي كوسيلة اتصال جماهيري مسموعة.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>عام 1928</strong></td>
+                            <td><strong>أول بث تجريبي للتلفزيون (Television)</strong></td>
+                            <td>الولايات المتحدة</td>
+                            <td>بداية البث التلفزيوني كوسيلة اتصال جماهيري مرئية ومسموعة.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>عام 1946</strong></td>
+                            <td><strong>خدمة الهاتف المحمول (الهواتف الخلوية)<br>(cellular phones)</strong></td>
+                            <td>الولايات المتحدة</td>
+                            <td>بدء استخدام خدمة الهاتف المحمول (الهواتف الخلوية) كخدمة اتصال متنقلة.</td>
+                        </tr>
+                        <tr style="background:var(--primary-light);">
+                            <td><strong>عام 1969 ← التسعينيات</strong></td>
+                            <td><strong>شبكة أربانت (ARPANET) ← الإنترنت (Internet)</strong></td>
+                            <td>بدعم من <strong>وزارة الدفاع الأمريكية</strong></td>
+                            <td>في البداية استُخدمت بشكل رئيسي من قبل <strong>مؤسسات البحث (Research institutions)</strong>، ثم عُرفت باسم <strong>الإنترنت</strong> وانتشرت على نطاق واسع بين عامة الناس بحلول <strong>التسعينيات</strong>.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- مخطط تدفق تطور الإنترنت من ARPANET -->
+            <div class="Diagram-flow">
+                <h3 style="font-size:1.18rem; margin-bottom:8px;">🌐 مسار تطور الإنترنت من شبكة أربانت (ARPANET) (صـ 54 و 55):</h3>
+                <div class="flow-nodes">
+                    <div class="flow-box highlight-phys">
+                        <div style="font-size:1.5rem;">🛡️ عام 1969</div>
+                        <strong>شبكة أربانت (ARPANET)</strong>
+                        <div style="font-size:0.84rem; margin-top:4px;">تجربة على شبكة كمبيوتر بدعم من <strong>وزارة الدفاع الأمريكية</strong></div>
+                    </div>
+                    <div class="flow-arrow">⬅️</div>
+                    <div class="flow-box highlight-cyber">
+                        <div style="font-size:1.5rem;">🔬 مرحلة البداية</div>
+                        <strong>مؤسسات البحث (Research institutions)</strong>
+                        <div style="font-size:0.84rem; margin-top:4px;">استُخدمت في البداية بشكل رئيسي من قبل الجامعات ومؤسسات البحث</div>
+                    </div>
+                    <div class="flow-arrow">⬅️</div>
+                    <div class="flow-box highlight-phys" style="border-color:var(--success); background:var(--success-light);">
+                        <div style="font-size:1.5rem;">🌍 بحلول التسعينيات</div>
+                        <strong>الإنترنت العالمي (Internet)</strong>
+                        <div style="font-size:0.84rem; margin-top:4px;">أصبحت معروفة باسم الإنترنت وانتشرت على نطاق واسع بين عامة الناس</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             القسم الثاني: الدرس 2 (5-2): الاتصال وأشكاله (صـ 56 و 57)
+             ========================================================= -->
+        <section id="tab2" class="content-card">
+            <div class="section-badge" style="background:#ccfbf1; color:#0f766e;">المحور الثاني • الدرس 2 (5-2) • صـ 56 و 57</div>
+            <h2 class="section-title">الاتصال وأشكاله: التصنيف الثلاثي لطرق الاتصال</h2>
+            <p class="section-desc">تعريف الاتصال وتصنيفه وفقاً لثلاثة معايير أساسية (عدد المرسلين والمستلمين، علاقة الموقع، والتزامن) بنص كتاب الوزارة:</p>
+
+            <div class="book-def-box" style="border-right-color: var(--secondary);">
+                <div class="book-def-title" style="color: var(--secondary);">📌 تعريف الاتصال (Communication) - صـ 56:</div>
+                <div class="book-exact-text">
+                    "عملية استقبال وتبادل المعلومات بين الناس."
+                </div>
+            </div>
+
+            <!-- المحاور الثلاثة لتصنيف الاتصال -->
+            <h3 style="font-size:1.18rem; margin: 18px 0 10px;">🧭 اضغط على كل معيار من معايير تصنيف الاتصال الثلاثة لاستعراض أنواعه وأمثلته المعتمدة في الكتاب:</h3>
+            <div class="cia-grid">
+                <div class="cia-card active" id="axis_num" onclick="selectCommAxis('num')">
+                    <div class="cia-letter" style="background:#dbeafe; color:#1d4ed8;">[1]</div>
+                    <h4 style="font-size:1.12rem; margin-bottom:4px;">حسب عدد المرسلين والمستلمين</h4>
+                    <p style="font-size:0.9rem; color:var(--text-muted);">4 أنواع: فردي (1:1)، جماهيري (1:N)، عكسي (N:1)، ومؤتمر (N:N).</p>
+                </div>
+                <div class="cia-card" id="axis_loc" onclick="selectCommAxis('loc')">
+                    <div class="cia-letter" style="background:#dcfce7; color:#15803d;">[2]</div>
+                    <h4 style="font-size:1.12rem; margin-bottom:4px;">حسب علاقة الموقع بين المرسل والمستلم</h4>
+                    <p style="font-size:0.9rem; color:var(--text-muted);">نوعان: اتصال مباشر (وجهاً لوجه) واتصال غير مباشر (منفصلان).</p>
+                </div>
+                <div class="cia-card" id="axis_sync" onclick="selectCommAxis('sync')">
+                    <div class="cia-letter" style="background:#fef3c7; color:#b45309;">[3]</div>
+                    <h4 style="font-size:1.12rem; margin-bottom:4px;">حسب تزامن الاتصال</h4>
+                    <p style="font-size:0.9rem; color:var(--text-muted);">نوعان: اتصال متزامن (نفس الوقت) واتصال غير متزامن (أوقات مناسبة).</p>
+                </div>
+            </div>
+
+            <div class="soc-detail-panel" id="axisDetailBox" style="border-color:var(--secondary);">
+                <h4 style="font-size:1.2rem; color:var(--secondary); margin-bottom:8px;">[1] التصنيف حسب عدد المرسلين والمستلمين (صـ 56):</h4>
+                <p style="font-weight:800; margin-bottom:6px;">• 1. واحد إلى واحد (نوع فردي) — One-to-one (Individual type): مرسل واحد إلى مستلم واحد. &lt;أمثلة&gt; الرسائل، الهواتف، إلخ.</p>
+                <p style="font-weight:800; margin-bottom:6px;">• 2. واحد إلى العديد (وسائل الاتصال الجماهيرية) — One-to-many (Mass media type): مرسل واحد إلى مستلمين متعددين. &lt;أمثلة&gt; الصحف، الراديو، التلفزيون، صفحات الويب، إلخ.</p>
+                <p style="font-weight:800; margin-bottom:6px;">• 3. متعدد إلى واحد (وسائل الاتصال العكسية) — Many-to-one (Reverse mass media type): مرسلون متعددون إلى مستلم واحد. &lt;أمثلة&gt; جدولة الاستبيانات، الاستفسارات، إلخ.</p>
+                <p style="font-weight:800;">• 4. متعدد إلى متعدد (نوع مؤتمر) — Many-to-many (Conference type): مرسلون متعددون إلى مستلمين متعددين. &lt;أمثلة&gt; مؤتمرات الفيديو، المكالمات الجماعية، وسائل التواصل الاجتماعي، إلخ.</p>
+            </div>
+
+            <!-- جدول مقارنة شامل لأقسام التصنيف الثلاثة -->
+            <h3 style="margin-top:24px; margin-bottom:12px;">📋 جداول التصنيف التفصيلية بنص كتاب الوزارة (صـ 56 و 57):</h3>
+            <div class="table-responsive">
+                <table class="rich-table">
+                    <thead>
+                        <tr>
+                            <th>معيار التصنيف</th>
+                            <th>النوع (بالعربية والإنجليزية)</th>
+                            <th>الشرح والخصائص بنص الكتاب</th>
+                            <th>الأمثلة المعتمدة في الكتاب</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="4"><strong>[1] حسب عدد المرسلين والمستلمين</strong></td>
+                            <td><strong>واحد إلى واحد (نوع فردي)<br>One-to-one (Individual type)</strong></td>
+                            <td>مرسل واحد إلى مستلم واحد.</td>
+                            <td>الرسائل، الهواتف، إلخ.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>واحد إلى العديد (وسائل الاتصال الجماهيرية)<br>One-to-many (Mass media type)</strong></td>
+                            <td>مرسل واحد إلى مستلمين متعددين.</td>
+                            <td>الصحف، الراديو، التلفزيون، صفحات الويب، إلخ.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>متعدد إلى واحد (وسائل الاتصال العكسية)<br>Many-to-one (Reverse mass media type)</strong></td>
+                            <td>مرسلون متعددون إلى مستلم واحد.</td>
+                            <td>جدولة الاستبيانات، الاستفسارات، إلخ.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>متعدد إلى متعدد (نوع مؤتمر)<br>Many-to-many (Conference type)</strong></td>
+                            <td>مرسلون متعددون إلى مستلمين متعددين.</td>
+                            <td>مؤتمرات الفيديو، المكالمات الجماعية، وسائل التواصل الاجتماعي، إلخ.</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2"><strong>[2] حسب علاقة الموقع</strong></td>
+                            <td><strong>الاتصال المباشر<br>(Direct communication)</strong></td>
+                            <td>المرسل والمستلم وجهاً لوجه مباشرة. تمكن من الاتصال أثناء مراقبة ردود فعل الشخص الآخر، ولكن هناك <strong>قيود على الوقت والموقع</strong>.</td>
+                            <td>المحادثات، العروض التقديمية، إلخ.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>الاتصال غير المباشر<br>(Indirect communication)</strong></td>
+                            <td>المرسل والمستلم منفصلان. لا يمكن رؤية ردود فعل الشخص الآخر مباشرة، ولكنه <strong>يزيل قيود الوقت والموقع</strong>.</td>
+                            <td>الهواتف، البريد الإلكتروني، صفحات الويب، إلخ.</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2"><strong>[3] حسب تزامن الاتصال</strong></td>
+                            <td><strong>متزامن<br>(Synchronous)</strong></td>
+                            <td>يشارك المرسل والمستلم المعلومات في وقت واحد تقريباً.</td>
+                            <td>المحادثة، الهواتف، العروض التقديمية، مكالمات الفيديو، البث التلفزيوني المباشر، إلخ.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>غير متزامن<br>(Asynchronous)</strong></td>
+                            <td>يتم إرسال المعلومات واستقبالها في أوقات مناسبة لكل من المرسل والمستلم.</td>
+                            <td>الرسائل، البريد الإلكتروني، لوحات الإعلانات الإلكترونية، تطبيقات المراسلة، وسائل التواصل الاجتماعي، إلخ.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- مصفوفة التقاطع الهامة من الكتاب صـ 57 -->
+            <div class="lab-box">
+                <h3 style="font-size:1.2rem; margin-bottom:8px;">🔬 مختبر تحليل أشكال الاتصال المدمجة (أسئلة صـ 56 و 57 المتكررة في الامتحانات)</h3>
+                <p style="font-size:0.94rem; color:var(--text-muted); margin-bottom:14px;">
+                    في صـ 56 و 57 يدمج الكتاب بين <strong>(الموقع: مباشر / غير مباشر)</strong> و<strong>(التزامن: متزامن / غير متزامن)</strong>، وكذلك بين <strong>(العدد)</strong> و<strong>(التزامن)</strong>. اضغط على أي وسيلة اتصال لترى تحليلها الكامل:
+                </p>
+                <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                    <button class="filter-btn active" id="toolBtn_1" onclick="inspectCommTool(1)">🗣️ المحادثة / العرض التقديمي</button>
+                    <button class="filter-btn" id="toolBtn_2" onclick="inspectCommTool(2)">📞 الهاتف / مكالمة الفيديو</button>
+                    <button class="filter-btn" id="toolBtn_3" onclick="inspectCommTool(3)">📧 البريد الإلكتروني / الرسالة الورقية</button>
+                    <button class="filter-btn" id="toolBtn_4" onclick="inspectCommTool(4)">💬 تطبيق المراسلة / لوحة الإعلانات</button>
+                    <button class="filter-btn" id="toolBtn_5" onclick="inspectCommTool(5)">📺 البث التلفزيوني المباشر</button>
+                    <button class="filter-btn" id="toolBtn_6" onclick="inspectCommTool(6)">🌐 وسائل التواصل الاجتماعي</button>
+                </div>
+                <div id="commToolOutput" style="margin-top:16px; background:var(--surface); padding:18px; border-radius:14px; border:2px solid var(--primary);">
+                    <h4 style="color:var(--primary-dark); margin-bottom:6px;">🗣️ المحادثة (Conversation) والعرض التقديمي (Presentation):</h4>
+                    <p style="font-weight:800;">• التصنيف المدمج (صـ 56 و 57): <span style="color:var(--success);">مباشر ومتزامن (Direct &amp; Synchronous)</span></p>
+                    <p style="font-size:0.92rem; color:var(--text-muted); margin-top:6px;">السبب: يتم اللقاء وجهاً لوجه في نفس المكان (مباشر)، ويتشارك الطرفان المعلومات في نفس اللحظة (متزامن).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             القسم الثالث: الدرس 3 (5-3): أ. الاتصال عبر الإنترنت (صـ 58)
+             ========================================================= -->
+        <section id="tab3" class="content-card">
+            <div class="section-badge" style="background:#fef3c7; color:#92400e;">المحور الثالث • الدرس 3 (5-3) • صـ 58 إلى 60</div>
+            <h2 class="section-title">أ. الاتصال عبر الإنترنت: البريد الإلكتروني (To / CC / BCC) وأدوات التواصل السبعة</h2>
+            <p class="section-desc">شرح تفصيلي لآلية عمل البريد الإلكتروني وقدرة البث، والفرق الحاسم بين حقول المستلمين، والخدمات الـ 7 للاتصال عبر الإنترنت:</p>
+
+            <div class="book-def-box" style="border-right-color: var(--accent);">
+                <div class="book-def-title" style="color: var(--accent);">📌 (1) البريد الإلكتروني (Email - Electronic mail) وقدرة البث - صـ 58 و 60:</div>
+                <div class="book-exact-text">
+                    • <strong>البريد الإلكتروني (Email):</strong> "أداة لإرسال واستقبال الرسائل القائمة على النص عبر الإنترنت. (وتسمح أيضاً بإرفاق وإرسال الصور ومقاطع الفيديو وملفات المستندات - صـ 60)."<br>
+                    • <strong>قدرة البث (broadcast capability):</strong> "ميزة يتميز بها البريد الإلكتروني تسمح للمستخدم بإرسال الرسائل إلى مستلمين متعددين في نفس الوقت عبر حقول (To و CC و BCC)."
+                </div>
+            </div>
+
+            <!-- محاكي تفاعلي لحقول البريد الإلكتروني To / CC / BCC -->
+            <div class="lab-box" style="border-color: var(--accent);">
+                <h3 style="font-size:1.2rem; margin-bottom:8px;">📧 محاكي الخصوصية في البريد الإلكتروني: الفرق بين (To) و (CC) و (BCC) (صـ 58 و 60)</h3>
+                <p style="font-size:0.94rem; color:var(--text-muted); margin-bottom:14px;">
+                    لنفترض أنك أرسلت بريداً إلكترونياً ووضعت: <strong>أحمد في حقل (To)</strong>، و<strong>سارة في حقل (CC)</strong>، و<strong>خالد في حقل (BCC)</strong>. اضغط على كل مستلم لترى من يظهر أمامه في الرسالة!
+                </p>
+                <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:14px;">
+                    <button class="filter-btn active" id="emailSim_to" onclick="simulateEmailField('to')">1️⃣ ماذا يرى المستلم في [To: إلى] (أحمد)؟</button>
+                    <button class="filter-btn" id="emailSim_cc" onclick="simulateEmailField('cc')">2️⃣ ماذا يرى المستلم في [CC: نسخة] (سارة)؟</button>
+                    <button class="filter-btn" id="emailSim_bcc" onclick="simulateEmailField('bcc')">3️⃣ ماذا يرى المستلم في [BCC: نسخة مخفية] (خالد)؟</button>
+                </div>
+                <div id="emailSimOutput" style="background:var(--surface); padding:18px; border-radius:14px; border:2px solid var(--accent);"></div>
+            </div>
+
+            <!-- مركز تصفية واستعراض طرق الاتصال السبعة عبر الإنترنت -->
+            <div class="filter-hub">
+                <h4 style="font-size:1.08rem; margin-bottom:14px;">🔍 طرق وأدوات الاتصال السبعة عبر الإنترنت في كتاب الوزارة (صـ 58 - 60):</h4>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" onclick="filterInternetTools('all', this)">عرض كل الأدوات (7 أدوات)</button>
+                    <button class="filter-btn" onclick="filterInternetTools('msg', this)">الرسائل والمراسلة (Email / Messaging / BBS)</button>
+                    <button class="filter-btn" onclick="filterInternetTools('social_web', this)">النشر والتواصل (Blog / Social Media)</button>
+                    <button class="filter-btn" onclick="filterInternetTools('video', this)">الفيديو المرئي (Video Call / Video Sharing)</button>
+                </div>
+                <div class="items-showcase" id="internetToolsShowcase"></div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             القسم الرابع: الدرس 3 (5-3): ب. خصائص التواصل على الإنترنت (صـ 58 - 60)
+             ========================================================= -->
+        <section id="tab4" class="content-card">
+            <div class="section-badge" style="background:#fee2e2; color:#991b1b;">المحور الرابع • الدرس 3 (5-3) • صـ 58 إلى 60</div>
+            <h2 class="section-title">ب. خصائص التواصل على الإنترنت الأربعة وآداب وسلامة النشر</h2>
+            <p class="section-desc">الخصائص الأربع للتواصل عبر الإنترنت (إخفاء الهوية، الفورية، الملائمة/الراحة، القابلية للتسجيل) ومزايا وعيوب كل منها:</p>
+
+            <div class="cards-3d-grid">
+                <div class="animated-card" onclick="toggleCard(this)">
+                    <div class="card-icon-title">
+                        <div class="circle-icon" style="background:#fef3c7; color:var(--accent);">🎭</div>
+                        <div>
+                            <h4 style="font-size:1.1rem;">(1) إخفاء الهوية (Anonymity)</h4>
+                            <span style="font-size:0.8rem; color:var(--text-muted);">مزايا وعيوب هامة جداً</span>
+                        </div>
+                    </div>
+                    <p class="book-exact-text" style="font-size:0.95rem;">
+                        "يسمح للمستخدم <strong>بإخفاء المعلومات التي يمكن أن تؤدي إلى التعرف الشخصي (الاسم، الانتماء، إلخ)</strong>."<br>
+                        • <strong>المزايا:</strong> يمكن للمستخدمين التعبير عن أنفسهم بحرية، بغض النظر عن العمر أو الوضع الاجتماعي.<br>
+                        • <strong>العيوب:</strong> [1] <strong>الإساءة عبر الإنترنت</strong> (تركز التعليقات النقدية على المنشورات) — [2] <strong>الأخبار المزيفة</strong> (معلومات كاذبة يتم توزيعها ونشرها).
+                    </p>
+                    <div class="expandable-hint">👈 اضغط لمعرفة القاعدة الأخلاقية في الكتاب (صـ 59)</div>
+                    <div class="hidden-details">
+                        ⚠️ <strong>سؤال صح وخطأ متكرر (صـ 59 و 60):</strong> "بما أن المنشورات عبر الإنترنت يمكن أن تكون مجهولة، فلا بأس للمستخدمين بكتابة أي معلومات يريدون" ⬅️ <strong>عبارة خاطئة (×)!</strong> بل يجب دائماً مراعاة وجهة نظر الشخص الآخر وإظهار التعاطف ومشاركة معلومات دقيقة.
+                    </div>
+                </div>
+
+                <div class="animated-card" onclick="toggleCard(this)">
+                    <div class="card-icon-title">
+                        <div class="circle-icon" style="background:#dcfce7; color:var(--success);">⚡</div>
+                        <div>
+                            <h4 style="font-size:1.1rem;">(2) الفورية (Immediacy)</h4>
+                            <span style="font-size:0.8rem; color:var(--text-muted);">سرعة الاستجابة</span>
+                        </div>
+                    </div>
+                    <p class="book-exact-text" style="font-size:0.95rem;">
+                        "<strong>يسمح للمستخدم باستجابة فورية من الطرف الآخر.</strong>"<br>
+                        (صياغة جرب بنفسك صـ 60: تتلقى على الفور استجابة من الطرف الآخر).
+                    </p>
+                    <div class="expandable-hint">👈 اضغط للتفاصيل</div>
+                    <div class="hidden-details">
+                        بفضل الإنترنت وتطبيقات المراسلة، تصل الرسائل في أجزاء من الثانية ويمكن للطرف الآخر الرد عليها فوراً مهما كانت المسافة الجغرافية.
+                    </div>
+                </div>
+
+                <div class="animated-card" onclick="toggleCard(this)">
+                    <div class="card-icon-title">
+                        <div class="circle-icon" style="background:#dbeafe; color:var(--primary);">✨</div>
+                        <div>
+                            <h4 style="font-size:1.1rem;">(3) الملائمة / الراحة (Convenience)</h4>
+                            <span style="font-size:0.8rem; color:var(--text-muted);">سهولة التواصل</span>
+                        </div>
+                    </div>
+                    <p class="book-exact-text" style="font-size:0.95rem;">
+                        "<strong>يسمح للمستخدم بالتواصل بسلاسة.</strong>"<br>
+                        (تُترجم في اختيارات صـ 60 بكلمة: <strong>الراحة</strong>).
+                    </p>
+                    <div class="expandable-hint">👈 اضغط للتفاصيل</div>
+                    <div class="hidden-details">
+                        تتيح الهواتف الذكية والإنترنت التواصل المريح في أي وقت ومن أي مكان دون تعقيد.
+                    </div>
+                </div>
+
+                <div class="animated-card" onclick="toggleCard(this)">
+                    <div class="card-icon-title">
+                        <div class="circle-icon" style="background:#ede9fe; color:var(--purple);">📝</div>
+                        <div>
+                            <h4 style="font-size:1.1rem;">(4) القابلية للتسجيل (Recordability)</h4>
+                            <span style="font-size:0.8rem; color:var(--text-muted);">حفظ السجلات (Log)</span>
+                        </div>
+                    </div>
+                    <p class="book-exact-text" style="font-size:0.95rem;">
+                        "<strong>إرسال واستقبال المعلومات على الإنترنت يترك سجلاً (log).</strong>"<br>
+                        (صياغة جرب بنفسك صـ 60: المعلومات المنشورة على الإنترنت لا يمكن محوها بالكامل).
+                    </p>
+                    <div class="expandable-hint">👈 لماذا تتطلب هذه الخاصية الحذر؟</div>
+                    <div class="hidden-details">
+                        بما أنه يتم الاحتفاظ بسجلات التفاعلات ومن الصعب محو المعلومات بالكامل بمجرد نشرها، فمن المهم أن تكون مراعياً وتضمن أن رسائلك لا تجعل المستلم يشعر بعدم الراحة (صـ 59).
+                    </div>
+                </div>
+            </div>
+
+            <!-- تنبيهات هامة من صح وخطأ صـ 59 و 60 -->
+            <div class="book-def-box" style="border-right-color: var(--danger); margin-top:22px;">
+                <div class="book-def-title" style="color: var(--danger);">⚠️ ثلاث ملاحظات ذهبية من أسئلة (صح وخطأ) في الكتاب المدرسي (صـ 59 و 60):</div>
+                <div class="book-exact-text">
+                    1. <strong>مقاطع الفيديو والخصوصية (صـ 59):</strong> عند تحميل مقاطع الفيديو إلى منصة مشاركة الفيديو، هناك احتمال أن يتم التعرف على الأفراد من <strong>المباني أو اللافتات المرئية في الفيديو</strong> (✓ صح).<br>
+                    2. <strong>لوحات الإعلانات وسوء الفهم (صـ 60):</strong> لوحات الإعلانات الإلكترونية (BBS) هي شكل من أشكال الاتصال <strong>القائم على النص بشكل رئيسي</strong>، لذلك قد يحدث سوء فهم (✓ صح).<br>
+                    3. <strong>حرية النشر المطلقة (صـ 59 و 60):</strong> "يمكن للشخص نشر المعلومات بحرية بغض النظر عن موقفهم / لأن المنشورات مجهولة" (✗ خطأ؛ يجب دائماً مراعاة الطرف الآخر والتعاطف والدقة).
+                </div>
+            </div>
+
+            <!-- لعبة التصنيف التفاعلية للوحدة الخامسة -->
+            <div class="sorter-game">
+                <div class="sorter-header">
+                    <h3 style="font-size:1.18rem; color:var(--text-main);">🎯 مختبر التصنيف التفاعلي للطلاب: صنّف المفهوم أو الأداة في الوحدة الخامسة</h3>
+                    <div class="sorter-score" id="u5ScoreBoard">النقاط: 0 / 8</div>
+                </div>
+
+                <p style="color:var(--text-muted); font-size:0.95rem; margin-bottom:14px;">اقرأ العبارة المعروضة واختر التصنيف الصحيح لها حسب منهج الوحدة الخامسة:</p>
+                <div class="current-token" id="u5TokenText">في عام 1895، اخترع إيطالي يدعى ماركوني التلغراف اللاسلكي الذي تطور لاحقاً إلى أجهزة الراديو والتلفزيون والهواتف المحمولة</div>
+
+                <div class="target-bins">
+                    <button class="bin-btn" onclick="checkU5Sort('history')">
+                        <div style="font-size:1.5rem; margin-bottom:4px;">⏳</div>
+                        <h5>تطوير وسائل الاتصال (5-1)</h5>
+                        <span>(غوتنبرغ / مورس / بيل / ماركوني / أربانت)</span>
+                    </button>
+                    <button class="bin-btn" onclick="checkU5Sort('forms')">
+                        <div style="font-size:1.5rem; margin-bottom:4px;">🔄</div>
+                        <h5>الاتصال وأشكاله (5-2)</h5>
+                        <span>(فردي / جماهيري / عكسي / مباشر / متزامن)</span>
+                    </button>
+                    <button class="bin-btn" onclick="checkU5Sort('tools')">
+                        <div style="font-size:1.5rem; margin-bottom:4px;">📧</div>
+                        <h5>أدوات الاتصال عبر الإنترنت (5-3 أ)</h5>
+                        <span>(Email / BCC / BBS / مدونة / مكالمة فيديو)</span>
+                    </button>
+                    <button class="bin-btn" onclick="checkU5Sort('traits')">
+                        <div style="font-size:1.5rem; margin-bottom:4px;">🛡️</div>
+                        <h5>خصائص التواصل على الإنترنت (5-3 ب)</h5>
+                        <span>(إخفاء الهوية / الفورية / الملائمة / القابلية للتسجيل)</span>
+                    </button>
+                </div>
+
+                <div class="game-status-msg" id="u5StatusMsg"></div>
+                <div style="margin-top:12px;">
+                    <button class="preset-btn" onclick="resetU5Sorter()">🔄 إعادة تشغيل اللعبة من البداية</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             القسم الخامس: تدريبات الكتاب التفاعلية (ملء الفراغات صـ 55، 57، 59، 60)
+             ========================================================= -->
+        <section id="tab5" class="content-card">
+            <div class="section-badge" style="background:#ede9fe; color:#5b21b6;">المحور الخامس • حل تدريبات الكتاب المدرسي (صـ 55، 57، 59، 60)</div>
+            <h2 class="section-title">تدريبات الفقرات والجداول التفاعلية من كتاب الوزارة (الدروس 1 و 2 و 3)</h2>
+            <p class="section-desc">اضغط على أي فراغ للكشف عن الإجابة النموذجية أمام الطلاب أو استخدم أزرار الإظهار والإخفاء:</p>
+
+            <!-- تدريب 1: فقرات وجداول الدرس الأول صـ 55 -->
+            <div class="lab-box" style="border-color: var(--purple);">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+                    <h3 style="font-size:1.16rem;">📝 تدريب (1) من «جرب بنفسك» و«تمرين» صـ 55: تطوير وسائل الاتصال والإنترنت</h3>
+                    <div>
+                        <button class="preset-btn" onclick="toggleAllBlanks('u5Blanks1', true)">👁️ إظهار جميع الإجابات</button>
+                        <button class="preset-btn" onclick="toggleAllBlanks('u5Blanks1', false)">🙈 إخفاء لاختبار الطلاب</button>
+                    </div>
+                </div>
+                <div id="u5Blanks1" style="background:var(--surface); padding:18px; border-radius:14px; border:1px solid var(--border); line-height:2.3;">
+                    <strong>أولاً: فقرة «جرب بنفسك (1) و (2)» صـ 55:</strong><br>
+                    • في العصور القديمة، كان الناس ينقلون المعلومات بإشعال
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[1] (ت) نيران الإشارة">[1] اضغط للكشف</span>
+                    أو ضرب الطبول لتوصيل معلومات أساسية إلى الآخرين. في النهاية، تم حمل الأحرف والرموز على وسط يسمى
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[2] (ث) الورق">[2] اضغط للكشف</span>
+                    وتسليمها باستخدام الرسل أو الحمام الزاجل.<br>
+                    • في منتصف القرن الخامس عشر، بفضل
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[3] (ذ) غوتنبرج">[3] اضغط للكشف</span>
+                    الذي اخترع
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[4] (أ) طابعة الحروف المتحركة">[4] اضغط للكشف</span>،
+                    أصبح من الممكن بسهولة إعادة إنتاج كميات كبيرة من المعلومات كمواد مطبوعة.<br>
+                    • في القرن التاسع عشر، اخترع أمريكي يدعى
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[5] (ز) مورس">[5] اضغط للكشف</span>
+                    جهاز
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[6] (ج) تليغراف مورس">[6] اضغط للكشف</span>،
+                    وهي تكنولوجيا لإرسال واستقبال الرموز عبر الاتصالات السلكية واللاسلكية. وفي نفس الوقت تقريباً، اخترع بيل
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[7] (خ) الهاتف">[7] اضغط للكشف</span>.<br>
+                    • علاوة على ذلك، في نهاية القرن التاسع عشر، اخترع إيطالي يدعى ماركوني
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[8] (ح) التلغراف اللاسلكي">[8] اضغط للكشف</span>،
+                    الذي تطور لاحقاً إلى أجهزة الراديو، و
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[9] (ب) التلفزيون">[9] اضغط للكشف</span>،
+                    والهواتف المحمولة.<br>
+                    • تطور الإنترنت من شبكة
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[1] أربانت (ARPANET)">[1] اضغط للكشف</span>
+                    التي تم إنشاؤها بواسطة وزارة الدفاع الأمريكية في عام 1969. في البداية، تم استخدامها بشكل رئيسي بواسطة
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[2] مؤسسات البحث (Research institutions)">[2] اضغط للكشف</span>،
+                    ولكن بحلول التسعينيات، بدأت في الانتشار على نطاق واسع بين عامة الناس.<br><br>
+                    <strong>ثانياً: فقرة «تمرين (1)» صـ 55:</strong><br>
+                    • يطلق على تبادل المعلومات اسم
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[1] (أ) الاتصال">[1] اضغط للكشف</span>.
+                    ومن بين هذه الوسائل فإن وسيلة إرسال المعلومات إلى عدد كبير من الناس في وقت واحد يشار إليها باسم
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[2] (ب) وسائل الاتصال الجماهيري">[2] اضغط للكشف</span>.<br>
+                    • على غرار
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[3] (ت) الصحف">[3] اضغط للكشف</span>
+                    و
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[4] (ح) التلفزيون">[4] اضغط للكشف</span>،
+                    فإن [2] تسهل بشكل رئيسي نقل المعلومات في <strong>اتجاه واحد</strong> من المرسل إلى المستقبل. في المقابل، فإن
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[5] (ج) الهاتف">[5] اضغط للكشف</span>
+                    و
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[6] (ج/خ) الإنترنت">[6] اضغط للكشف</span>
+                    هما طريقتا اتصال معلوماتي تمكنان تبادل المعلومات في <strong>اتجاهين</strong>.
+                </div>
+            </div>
+
+            <!-- تدريب 2: جداول وفقرات الدرس الثاني والثالث صـ 57 و 60 -->
+            <div class="lab-box" style="border-color: var(--secondary);">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+                    <h3 style="font-size:1.16rem;">📝 تدريب (2) من صـ 57 و صـ 60: تصنيف أشكال الاتصال وحقول البريد الإلكتروني</h3>
+                    <div>
+                        <button class="preset-btn" onclick="toggleAllBlanks('u5Blanks2', true)">👁️ إظهار جميع الإجابات</button>
+                        <button class="preset-btn" onclick="toggleAllBlanks('u5Blanks2', false)">🙈 إخفاء لاختبار الطلاب</button>
+                    </div>
+                </div>
+                <div id="u5Blanks2" style="background:var(--surface); padding:18px; border-radius:14px; border:1px solid var(--border); line-height:2.2;">
+                    <strong>أولاً: جدول «جرب بنفسك (1)» صـ 57 (تقاطع العدد مع التزامن):</strong><br>
+                    • واحد إلى واحد (نوع فردي) + <strong>متزامن</strong> = <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[1] (ب) الهاتف">[1] اضغط للكشف</span><br>
+                    • واحد إلى واحد (نوع فردي) + <strong>غير متزامن</strong> = <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[2] (أ) الرسالة">[2] اضغط للكشف</span><br>
+                    • واحد إلى كثير (وسائل الإعلام الجماهيرية) + <strong>متزامن</strong> = <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[3] (ت) البث التلفزيوني المباشر">[3] اضغط للكشف</span><br>
+                    • واحد إلى كثير (أو متعدد) + <strong>غير متزامن</strong> = <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[4] (ث) وسائل التواصل الاجتماعي">[4] اضغط للكشف</span><br><br>
+                    <strong>ثانياً: تصنيف الطرق «جرب بنفسك (2)» صـ 57:</strong><br>
+                    • [1] مباشر ومتزامن = <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[1] (ت) المحادثة (وكذلك العرض التقديمي)">[1] اضغط للكشف</span><br>
+                    • [2] غير مباشر ومتزامن = <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[2] (أ) الهاتف ، (ح) مكالمة الفيديو">[2] اضغط للكشف</span><br>
+                    • [3] غير مباشر وغير متزامن = <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[3] (ب) البريد الإلكتروني ، (ث) لوحة الإعلانات الإلكترونية ، (ج) تطبيق المراسلة">[3] اضغط للكشف</span><br><br>
+                    <strong>ثالثاً: فقرة البريد الإلكتروني «تمرين (1)» صـ 60:</strong><br>
+                    • مستلمو البريد الإلكتروني لديهم حقول "To"، و
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[1] CC (نسخة)">[1] اضغط للكشف</span>،
+                    و
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[2] BCC (نسخة مخفية)">[2] اضغط للكشف</span>،
+                    وكلها تتميز بـ
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[3] قدرة البث (broadcast capability)">[3] اضغط للكشف</span>
+                    التي تسمح للمستخدم بإرسال رسائل البريد الإلكتروني إلى عناوين بريد إلكتروني متعددة. ومع ذلك، إذا كنت لا تريد أن يرى المستلمون الآخرون عناوين البريد الإلكتروني، فأنت بحاجة إلى اختيار
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[2] BCC (نسخة مخفية)">[2] اضغط للكشف</span>.
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             القسم السادس: بنك التحدي الشامل للوحدة الخامسة (18 سؤالاً)
+             ========================================================= -->
+        <section id="tab6" class="content-card">
+            <div class="section-badge" style="background:#d1fae5; color:#065f46;">المحور السادس • اختبار شامل للوحدة الخامسة</div>
+            <h2 class="section-title">بنك التحدي التفاعلي الشامل (أسئلة وتدريبات كتاب الوزارة - 18 سؤالاً)</h2>
+            <p class="section-desc">جميع الأسئلة مستخرجة من فقرات "تحدى معلوماتك" و"جرب بنفسك" و"تمرين" بالكتاب المدرسي للوحدة الخامسة (صـ 54 إلى 60):</p>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:20px; background:var(--surface-alt); padding:14px 20px; border-radius:14px; border:1px solid var(--border);">
+                <div class="filter-buttons" style="margin-bottom:0;">
+                    <button class="filter-btn active" onclick="filterQuiz('all', this)">كل الدروس (18 سؤالاً)</button>
+                    <button class="filter-btn" onclick="filterQuiz('L1', this)">الدرس 1 (تطوير وسائل الاتصال)</button>
+                    <button class="filter-btn" onclick="filterQuiz('L2', this)">الدرس 2 (الاتصال وأشكاله)</button>
+                    <button class="filter-btn" onclick="filterQuiz('L3', this)">الدرس 3 (الإنترنت والاتصالات)</button>
+                </div>
+                <div style="font-weight:900; color:var(--primary); font-size:1.05rem;" id="quizScoreTracker">النتيجة الحالية: 0 / 18</div>
+            </div>
+
+            <div class="quiz-container" id="quizContainer"></div>
+
+            <div style="text-align:center; margin-top:25px;">
+                <button class="btn-action" onclick="reloadQuiz()">
+                    🔄 إعادة تعيين الإجابات وبدء اختبار جديد
+                </button>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Modal القاموس السريع لمصطلحات الوحدة الخامسة -->
+    <div class="modal-backdrop" id="glossaryModal" onclick="if(event.target===this) closeGlossaryModal()">
+        <div class="modal-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); padding-bottom:14px;">
+                <h3 style="font-size:1.3rem; color:var(--primary);">📖 القاموس الشامل لمصطلحات الوحدة الخامسة (عربي / إنجليزي)</h3>
+                <button class="btn-action" style="padding:6px 14px; background:var(--danger);" onclick="closeGlossaryModal()">✖ إغلاق</button>
+            </div>
+            <p style="font-size:0.92rem; color:var(--text-muted); margin-top:10px;">ابحث بسرعة عن أي مصطلح في الوحدة الخامسة لمراجعته مع الطلاب:</p>
+            <input type="text" id="glossarySearchInput" placeholder="🔍 ابحث عن مصطلح بالعربية أو الإنجليزية (مثال: ARPANET أو BCC أو Synchronous أو BBS)..." style="width:100%; padding:12px 16px; margin-top:10px; border-radius:10px; border:2px solid var(--border); font-size:0.98rem; background:var(--surface-alt); color:var(--text-main);" oninput="renderGlossary()">
+            <div class="glossary-grid" id="glossaryGrid"></div>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // 1. أدوات المعلم (الخط، الوضع الليلي، شريط التقدم)
+        // ==========================================
+        let currentFontScale = 1;
+
+        function changeFontScale(delta) {
+            currentFontScale = Math.min(1.35, Math.max(0.85, currentFontScale + delta));
+            document.documentElement.style.setProperty('--font-scale', currentFontScale);
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            document.getElementById('darkModeBtn').innerText = isDark ? '☀️ الوضع النهاري' : '🌙 الوضع الليلي للسبورة';
+        }
+
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
+        function toggleCard(card) {
+            card.classList.toggle('active');
+        }
+
+        function toggleAllBlanks(containerId, reveal) {
+            const slots = document.querySelectorAll(`#${containerId} .blank-slot`);
+            slots.forEach(s => {
+                if (reveal) {
+                    s.classList.add('revealed');
+                    s.innerText = s.getAttribute('data-ans');
+                } else {
+                    s.classList.remove('revealed');
+                    const num = s.getAttribute('data-ans').split(' ')[0];
+                    s.innerText = `${num} اضغط للكشف`;
+                }
+            });
+        }
+
+        document.addEventListener('click', (e) => {
+            if (e.target && e.target.classList.contains('blank-slot')) {
+                const s = e.target;
+                if (s.classList.contains('revealed')) {
+                    s.innerText = s.getAttribute('data-ans');
+                } else {
+                    const num = s.getAttribute('data-ans').split(' ')[0];
+                    s.innerText = `${num} اضغط للكشف`;
+                }
+            }
+        });
+
+        // ==========================================
+        // 2. الحقب الأربع لتطور وسائل الاتصال (الدرس 5-1)
+        // ==========================================
+        const commEras = {
+            1: {
+                title: "[1] وسائل الاتصال قبل وجود الاتصالات السلكية واللاسلكية (صـ 54)",
+                text: "• في العصور القديمة، تم نقل المعلومات الأساسية بإشعال نيران الإشارة (signal fires) أو ضرب الطبول. • بعد تطوير الكتابة، كُتبت الرسائل على الورق (paper) وتم تسليمها باستخدام الرسل أو الحمام الزاجل. • تم إنشاء نظام البريد الحديث (modern postal system) في عام 1840.",
+                tools: "نيران الإشارة (signal fires)، ضرب الطبول، الورق (paper)، الرسل والحمام الزاجل، نظام البريد الحديث (1840).",
+                tip: "في سؤال الترتيب الزمني (تمرين 2 صـ 55): (ت) إشعال نيران الإشارة أو ضرب الطبول ← (ب) إنشاء نظام البريد الحديث (1840) ← (أ) اختراع الهاتف (1876) ← (ث) انتشار الهواتف الخلوية (1946)."
+            },
+            2: {
+                title: "[2] بداية الاتصالات السلكية واللاسلكية (صـ 54 و 55)",
+                text: "• في عام 1837، اخترع أمريكي يدعى مورس (Morse) تلغراف مورس (Morse telegraph) لإرسال واستقبال الرموز عبر الاتصالات السلكية واللاسلكية. • في عام 1876، اخترع أمريكي يدعى بيل (Bill) الهاتف (telephone). • في عام 1895، اخترع إيطالي يدعى ماركوني (Marcony) التلغراف اللاسلكي (Wireless telegraph). • في عام 1946، بدأ استخدام خدمة الهاتف المحمول (الهواتف الخلوية - cellular phones) في الولايات المتحدة.",
+                tools: "تلغراف مورس (1837)، الهاتف لبيل (1876)، التلغراف اللاسلكي لماركوني (1895)، الهواتف الخلوية (1946).",
+                tip: "تذكر من صـ 55: التلغراف اللاسلكي الذي اخترعه الإيطالي ماركوني عام 1895 تطور لاحقاً إلى أجهزة الراديو، والتلفزيون، والهواتف المحمولة."
+            },
+            3: {
+                title: "[3] الاتصال الجماهيري وتطوره (Mass communication / Mass media) (صـ 54)",
+                text: "• الاتصال الجماهيري: وسيلة لإرسال المعلومات إلى عدد كبير من الناس في وقت واحد (مثل الصحف والمجلات، البث الإذاعي والتلفزيوني). • في منتصف القرن الخامس عشر، اخترع ألماني يدعى غوتنبرغ (Gutenberg) طابعة الحروف المتحركة (Movable-type printing press). • في عام 1906، تم إجراء أول بث تجريبي للراديو (radio) في الولايات المتحدة. • في عام 1928، تم إجراء أول بث تجريبي للتلفزيون (Television) في الولايات المتحدة.",
+                tools: "طابعة الحروف المتحركة لغوتنبرغ (منتصف القرن 15)، الصحف والمجلات، الراديو (1906)، التلفزيون (1928).",
+                tip: "وسائل الاتصال الجماهيري تنقل المعلومات بشكل رئيسي في اتجاه واحد من المرسل إلى المستقبل، بينما الهاتف والإنترنت ينقلان المعلومات في اتجاهين."
+            },
+            4: {
+                title: "[4] تطور الإنترنت من شبكة أربانت (ARPANET) (صـ 54 و 55)",
+                text: "• في عام 1969، بدعم من وزارة الدفاع الأمريكية، تم إجراء تجربة على شبكة كمبيوتر تسمى أربانت (ARPANET). • في البداية، تم استخدامها بشكل رئيسي من قبل مؤسسات البحث (Research institutions). • أصبحت في النهاية معروفة باسم الإنترنت (Internet) وبدأت في الانتشار على نطاق واسع بين عامة الناس بحلول التسعينيات.",
+                tools: "شبكة أربانت (ARPANET - 1969)، مؤسسات البحث، الإنترنت العالمي (التسعينيات).",
+                tip: "سؤال أكمل متكرر (جرب بنفسك 2 صـ 55): الفراغ [1] أربانت (ARPANET)، والفراغ [2] مؤسسات البحث (Research institutions)."
+            }
+        };
+
+        function selectCommEra(step) {
+            [1, 2, 3, 4].forEach(k => {
+                document.getElementById('era_' + k).classList.toggle('active', k === step);
+            });
+            const d = commEras[step];
+            document.getElementById('eraDetailBox').innerHTML = `
+                <h4 style="font-size:1.22rem; color:var(--primary-dark); margin-bottom:8px;">${d.title}</h4>
+                <p style="font-weight:800; margin-bottom:8px;">📖 النص الرسمي بالكتاب: "${d.text}"</p>
+                <p style="color:var(--secondary); font-weight:700; font-size:0.96rem; margin-bottom:6px;">🛠️ الوسائل والتقنيات المؤثرة: ${d.tools}</p>
+                <p style="color:var(--text-muted); font-size:0.92rem;">💡 ${d.tip}</p>
+            `;
+        }
+
+        // ==========================================
+        // 3. معايير تصنيف الاتصال الثلاثة + مختبر الأدوات (الدرس 5-2)
+        // ==========================================
+        const commAxes = {
+            num: {
+                title: "[1] التصنيف حسب عدد المرسلين والمستلمين (صـ 56):",
+                html: `
+                    <p style="font-weight:800; margin-bottom:6px;">• 1. واحد إلى واحد (نوع فردي) — One-to-one (Individual type): مرسل واحد إلى مستلم واحد. &lt;أمثلة&gt; الرسائل، الهواتف، إلخ.</p>
+                    <p style="font-weight:800; margin-bottom:6px;">• 2. واحد إلى العديد (وسائل الاتصال الجماهيرية) — One-to-many (Mass media type): مرسل واحد إلى مستلمين متعددين. &lt;أمثلة&gt; الصحف، الراديو، التلفزيون، صفحات الويب، إلخ.</p>
+                    <p style="font-weight:800; margin-bottom:6px;">• 3. متعدد إلى واحد (وسائل الاتصال العكسية) — Many-to-one (Reverse mass media type): مرسلون متعددون إلى مستلم واحد. &lt;أمثلة&gt; جدولة الاستبيانات، الاستفسارات، إلخ.</p>
+                    <p style="font-weight:800;">• 4. متعدد إلى متعدد (نوع مؤتمر) — Many-to-many (Conference type): مرسلون متعددون إلى مستلمين متعددين. &lt;أمثلة&gt; مؤتمرات الفيديو، المكالمات الجماعية، وسائل التواصل الاجتماعي، إلخ.</p>
+                `
+            },
+            loc: {
+                title: "[2] التصنيف بناءً على علاقة الموقع بين المرسل والمستلم (صـ 56):",
+                html: `
+                    <p style="font-weight:800; margin-bottom:8px;">• 1. الاتصال المباشر (Direct communication): المرسل والمستلم وجهاً لوجه مباشرة. تمكن هذه الطريقة من الاتصال أثناء مراقبة ردود فعل الشخص الآخر، ولكن هناك قيود على الوقت والموقع. &lt;أمثلة&gt; المحادثات، العروض التقديمية، إلخ.</p>
+                    <p style="font-weight:800;">• 2. الاتصال غير المباشر (Indirect communication): المرسل والمستلم منفصلان. بينما ليس من الممكن رؤية ردود فعل الشخص الآخر مباشرة، فإنه يمكن إزالة قيود الوقت والموقع. &lt;أمثلة&gt; الهواتف، البريد الإلكتروني، صفحات الويب، إلخ.</p>
+                `
+            },
+            sync: {
+                title: "[3] التصنيف حسب تزامن الاتصال (صـ 56):",
+                html: `
+                    <p style="font-weight:800; margin-bottom:8px;">• 1. متزامن (Synchronous): يشارك المرسل والمستلم المعلومات في وقت واحد تقريباً. &lt;أمثلة&gt; المحادثة، الهواتف، العروض التقديمية، مكالمات الفيديو، البث التلفزيوني المباشر، إلخ.</p>
+                    <p style="font-weight:800;">• 2. غير متزامن (Asynchronous): يتم إرسال المعلومات واستقبالها في أوقات مناسبة لكل من المرسل والمستلم. &lt;أمثلة&gt; الرسائل، البريد الإلكتروني، لوحات الإعلانات الإلكترونية، تطبيقات المراسلة، وسائل التواصل الاجتماعي، إلخ.</p>
+                `
+            }
+        };
+
+        function selectCommAxis(key) {
+            ['num', 'loc', 'sync'].forEach(k => {
+                document.getElementById('axis_' + k).classList.toggle('active', k === key);
+            });
+            const d = commAxes[key];
+            document.getElementById('axisDetailBox').innerHTML = `
+                <h4 style="font-size:1.2rem; color:var(--secondary); margin-bottom:8px;">${d.title}</h4>
+                ${d.html}
+            `;
+        }
+
+        const commToolsAnalysis = {
+            1: {
+                title: "🗣️ المحادثة (Conversation) والعرض التقديمي (Presentation):",
+                badge: "مباشر ومتزامن (Direct & Synchronous)",
+                desc: "لأن المرسل والمستلم يلتقيان وجهاً لوجه في نفس المكان (مباشر)، ويتبادلان الحديث أو العرض في الوقت نفسه (متزامن)."
+            },
+            2: {
+                title: "📞 الهاتف (Telephone) ومكالمة الفيديو (Video Call):",
+                badge: "غير مباشر ومتزامن (Indirect & Synchronous) • فردي (1 إلى 1)",
+                desc: "لأن المرسل والمستلم منفصلان في المكان عبر جهاز اتصال (غير مباشر)، ولكنهما يتحدثان معاً في الوقت الفعلي نفسه (متزامن)."
+            },
+            3: {
+                title: "📧 البريد الإلكتروني (Email) والرسائل (Letters):",
+                badge: "غير مباشر وغير متزامن (Indirect & Asynchronous) • فردي أو متعدد",
+                desc: "لأن الطرفين منفصلان في الموقع (غير مباشر)، ويتم إرسال الرسالة وقراءتها في أوقات مناسبة لكل طرف دون اشتراط التواجد في نفس اللحظة (غير متزامن)."
+            },
+            4: {
+                title: "💬 تطبيق المراسلة (Messaging App) ولوحة الإعلانات الإلكترونية (BBS):",
+                badge: "غير مباشر وغير متزامن (Indirect & Asynchronous)",
+                desc: "في منهج كتاب الوزارة (صـ 56 و 57) تُصنف تطبيقات المراسلة ولوحات الإعلانات الإلكترونية ضمن الاتصال غير المباشر وغير المتزامن."
+            },
+            5: {
+                title: "📺 البث التلفزيوني المباشر (Live TV Broadcast):",
+                badge: "واحد إلى العديد (وسائل الإعلام الجماهيرية) + متزامن (Synchronous)",
+                desc: "يرسل البث من محطة واحدة إلى ملايين المشاهدين (واحد إلى العديد)، ويُعرض ويُشاهد في اللحظة نفسها (متزامن - جدول صـ 57)."
+            },
+            6: {
+                title: "🌐 وسائل التواصل الاجتماعي (Social Media):",
+                badge: "غير مباشر وغير متزامن (تُصنف أيضاً في جدول صـ 57: واحد إلى كثير/غير متزامن، وفي صـ 56: متعدد إلى متعدد)",
+                desc: "ينشر المستخدم المنشور ليقرأه ويتفاعل معه عدد كبير من المتابعين في أوقات مختلفة مناسبة لكل منهم."
+            }
+        };
+
+        function inspectCommTool(num) {
+            [1, 2, 3, 4, 5, 6].forEach(n => {
+                document.getElementById('toolBtn_' + n).classList.toggle('active', n === num);
+            });
+            const t = commToolsAnalysis[num];
+            document.getElementById('commToolOutput').innerHTML = `
+                <h4 style="color:var(--primary-dark); margin-bottom:6px;">${t.title}</h4>
+                <p style="font-weight:800;">• التصنيف المنهجي بالكتاب (صـ 56 و 57): <span style="color:var(--secondary);">${t.badge}</span></p>
+                <p style="font-size:0.92rem; color:var(--text-muted); margin-top:6px;"><strong>التفسير:</strong> ${t.desc}</p>
+            `;
+        }
+
+        // ==========================================
+        // 4. محاكي البريد الإلكتروني (To / CC / BCC) + فلتر أدوات الإنترنت (الدرس 5-3)
+        // ==========================================
+        function simulateEmailField(mode) {
+            ['to', 'cc', 'bcc'].forEach(k => {
+                document.getElementById('emailSim_' + k).classList.toggle('active', k === mode);
+            });
+            const box = document.getElementById('emailSimOutput');
+            if (mode === 'to') {
+                box.innerHTML = `
+                    <h4 style="color:var(--primary-dark); margin-bottom:6px;">📥 شاشة المستلم الأساسي [To: إلى] (أحمد):</h4>
+                    <p style="font-weight:800; margin-bottom:6px;">📖 تعريف الكتاب (صـ 58): "[1] إلى (To): أدخل عنوان البريد الإلكتروني للمستلم (المستلمين) الذي تريد إرسال البريد الإلكتروني إليه."</p>
+                    <p style="font-size:0.94rem;">👀 <strong>من يرى أحمد في قائمة المستلمين؟</strong> يرى عنوانه هو <strong>(أحمد في To)</strong> + عنوان <strong>(سارة في CC)</strong>، ولكنه <span style="color:var(--danger); font-weight:800;">لا يرى عنوان (خالد الموجود في BCC) إطلاقاً!</span></p>
+                `;
+            } else if (mode === 'cc') {
+                box.innerHTML = `
+                    <h4 style="color:var(--secondary); margin-bottom:6px;">📋 شاشة مستلم النسخة الكربونية [CC: نسخة] (سارة):</h4>
+                    <p style="font-weight:800; margin-bottom:6px;">📖 تعريف الكتاب (صـ 58): "[2] نسخة (CC): أدخل عنوان البريد الإلكتروني للمستلم (المستلمين) الذي تريد مشاركة محتوى البريد الإلكتروني معهم."</p>
+                    <p style="font-size:0.94rem;">👀 <strong>من ترى سارة في قائمة المستلمين؟</strong> ترى عنوان <strong>(أحمد في To)</strong> + عنوانها هي <strong>(سارة في CC)</strong>، ولكنها أيضاً <span style="color:var(--danger); font-weight:800;">لا ترى عنوان (خالد الموجود في BCC)!</span></p>
+                `;
+            } else {
+                box.innerHTML = `
+                    <h4 style="color:var(--success); margin-bottom:6px;">🕵️ شاشة مستلم النسخة المخفية [BCC: نسخة مخفية] (خالد):</h4>
+                    <p style="font-weight:800; margin-bottom:6px;">📖 تعريف الكتاب (صـ 58): "[3] نسخة مخفية (BCC): أدخل عنوان البريد الإلكتروني للمستلم (المستلمين) الذي تريد مشاركة محتوى البريد الإلكتروني معهم ولكن <u>لا تريد أن يرى المستلمون الآخرون ذلك</u>. لا يمكن للمستلمين الآخرين رؤية عناوين البريد الإلكتروني وتستخدم BCC لهذا الغرض."</p>
+                    <p style="font-size:0.94rem;">👀 <strong>لماذا نستخدم BCC في الامتحان والحياة العملية؟</strong> لحماية خصوصية عناوين البريد الإلكتروني عند إرسال رسالة إلى مجموعة كبيرة من الأشخاص بحيث لا يرى المستلمون الآخرون عناوين بعضهم البعض (تمرين 1 صـ 60).</p>
+                `;
+            }
+        }
+
+        const internetToolsList = [
+            { name: "(1) البريد الإلكتروني (Email)", cat: "msg", catName: "مراسلة وبريد", badge: "cat-text", desc: "أداة لإرسال واستقبال الرسائل القائمة على النص عبر الإنترنت (مع إمكانية إرفاق الصور والفيديو والمستندات)، ويتميز بـ «قدرة البث» (broadcast capability) عبر To و CC و BCC." },
+            { name: "(2) نظام لوحة الإعلانات (BBS)", cat: "msg", catName: "مراسلة ومنتديات", badge: "cat-text", desc: "Bulletin board system: أداة تسمح للمستخدم بنشر الرسائل وكتابة الردود على الرسائل الأخرى (قائم على النص بشكل رئيسي لذلك قد يحدث سوء فهم - صـ 60)." },
+            { name: "(3) تطبيق المراسلة (Messaging app)", cat: "msg", catName: "مراسلة فورية", badge: "cat-text", desc: "أدوات تمكن تبادل النصوص والصور ومقاطع الفيديو، مما يسهل الاتصال للأفراد أو المجموعات. <أمثلة> خدمة الرسائل القصيرة (SMS)، تطبيق LINE، إلخ." },
+            { name: "(4) مكالمة الفيديو (Video call)", cat: "video", catName: "اتصال مرئي", badge: "cat-video", desc: "أداة تسمح بالمحادثة في الوقت الفعلي أثناء مشاهدة فيديو الشخص الآخر عبر الإنترنت (اتصال غير مباشر ومتزامن)." },
+            { name: "(5) المدونة (Blog)", cat: "social_web", catName: "نشر ويوميات", badge: "cat-web", desc: "كلمة تم صياغتها بدمج كلمتي 'web' و 'log'، وهي خدمة ويب تسمح لك بتجميع ونشر كتابات مثل يومياتك على الإنترنت." },
+            { name: "(6) وسائل التواصل الاجتماعي (Social Media)", cat: "social_web", catName: "منصات اجتماعية", badge: "cat-social", desc: "خدمات توفر منصات حيث يمكن للأفراد التواصل مع بعضهم البعض على الإنترنت." },
+            { name: "(7) منصة مشاركة الفيديو (Video sharing platform)", cat: "video", catName: "مشاركة مرئية", badge: "cat-video", desc: "خدمة تسمح لجمهور واسع غير محدد بمشاركة ومشاهدة مقاطع الفيديو المنشورة بواسطة مستخدمين غير محددين آخرين على الإنترنت." }
+        ];
+
+        function filterInternetTools(filter, btn) {
+            if (btn) {
+                btn.parentElement.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            }
+            const container = document.getElementById('internetToolsShowcase');
+            container.innerHTML = '';
+            const items = filter === 'all' ? internetToolsList : internetToolsList.filter(i => i.cat === filter);
+            items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'item-badge-card';
+                card.innerHTML = `
+                    <span class="item-cat ${item.badge}">${item.catName}</span>
+                    <h4 style="font-size:1.05rem; margin-bottom:6px;">${item.name}</h4>
+                    <p style="font-size:0.89rem; color:var(--text-muted);">${item.desc}</p>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // ==========================================
+        // 5. لعبة التصنيف التفاعلية للوحدة الخامسة
+        // ==========================================
+        const u5GameItems = [
+            { text: "في عام 1895، اخترع إيطالي يدعى ماركوني التلغراف اللاسلكي الذي تطور لاحقاً إلى أجهزة الراديو والتلفزيون والهواتف المحمولة", type: "history" },
+            { text: "مرسلون متعددون إلى مستلم واحد (وسائل الاتصال العكسية - Reverse mass media) مثل جدولة الاستبيانات والاستفسارات", type: "forms" },
+            { text: "حقل في البريد الإلكتروني (BCC) يُستخدم عندما لا تريد أن يرى المستلمون الآخرون عناوين البريد الإلكتروني لبعضهم", type: "tools" },
+            { text: "إرسال واستقبال المعلومات على الإنترنت يترك سجلاً (log) ولا يمكن محو المعلومات المنشورة بالكامل (Recordability)", type: "traits" },
+            { text: "كلمة تم صياغتها بدمج 'web' و 'log'، وهي خدمة ويب تسمح لك بتجميع ونشر كتابات مثل يومياتك على الإنترنت (Blog)", type: "tools" },
+            { text: "شبكة كمبيوتر تسمى أربانت (ARPANET) أُجريت تجربتها عام 1969 بدعم من وزارة الدفاع الأمريكية واستُخدمت أولاً في مؤسسات البحث", type: "history" },
+            { text: "يشارك المرسل والمستلم المعلومات في وقت واحد تقريباً مثل المحادثة، الهواتف، مكالمات الفيديو، والبث التلفزيوني المباشر (Synchronous)", type: "forms" },
+            { text: "خاصية تسمح للمستخدم بإخفاء الاسم والانتماء، ومن عيوبها الإساءة عبر الإنترنت وانتشار الأخبار المزيفة (Anonymity)", type: "traits" }
+        ];
+
+        let u5Idx = 0;
+        let u5Score = 0;
+
+        function initU5Sorter() {
+            if (u5Idx < u5GameItems.length) {
+                document.getElementById('u5TokenText').innerText = u5GameItems[u5Idx].text;
+                document.getElementById('u5StatusMsg').innerText = "";
+            } else {
+                document.getElementById('u5TokenText').innerText = "🏆 ممتاز! أتممت تصنيف جميع مفاهيم الوحدة الخامسة بنجاح!";
+                document.getElementById('u5StatusMsg').innerHTML = `<span style="color:var(--success);">الدرجة النهائية: ${u5Score} من ${u5GameItems.length}</span>`;
+            }
+            document.getElementById('u5ScoreBoard').innerText = `النقاط: ${u5Score} / ${u5GameItems.length}`;
+        }
+
+        function checkU5Sort(chosen) {
+            if (u5Idx >= u5GameItems.length) return;
+            const correct = u5GameItems[u5Idx].type;
+            const msg = document.getElementById('u5StatusMsg');
+            const names = {
+                history: "تطوير وسائل الاتصال (الدرس 5-1)",
+                forms: "الاتصال وأشكاله (الدرس 5-2)",
+                tools: "أدوات الاتصال عبر الإنترنت (الدرس 5-3 أ)",
+                traits: "خصائص التواصل على الإنترنت (الدرس 5-3 ب)"
+            };
+            if (chosen === correct) {
+                u5Score++;
+                msg.style.color = "var(--success)";
+                msg.innerText = "✅ إجابة صحيحة ومطابقة لكتاب الوزارة!";
+            } else {
+                msg.style.color = "var(--danger)";
+                msg.innerText = `❌ غير صحيح! هذه العبارة تُصنف ضمن: ${names[correct]}.`;
+            }
+            u5Idx++;
+            setTimeout(initU5Sorter, 1200);
+        }
+
+        function resetU5Sorter() {
+            u5Idx = 0;
+            u5Score = 0;
+            initU5Sorter();
+        }
+
+        // ==========================================
+        // 6. بنك الأسئلة الشامل للوحدة الخامسة (18 سؤالاً من الكتاب صـ 54 - 60)
+        // ==========================================
+        const unit5Questions = [
+            {
+                lesson: "L1",
+                q: "1. (صـ 54 - تحدى معلوماتك) في منتصف القرن الخامس عشر، ماذا اخترع الألماني غوتنبرغ (Gutenberg) مما مكّن من إعادة إنتاج كميات كبيرة من المعلومات كمواد مطبوعة؟",
+                choices: [
+                    "أ) طابعة الحروف المتحركة (Movable-type printing press)",
+                    "ب) التلغراف المورسي (Morse telegraph)",
+                    "ج) التلغراف اللاسلكي (Wireless telegraph)",
+                    "د) الهاتف (Telephone)"
+                ],
+                correct: 0,
+                reason: "في منتصف القرن الخامس عشر، اخترع الألماني غوتنبرغ (Gutenberg) طابعة الحروف المتحركة، مما سهّل نشر الصحف والكتب."
+            },
+            {
+                lesson: "L1",
+                q: "2. (صـ 54 - تحدى معلوماتك) طابق التواريخ والمخترعين بدقة: في عام 1837 اخترع مورس [1]، وفي عام 1876 اخترع بيل [2]، وفي عام 1895 اخترع الإيطالي ماركوني [3]:",
+                choices: [
+                    "أ) [1] تلغراف مورس — [2] الهاتف — [3] التلغراف اللاسلكي",
+                    "ب) [1] الهاتف — [2] التلغراف اللاسلكي — [3] تلغراف مورس",
+                    "ج) [1] طابعة الحروف المتحركة — [2] الراديو — [3] التلفزيون",
+                    "د) [1] التلغراف اللاسلكي — [2] الهاتف — [3] نظام البريد الحديث"
+                ],
+                correct: 0,
+                reason: "عام 1837 اخترع الأمريكي مورس (تلغراف مورس)، وعام 1876 اخترع الأمريكي بيل (الهاتف)، وعام 1895 اخترع الإيطالي ماركوني (التلغراف اللاسلكي)."
+            },
+            {
+                lesson: "L1",
+                q: "3. (صـ 54 و 55 - جرب بنفسك 2) تطور الإنترنت من شبكة كمبيوتر أُجريت تجربتها في عام 1969 بدعم من وزارة الدفاع الأمريكية وتسمى [1]، وفي البداية تم استخدامها بشكل رئيسي بواسطة [2]:",
+                choices: [
+                    "أ) [1] أربانت (ARPANET) — [2] مؤسسات البحث (Research institutions)",
+                    "ب) [1] الويب العالمي (WWW) — [2] شركات الإعلانات التجارية",
+                    "ج) [1] نظام لوحة الإعلانات (BBS) — [2] محطات التلفزيون",
+                    "د) [1] البريد الحديث — [2] الهواتف الخلوية"
+                ],
+                correct: 0,
+                reason: "تطور الإنترنت من شبكة أربانت (ARPANET) التي أنشئت بدعم من وزارة الدفاع الأمريكية عام 1969، واستُخدمت في البداية بشكل رئيسي من قبل مؤسسات البحث، ثم انتشرت لعامة الناس في التسعينيات."
+            },
+            {
+                lesson: "L1",
+                q: "4. (صـ 55 - تمرين 1) وسيلة إرسال المعلومات إلى عدد كبير من الناس في وقت واحد (مثل الصحف والتلفزيون) تُسمى [1] وتنقل المعلومات بشكل رئيسي في [2]، بينما الهاتف والإنترنت يمكّنان تبادل المعلومات في [3]:",
+                choices: [
+                    "أ) [1] وسائل الاتصال الجماهيري — [2] اتجاه واحد — [3] اتجاهين",
+                    "ب) [1] الاتصال الفردي — [2] اتجاهين — [3] اتجاه واحد",
+                    "ج) [1] الاتصال العكسي — [2] اتجاهين — [3] ثلاثة اتجاهات",
+                    "د) [1] نظام أربانت — [2] اتجاه واحد — [3] اتجاه واحد"
+                ],
+                correct: 0,
+                reason: "نص تمرين الكتاب (صـ 55): وسائل الاتصال الجماهيري (كالصحف والتلفزيون) تسهل نقل المعلومات في اتجاه واحد من المرسل إلى المستقبل، بينما الهاتف والإنترنت يمكنان تبادل المعلومات في اتجاهين."
+            },
+            {
+                lesson: "L1",
+                q: "5. (صـ 55 - تمرين 2) ما هو الترتيب الزمني الصحيح للأحداث الأربعة التالية من الأقدم إلى الأحدث؟ (أ: تم اختراع الهاتف، ب: تم إنشاء نظام البريد الحديث، ت: تم نقل المعلومات بإشعال نيران الإشارة أو ضرب الطبول، ث: أصبحت الهواتف الخلوية منتشرة)",
+                choices: [
+                    "أ) (ت) إشعال نيران الإشارة ← (ب) نظام البريد الحديث (1840) ← (أ) اختراع الهاتف (1876) ← (ث) الهواتف الخلوية (1946)",
+                    "ب) (ب) نظام البريد الحديث ← (ت) نيران الإشارة ← (ث) الهواتف الخلوية ← (أ) اختراع الهاتف",
+                    "ج) (ت) نيران الإشارة ← (أ) اختراع الهاتف ← (ب) نظام البريد الحديث ← (ث) الهواتف الخلوية",
+                    "د) (أ) اختراع الهاتف ← (ب) نظام البريد الحديث ← (ت) نيران الإشارة ← (ث) الهواتف الخلوية"
+                ],
+                correct: 0,
+                reason: "الترتيب التاريخي في الكتاب (صـ 54): العصور القديمة (ت: نيران الإشارة والطبول) ← عام 1840 (ب: نظام البريد الحديث) ← عام 1876 (أ: اختراع الهاتف) ← عام 1946 وما بعده (ث: خدمة الهواتف الخلوية)."
+            },
+            {
+                lesson: "L2",
+                q: "6. (صـ 56 - النقاط الرئيسية) في تصنيف الاتصال حسب عدد المرسلين والمستلمين، ماذا يُسمى النوع الذي يتضمن «مرسلين متعددين إلى مستلم واحد» (Many-to-one) ومن أمثلته جدولة الاستبيانات والاستفسارات؟",
+                choices: [
+                    "أ) وسائل الاتصال العكسية (Reverse mass media type)",
+                    "ب) وسائل الاتصال الجماهيرية (Mass media type)",
+                    "ج) النوع الفردي (Individual type)",
+                    "د) نوع المؤتمر (Conference type)"
+                ],
+                correct: 0,
+                reason: "نص الكتاب (صـ 56): متعدد إلى واحد (Many-to-one) يُسمى نوع «وسائل الاتصال العكسية» (Reverse mass media type)، ومن أمثلته جدولة الاستبيانات والاستفسارات."
+            },
+            {
+                lesson: "L2",
+                q: "7. (صـ 56 - النقاط الرئيسية) ما الفرق بين «الاتصال المباشر» (Direct communication) و«الاتصال غير المباشر» (Indirect communication) من حيث علاقة الموقع؟",
+                choices: [
+                    "أ) المباشر يكون وجهاً لوجه مع مراقبة ردود الفعل ووجود قيود على الوقت والموقع، بينما غير المباشر يكون الطرفان منفصلين ويزيل قيود الوقت والموقع",
+                    "ب) المباشر يتم عبر البريد الإلكتروني فقط، وغير المباشر يتم وجهاً لوجه",
+                    "ج) المباشر يزيل قيود الوقت والموقع، وغير المباشر يشترط التواجد في نفس الغرفة",
+                    "د) كلاهما يشترط تواجد المرسل والمستلم وجهاً لوجه في نفس المكان"
+                ],
+                correct: 0,
+                reason: "الاتصال المباشر (كالمحادثات والعروض التقديمية) يتم وجهاً لوجه ويمكّن من مراقبة ردود الفعل لكن بقيود على الوقت والموقع؛ أما غير المباشر (كالهواتف والبريد الإلكتروني) فيكون الطرفان منفصلين ويزيل قيود الوقت والموقع."
+            },
+            {
+                lesson: "L2",
+                q: "8. (صـ 56 - تحدى معلوماتك) اختر الشكل الأكثر ملاءمة للاتصال لكل من الطرق التالية بالترتيب: (1) تطبيق مراسلة — (2) محادثة — (3) مكالمة فيديو:",
+                choices: [
+                    "أ) (1) غير مباشر وغير متزامن — (2) مباشر ومتزامن — (3) غير مباشر ومتزامن",
+                    "ب) (1) مباشر ومتزامن — (2) غير مباشر ومتزامن — (3) غير مباشر وغير متزامن",
+                    "ج) (1) غير مباشر ومتزامن — (2) غير مباشر وغير متزامن — (3) مباشر ومتزامن",
+                    "د) (1) مباشر وغير متزامن — (2) مباشر ومتزامن — (3) مباشر ومتزامن"
+                ],
+                correct: 0,
+                reason: "حل الكتاب الرسمي (صـ 56 و 57): تطبيق المراسلة = غير مباشر وغير متزامن؛ المحادثة = مباشر ومتزامن؛ مكالمة الفيديو = غير مباشر ومتزامن."
+            },
+            {
+                lesson: "L2",
+                q: "9. (صـ 57 - جرب بنفسك 1) في جدول تصنيف الاتصال: ما المثال المناسب لـ «واحد إلى العديد (وسائل الإعلام الجماهيرية) + متزامن» [3]، والمثال المناسب لـ «واحد إلى العديد + غير متزامن» [4]؟",
+                choices: [
+                    "أ) [3] البث التلفزيوني المباشر — [4] وسائل التواصل الاجتماعي",
+                    "ب) [3] الرسالة الورقية — [4] الهاتف",
+                    "ج) [3] البريد الإلكتروني — [4] المحادثة",
+                    "د) [3] جدولة الاستبيانات — [4] مكالمة الفيديو"
+                ],
+                correct: 0,
+                reason: "في جدول صـ 57: واحد إلى واحد (متزامن = الهاتف، غير متزامن = الرسالة)، وواحد إلى كثير (متزامن = البث التلفزيوني المباشر، غير متزامن = وسائل التواصل الاجتماعي)."
+            },
+            {
+                lesson: "L2",
+                q: "10. (صـ 57 - تمرين 2) اختر الشكل الأكثر ملاءمة للاتصال لكل من الطرق التالية بالترتيب: [1] البريد الإلكتروني — [2] العرض التقديمي — [3] مكالمة الفيديو:",
+                choices: [
+                    "أ) [1] غير مباشر وغير متزامن — [2] مباشر ومتزامن — [3] غير مباشر ومتزامن",
+                    "ب) [1] مباشر ومتزامن — [2] غير مباشر وغير متزامن — [3] غير مباشر ومتزامن",
+                    "ج) [1] غير مباشر ومتزامن — [2] مباشر ومتزامن — [3] غير مباشر وغير متزامن",
+                    "د) [1] غير مباشر وغير متزامن — [2] غير مباشر ومتزامن — [3] مباشر ومتزامن"
+                ],
+                correct: 0,
+                reason: "البريد الإلكتروني = غير مباشر وغير متزامن (ج)؛ العرض التقديمي = مباشر ومتزامن (أ)؛ مكالمة الفيديو = غير مباشر ومتزامن (ب)."
+            },
+            {
+                lesson: "L3",
+                q: "11. (صـ 58 و 60 - تمرين 1) يتميز البريد الإلكتروني بـ [1] التي تسمح بإرسال الرسائل إلى مستلمين متعددين، وإذا كنت لا تريد أن يرى المستلمون الآخرون عناوين البريد الإلكتروني لبعضهم، فأنت بحاجة إلى اختيار حقل [2]:",
+                choices: [
+                    "أ) [1] قدرة البث (broadcast capability) — [2] نسخة مخفية (BCC)",
+                    "ب) [1] إخفاء الهوية (Anonymity) — [2] إلى (To)",
+                    "ج) [1] القابلية للتسجيل (Recordability) — [2] نسخة كربونية (CC)",
+                    "د) [1] الفورية (Immediacy) — [2] نظام لوحة الإعلانات (BBS)"
+                ],
+                correct: 0,
+                reason: "البريد الإلكتروني يتميز بـ «قدرة البث» (broadcast capability) لإرسال الرسائل لعدة مستلمين، ويُستخدم حقل النسخة المخفية (BCC) لإخفاء عناوين المستلمين عن بعضهم البعض."
+            },
+            {
+                lesson: "L3",
+                q: "12. (صـ 58 و 59 - تحدى معلوماتك 1) ما هي الأداة التي تُعرف بأنها «أداة تسمح للمستخدم بنشر الرسائل وكتابة الردود على الرسائل الأخرى» على الإنترنت؟",
+                choices: [
+                    "أ) نظام لوحة الإعلانات — Bulletin board system (BBS)",
+                    "ب) مكالمة الفيديو — Video call",
+                    "ج) منصة مشاركة الفيديو — Video sharing platform",
+                    "د) التلغراف اللاسلكي — Wireless telegraph"
+                ],
+                correct: 0,
+                reason: "نظام لوحة الإعلانات (BBS - Bulletin board system) هو أداة تسمح للمستخدم بنشر الرسائل وكتابة الردود على الرسائل الأخرى."
+            },
+            {
+                lesson: "L3",
+                q: "13. (صـ 58 و 59 - جرب بنفسك 1) الكلمة التي تمت صياغتها بدمج كلمتي «web» و «log»، وهي خدمة ويب تسمح لك بتجميع ونشر كتابات مثل يومياتك على الإنترنت هي:",
+                choices: [
+                    "أ) المدونة (Blog)",
+                    "ب) تطبيق المراسلة (Messaging app)",
+                    "ج) نسخة مخفية (BCC)",
+                    "د) لوحة الإعلانات (BBS)"
+                ],
+                correct: 0,
+                reason: "المدونة (Blog) صيغت بدمج 'web' و 'log'، وهي خدمة ويب تسمح بتجميع ونشر كتابات مثل يومياتك على الإنترنت."
+            },
+            {
+                lesson: "L3",
+                q: "14. (صـ 58 و 59 - تحدى معلوماتك 1) الخدمة التي «تسمح لجمهور واسع غير محدد بمشاركة ومشاهدة مقاطع الفيديو المنشورة بواسطة مستخدمين غير محددين آخرين على الإنترنت» تُسمى:",
+                choices: [
+                    "أ) منصة مشاركة الفيديو (Video sharing platform)",
+                    "ب) مكالمة الفيديو (Video call)",
+                    "ج) البريد الإلكتروني (Email)",
+                    "د) المدونة النصية (Blog)"
+                ],
+                correct: 0,
+                reason: "منصة مشاركة الفيديو (Video sharing platform) تسمح لجمهور واسع غير محدد بمشاركة ومشاهدة مقاطع الفيديو المنشورة بواسطة مستخدمين آخرين."
+            },
+            {
+                lesson: "L3",
+                q: "15. (صـ 58 - النقاط الرئيسية) ما هي المزايا والعيوب التي أوردها كتاب الوزارة لخاصية «إخفاء الهوية» (Anonymity) في التواصل على الإنترنت؟",
+                choices: [
+                    "أ) المزايا: التعبير عن النفس بحرية بغض النظر عن العمر أو الوضع الاجتماعي • العيوب: الإساءة عبر الإنترنت (تركز التعليقات النقدية) والأخبار المزيفة",
+                    "ب) المزايا: منع الفيروسات تماماً • العيوب: بطء سرعة الإنترنت",
+                    "ج) المزايا: حذف السجلات تلقائياً • العيوب: عدم القدرة على إرسال نصوص",
+                    "د) المزايا: رؤية وجه الطرف الآخر مباشرة • العيوب: ارتفاع تكلفة البريد الورقي"
+                ],
+                correct: 0,
+                reason: "نص الكتاب (صـ 58): مزايا إخفاء الهوية هي إمكانية التعبير بحرية بغض النظر عن العمر أو الوضع الاجتماعي، وعيوبها: [1] الإساءة عبر الإنترنت، و[2] الأخبار المزيفة."
+            },
+            {
+                lesson: "L3",
+                q: "16. (صـ 59 و 60 - جرب بنفسك 2) طابق الجمل التالية بخصائص الاتصال على الإنترنت: [1] إمكانية التواصل أثناء إخفاء الاسم أو الانتماء — [2] المعلومات المنشورة على الإنترنت لا يمكن محوها بالكامل وتترك سجلاً (log) — [3] تلقي استجابة على الفور من الطرف الآخر:",
+                choices: [
+                    "أ) [1] إخفاء الهوية (Anonymity) — [2] القابلية للتسجيل (Recordability) — [3] الفورية (Immediacy)",
+                    "ب) [1] الفورية — [2] الراحة (Convenience) — [3] القابلية للتسجيل",
+                    "ج) [1] القابلية للتسجيل — [2] إخفاء الهوية — [3] الراحة",
+                    "د) [1] الراحة — [2] الفورية — [3] إخفاء الهوية"
+                ],
+                correct: 0,
+                reason: "إخفاء الاسم والانتماء = إخفاء الهوية (ج)؛ ترك سجل وعدم إمكانية محو المعلومات بالكامل = القابلية للتسجيل (ب)؛ تلقي استجابة على الفور = الفورية (د)."
+            },
+            {
+                lesson: "L3",
+                q: "17. (صـ 59 - تحدى معلوماتك 2) أي من العبارات التالية «غير صحيحة» (خطأ) فيما يتعلق بالخدمات التي تستخدم الإنترنت؟",
+                choices: [
+                    "أ) بما أن المنشورات عبر الإنترنت يمكن أن تكون مجهولة، فلا بأس للمستخدمين بكتابة أي معلومات يريدون",
+                    "ب) عند تحميل مقاطع الفيديو إلى منصة مشاركة الفيديو، هناك احتمال أن يتم التعرف على الأفراد من المباني أو اللافتات المرئية في الفيديو",
+                    "ج) في الاتصال عبر الإنترنت، بما أنه يتم الاحتفاظ بسجلات التفاعلات، فمن المهم أن تكون مراعياً وتضمن أن رسائلك لا تجعل المستلم يشعر بعدم الراحة",
+                    "د) لوحات الإعلانات الإلكترونية هي شكل من أشكال الاتصال القائم على النص بشكل رئيسي، لذلك قد يحدث سوء فهم"
+                ],
+                correct: 0,
+                reason: "شرح الكتاب (صـ 59): العبارة (أ) خاطئة؛ فعند النشر على الإنترنت من المهم دائماً مراعاة وجهة نظر الشخص الآخر وإظهار التعاطف والسعي لمشاركة معلومات دقيقة حتى لو كان النشر مجهول الهوية."
+            },
+            {
+                lesson: "L3",
+                q: "18. (صـ 60 - تمرين 2) ما الفرق الدقيق في أسئلة الكتاب بين «تطبيق المراسلة» (Messaging app) و«البريد الإلكتروني» (Email)؟",
+                choices: [
+                    "أ) تطبيق المراسلة (مثل SMS و LINE) يمكّن تبادل النصوص والصور والفيديو للأفراد أو المجموعات، بينما البريد الإلكتروني يستخدم عناوين البريد وحقول To/CC/BCC لإرسال الرسائل وإرفاق ملفات المستندات والوسائط",
+                    "ب) تطبيق المراسلة لا يدعم إرسال الصور إطلاقاً، بينما البريد الإلكتروني لا يدعم إرسال النصوص",
+                    "ج) تطبيق المراسلة يُستخدم فقط للبث التلفزيوني، والبريد الإلكتروني يُستخدم فقط للمحادثة وجهاً لوجه",
+                    "د) كلاهما اختُرع في القرن الخامس عشر على يد غوتنبرغ"
+                ],
+                correct: 0,
+                reason: "كلاهما يدعم النصوص والصور والفيديو، ويتميز البريد الإلكتروني بعناوين البريد وحقول (To / CC / BCC) وقدرة البث وإرفاق ملفات المستندات، بينما تسهل تطبيقات المراسلة (SMS, LINE) التواصل الفوري للأفراد والمجموعات."
+            }
+        ];
+
+        let currentQuizFilter = 'all';
+        let answeredCorrectly = new Set();
+
+        function renderExam() {
+            const container = document.getElementById('quizContainer');
+            container.innerHTML = "";
+
+            unit5Questions.forEach((item, qIdx) => {
+                if (currentQuizFilter !== 'all' && item.lesson !== currentQuizFilter) return;
+                const qBox = document.createElement('div');
+                qBox.className = 'quiz-item-box';
+                qBox.innerHTML = `
+                    <div class="q-title">${item.q}</div>
+                    <div class="q-choices" id="choiceGroup_${qIdx}">
+                        ${item.choices.map((c, cIdx) => `
+                            <button class="choice-btn" onclick="validateAnswer(${qIdx}, ${cIdx}, this)">${c}</button>
+                        `).join('')}
+                    </div>
+                    <div class="choice-feedback" id="feedback_${qIdx}">📖 <strong>الشرح المنهجي من كتاب الوزارة:</strong> ${item.reason}</div>
+                `;
+                container.appendChild(qBox);
+            });
+            updateQuizScoreDisplay();
+        }
+
+        function filterQuiz(lesson, btn) {
+            currentQuizFilter = lesson;
+            if (btn) {
+                btn.parentElement.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            }
+            renderExam();
+        }
+
+        function validateAnswer(qIdx, cIdx, btn) {
+            const group = document.getElementById(`choiceGroup_${qIdx}`);
+            const buttons = group.querySelectorAll('.choice-btn');
+            const feedback = document.getElementById(`feedback_${qIdx}`);
+            const correctIdx = unit5Questions[qIdx].correct;
+
+            buttons.forEach(b => b.disabled = true);
+
+            if (cIdx === correctIdx) {
+                btn.classList.add('correct-choice');
+                answeredCorrectly.add(qIdx);
+            } else {
+                btn.classList.add('wrong-choice');
+                buttons[correctIdx].classList.add('correct-choice');
+            }
+
+            feedback.style.display = 'block';
+            updateQuizScoreDisplay();
+        }
+
+        function updateQuizScoreDisplay() {
+            document.getElementById('quizScoreTracker').innerText = `النتيجة الحالية: ${answeredCorrectly.size} / ${unit5Questions.length}`;
+        }
+
+        function reloadQuiz() {
+            answeredCorrectly.clear();
+            renderExam();
+        }
+
+        // ==========================================
+        // 7. قاموس مصطلحات الوحدة الخامسة (Modal)
+        // ==========================================
+        const glossaryTerms = [
+            { ar: "نيران الإشارة", en: "Signal fires", desc: "وسيلة في العصور القديمة لنقل المعلومات الأساسية إلى جانب ضرب الطبول." },
+            { ar: "الورق", en: "Paper", desc: "الوسط الذي كُتبت عليه الرسائل بعد تطوير الكتابة وتم تسليمها باستخدام الرسل أو الحمام الزاجل." },
+            { ar: "نظام البريد الحديث", en: "Modern postal system (1840)", desc: "تم إنشاؤه في عام 1840 لنقل وتوزيع الرسائل البريدية بانتظام." },
+            { ar: "تلغراف مورس", en: "Morse telegraph (1837)", desc: "اخترعه الأمريكي مورس (Morse) عام 1837 لإرسال واستقبال الرموز عبر الاتصالات السلكية واللاسلكية." },
+            { ar: "الهاتف", en: "Telephone (1876)", desc: "اخترعه الأمريكي بيل (Bill / Bell) في عام 1876، ويمكّن من تبادل المعلومات في اتجاهين." },
+            { ar: "التلغراف اللاسلكي", en: "Wireless telegraph (1895)", desc: "اخترعه الإيطالي ماركوني (Marcony) عام 1895، وتطور لاحقاً إلى الراديو والتلفزيون والهواتف المحمولة." },
+            { ar: "الهواتف الخلوية (المحمولة)", en: "Cellular phones (1946)", desc: "بدأ استخدام خدمة الهاتف المحمول في الولايات المتحدة في عام 1946." },
+            { ar: "الاتصال الجماهيري", en: "Mass communication (Mass media)", desc: "وسيلة لإرسال المعلومات إلى عدد كبير من الناس في وقت واحد (مثل الصحف والمجلات والراديو والتلفزيون)." },
+            { ar: "طابعة الحروف المتحركة", en: "Movable-type printing press", desc: "اخترعها الألماني غوتنبرغ (Gutenberg) في منتصف القرن الخامس عشر لإنتاج المطبوعات بكميات كبيرة." },
+            { ar: "الراديو والتلفزيون", en: "Radio (1906) & Television (1928)", desc: "أُجري أول بث تجريبي للراديو عام 1906 وللتلفزيون عام 1928 في الولايات المتحدة." },
+            { ar: "شبكة أربانت", en: "ARPANET (1969)", desc: "شبكة كمبيوتر أُجريت تجربتها عام 1969 بدعم من وزارة الدفاع الأمريكية، واستُخدمت أولاً في مؤسسات البحث ثم تطورت للإنترنت." },
+            { ar: "الاتصال", en: "Communication", desc: "عملية استقبال وتبادل المعلومات بين الناس." },
+            { ar: "واحد إلى واحد (نوع فردي)", en: "One-to-one (Individual type)", desc: "اتصال من مرسل واحد إلى مستلم واحد (مثل الرسائل والهواتف)." },
+            { ar: "واحد إلى العديد (جماهيري)", en: "One-to-many (Mass media type)", desc: "اتصال من مرسل واحد إلى مستلمين متعددين (مثل الصحف، الراديو، التلفزيون، صفحات الويب)." },
+            { ar: "متعدد إلى واحد (وسائل الاتصال العكسية)", en: "Many-to-one (Reverse mass media type)", desc: "اتصال من مرسلين متعددين إلى مستلم واحد (مثل جدولة الاستبيانات والاستفسارات)." },
+            { ar: "متعدد إلى متعدد (نوع مؤتمر)", en: "Many-to-many (Conference type)", desc: "اتصال من مرسلين متعددين إلى مستلمين متعددين (مثل مؤتمرات الفيديو، المكالمات الجماعية، وسائل التواصل الاجتماعي)." },
+            { ar: "الاتصال المباشر", en: "Direct communication", desc: "المرسل والمستلم وجهاً لوجه مباشرة مع مراقبة ردود الفعل ووجود قيود على الوقت والموقع (مثل المحادثات والعروض التقديمية)." },
+            { ar: "الاتصال غير المباشر", en: "Indirect communication", desc: "المرسل والمستلم منفصلان، ويزيل قيود الوقت والموقع (مثل الهواتف، البريد الإلكتروني، صفحات الويب)." },
+            { ar: "اتصال متزامن", en: "Synchronous", desc: "يشارك المرسل والمستلم المعلومات في وقت واحد تقريباً (مثل المحادثة، الهواتف، العروض التقديمية، مكالمات الفيديو، البث المباشر)." },
+            { ar: "اتصال غير متزامن", en: "Asynchronous", desc: "يتم إرسال المعلومات واستقبالها في أوقات مناسبة لكل طرف (مثل الرسائل، البريد الإلكتروني، BBS، تطبيقات المراسلة، التواصل الاجتماعي)." },
+            { ar: "البريد الإلكتروني وقدرة البث", en: "Email & Broadcast capability", desc: "أداة لإرسال واستقبال الرسائل عبر الإنترنت، وتتميز بقدرة البث لإرسال الرسالة لمستلمين متعددين." },
+            { ar: "إلى / نسخة / نسخة مخفية", en: "To / CC / BCC", desc: "حقول المستلمين في البريد الإلكتروني؛ ويُستخدم BCC لإخفاء عناوين المستلمين عن بعضهم البعض." },
+            { ar: "نظام لوحة الإعلانات", en: "Bulletin board system (BBS)", desc: "أداة تسمح للمستخدم بنشر الرسائل وكتابة الردود على الرسائل الأخرى." },
+            { ar: "تطبيق المراسلة", en: "Messaging app", desc: "أدوات تمكن تبادل النصوص والصور والفيديو للأفراد أو المجموعات (مثل SMS و LINE)." },
+            { ar: "مكالمة الفيديو", en: "Video call", desc: "أداة تسمح بالمحادثة في الوقت الفعلي أثناء مشاهدة فيديو الشخص الآخر عبر الإنترنت." },
+            { ar: "المدونة", en: "Blog (web + log)", desc: "كلمة صيغت بدمج web و log، وهي خدمة ويب تسمح بتجميع ونشر كتابات مثل يومياتك على الإنترنت." },
+            { ar: "منصة مشاركة الفيديو", en: "Video sharing platform", desc: "خدمة تسمح لجمهور واسع غير محدد بمشاركة ومشاهدة مقاطع الفيديو المنشورة على الإنترنت." },
+            { ar: "إخفاء الهوية", en: "Anonymity", desc: "إخفاء معلومات التعرف الشخصي (كالاسم والانتماء)؛ مزاياها حرية التعبير، وعيوبها الإساءة عبر الإنترنت والأخبار المزيفة." },
+            { ar: "الفورية والملائمة (الراحة)", en: "Immediacy & Convenience", desc: "الفورية تسمح باستجابة فورية من الطرف الآخر، والملائمة تسمح بالتواصل بسلاسة." },
+            { ar: "القابلية للتسجيل", en: "Recordability", desc: "إرسال واستقبال المعلومات على الإنترنت يترك سجلاً (log) ولا يمكن محو المنشورات بالكامل بسهولة." }
+        ];
+
+        function openGlossaryModal() {
+            document.getElementById('glossaryModal').classList.add('open');
+            renderGlossary();
+        }
+
+        function closeGlossaryModal() {
+            document.getElementById('glossaryModal').classList.remove('open');
+        }
+
+        function renderGlossary() {
+            const q = (document.getElementById('glossarySearchInput').value || '').trim().toLowerCase();
+            const grid = document.getElementById('glossaryGrid');
+            grid.innerHTML = '';
+            const filtered = glossaryTerms.filter(t => t.ar.includes(q) || t.en.toLowerCase().includes(q) || t.desc.includes(q));
+            filtered.forEach(t => {
+                const div = document.createElement('div');
+                div.className = 'glossary-item';
+                div.innerHTML = `
+                    <div style="font-weight:900; color:var(--primary); font-size:0.98rem;">${t.ar}</div>
+                    <div style="font-size:0.82rem; font-weight:700; color:var(--secondary); direction:ltr; text-align:right; margin-bottom:4px;">${t.en}</div>
+                    <div style="font-size:0.86rem; color:var(--text-muted);">${t.desc}</div>
+                `;
+                grid.appendChild(div);
+            });
+        }
+
+        // ==========================================
+        // تهيئة المنصة عند التحميل
+        // ==========================================
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section.content-card');
+            const navLinks = document.querySelectorAll('.nav-glass .nav-item');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        navLinks.forEach(link => {
+                            link.classList.toggle('active', link.getAttribute('data-target') === id);
+                        });
+                    }
+                });
+            }, { rootMargin: '-80px 0px -50% 0px', threshold: 0 });
+
+            sections.forEach(s => observer.observe(s));
+
+            selectCommEra(1);
+            selectCommAxis('num');
+            inspectCommTool(1);
+            simulateEmailField('to');
+            filterInternetTools('all', null);
+            initU5Sorter();
+            renderExam();
+        });
+    </script>
+
+</body>
+</html>
