@@ -1,0 +1,83 @@
+{
+  "configVersion": 5,
+  "portalTitle": "دروس المجموعة",
+  "teacherPin": "2468",
+  "folders": [
+    {
+      "id": "folder_1794599285124",
+      "name": "الوحدة الأولى",
+      "icon": "📁",
+      "color": "indigo",
+      "desc": ""
+    },
+    {
+      "id": "folder_1794599291848",
+      "name": "الوحدة الثانية",
+      "icon": "📁",
+      "color": "indigo",
+      "desc": ""
+    },
+    {
+      "id": "folder_1794599298991",
+      "name": "الوحدة الثالثة",
+      "icon": "📁",
+      "color": "indigo",
+      "desc": ""
+    },
+    {
+      "id": "folder_1794599307074",
+      "name": "الوحدة الرابعة",
+      "icon": "📁",
+      "color": "indigo",
+      "desc": ""
+    },
+    {
+      "id": "folder_1794599312554",
+      "name": "الوحدة الخامسة",
+      "icon": "📁",
+      "color": "indigo",
+      "desc": ""
+    },
+    {
+      "id": "folder_1794599318356",
+      "name": "الوحدة السادسة",
+      "icon": "📁",
+      "color": "indigo",
+      "desc": ""
+    }
+  ],
+  "fileMeta": {
+    "الوحدة الأولى شرح .html": {
+      "folderId": "folder_1794599285124",
+      "order": 1
+    },
+    "الوحدة الأولى أسئلة.html": {
+      "folderId": "folder_1794599285124",
+      "order": 2
+    },
+    "الوحدة الثانية شرح .html": {
+      "folderId": "folder_1794599291848",
+      "order": 1
+    },
+    "الوحدة الثانية أسئلة.html": {
+      "folderId": "folder_1794599291848",
+      "order": 2
+    },
+    "الوحدة الثالثة شرح.html": {
+      "folderId": "folder_1794599298991",
+      "order": 1
+    },
+    "الوحدة الثالثة أسئلة.html": {
+      "folderId": "folder_1794599298991",
+      "order": 2
+    },
+    "الوحدة الرابعة شرح.html": {
+      "folderId": "folder_1794599307074",
+      "order": 1
+    },
+    "الوحدة الرابعة أسئلة.html": {
+      "folderId": "folder_1794599307074",
+      "order": 2
+    }
+  }
+}
