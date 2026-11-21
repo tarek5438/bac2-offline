@@ -1,0 +1,2432 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الوحدة السادسة: تصميم المعلومات - منصة الشرح التفاعلية</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #3730a3;
+            --primary-light: #e0e7ff;
+            --secondary: #0891b2;
+            --secondary-light: #cffafe;
+            --accent: #d97706;
+            --accent-light: #fef3c7;
+            --danger: #dc2626;
+            --danger-light: #fee2e2;
+            --success: #16a34a;
+            --success-light: #dcfce7;
+            --purple: #7c3aed;
+            --purple-light: #ede9fe;
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --surface-alt: #f1f5f9;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border: #e2e8f0;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+            --font-scale: 1;
+        }
+
+        body.dark-mode {
+            --primary: #6366f1;
+            --primary-dark: #818cf8;
+            --primary-light: rgba(99, 102, 241, 0.2);
+            --secondary: #06b6d4;
+            --secondary-light: rgba(6, 182, 212, 0.2);
+            --accent: #f59e0b;
+            --accent-light: rgba(245, 158, 11, 0.2);
+            --danger: #ef4444;
+            --danger-light: rgba(239, 68, 68, 0.2);
+            --success: #22c55e;
+            --success-light: rgba(34, 197, 94, 0.2);
+            --purple: #a78bfa;
+            --purple-light: rgba(167, 139, 250, 0.2);
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --surface-alt: #334155;
+            --text-main: #f8fafc;
+            --text-muted: #cbd5e1;
+            --border: #334155;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.8;
+            overflow-x: hidden;
+            font-size: calc(16px * var(--font-scale));
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Top Reading Progress Bar */
+        .progress-bar-container {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.15);
+            z-index: 2000;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #22d3ee, #818cf8, #f472b6);
+            transition: width 0.15s ease-out;
+        }
+
+        /* Teacher Floating Toolbar */
+        .teacher-toolbar {
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 8px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            font-size: 0.9rem;
+        }
+
+        .toolbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            color: #38bdf8;
+        }
+
+        .toolbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tool-btn {
+            background: rgba(255, 255, 255, 0.12);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 6px 13px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tool-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* Hero Banner */
+        .hero {
+            background: linear-gradient(135deg, #090d16 0%, #1e1b4b 45%, #3730a3 80%, #0891b2 100%);
+            color: white;
+            padding: 50px 20px 45px;
+            text-align: center;
+            box-shadow: 0 4px 30px rgba(79, 70, 229, 0.25);
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: calc(2.2rem * var(--font-scale));
+            font-weight: 900;
+            margin-bottom: 12px;
+            animation: fadeInDown 0.7s ease;
+        }
+
+        .hero p {
+            font-size: calc(1.06rem * var(--font-scale));
+            color: #cbd5e1;
+            max-width: 1020px;
+            margin: 0 auto 22px;
+        }
+
+        .hero-tags {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        .hero-tag {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 5px 14px;
+            border-radius: 30px;
+            font-size: 0.86rem;
+            font-weight: 700;
+        }
+
+        /* Navigation Bar */
+        .nav-wrapper {
+            position: sticky;
+            top: 12px;
+            z-index: 1000;
+            max-width: 1280px;
+            margin: -26px auto 30px;
+            padding: 0 16px;
+        }
+
+        .nav-glass {
+            background: var(--surface);
+            opacity: 0.98;
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            display: flex;
+            gap: 6px;
+            padding: 8px;
+            box-shadow: var(--shadow);
+            overflow-x: auto;
+        }
+
+        .nav-item {
+            flex: 1;
+            min-width: 138px;
+            text-align: center;
+            padding: 10px 10px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            font-weight: 800;
+            font-size: 0.86rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-item:hover {
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .nav-item.active {
+            background: var(--primary);
+            color: white !important;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.35);
+        }
+
+        .container {
+            max-width: 1260px;
+            margin: 0 auto;
+            padding: 0 16px 80px;
+        }
+
+        .content-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 35px;
+            margin-bottom: 35px;
+            box-shadow: var(--shadow);
+            scroll-margin-top: 95px;
+        }
+
+        @media (max-width: 768px) {
+            .content-card {
+                padding: 22px 16px;
+            }
+        }
+
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 800;
+            margin-bottom: 14px;
+        }
+
+        .section-title {
+            font-size: calc(1.62rem * var(--font-scale));
+            color: var(--text-main);
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            font-size: calc(1.01rem * var(--font-scale));
+            margin-bottom: 24px;
+        }
+
+        /* كتاب الوزارة المدرسي */
+        .book-def-box {
+            background: var(--surface-alt);
+            border-right: 5px solid var(--primary);
+            border-radius: 12px;
+            padding: 18px 22px;
+            margin-bottom: 20px;
+        }
+
+        .book-def-title {
+            font-size: calc(1.12rem * var(--font-scale));
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .book-exact-text {
+            font-size: calc(1.02rem * var(--font-scale));
+            color: var(--text-main);
+            font-weight: 700;
+            line-height: 1.9;
+        }
+
+        .explanation-bubble {
+            background: var(--primary-light);
+            border-radius: 10px;
+            padding: 12px 18px;
+            margin-top: 10px;
+            font-size: calc(0.95rem * var(--font-scale));
+            color: var(--primary-dark);
+            border: 1px dashed var(--primary);
+        }
+
+        /* Interactive Grid Cards */
+        .soc-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 1020px) {
+            .soc-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 560px) {
+            .soc-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .soc-card {
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 16px 14px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-align: right;
+            position: relative;
+        }
+
+        .soc-card:hover, .soc-card.active {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(79, 70, 229, 0.14);
+        }
+
+        .soc-step-num {
+            width: 42px;
+            height: 42px;
+            border-radius: 11px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .soc-detail-panel {
+            background: var(--surface-alt);
+            border: 2px solid var(--primary);
+            border-radius: 16px;
+            padding: 22px;
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
+        }
+
+        /* 3 Cards Grid */
+        .cia-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin: 22px 0;
+        }
+
+        @media (max-width: 850px) {
+            .cia-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .cia-card {
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+            text-align: right;
+        }
+
+        .cia-card:hover, .cia-card.active {
+            border-color: var(--secondary);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(8, 145, 178, 0.15);
+        }
+
+        .cia-letter {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 900;
+            margin-bottom: 12px;
+        }
+
+        /* Tables */
+        .table-responsive {
+            overflow-x: auto;
+            margin: 18px 0;
+        }
+
+        .rich-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .rich-table th {
+            background: var(--surface-alt);
+            color: var(--text-main);
+            padding: 13px 16px;
+            text-align: right;
+            font-weight: 800;
+            font-size: 0.95rem;
+        }
+
+        .rich-table td {
+            padding: 13px 16px;
+            border-top: 1px solid var(--border);
+            background: var(--surface);
+            font-size: 0.93rem;
+        }
+
+        .ascii-table th, .ascii-table td {
+            text-align: center !important;
+            padding: 7px 6px !important;
+            font-family: 'Courier New', monospace;
+            font-weight: 800;
+            font-size: 0.88rem !important;
+            border: 1px solid var(--border);
+        }
+
+        /* 3D Expandable Cards */
+        .cards-3d-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
+            margin: 20px 0;
+        }
+
+        .animated-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .animated-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .animated-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 28px rgba(0,0,0,0.08);
+        }
+
+        .card-icon-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .circle-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.45rem;
+            background: var(--primary-light);
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .expandable-hint {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 10px;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.88rem;
+        }
+
+        .hidden-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background: var(--surface-alt);
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .animated-card.active .hidden-details {
+            max-height: 360px;
+            padding: 14px;
+            border: 1px dashed var(--border);
+        }
+
+        /* Interactive Labs & Simulators */
+        .lab-box {
+            background: var(--surface-alt);
+            border: 2px dashed var(--primary);
+            border-radius: 20px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .sim-inputs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 12px;
+            margin: 14px 0;
+        }
+
+        .sim-field label {
+            display: block;
+            font-size: 0.86rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+            color: var(--text-muted);
+        }
+
+        .sim-field input, .sim-field select {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 2px solid var(--border);
+            background: var(--surface);
+            color: var(--text-main);
+            font-weight: 800;
+            font-size: 0.96rem;
+        }
+
+        .sim-result-box {
+            background: var(--surface);
+            border: 2px solid var(--secondary);
+            border-radius: 14px;
+            padding: 16px 20px;
+            margin-top: 14px;
+        }
+
+        .preset-btns {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .preset-btn {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            border: 1px solid var(--primary);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .preset-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 8px 15px;
+            border-radius: 10px;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .blank-slot {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            border: 1px dashed var(--primary);
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-weight: 800;
+            cursor: pointer;
+            margin: 3px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .blank-slot.revealed {
+            background: var(--success-light);
+            color: var(--success);
+            border-style: solid;
+            border-color: var(--success);
+        }
+
+        /* 5x5 Pixel Grid for Run-Length Encoding */
+        .rle-grid {
+            display: inline-grid;
+            grid-template-columns: repeat(5, 42px);
+            grid-template-rows: repeat(5, 42px);
+            gap: 4px;
+            background: var(--border);
+            padding: 6px;
+            border-radius: 12px;
+            border: 2px solid var(--primary);
+        }
+
+        .rle-cell {
+            width: 42px;
+            height: 42px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 0.85rem;
+            cursor: pointer;
+            user-select: none;
+            transition: transform 0.15s;
+        }
+
+        .rle-cell.pixel-B {
+            background: #0f172a;
+            color: #ffffff;
+        }
+
+        .rle-cell.pixel-W {
+            background: #ffffff;
+            color: #0f172a;
+            border: 1px solid #cbd5e1;
+        }
+
+        /* Quiz App */
+        .quiz-container {
+            background: var(--surface-alt);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 26px;
+        }
+
+        .quiz-item-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 22px;
+            margin-bottom: 18px;
+        }
+
+        .q-title {
+            font-size: 1.08rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 14px;
+        }
+
+        .q-choices {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .choice-btn {
+            background: var(--surface-alt);
+            border: 1px solid var(--border);
+            padding: 13px 18px;
+            border-radius: 10px;
+            text-align: right;
+            font-size: 0.96rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .choice-btn:hover:not(:disabled) {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .choice-btn.correct-choice {
+            background: #dcfce7 !important;
+            border-color: #22c55e !important;
+            color: #15803d !important;
+            font-weight: 800;
+        }
+
+        .choice-btn.wrong-choice {
+            background: #fee2e2 !important;
+            border-color: #ef4444 !important;
+            color: #b91c1c !important;
+        }
+
+        .choice-feedback {
+            display: none;
+            margin-top: 12px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 0.94rem;
+            background: var(--primary-light);
+            border-right: 4px solid var(--primary);
+            color: var(--primary-dark);
+        }
+
+        .btn-action {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 11px 24px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s;
+            font-size: 0.95rem;
+        }
+
+        .btn-action:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Glossary Modal */
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(6px);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-backdrop.open {
+            display: flex;
+        }
+
+        .modal-box {
+            background: var(--surface);
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            max-width: 960px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 28px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+        }
+
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .glossary-item {
+            background: var(--surface-alt);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-18px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Reading Progress Bar -->
+    <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progressBar" style="width: 0%;"></div>
+    </div>
+
+    <!-- Teacher Classroom Bar -->
+    <div class="teacher-toolbar">
+        <div class="toolbar-brand">
+            <span>💻 منصة المعلم التفاعلية • الصف الأول الثانوي</span>
+            <span style="background:rgba(56,189,248,0.2); padding:2px 10px; border-radius:20px; font-size:0.8rem;">الوحدة السادسة: تصميم المعلومات (10 دروس كاملة)</span>
+        </div>
+        <div class="toolbar-actions">
+            <button class="tool-btn" onclick="openGlossaryModal()">📖 قاموس مصطلحات الوحدة (EN/AR)</button>
+            <button class="tool-btn" onclick="changeFontScale(0.08)">🔍 تكبير الخط A+</button>
+            <button class="tool-btn" onclick="changeFontScale(-0.08)">🔎 تصغير الخط A-</button>
+            <button class="tool-btn" id="darkModeBtn" onclick="toggleDarkMode()">🌙 الوضع الليلي للسبورة</button>
+        </div>
+    </div>
+
+    <!-- Hero Header -->
+    <header class="hero">
+        <h1>الوحدة السادسة: تصميم المعلومات (Information Design)</h1>
+        <p>منصة تعليمية ومختبرات تفاعلية شاملة للدروس العشرة في الوحدة السادسة (صـ 61 إلى 95): التناظري والرقمي، النظام الثنائي، النظام السادس عشر، ترميز الأحرف (ASCII &amp; Unicode)، الجمع والطرح الثنائي والمتممات، رقمنة الصوت (PCM)، رقمنة الصور والألوان، ضغط الفيديو وترميز طول التشغيل (RLE)، وتصميم البيانات ومبدأ LATCH</p>
+        <div class="hero-tags">
+            <span class="hero-tag">6-1 التناظري والرقمي</span>
+            <span class="hero-tag">6-2 النظام الثنائي وكمية البيانات</span>
+            <span class="hero-tag">6-3 النظام السادس عشر (Hex)</span>
+            <span class="hero-tag">6-4 التمثيل الرقمي للأحرف (ASCII)</span>
+            <span class="hero-tag">6-5 و 6-6 العمليات الحسابية والمتممات</span>
+            <span class="hero-tag">6-7 رقمنة الصوت (PCM)</span>
+            <span class="hero-tag">6-8 رقمنة الصور وتمثيل اللون</span>
+            <span class="hero-tag">6-9 الفيديو وضغط البيانات (RLE / Huffman)</span>
+            <span class="hero-tag">6-10 تصميم البيانات ومبدأ LATCH</span>
+        </div>
+    </header>
+
+    <!-- Sticky Glass Navigation -->
+    <div class="nav-wrapper">
+        <nav class="nav-glass">
+            <a href="#tab1" class="nav-item active" data-target="tab1">1. التناظري والثنائي و Hex</a>
+            <a href="#tab2" class="nav-item" data-target="tab2">2. الأحرف والحساب والمتممات</a>
+            <a href="#tab3" class="nav-item" data-target="tab3">3. رقمنة الصوت والصور</a>
+            <a href="#tab4" class="nav-item" data-target="tab4">4. الفيديو وضغط البيانات</a>
+            <a href="#tab5" class="nav-item" data-target="tab5">5. تصميم البيانات و LATCH</a>
+            <a href="#tab6" class="nav-item" data-target="tab6">6. تدريبات الكتاب التفاعلية</a>
+            <a href="#tab7" class="nav-item" data-target="tab7">7. بنك التحدي (20 سؤالاً)</a>
+        </nav>
+    </div>
+
+    <div class="container">
+
+        <!-- =========================================================
+             القسم الأول: الدروس (6-1) و (6-2) و (6-3) — صـ 62 إلى 69
+             ========================================================= -->
+        <section id="tab1" class="content-card">
+            <div class="section-badge">المحور الأول • الدروس (6-1) و (6-2) و (6-3) • صـ 62 إلى 69</div>
+            <h2 class="section-title">التناظري والرقمي، النظام الثنائي وكمية البيانات، والنظام السادس عشر (Hexadecimal)</h2>
+            <p class="section-desc">النصوص الرسمية لكتاب الوزارة حول البيانات التناظرية والرقمية، وحدات القياس (bit / Byte)، والتحويل بين الأنظمة العددية الثلاثة:</p>
+
+            <!-- الدرس 6-1: التناظري والرقمي -->
+            <div class="book-def-box">
+                <div class="book-def-title">📌 الدرس (6-1): التناظرية والرقمية (Analog &amp; Digital) - صـ 62:</div>
+                <div class="book-exact-text">
+                    • <strong>(1) التناظري (Analog):</strong> "هي كميات تتغير <strong>تدريجياً وبشكل مستمر</strong> ويمكن قياسها بدقة فائقة، مثل الكتلة أو الوقت أو درجة الحرارة (مثل طول عمود الزئبق في مقياس الحرارة). البيانات الممثلة في شكل تناظري يشار إليها باسم <strong>البيانات التناظرية (analog data)</strong>."<br>
+                    • <strong>(2) الرقمي (Digital):</strong> "تشير إلى الكميات التي تتغير في <strong>خطوات محددة ومنفصلة</strong> ويتم تمثيلها رقمياً. البيانات الممثلة في شكل رقمي يشار إليها باسم <strong>البيانات الرقمية (digital data)</strong>."<br>
+                    • <strong>(3) التحويل من تناظري إلى رقمي (A/D conversion - digitization):</strong> عملية تحويل البيانات التناظرية إلى بيانات رقمية.<br>
+                    • <strong>(4) التحويل من رقمي إلى تناظري (D/A conversion):</strong> تحويل البيانات الرقمية إلى بيانات تناظرية.
+                </div>
+                <div class="explanation-bubble">
+                    ✨ <strong>مزايا البيانات الرقمية الأربعة في الكتاب (صـ 62 و 63):</strong><br>
+                    1. يمكن تجميع البيانات أو استنساخها دون إهدار (ودون تدهور). &nbsp;|&nbsp; 2. من السهل تعديل وتحرير البيانات (وإصلاح التشويه الناتج عن الضوضاء أثناء النقل). &nbsp;|&nbsp; 3. من الممكن نقل البيانات بكفاءة. &nbsp;|&nbsp; 4. من الممكن دمج أنواع مختلفة من الوسائط للتعبير عنها.<br>
+                    • <strong>النظام الثنائي (Binary system):</strong> طريقة رقمية لتمثيل جميع أنواع البيانات (أرقام، نصوص، صوت، صور) في الكمبيوتر باستخدام رقمين فقط: <strong>0 و 1</strong>.
+                </div>
+            </div>
+
+            <!-- الدرس 6-2: النظام الثنائي وكمية البيانات -->
+            <div class="book-def-box" style="border-right-color: var(--secondary);">
+                <div class="book-def-title" style="color: var(--secondary);">📌 الدرس (6-2): وحدات القياس (bits &amp; Bytes) وقانون عدد الاحتمالات (2ⁿ) - صـ 64:</div>
+                <div class="book-exact-text">
+                    • <strong>البت (bit):</strong> أصغر وحدة للمعلومات، لها حالتان فقط: "0" و "1" (مثل: مفتاح مفتوح/مغلق، جهد مرتفع/منخفض، مغناطيس شمال/جنوب).<br>
+                    • <strong>قانون عدد الاحتمالات:</strong> بشكل عام، يمكن لـ <strong>n bit</strong> تمثيل <strong>2ⁿ</strong> احتمال مختلف من البيانات:<br>
+                    &nbsp;&nbsp;— 1 bit = 2¹ = <strong>2</strong> احتمالان &nbsp;|&nbsp; 2 bit = 2² = <strong>4</strong> احتمالات &nbsp;|&nbsp; 3 bit = 2³ = <strong>8</strong> احتمالات &nbsp;|&nbsp; 4 bit = 2⁴ = <strong>16</strong> احتمالاً &nbsp;|&nbsp; 5 bit = 2⁵ = <strong>32</strong> احتمالاً &nbsp;|&nbsp; 6 bit = 2⁶ = <strong>64</strong> احتمالاً.<br>
+                    • <strong>البايت (Byte - B):</strong> وحدة تتكون من <strong>8 bit</strong>، ويمكن لـ 1 Byte تمثيل <strong>2⁸ = 256 احتمالاً</strong>.<br>
+                    • <strong>مضاعفات البايت (تتغير الوحدة كل 1,024 مرة = 2¹⁰):</strong><br>
+                    &nbsp;&nbsp;[1] <strong>1 KB = 1,024 B</strong> &nbsp;|&nbsp; [2] <strong>1 MB = 1,024 KB = 2²⁰ B</strong> &nbsp;|&nbsp; [3] <strong>1 GB = 1,024 MB = 2³⁰ B</strong> &nbsp;|&nbsp; [4] <strong>1 TB = 1,024 GB</strong>.
+                </div>
+            </div>
+
+            <!-- الدرس 6-3: النظام السادس عشر -->
+            <div class="book-def-box" style="border-right-color: var(--purple);">
+                <div class="book-def-title" style="color: var(--purple);">📌 الدرس (6-3): النظام السادس عشر (Hexadecimal) وقواعد التحويل - صـ 68:</div>
+                <div class="book-exact-text">
+                    • <strong>النظام السادس عشر (Hexadecimal):</strong> طريقة لتمثيل الأرقام باستخدام الأرقام من <strong>0 إلى 9</strong> وأحرف الأبجدية من <strong>A إلى F</strong> (حيث A=10, B=11, C=12, D=13, E=14, F=15)، ويُكتب مع رقم <strong>(16)</strong> صغير أسفل يمين الرقم.<br>
+                    • <strong>[1] من ثنائي إلى سادس عشر:</strong> افصل الرقم الثنائي إلى <strong>مجموعات من 4 أرقام (4 bits)</strong> بدءاً من اليمين (أقل bit ذو قيمة)، وحوّل كل مجموعة إلى قيمتها في السادس عشر. مثال: <code>10011010₍₂₎ = 1001 / 1010 = 9A₍₁₆₎</code>.<br>
+                    • <strong>[2] من سادس عشر إلى ثنائي:</strong> حوّل كل رقم سادس عشر إلى رقم ثنائي مكون من <strong>4 bit</strong>. مثال: <code>A4₍₁₆₎ = 10100100₍₂₎</code>.
+                </div>
+            </div>
+
+            <!-- جدول التحويلات بين العشري والثنائي والسادس عشر (0 إلى 16) -->
+            <h3 style="margin-top:22px; margin-bottom:10px;">📊 جدول التحويلات الرسمي بين العشري والثنائي والسادس عشر (صـ 68):</h3>
+            <div class="table-responsive">
+                <table class="rich-table ascii-table">
+                    <thead>
+                        <tr>
+                            <th>العشري</th>
+                            <th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>الثنائي (4-bit)</strong></td>
+                            <td>0000</td><td>0001</td><td>0010</td><td>0011</td><td>0100</td><td>0101</td><td>0110</td><td>0111</td><td>1000</td><td>1001</td><td>1010</td><td>1011</td><td>1100</td><td>1101</td><td>1110</td><td>1111</td><td>10000</td>
+                        </tr>
+                        <tr style="background:var(--primary-light);">
+                            <td><strong>السادس عشر</strong></td>
+                            <td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td><strong>A</strong></td><td><strong>B</strong></td><td><strong>C</strong></td><td><strong>D</strong></td><td><strong>E</strong></td><td><strong>F</strong></td><td><strong>10</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- مختبر تفاعلي 1: محول الأنظمة العددية وحاسبة عدد الـ bits -->
+            <div class="lab-box">
+                <h3 style="font-size:1.2rem; margin-bottom:8px;">🧮 مختبر (1): المحول الفوري بين (العشري ⟷ الثنائي ⟷ السادس عشر) + حاسبة مسائل الـ bits في الكتاب</h3>
+                <p style="font-size:0.93rem; color:var(--text-muted);">أدخل أي عدد عشري أو اضغط على أحد أمثلة وتمارين الكتاب المدرسي (صـ 65 - 69) لرؤية خطوات التحويل التفصيلية:</p>
+
+                <div class="sim-inputs-grid">
+                    <div class="sim-field">
+                        <label>العدد العشري (Decimal):</label>
+                        <input type="number" id="convDecInput" value="154" min="0" max="65535" oninput="updateBaseConverter('dec')">
+                    </div>
+                    <div class="sim-field">
+                        <label>العدد الثنائي (Binary):</label>
+                        <input type="text" id="convBinInput" value="10011010" oninput="updateBaseConverter('bin')">
+                    </div>
+                    <div class="sim-field">
+                        <label>العدد السادس عشر (Hexadecimal):</label>
+                        <input type="text" id="convHexInput" value="9A" oninput="updateBaseConverter('hex')">
+                    </div>
+                </div>
+
+                <div class="preset-btns">
+                    <button class="preset-btn" onclick="setConvPreset(23)">مثال صـ64: (23)₁₀</button>
+                    <button class="preset-btn" onclick="setConvPreset(39)">تحدى صـ65: (39)₁₀</button>
+                    <button class="preset-btn" onclick="setConvPreset(120)">تحدى صـ65: (120)₁₀</button>
+                    <button class="preset-btn" onclick="setConvPreset(154)">مثال صـ68: 9A₍₁₆₎ = 154</button>
+                    <button class="preset-btn" onclick="setConvPreset(198)">مثال صـ68: C6₍₁₆₎ = 198</button>
+                    <button class="preset-btn" onclick="setConvPreset(165)">تحدى صـ69: A5₍₁₆₎ = 165</button>
+                    <button class="preset-btn" onclick="setConvPreset(219)">تحدى صـ69: DB₍₁₆₎ = 219</button>
+                </div>
+
+                <div class="sim-result-box" id="convStepsOutput"></div>
+
+                <!-- مسائل حساب عدد البتات المطلوبة من صـ 65-67 -->
+                <div style="margin-top:18px; padding-top:14px; border-top:1px dashed var(--border);">
+                    <h4 style="font-size:1.05rem; margin-bottom:8px;">🎲 حل مسائل «كم bit يلزم لتمثيل...؟» في كتاب الوزارة (صـ 65 و 66 و 67):</h4>
+                    <div class="preset-btns">
+                        <button class="filter-btn active" onclick="showBitProblem(36, 'رمي نردين (6 × 6 = 36 احتمالاً - صـ 65)', this)">🎲 رمي نردين (36 نتيجة)</button>
+                        <button class="filter-btn" onclick="showBitProblem(4, 'الفصول الأربعة: الربيع، الصيف، الخريف، الشتاء (صـ 66)', this)">🍂 الفصول الأربعة (4)</button>
+                        <button class="filter-btn" onclick="showBitProblem(52, 'مجموعة 52 ورقة لعب بدون الجوكر (صـ 66)', this)">🃏 أوراق اللعب (52)</button>
+                        <button class="filter-btn" onclick="showBitProblem(8, 'رمي عملة معدنية 3 مرات أو 3 عملات (2³ = 8 - صـ 66 و67)', this)">🪙 3 عملات معدنية (8)</button>
+                        <button class="filter-btn" onclick="showBitProblem(16, 'تمثيل 16 اتجاهاً (صـ 67)', this)">🧭 16 اتجاهاً (16)</button>
+                        <button class="filter-btn" onclick="showBitProblem(47, 'تمثيل 47 محافظة (صـ 67)', this)">🗺️ 47 محافظة (47)</button>
+                    </div>
+                    <div id="bitProbOutput" style="background:var(--primary-light); color:var(--primary-dark); padding:12px 16px; border-radius:10px; font-weight:800; margin-top:8px;"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             القسم الثاني: الدروس (6-4) و (6-5) و (6-6) — صـ 70 إلى 78
+             ========================================================= -->
+        <section id="tab2" class="content-card">
+            <div class="section-badge" style="background:#ede9fe; color:#5b21b6;">المحور الثاني • الدروس (6-4) و (6-5) و (6-6) • صـ 70 إلى 78</div>
+            <h2 class="section-title">التمثيل الرقمي للأحرف (ASCII &amp; Unicode)، والعمليات الحسابية الثنائية، والمتممات</h2>
+            <p class="section-desc">ترميز الأحرف وفساد الحرف والخط (Font)، قواعد الجمع والطرح الثنائي، وتمثيل الأرقام السالبة والطرح باستخدام المتممات:</p>
+
+            <!-- الدرس 6-4: التمثيل الرقمي للأحرف -->
+            <div class="book-def-box" style="border-right-color: var(--purple);">
+                <div class="book-def-title" style="color: var(--purple);">📌 الدرس (6-4): التمثيل الرقمي للأحرف (Character Digital Representation) - صـ 70 و 71:</div>
+                <div class="book-exact-text">
+                    • <strong>(1) رمز الحرف (Character code):</strong> قيمة رقمية فريدة يتم تعيينها لكل حرف، رمز، إلخ.<br>
+                    • <strong>(2) نظام رموز الأحرف (Character code system):</strong> يلخص التحويلات بين الأحرف ورموز الأحرف الخاصة بها:<br>
+                    &nbsp;&nbsp;[1] <strong>كود ASCII (ASCII code):</strong> يمثل فقط الأحرف الإنجليزية الأبجدية الرقمية (0-9) و(A-Z) و(a-z) والرموز وأحرف التحكم، ولا يدعم اللغات الأخرى. يتم تمثيل كل حرف إنجليزي أو رمز بـ <strong>1 Byte (8 bits = 256 نوعاً)</strong>.<br>
+                    &nbsp;&nbsp;[2] <strong>يونيكود (Unicode):</strong> معيار ترميز أحرف يجمع الأحرف من جميع أنحاء العالم في رمز حرف واحد (مثل UTF-8 و UTF-16؛ وباستخدام 2 بايت يمكن تمثيل 65,536 نوعاً من الأحرف - صـ 72).<br>
+                    • <strong>[3] الترميز (Encoding):</strong> تمثيل سلسلة نصية برموز الأحرف. والعكس يعرف باسم <strong>فك التشفير (decoding)</strong>.<br>
+                    • <strong>[4] فساد الحرف (Character corruption):</strong> ظاهرة تحدث بسبب عدم تطابق أساليب التشفير وفك التشفير.<br>
+                    • <strong>[5] الخط (Font):</strong> بيانات شكل الأحرف المقابلة لرموز الأحرف (أمثلة: Sans-serif, Serif, Semi-cursive).<br>
+                    • <strong>عنصران أساسيان لعرض الأحرف على الشاشة أو الطابعة (صـ 71):</strong> <strong>رمز الحرف (character code)</strong> + <strong>الخط (font)</strong>.
+                </div>
+            </div>
+
+            <!-- جدول رموز ASCII المعتمد في الكتاب صـ 70-73 -->
+            <h3 style="margin-top:20px; margin-bottom:10px;">🔤 جدول رموز الأحرف (ASCII) الرسمي في الكتاب المدرسي (صـ 70 - 73):</h3>
+            <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:10px;">
+                لقراءة رمز أي حرف: نأخذ <strong>الـ 4 bits الأكثر أهمية (العمود العلوي)</strong> من اليسار، ثم <strong>الـ 4 bits الأقل أهمية (الصف الجانبي)</strong> من اليمين. مثال: الحرف <strong>"H"</strong> يقع في العمود <strong>4 (0100)</strong> والصف <strong>8 (1000)</strong> فيكون رمزه الثنائي <code>01001000₍₂₎</code> والسادس عشر <code>48₍₁₆₎</code>:
+            </p>
+            <div class="table-responsive">
+                <table class="rich-table ascii-table">
+                    <thead>
+                        <tr>
+                            <th rowspan="2" style="background:var(--primary); color:white;">الأقل أهمية<br>(Least 4 bits)</th>
+                            <th colspan="6" style="background:var(--secondary); color:white;">الأكثر أهمية (Most Significant 4 bits)</th>
+                        </tr>
+                        <tr>
+                            <th>0010 (2)</th>
+                            <th>0011 (3)</th>
+                            <th>0100 (4)</th>
+                            <th>0101 (5)</th>
+                            <th>0110 (6)</th>
+                            <th>0111 (7)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>0000 (0)</td><td>SP</td><td>0</td><td>@</td><td>P</td><td>`</td><td>p</td></tr>
+                        <tr><td>0001 (1)</td><td>!</td><td>1</td><td>A</td><td>Q</td><td>a</td><td>q</td></tr>
+                        <tr><td>0010 (2)</td><td>"</td><td>2</td><td>B</td><td>R</td><td>b</td><td>r</td></tr>
+                        <tr><td>0011 (3)</td><td>#</td><td>3</td><td>C</td><td>S</td><td>c</td><td>s</td></tr>
+                        <tr><td>0100 (4)</td><td>$</td><td>4</td><td>D</td><td>T</td><td>d</td><td>t</td></tr>
+                        <tr><td>0101 (5)</td><td>%</td><td>5</td><td>E</td><td>U</td><td>e</td><td>u</td></tr>
+                        <tr><td>0110 (6)</td><td>&amp;</td><td>6</td><td>F</td><td>V</td><td>f</td><td>v</td></tr>
+                        <tr><td>0111 (7)</td><td>'</td><td>7</td><td>G</td><td>W</td><td>g</td><td>w</td></tr>
+                        <tr><td>1000 (8)</td><td>(</td><td>8</td><td>H</td><td>X</td><td>h</td><td>x</td></tr>
+                        <tr><td>1001 (9)</td><td>)</td><td>9</td><td>I</td><td>Y</td><td>i</td><td>y</td></tr>
+                        <tr><td>1010 (A)</td><td>*</td><td>:</td><td>J</td><td>Z</td><td>j</td><td>z</td></tr>
+                        <tr><td>1011 (B)</td><td>+</td><td>;</td><td>K</td><td>[</td><td>k</td><td>{</td></tr>
+                        <tr><td>1100 (C)</td><td>,</td><td>&lt;</td><td>L</td><td>¥</td><td>l</td><td>|</td></tr>
+                        <tr><td>1101 (D)</td><td>-</td><td>=</td><td>M</td><td>]</td><td>m</td><td>}</td></tr>
+                        <tr><td>1110 (E)</td><td>.</td><td>&gt;</td><td>N</td><td>^</td><td>n</td><td>~</td></tr>
+                        <tr><td>1111 (F)</td><td>/</td><td>?</td><td>O</td><td>_</td><td>o</td><td>DEL</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- مختبر ASCII التفاعلي لحل كل أمثلة الكتاب صـ 70-73 -->
+            <div class="lab-box" style="border-color: var(--purple);">
+                <h3 style="font-size:1.18rem; margin-bottom:8px;">🔤 مختبر (2): مترجم نصوص ورموز ASCII الفوري وحساب حجم البيانات بالبايت (صـ 70 - 73)</h3>
+                <p style="font-size:0.92rem; color:var(--text-muted);">اكتب أي كلمة إنجليزية أو اضغط على أمثلة وأسئلة الكتاب المدرسي لترى رمز كل حرف بالثنائي والسادس عشر وحجم الكلمة بالبايت:</p>
+                <div class="sim-inputs-grid">
+                    <div class="sim-field">
+                        <label>النص الإنجليزي (ASCII Text):</label>
+                        <input type="text" id="asciiTextInput" value="Hello" oninput="updateAsciiLab('text')">
+                    </div>
+                    <div class="sim-field">
+                        <label>الرمز بالسادس عشر (Hex Code):</label>
+                        <input type="text" id="asciiHexInput" value="48656C6C6F" oninput="updateAsciiLab('hex')">
+                    </div>
+                </div>
+                <div class="preset-btns">
+                    <button class="preset-btn" onclick="setAsciiPreset('Hello')">مثال صـ70: Hello</button>
+                    <button class="preset-btn" onclick="setAsciiPreset('MILK')">تحدى صـ71: MILK</button>
+                    <button class="preset-btn" onclick="setAsciiPreset('Love')">تحدى صـ71: Love (4C6F7665)</button>
+                    <button class="preset-btn" onclick="setAsciiPreset('Hari')">حاول صـ72: Hari (48617269)</button>
+                    <button class="preset-btn" onclick="setAsciiPreset('Welcome')">حاول صـ72: Welcome (7 Bytes)</button>
+                    <button class="preset-btn" onclick="setAsciiPreset('ThankYou!')">تمرين صـ73: ThankYou! (5468616E6B596F7521)</button>
+                    <button class="preset-btn" onclick="setAsciiPreset('HappyBirthday')">تمرين صـ73: HappyBirthday (13 Bytes)</button>
+                </div>
+                <div class="sim-result-box" id="asciiLabOutput"></div>
+            </div>
+
+            <!-- الدروس 6-5 و 6-6: الجمع والطرح الثنائي والمتممات -->
+            <div class="book-def-box" style="border-right-color: var(--accent); margin-top:24px;">
+                <div class="book-def-title" style="color: var(--accent);">📌 الدرسان (6-5) و (6-6): الجمع والطرح الثنائي، والمتممات (Complements) - صـ 74 إلى 78:</div>
+                <div class="book-exact-text">
+                    • <strong>(1) قواعد الجمع الثنائي (صـ 74):</strong> <code>0+0=0</code> ، <code>0+1=1</code> ، <code>1+0=1</code> ، <code>1+1=10₍₂₎</code> (نكتب 0 ونحمل 1 للخانة الأعلى)، <code>1+1+1=11₍₂₎</code>.<br>
+                    • <strong>(2) قواعد الطرح الثنائي المباشر (صـ 74):</strong> <code>0-0=0</code> ، <code>1-0=1</code> ، <code>1-1=0</code> ، وعند <code>10₍₂₎ - 1₍₂₎ = 1₍₂₎</code> (نستعير 1 من الخانة الأعلى فيصبح قيمته 2 في الخانة الأدنى).<br>
+                    • <strong>(3) المكمل / المتمم (Complement - صـ 76):</strong> "هو أصغر رقم ينتج، عند إضافته إلى عدد طبيعي معين، ترحيلاً (carry) إلى الخانة الأعلى التالية. تُستخدم المتممات لتمثيل الأرقام السالبة وإجراء الطرح عن طريق الجمع في أجهزة الكمبيوتر":<br>
+                    &nbsp;&nbsp;[أ] <strong>المكمل العشري (10's Complement):</strong> نطرح كل رقم من 9 (المكمل للتسعة 9's Complement) ثم نضيف 1. مثال: للعدد <code>635</code> ⬅️ المكمل للتسعة = <code>364</code> ⬅️ المكمل للعشرة = <code>364 + 1 = 365</code>.<br>
+                    &nbsp;&nbsp;[ب] <strong>المكمل الثنائي (Two's Complement):</strong> لكل خانة من العدد الثنائي الأصلي، <strong>اعكس 0 إلى 1 و 1 إلى 0</strong> (المكمل للأحاد One's Complement)، ثم <strong>أضف 1 في النهاية</strong>. مثال: للرقم <code>0101₍₂₎</code> ⬅️ عكس الخانات: <code>1010₍₂₎</code> ⬅️ إضافة 1: <code>1011₍₂₎</code>.<br>
+                    • <strong>(4) خطوات الطرح باستخدام المكملات (صـ 77):</strong> 1) أوجد المكمل للمطروح (العدد الثاني). &nbsp; 2) اجمع العدد الأول مع مكمل المطروح. &nbsp; 3) <strong>تجاهل الخانة الرئيسية الزائدة (الرقم الرائد في أقصى اليسار)</strong> لنتيجة الحساب وقدم الإجابة.
+                </div>
+            </div>
+
+            <!-- مختبر المتمم الثنائي والطرح بالمتممات -->
+            <div class="lab-box" style="border-color: var(--accent);">
+                <h3 style="font-size:1.18rem; margin-bottom:8px;">➕ مختبر (3): حاسبة المكمل الثنائي (2's Complement) والطرح باستخدام المكملات خطوة بخطوة (صـ 76 - 78)</h3>
+                <div class="sim-inputs-grid">
+                    <div class="sim-field">
+                        <label>العدد الثنائي الأول (المطروح منه A):</label>
+                        <input type="text" id="compBinA" value="1100" oninput="runComplementLab()">
+                    </div>
+                    <div class="sim-field">
+                        <label>العدد الثنائي الثاني (المطروح B - نوجد مكمله):</label>
+                        <input type="text" id="compBinB" value="0111" oninput="runComplementLab()">
+                    </div>
+                </div>
+                <div class="preset-btns">
+                    <button class="preset-btn" onclick="setCompPreset('1000', '0111')">مثال صـ77: 1000 - 0111</button>
+                    <button class="preset-btn" onclick="setCompPreset('1100', '0111')">تحدى صـ77: 1100 - 0111</button>
+                    <button class="preset-btn" onclick="setCompPreset('1110', '1001')">تحدى صـ77: 1110 - 1001</button>
+                    <button class="preset-btn" onclick="setCompPreset('1010', '0111')">جرب صـ78: 1010 - 0111</button>
+                    <button class="preset-btn" onclick="setCompPreset('1101', '1010')">جرب صـ78: 1101 - 1010</button>
+                    <button class="preset-btn" onclick="setCompPreset('1010', '0110')">تمرين صـ78: 1010 - 0110</button>
+                    <button class="preset-btn" onclick="setCompPreset('1100', '0010')">تمرين صـ78: 1100 - 0010</button>
+                </div>
+                <div class="sim-result-box" id="compLabOutput"></div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             القسم الثالث: الدرسان (6-7) و (6-8): رقمنة الصوت ورقمنة الصور — صـ 79 إلى 86
+             ========================================================= -->
+        <section id="tab3" class="content-card">
+            <div class="section-badge" style="background:#ccfbf1; color:#0f766e;">المحور الثالث • الدرسان (6-7) و (6-8) • صـ 79 إلى 86</div>
+            <h2 class="section-title">رقمنة الصوت (PCM) ورقمنة الصور وتمثيل الألوان (RGB &amp; CMY)</h2>
+            <p class="section-desc">خطوات الرقمنة الثلاث (أخذ العينات ← التحويل الكمي ← الترميز)، قوانين حساب أحجام الصوت والصور، ومزج الألوان الجمعي والطرحي:</p>
+
+            <!-- الخطوات الثلاث المشتركة لرقمنة الصوت والصور -->
+            <h3 style="font-size:1.16rem; margin-bottom:10px;">🔄 الخطوات الثلاث بالترتيب لرقمنة الصوت (طريقة PCM صـ 79) ورقمنة الصور (صـ 83):</h3>
+            <div class="cia-grid">
+                <div class="cia-card active">
+                    <div class="cia-letter" style="background:#dbeafe; color:#1d4ed8;">1</div>
+                    <h4 style="font-size:1.12rem; margin-bottom:6px;">(1) أخذ العينات / المعاينة (Sampling)</h4>
+                    <p style="font-size:0.9rem; color:var(--text-muted);">
+                        • <strong>في الصوت:</strong> تقسيم المحور الأفقي (الزمن) على فترات منتظمة واستخلاص ارتفاع الموجة (نقاط العينة). وعدد العينات في الثانية يُسمى <strong>تردد أخذ العينات (Hz)</strong>.<br>
+                        • <strong>في الصور:</strong> تقسيم الصورة إلى شبكة من النقاط <strong>(البكسلات Pixels)</strong>، وتقاس الدقة (Resolution) بوحدة <strong>dpi (Dots Per Inch)</strong>.
+                    </p>
+                </div>
+                <div class="cia-card active">
+                    <div class="cia-letter" style="background:#dcfce7; color:#15803d;">2</div>
+                    <h4 style="font-size:1.12rem; margin-bottom:6px;">(2) التحويل الكمي / التكميم (Quantization)</h4>
+                    <p style="font-size:0.9rem; color:var(--text-muted);">
+                        • <strong>في الصوت:</strong> تقسيم المحور الرأسي (الجهد) وتقريب ارتفاعات الموجة لأقرب قيم رقمية. ويحدد <strong>عمق الـ bit الكمي (Quantization bit depth)</strong> عدد المستويات (2ⁿ).<br>
+                        • <strong>في الصور:</strong> تحويل سطوع كل Pixel إلى قيم رقمية مقسمة لمستويات تُسمى <strong>التدرج (Gradation)</strong> (عند 8 bit = 256 تدرجاً من 0 إلى 255).
+                    </p>
+                </div>
+                <div class="cia-card active">
+                    <div class="cia-letter" style="background:#fef3c7; color:#b45309;">3</div>
+                    <h4 style="font-size:1.12rem; margin-bottom:6px;">(3) الترميز / التشفير (Encoding)</h4>
+                    <p style="font-size:0.9rem; color:var(--text-muted);">
+                        • <strong>في الصوت والصور:</strong> التعبير عن القيم الكمية المقربة في <strong>صورة ثنائية (أصفار وآحاد 0 و 1)</strong>.<br>
+                        • تسمى هذه الطريقة لرقمنة الصوت: <strong>طريقة التعديل بالنبضات الرقمية (PCM)</strong>.
+                    </p>
+                </div>
+            </div>
+
+            <!-- مفاهيم الصوت الهامة من صـ 79-80 -->
+            <div class="book-def-box" style="border-right-color: var(--secondary);">
+                <div class="book-def-title" style="color: var(--secondary);">📌 النقاط الرئيسية والقوانين في الدرس (6-7) رقمنة الصوت (صـ 79 و 80):</div>
+                <div class="book-exact-text">
+                    • <strong>التردد (Frequency):</strong> عدد الموجات التي تمر في ثانية واحدة، ووحدته <strong>هرتز (Hertz - Hz)</strong>. &nbsp;|&nbsp; <strong>الفترة (Period):</strong> الوقت الذي تستغرقه موجة واحدة للانتشار، ووحدتها <strong>ثانية (Second)</strong>.<br>
+                    • <strong>نظرية أخذ العينات (Sampling theorem - صـ 80):</strong> "إذا تجاوز تردد أخذ العينات <strong>ضعف (2×) أعلى تردد</strong> موجود في الموجة التناظرية الأصلية، يمكن إعادة بناء شكل الموجة التناظرية الأصلية بدقة من البيانات الرقمية." (مثال تمرين صـ 82: إذا كان التردد الأقصى 40 Hz فيجب رقمنته بتردد أكبر من <strong>80 Hz</strong>).<br>
+                    • <strong>القنوات (Channels):</strong> إشارة واحدة = <strong>أحادية (Monaural = 1)</strong> &nbsp;|&nbsp; إشارتان مختلفتان = <strong>مجسمة / ستيريو (Stereo = 2)</strong>.<br>
+                    • <strong>قانون كمية بيانات الصوت (صـ 80):</strong><br>
+                    <code>كمية البيانات (bit) = تردد أخذ العينات (Hz) × عمق bit الكمي × عدد القنوات (1 أو 2) × الزمن (بالثواني)</code> &nbsp; ثم نقسم على <strong>8</strong> للتحويل إلى بايت (Byte).
+                </div>
+            </div>
+
+            <!-- مفاهيم الصور والألوان الهامة من صـ 83-84 -->
+            <div class="book-def-box" style="border-right-color: var(--accent);">
+                <div class="book-def-title" style="color: var(--accent);">📌 النقاط الرئيسية والقوانين في الدرس (6-8) رقمنة الصور وتمثيل اللون (صـ 83 و 84):</div>
+                <div class="book-exact-text">
+                    • <strong>التنسيق النقطي (Raster / Bitmap) مقابل تنسيق المتجهات (Vector format) - صـ 83:</strong><br>
+                    &nbsp;&nbsp;[1] <strong>التنسيق النقطي:</strong> يمثل الصورة بشبكة من النقاط (pixels)؛ وعند تكبير الصورة تظهر حواف متكسرة أو متعرجة تُسمى <strong>التعرجات (Jaggies)</strong>. يتم رسمها بـ <strong>برنامج تلوين (مثل Photoshop)</strong>.<br>
+                    &nbsp;&nbsp;[2] <strong>تنسيق المتجهات (Vector):</strong> يتضمن معادلات رياضية عن <strong>إحداثيات النقاط وزوايا وسمك الخطوط</strong>، ولا تتشوه عند التكبير (مناسب للشعارات). يتم رسمها بـ <strong>برنامج رسم (مثل Illustrator)</strong>.<br>
+                    • <strong>الألوان الكاملة (24-bit full color - صـ 84):</strong> كل لون من الألوان الثلاثة (R, G, B) يُمثل بـ 8 bit (256 تدرجاً)، فيكون كل بكسل = <strong>3 × 8 bit = 24 bit (أي 3 Bytes)</strong>، ويمثل 2²⁴ = 16,777,216 لوناً.<br>
+                    • <strong>قانون حجم بيانات الصورة (صـ 83):</strong> <code>حجم الصورة (bit) = (عدد pixels الرأسي × عدد pixels الأفقي) × عدد bits اللون لكل بكسل</code>.
+                </div>
+            </div>
+
+            <!-- جدول مقارنة مزج الألوان الجمعي والطرحي صـ 84 -->
+            <div class="table-responsive">
+                <table class="rich-table">
+                    <thead>
+                        <tr>
+                            <th>وجه المقارنة</th>
+                            <th>مزج الألوان الجمعي (Additive color mixing)</th>
+                            <th>مزج الألوان الطرحي (Subtractive color mixing)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>نوع الألوان الأساسية</strong></td>
+                            <td><strong>الألوان الأساسية الثلاثة للضوء</strong><br>(Three primary colors of light)</td>
+                            <td><strong>الألوان الأساسية الثلاثة للصبغة / الصباغ</strong><br>(Three primary colors of pigment)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>الألوان الثلاثة</strong></td>
+                            <td><strong>الأحمر (Red)، والأخضر (Green)، والأزرق (Blue) — RGB</strong></td>
+                            <td><strong>السماوي (Cyan)، والأرجواني (Magenta)، والأصفر (Yellow) — CMY</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>نتيجة مزج الألوان معاً</strong></td>
+                            <td>يزداد السطوع وتقترب من <strong>اللون الأبيض (White)</strong>.</td>
+                            <td>يغمق اللون ويقترب من <strong>اللون الأسود (Black)</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>الأجهزة المستخدمة فيها</strong></td>
+                            <td><strong>أجهزة التلفزيون وشاشات الكمبيوتر</strong> والهواتف.</td>
+                            <td><strong>الطابعات الملونة</strong> وأحبار الطباعة.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- مختبر تفاعلي لحساب حجم ملفات الصوت والصور -->
+            <div class="lab-box" style="border-color: var(--secondary);">
+                <h3 style="font-size:1.18rem; margin-bottom:8px;">🎛️ مختبر (4): حاسبة مسائل حجم الصوت (PCM) وحجم الصور الرقمية في الكتاب (صـ 80 - 86)</h3>
+                <p style="font-size:0.9rem; color:var(--text-muted);">ملاحظة الكتاب في جميع مسائل الحساب (صـ 80-86): افترض أن <code>1 Byte = 8 bits</code> ، و <code>1 KB = 1,000 B</code> ، و <code>1 MB = 1,000 KB</code>:</p>
+
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:18px; margin-top:12px;">
+                    <!-- حاسبة الصوت -->
+                    <div style="background:var(--surface); padding:16px; border-radius:14px; border:1px solid var(--border);">
+                        <h4 style="color:var(--primary-dark); margin-bottom:10px;">🎵 أولاً: حاسبة حجم الصوت الرقمي (PCM)</h4>
+                        <div class="sim-inputs-grid" style="grid-template-columns:1fr 1fr;">
+                            <div class="sim-field">
+                                <label>تردد أخذ العينات (Hz):</label>
+                                <input type="number" id="audRate" value="44100" oninput="calcAudioSize()">
+                            </div>
+                            <div class="sim-field">
+                                <label>عمق التكميم (bits):</label>
+                                <input type="number" id="audBits" value="16" oninput="calcAudioSize()">
+                            </div>
+                            <div class="sim-field">
+                                <label>القنوات (1=أحادي، 2=ستيريو):</label>
+                                <select id="audChan" onchange="calcAudioSize()">
+                                    <option value="2" selected>2 (ستيريو Stereo)</option>
+                                    <option value="1">1 (أحادي Monaural)</option>
+                                </select>
+                            </div>
+                            <div class="sim-field">
+                                <label>المدة الزمنية (بالثواني):</label>
+                                <input type="number" id="audSec" value="1" oninput="calcAudioSize()">
+                            </div>
+                        </div>
+                        <div class="preset-btns">
+                            <button class="preset-btn" onclick="setAudPreset(44100,16,2,1)">تحدى صـ80: 44.1kHz, 16bit, Stereo, 1s</button>
+                            <button class="preset-btn" onclick="setAudPreset(44100,24,2,60)">تحدى صـ80: 44.1kHz, 24bit, Stereo, 60s</button>
+                            <button class="preset-btn" onclick="setAudPreset(44100,16,1,1)">جرب صـ81: 44.1kHz, 16bit, Mono, 1s</button>
+                            <button class="preset-btn" onclick="setAudPreset(192000,24,2,60)">جرب صـ82: 192kHz, 24bit, Stereo, 60s</button>
+                            <button class="preset-btn" onclick="setAudPreset(44100,16,2,180)">جرب صـ82: 3 دقائق على CD 650MB</button>
+                            <button class="preset-btn" onclick="setAudPreset(96000,24,2,60)">تمرين صـ82: 96kHz, 24bit, Stereo, 60s</button>
+                        </div>
+                        <div id="audCalcOutput" style="margin-top:12px; font-size:0.92rem; background:var(--surface-alt); padding:12px; border-radius:10px;"></div>
+                    </div>
+
+                    <!-- حاسبة الصور -->
+                    <div style="background:var(--surface); padding:16px; border-radius:14px; border:1px solid var(--border);">
+                        <h4 style="color:var(--secondary); margin-bottom:10px;">🖼️ ثانياً: حاسبة حجم بيانات الصورة الرقمية</h4>
+                        <div class="sim-inputs-grid" style="grid-template-columns:1fr 1fr;">
+                            <div class="sim-field">
+                                <label>العرض الأفقي (Pixels):</label>
+                                <input type="number" id="imgW" value="1280" oninput="calcImageSize()">
+                            </div>
+                            <div class="sim-field">
+                                <label>الارتفاع الرأسي (Pixels):</label>
+                                <input type="number" id="imgH" value="720" oninput="calcImageSize()">
+                            </div>
+                            <div class="sim-field" style="grid-column: span 2;">
+                                <label>عمق اللون لكل بكسل (bits per pixel):</label>
+                                <select id="imgBits" onchange="calcImageSize()">
+                                    <option value="24" selected>24 bit (لون كامل Full Color = 3 Bytes)</option>
+                                    <option value="8">8 bit (256 تدرجاً = 1 Byte)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="preset-btns">
+                            <button class="preset-btn" onclick="setImgPreset(1280,720,24)">تحدى صـ84: 1280×720 (24-bit)</button>
+                            <button class="preset-btn" onclick="setImgPreset(800,600,8)">جرب صـ85: 800×600 (8-bit)</button>
+                            <button class="preset-btn" onclick="setImgPreset(720,480,24)">جرب صـ85: 720×480 (24-bit)</button>
+                            <button class="preset-btn" onclick="setImgPreset(1080,720,8)">تمرين صـ86: 1080×720 (8-bit)</button>
+                            <button class="preset-btn" onclick="setImgPreset(320,480,24)">تمرين صـ86: 320×480 (24-bit)</button>
+                            <button class="preset-btn" onclick="setImgPreset(1920,1080,24)">تمرين صـ86: 1920×1080 (24-bit)</button>
+                        </div>
+                        <div id="imgCalcOutput" style="margin-top:12px; font-size:0.92rem; background:var(--surface-alt); padding:12px; border-radius:10px;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             القسم الرابع: الدرس (6-9): التمثيل الرقمي وضغط الفيديو — صـ 87 إلى 91
+             ========================================================= -->
+        <section id="tab4" class="content-card">
+            <div class="section-badge" style="background:#fef3c7; color:#92400e;">المحور الرابع • الدرس (6-9) • صـ 87 إلى 91</div>
+            <h2 class="section-title">التمثيل الرقمي وضغط الفيديو: آلية الفيديو، نسبة الضغط، وترميز طول التشغيل (RLE) وهوفمان</h2>
+            <p class="section-desc">ظاهرة الصورة الباقية، الإطار ومعدل الإطارات (fps)، الضغط الفاقد وغير الفاقد، ومختبر شبكة 5×5 لفك ضغط الحروف الأبجدية:</p>
+
+            <div class="book-def-box" style="border-right-color: var(--accent);">
+                <div class="book-def-title" style="color: var(--accent);">📌 أولاً: آلية الفيديو وقانون حجم بيانات الفيديو (صـ 87):</div>
+                <div class="book-exact-text">
+                    • <strong>(1) الفيديو (Video):</strong> وسط إلكتروني يخلق وهم الحركة عن طريق عرض سلسلة من الصور الثابتة على التوالي، ويستخدم <strong>ظاهرة الصورة الباقية / اللاحقة (Afterimage phenomenon)</strong> التي تحدث بسبب خصائص الرؤية البشرية.<br>
+                    • <strong>(2) الإطار (Frame):</strong> هو صورة واحدة من سلسلة الصور المتتابعة التي تُعرض بسرعة لتكوين حركة.<br>
+                    • <strong>(3) معدل الإطارات (Frame rate):</strong> عدد الإطارات المعروضة في الثانية الواحدة، ووحدته هي <strong>fps (frames per second)</strong>. كلما ارتفع رقم معدل الإطارات، <strong>بدا الفيديو أنعم (أكثر سلاسة)، وأصبح حجم البيانات أكبر</strong>.<br>
+                    • <strong>(4) قانون حساب حجم بيانات الفيديو (صـ 87):</strong><br>
+                    <code>حجم بيانات الفيديو = حجم بيانات الصورة الواحدة [B] × معدل الإطارات [fps] × الوقت [ثانية]</code>
+                </div>
+            </div>
+
+            <div class="book-def-box" style="border-right-color: var(--primary);">
+                <div class="book-def-title">📌 ثانياً: ضغط البيانات (Data Compression) وأنواعه الرئيسية (صـ 87 و 88):</div>
+                <div class="book-exact-text">
+                    • <strong>الضغط (Compression):</strong> عملية تقليل حجم البيانات بقدر ممكن مع الحفاظ على محتوى البيانات. &nbsp;|&nbsp; <strong>فك الضغط (Decompression):</strong> عملية استعادة البيانات المضغوطة إلى حالتها الأصلية.<br>
+                    • <strong>قانون نسبة الضغط (Compression ratio - صـ 87 و 88):</strong><br>
+                    <code>نسبة الضغط [%] = (حجم البيانات بعد الضغط ÷ حجم البيانات الأصلي قبل الضغط) × 100</code><br>
+                    &nbsp;&nbsp;*(مثال الكتاب صـ 88: سلسلة من 25 حرفاً أصبحت 10 أحرف بعد الضغط ⬅️ نسبة الضغط = (10 ÷ 25) × 100 = <strong>40%</strong>).*<br>
+                    • <strong>[1] الضغط غير الفاقد / بدون فقدان (Lossless compression):</strong> طريقة ضغط تسمح <strong>بالاستعادة الكاملة</strong> للبيانات الأصلية من البيانات المضغوطة. تُستخدم لضغط <strong>بيانات النص أو البرامج</strong>.<br>
+                    • <strong>[2] الضغط مع فقدان البيانات / الفاقد (Lossy compression):</strong> طريقة ضغط <strong>لا يمكن من خلالها استعادة البيانات الأصلية تماماً</strong> من البيانات المضغوطة. تُستخدم لضغط ملفات <strong>الصوت والصور والفيديو</strong> بطريقة لا يدرك فيها البشر فرقاً كبيراً.<br>
+                    • <strong>الأنواع الرئيسية للضغط بدون فقدان (Lossless):</strong><br>
+                    &nbsp;&nbsp;1. <strong>ترميز طول التشغيل (Run-length encoding - RLE):</strong> طريقة ضغط تستبدل تسلسلات الرموز المتتالية المتطابقة بقيمة رقمية تشير إلى طول التسلسل (مثال: <code>AAAAABB</code> تُضغط إلى <code>A5B2</code>).<br>
+                    &nbsp;&nbsp;2. <strong>ترميز هوفمان (Huffman coding):</strong> طريقة ضغط تعين تسلسلات بت (bit) <strong>أقصر للأحرف ذات التكرار الأعلى</strong>، وتسلسلات بتات <strong>أطول للأحرف ذات التكرار الأقل</strong>.
+                </div>
+            </div>
+
+            <!-- مختبر تفاعلي 5: فك ضغط شبكة 5×5 (RLE) + حاسبة حجم الفيديو ونسبة الضغط -->
+            <div class="lab-box" style="border-color: var(--accent);">
+                <h3 style="font-size:1.18rem; margin-bottom:8px;">🧩 مختبر (5): محاكي شبكة البكسلات (5×5) لترميز طول التشغيل (RLE) + حاسبة الفيديو (صـ 88 - 91)</h3>
+                <p style="font-size:0.92rem; color:var(--text-muted); margin-bottom:12px;">
+                    في صفحات (88، 89، 90، 91) يعطيك الكتاب كوداً مضغوطاً بطريقة <strong>Run-length encoding</strong> لشبكة 5×5 (حيث <strong>B = أسود</strong> و <strong>W = أبيض</strong>) ويسألك: <strong>"ما هو الحرف الأبجدي الذي تمثله البيانات المضغوطة؟"</strong>. اضغط على أي سؤال من أسئلة الكتاب لترى رسم الحرف فوراً، أو اضغط على المربعات لتصميم حرفك الخاص!
+                </p>
+
+                <div style="display:flex; gap:24px; flex-wrap:wrap; align-items:center;">
+                    <div>
+                        <div class="rle-grid" id="rlePixelGrid"></div>
+                    </div>
+                    <div style="flex:1; min-width:280px;">
+                        <div class="preset-btns" style="margin-top:0; margin-bottom:12px;">
+                            <button class="filter-btn active" onclick="loadRlePreset('F', 'B6W4B4WBW4BW4', 'مثال الكتاب صـ 88 و 90: الحرف F', this)">مثال صـ88: الحرف F</button>
+                            <button class="filter-btn" onclick="loadRlePreset('P', 'B4WBW3B5WBW4BW4', 'سؤال تحدى معلوماتك صـ 88 و 89: الإجابة الحرف P', this)">تحدى صـ88: (الحرف P)</button>
+                            <button class="filter-btn" onclick="loadRlePreset('H', 'BW3B2W3B7W3B2W3B', 'سؤال جرب بنفسك 3 صـ 90: الإجابة الحرف H', this)">جرب صـ90: (الحرف H)</button>
+                            <button class="filter-btn" onclick="loadRlePreset('A', 'BBBBWBWWWBBBBBWBWWBWBWWWB', 'مثال تمرين 3 صـ 91: الحرف A', this)">مثال صـ91: الحرف A</button>
+                            <button class="filter-btn" onclick="loadRlePreset('N', 'BW3BWBWBW3BW4BW4BW2', 'سؤال تمرين 3 صـ 91: حرف بنمط القطر', this)">تمرين صـ91: كود الاختبار</button>
+                        </div>
+                        <div id="rleAnalysisBox" style="background:var(--surface); padding:15px; border-radius:12px; border:2px solid var(--primary);"></div>
+                    </div>
+                </div>
+
+                <!-- حاسبة الفيديو ونسبة الضغط -->
+                <div style="margin-top:20px; padding-top:16px; border-top:1px dashed var(--border);">
+                    <h4 style="font-size:1.06rem; margin-bottom:10px;">🎬 حاسبة مسائل حجم الفيديو ونسبة الضغط في الكتاب (صـ 88 - 90):</h4>
+                    <div class="preset-btns">
+                        <button class="preset-btn" onclick="showVideoCase(1)">تحدى صـ88: فيديو 500×200، 24bit، 30fps، 10 ثوانٍ + ضغط إلى 30MB</button>
+                        <button class="preset-btn" onclick="showVideoCase(2)">جرب صـ89: فيديو 640×360، 24bit، 30fps، دقيقة واحدة (60 ثانية)</button>
+                        <button class="preset-btn" onclick="showVideoCase(3)">جرب صـ90: ملف مضغوط 21MB تمدد بعد فك الضغط إلى 50MB</button>
+                        <button class="preset-btn" onclick="showVideoCase(4)">تمرين صـ90: فيديو 1920×1080، 24bit، 60fps، ثانية واحدة (1s)</button>
+                    </div>
+                    <div id="videoCaseOutput" style="margin-top:10px; background:var(--surface); padding:14px 18px; border-radius:12px; border:1px solid var(--border);"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             القسم الخامس: الدرس (6-10): تصميم البيانات ومبدأ LATCH — صـ 92 إلى 95
+             ========================================================= -->
+        <section id="tab5" class="content-card">
+            <div class="section-badge" style="background:#fee2e2; color:#991b1b;">المحور الخامس • الدرس (6-10) • صـ 92 إلى 95</div>
+            <h2 class="section-title">تصميم البيانات (Information Design)، واجهة وتجربة المستخدم (UI / UX)، ومبدأ LATCH</h2>
+            <p class="section-desc">طرق تصميم البيانات الثلاث (التجريد، التصور، الهيكلة)، الرسم التصويري والأيقونة، تقنيات التصميم لسهولة الفهم، ومبادئ LATCH الخمسة:</p>
+
+            <div class="book-def-box">
+                <div class="book-def-title">📌 أولاً: تعريف وطرق تصميم البيانات (Information design) - صـ 92 إلى 95:</div>
+                <div class="book-exact-text">
+                    • <strong>تصميم البيانات (Information design):</strong> "عملية تنظيم والتعبير الإبداعي عن البيانات وفقاً لغرضها، مما يضمن أن الرسالة المقصودة تُنقل بشكل صحيح إلى الجمهور المستهدف."<br>
+                    • <strong>طرق تصميم البيانات الرئيسية في الكتاب وأسئلة الامتحان (صـ 92 - 95):</strong><br>
+                    &nbsp;&nbsp;1. <strong>التجريد (Abstraction):</strong> نقل البيانات المقصودة ببساطة (استخراج العناصر الضرورية فقط) من داخل كمية كبيرة من البيانات. &lt;مثال الكتاب&gt; إنشاء <strong>رسوم توضيحية (Pictograms)</strong> لكل فصل دراسي لتوجيه الناس حول مبنى المدرسة.<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;— <strong>الرسم التصويري (Pictogram):</strong> رمز تصويري مصمم لغرض نقل البيانات دون استخدام الكلمات (مثل علامات المخرج والطوارئ والمرافق في المحطات والمطارات).<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;— <strong>الأيقونة (Icon):</strong> تمثيل لمحتوى البرنامج أو وظيفته على كمبيوتر أو هاتف ذكي من خلال الصور أو الرسوم التوضيحية.<br>
+                    &nbsp;&nbsp;2. <strong>التصور (Visualization):</strong> تمثيل البيانات <strong>بصرياً</strong> لجعلها أكثر قابلية للفهم. &lt;أمثلة&gt; تجميع نتائج الاستبيان في <strong>الجداول والرسوم البيانية (Charts &amp; Graphs)</strong>.<br>
+                    &nbsp;&nbsp;3. <strong>الهيكلة (Structuring):</strong> فهم الصورة العامة والتنظيم والتعبير عن البيانات بوضوح وترتيبها وفقاً للعلاقات والمستويات والمراحل. &lt;أمثلة&gt; تنظيم صفحة ويب بقوائم <strong>هرمية (Hierarchical)</strong>، خرائط المتاجر الكبيرة، أو تلخيص مسائل متعددة في <strong>نقاط نقطية / قوائم</strong>.
+                </div>
+            </div>
+
+            <!-- تقنيات التصميم لسهولة الفهم (UI, CUI, GUI, UX, Affordance, Signifier, Usability, Accessibility, Universal Design) -->
+            <h3 style="margin-top:22px; margin-bottom:12px;">🖥️ ثانياً: تقنيات التصميم لسهولة الفهم (السبعة مصطلحات الأساسية في صـ 92 - 95):</h3>
+            <div class="table-responsive">
+                <table class="rich-table">
+                    <thead>
+                        <tr>
+                            <th>المصطلح بالعربية</th>
+                            <th>المصطلح بالإنجليزية</th>
+                            <th>التعريف الرسمي الدقيق بنص كتاب الوزارة (صـ 92 - 95)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>(1) واجهة المستخدم</strong></td>
+                            <td><strong>User Interface (UI)</strong></td>
+                            <td>نظام لنقل البيانات بين البشر والأجهزة (أمثلة: إدخال الصوت، الشاشة التي تعمل باللمس، لوحة المفاتيح). وتنقسم إلى:<br>
+                            • <strong>[1] واجهة سطر الأوامر / النصية (CUI):</strong> يتم تشغيل الجهاز بإدخال أوامر نصية عن طريق <strong>لوحة المفاتيح</strong>.<br>
+                            • <strong>[2] واجهة المستخدم الرسومية (GUI):</strong> تسمح للمستخدمين بإصدار أوامر بديهية وسهلة الفهم من خلال المرئيات (<strong>الرموز والأزرار</strong>) باستخدام <strong>الفأرة (الماوس) أو الإصبع</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>(2) تجربة المستخدم</strong></td>
+                            <td><strong>User Experience (UX)</strong></td>
+                            <td>الخبرة أو التأثير العاطفي (مثل الشعور بالراحة) الذي يكتسبه المستخدمون من التفاعل مع منتج أو خدمة.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>(3) الإمكانية / الإيحاء</strong></td>
+                            <td><strong>Affordance</strong></td>
+                            <td>الإجراءات أو العمليات التي يمكن تنفيذها على كائن (خصائص الشكل التي توحي بكيفية استخدامه).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>(4) الدلالة / الدال / المُشير</strong></td>
+                            <td><strong>Signifier</strong></td>
+                            <td><strong>إشارات تدفع المستخدمين إلى اتخاذ إجراء</strong> (تدل على مكان وكيفية التفاعل).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>(5) قابلية الاستخدام</strong></td>
+                            <td><strong>Usability</strong></td>
+                            <td>مقياس يستخدم للإشارة إلى <strong>مدى سهولة وقابلية الفهم من أجل المستخدمين</strong> (وتختلف حسب المستخدم).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>(6) إمكانية الوصول</strong></td>
+                            <td><strong>Accessibility</strong></td>
+                            <td><strong>سهولة الوصول إلى البيانات والخدمات لمجموعة واسعة من الأشخاص</strong>، بغض النظر عن قدراتهم أو ظروفهم.</td>
+                        </tr>
+                        <tr style="background:var(--primary-light);">
+                            <td><strong>(7) التصميم الشامل</strong></td>
+                            <td><strong>Universal Design</strong></td>
+                            <td>تصميم يتم إنشاؤه بشكل مدروس مسبقاً بهدف أن <strong>جميع الناس، بغض النظر عن العمر أو اللغة أو الجنسية أو القدرة الجسدية، يمكنهم استخدامه بدون صعوبة</strong>.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- مبدأ LATCH التفاعلي لتنظيم وعرض البيانات صـ 93 -->
+            <h3 style="font-size:1.18rem; margin: 22px 0 10px;">🗂️ ثالثاً: مبدأ (LATCH) لتنظيم وعرض البيانات بطريقة تسهل الفهم (صـ 93) — اضغط على كل حرف:</h3>
+            <div class="soc-grid">
+                <div class="soc-card active" id="latch_L" onclick="selectLatch('L')">
+                    <div class="soc-step-num" style="background:#dbeafe; color:#1d4ed8;">L</div>
+                    <h4 style="font-size:1.05rem;">1. الموقع (Location)</h4>
+                    <p style="font-size:0.83rem; color:var(--text-muted);">التصنيف حسب الموقع الفعلي</p>
+                </div>
+                <div class="soc-card" id="latch_A" onclick="selectLatch('A')">
+                    <div class="soc-step-num" style="background:#dcfce7; color:#15803d;">A</div>
+                    <h4 style="font-size:1.05rem;">2. الأبجدية (Alphabet)</h4>
+                    <p style="font-size:0.83rem; color:var(--text-muted);">التصنيف حسب الترتيب الأبجدي</p>
+                </div>
+                <div class="soc-card" id="latch_T" onclick="selectLatch('T')">
+                    <div class="soc-step-num" style="background:#fef3c7; color:#b45309;">T</div>
+                    <h4 style="font-size:1.05rem;">3. الوقت (Time)</h4>
+                    <p style="font-size:0.83rem; color:var(--text-muted);">التصنيف حسب تسلسل الأحداث</p>
+                </div>
+                <div class="soc-card" id="latch_C" onclick="selectLatch('C')">
+                    <div class="soc-step-num" style="background:#ede9fe; color:#5b21b6;">C</div>
+                    <h4 style="font-size:1.05rem;">4. الفئة (Category)</h4>
+                    <p style="font-size:0.83rem; color:var(--text-muted);">التصنيف حسب المجالات والفروقات</p>
+                </div>
+                <div class="soc-card" id="latch_H" onclick="selectLatch('H')">
+                    <div class="soc-step-num" style="background:#fee2e2; color:#991b1b;">H</div>
+                    <h4 style="font-size:1.05rem;">5. الهرمية (Hierarchy)</h4>
+                    <p style="font-size:0.83rem; color:var(--text-muted);">التصنيف حسب الحجم أو الدرجة</p>
+                </div>
+            </div>
+            <div class="soc-detail-panel" id="latchDetailBox"></div>
+        </section>
+
+        <!-- =========================================================
+             القسم السادس: تدريبات الكتاب التفاعلية (ملء الفراغات صـ 63 - 95)
+             ========================================================= -->
+        <section id="tab6" class="content-card">
+            <div class="section-badge" style="background:#ede9fe; color:#5b21b6;">المحور السادس • حل تدريبات الكتاب المدرسي (صـ 63 إلى 95)</div>
+            <h2 class="section-title">تدريبات الفقرات والجداول التفاعلية من كتاب الوزارة للوحدة السادسة</h2>
+            <p class="section-desc">اضغط على أي فراغ للكشف عن الإجابة النموذجية أمام الطلاب أو استخدم أزرار الإظهار والإخفاء:</p>
+
+            <!-- تدريب 1: التناظري والرقمي، الثنائي، والأحرف (صـ 63، 67، 71) -->
+            <div class="lab-box" style="border-color: var(--purple);">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+                    <h3 style="font-size:1.15rem;">📝 تدريب (1): فقرات التناظري والرقمي (صـ 63)، كمية البيانات (صـ 67)، وترميز الأحرف (صـ 71)</h3>
+                    <div>
+                        <button class="preset-btn" onclick="toggleAllBlanks('u6Blanks1', true)">👁️ إظهار جميع الإجابات</button>
+                        <button class="preset-btn" onclick="toggleAllBlanks('u6Blanks1', false)">🙈 إخفاء لاختبار الطلاب</button>
+                    </div>
+                </div>
+                <div id="u6Blanks1" style="background:var(--surface); padding:18px; border-radius:14px; border:1px solid var(--border); line-height:2.25;">
+                    <strong>أولاً: فقرة «جرب بنفسك (1)» صـ 63 (التناظري والرقمي):</strong><br>
+                    • الكمية التي توجد عادة في حياتنا اليومية وتتغير بشكل مستمر، مثل الوقت أو درجة الحرارة، تُسمى
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[1] (ث) التناظرية">[1] اضغط للكشف</span>.
+                    في المقابل، الكمية التي تمثل قيمة متغيرة باستمرار عن طريق تقسيمها إلى فترات منتظمة والتعبير عنها رقمياً تسمى
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[2] (ت) الرقمية">[2] اضغط للكشف</span>.<br>
+                    • تحويل البيانات التناظرية إلى بيانات رقمية يُسمى تحويل
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[3] (ج) A/D">[3] اضغط للكشف</span>
+                    بينما العكس يُسمى تحويل
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[4] (ح) D/A">[4] اضغط للكشف</span>.
+                    وعند التعامل مع البيانات على الكمبيوتر، يتم تمثيلها باستخدام رقمين 0 و 1، والذي يشار إليه باسم
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[5] (أ) النظام الثنائي">[5] اضغط للكشف</span>.<br><br>
+                    <strong>ثانياً: فقرة «تمرين 1-(1)» صـ 67 (البت والبايت والكيلوبايت):</strong><br>
+                    • كمية الاحتمالات التي يمكن تمثيلها بـ 1 bit هي
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[1] (ب) 2">[1] اضغط للكشف</span>.
+                    وبما أن 1 بايت يتكون من
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[2] (ث) 8">[2] اضغط للكشف</span>
+                    bit، فإن كمية البيانات التي يمكن تمثيلها بـ 1 بايت هي
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[3] (ج) 256">[3] اضغط للكشف</span>.
+                    وعلى سبيل المثال، 32 bit تساوي
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[4] (ت) 4">[4] اضغط للكشف</span>
+                    بايت. ويتم التعبير عن 1 كيلوبايت على أنها
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[5] (ح) 1,024">[5] اضغط للكشف</span>
+                    بايت. ولحساب عدد الـ bit في 24 كيلوبايت، عليك حساب التعبير:
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[6] (ذ) 24 × 1,024 × 8">[6] اضغط للكشف</span>.<br><br>
+                    <strong>ثالثاً: فقرة «تحدى معلوماتك (1)» صـ 71 (ترميز الأحرف):</strong><br>
+                    • نظام يعين الأحرف والرموز إلى النظام الثنائي أو السادس عشر يسمى
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[1] (5) رمز الحرف">[1] اضغط للكشف</span>.
+                    وهناك عدة أنواع ضمنه، بما في ذلك
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[2] (7) يونيكود (Unicode)">[2] اضغط للكشف</span>،
+                    التي تستوعب أنظمة الكتابة للبلدان في جميع أنحاء العالم. ويتم تمثيل الأحرف الأبجدية الرقمية والرموز بـ
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[3] (1) 1 Byte">[3] اضغط للكشف</span>،
+                    ويمكن لـ 1 Byte تمثيل
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[4] (4) 256">[4] اضغط للكشف</span>
+                    نوع من الأحرف.
+                </div>
+            </div>
+
+            <!-- تدريب 2: رقمنة الصوت، الصور، الفيديو، وتصميم البيانات (صـ 82، 86، 89، 94) -->
+            <div class="lab-box" style="border-color: var(--secondary);">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+                    <h3 style="font-size:1.15rem;">📝 تدريب (2): فقرات رقمنة الصوت (صـ 82)، الألوان (صـ 86)، الفيديو (صـ 89)، وتصميم البيانات (صـ 94)</h3>
+                    <div>
+                        <button class="preset-btn" onclick="toggleAllBlanks('u6Blanks2', true)">👁️ إظهار جميع الإجابات</button>
+                        <button class="preset-btn" onclick="toggleAllBlanks('u6Blanks2', false)">🙈 إخفاء لاختبار الطلاب</button>
+                    </div>
+                </div>
+                <div id="u6Blanks2" style="background:var(--surface); padding:18px; border-radius:14px; border:1px solid var(--border); line-height:2.25;">
+                    <strong>أولاً: فقرة «تمرين 1-(1)» صـ 82 (رقمنة الصوت PCM):</strong><br>
+                    • تبدأ عملية التقاط الموجات الصوتية بتقسيمها على فترات زمنية منتظمة، وتسمى هذه العملية
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[1] (ب) أخذ العينات (Sampling)">[1] اضغط للكشف</span>.
+                    بعد ذلك يتم تحويل ارتفاعات الموجات وتقريبها، وتسمى هذه العملية
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[2] (ج) التحول الكمي (Quantization)">[2] اضغط للكشف</span>،
+                    وتسمى القيمة التي تشير إلى عدد المستويات بـ
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[3] (ز) عمق الـ bit الكمي">[3] اضغط للكشف</span>.
+                    أخيراً، يتم إجراء
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[4] (أ) التشفير / الترميز (Encoding)">[4] اضغط للكشف</span>
+                    للتعبير عن القيمة بالنظام الثنائي. وتسمى هذه الطريقة لتحويل الصوت إلى بيانات رقمية بـ
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[5] (ح) صيغة PCM">[5] اضغط للكشف</span>.
+                    وكلما زاد التردد وعمق البت، يصبح حجم البيانات
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[6] (د) أكبر">[6] اضغط للكشف</span>.<br><br>
+                    <strong>ثانياً: فقرة «تمرين 3» صـ 86 (تمثيل اللون):</strong><br>
+                    • في الطابعات الملونة، يتم التعبير عن الألوان بدمج السماوي والأرجواني والأصفر، والتي تُعرف باسم
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[1] (ب) الألوان الأولية الثلاثة للصباغ">[1] اضغط للكشف</span>،
+                    وعندما تُخلط هذه الألوان معاً فإنها تقترب من اللون
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[2] (د) الأسود">[2] اضغط للكشف</span>.
+                    من ناحية أخرى، تمثل شاشات الكمبيوتر الألوان بدمج الأحمر والأخضر والأزرق، والتي تُعرف باسم
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[3] (أ) الألوان الأولية الثلاثة للضوء">[3] اضغط للكشف</span>.<br><br>
+                    <strong>ثالثاً: فقرة «جرب بنفسك 2-(2)» صـ 94 (قابلية الاستخدام، إمكانية الوصول، والتصميم الشامل):</strong><br>
+                    • يُشار إلى سهولة استخدام الأجهزة وتفاعل المستخدم معها باسم
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[1] (ب) قابلية الاستخدام (Usability)">[1] اضغط للكشف</span>.
+                    ومن ناحية أخرى، يُشار إلى سهولة الاستخدام لمجموعة واسعة من الأشخاص بغض النظر عن قدراتهم أو ظروفهم باسم
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[2] (أ) إمكانية الوصول (Accessibility)">[2] اضغط للكشف</span>.
+                    ويشير مصطلح
+                    <span class="blank-slot" onclick="this.classList.toggle('revealed')" data-ans="[3] (ث) التصميم الشامل (Universal Design)">[3] اضغط للكشف</span>
+                    إلى التصميم الذي يتيح سهولة الاستخدام للجميع بغض النظر عن العمر أو اللغة أو الجنسية أو القدرة البدنية.
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             القسم السابع: بنك التحدي الشامل للوحدة السادسة (20 سؤالاً)
+             ========================================================= -->
+        <section id="tab7" class="content-card">
+            <div class="section-badge" style="background:#d1fae5; color:#065f46;">المحور السابع • اختبار شامل للوحدة السادسة</div>
+            <h2 class="section-title">بنك التحدي التفاعلي الشامل للوحدة السادسة (20 سؤالاً من كتاب الوزارة صـ 62 - 95)</h2>
+            <p class="section-desc">يغطي جميع الدروس العشرة للوحدة السادسة مع التفسير المنهجي الكامل لكل سؤال:</p>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:20px; background:var(--surface-alt); padding:14px 20px; border-radius:14px; border:1px solid var(--border);">
+                <div class="filter-buttons" style="margin-bottom:0;">
+                    <button class="filter-btn active" onclick="filterQuiz('all', this)">كل الدروس (20 سؤالاً)</button>
+                    <button class="filter-btn" onclick="filterQuiz('G1', this)">التناظري والثنائي و Hex (دروس 1-3)</button>
+                    <button class="filter-btn" onclick="filterQuiz('G2', this)">الأحرف والحساب والمتممات (دروس 4-6)</button>
+                    <button class="filter-btn" onclick="filterQuiz('G3', this)">الصوت والصور والفيديو (دروس 7-9)</button>
+                    <button class="filter-btn" onclick="filterQuiz('G4', this)">تصميم البيانات و LATCH (درس 10)</button>
+                </div>
+                <div style="font-weight:900; color:var(--primary); font-size:1.05rem;" id="quizScoreTracker">النتيجة الحالية: 0 / 20</div>
+            </div>
+
+            <div class="quiz-container" id="quizContainer"></div>
+
+            <div style="text-align:center; margin-top:25px;">
+                <button class="btn-action" onclick="reloadQuiz()">
+                    🔄 إعادة تعيين الإجابات وبدء اختبار جديد
+                </button>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Modal القاموس السريع لمصطلحات الوحدة السادسة -->
+    <div class="modal-backdrop" id="glossaryModal" onclick="if(event.target===this) closeGlossaryModal()">
+        <div class="modal-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); padding-bottom:14px;">
+                <h3 style="font-size:1.3rem; color:var(--primary);">📖 القاموس الشامل لمصطلحات الوحدة السادسة (عربي / إنجليزي)</h3>
+                <button class="btn-action" style="padding:6px 14px; background:var(--danger);" onclick="closeGlossaryModal()">✖ إغلاق</button>
+            </div>
+            <p style="font-size:0.92rem; color:var(--text-muted); margin-top:10px;">ابحث بسرعة عن أي مصطلح في الدروس العشرة للوحدة السادسة:</p>
+            <input type="text" id="glossarySearchInput" placeholder="🔍 ابحث عن مصطلح (مثال: Quantization أو PCM أو Jaggies أو RLE أو LATCH أو Signifier)..." style="width:100%; padding:12px 16px; margin-top:10px; border-radius:10px; border:2px solid var(--border); font-size:0.98rem; background:var(--surface-alt); color:var(--text-main);" oninput="renderGlossary()">
+            <div class="glossary-grid" id="glossaryGrid"></div>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // 1. أدوات المعلم (الخط، الوضع الليلي، شريط التقدم)
+        // ==========================================
+        let currentFontScale = 1;
+
+        function changeFontScale(delta) {
+            currentFontScale = Math.min(1.35, Math.max(0.85, currentFontScale + delta));
+            document.documentElement.style.setProperty('--font-scale', currentFontScale);
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            document.getElementById('darkModeBtn').innerText = isDark ? '☀️ الوضع النهاري' : '🌙 الوضع الليلي للسبورة';
+        }
+
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
+        function toggleCard(card) {
+            card.classList.toggle('active');
+        }
+
+        function toggleAllBlanks(containerId, reveal) {
+            const slots = document.querySelectorAll(`#${containerId} .blank-slot`);
+            slots.forEach(s => {
+                if (reveal) {
+                    s.classList.add('revealed');
+                    s.innerText = s.getAttribute('data-ans');
+                } else {
+                    s.classList.remove('revealed');
+                    const num = s.getAttribute('data-ans').split(' ')[0];
+                    s.innerText = `${num} اضغط للكشف`;
+                }
+            });
+        }
+
+        document.addEventListener('click', (e) => {
+            if (e.target && e.target.classList.contains('blank-slot')) {
+                const s = e.target;
+                if (s.classList.contains('revealed')) {
+                    s.innerText = s.getAttribute('data-ans');
+                } else {
+                    const num = s.getAttribute('data-ans').split(' ')[0];
+                    s.innerText = `${num} اضغط للكشف`;
+                }
+            }
+        });
+
+        // ==========================================
+        // 2. مختبر (1): المحول العددي + مسائل البتات
+        // ==========================================
+        function updateBaseConverter(source) {
+            let dec = 0;
+            const decEl = document.getElementById('convDecInput');
+            const binEl = document.getElementById('convBinInput');
+            const hexEl = document.getElementById('convHexInput');
+
+            if (source === 'dec') {
+                dec = parseInt(decEl.value, 10);
+                if (isNaN(dec) || dec < 0) dec = 0;
+                binEl.value = dec.toString(2);
+                hexEl.value = dec.toString(16).toUpperCase();
+            } else if (source === 'bin') {
+                const cleanBin = binEl.value.replace(/[^01]/g, '') || '0';
+                dec = parseInt(cleanBin, 2);
+                decEl.value = dec;
+                hexEl.value = dec.toString(16).toUpperCase();
+            } else if (source === 'hex') {
+                const cleanHex = hexEl.value.replace(/[^0-9a-fA-F]/g, '') || '0';
+                dec = parseInt(cleanHex, 16);
+                decEl.value = dec;
+                binEl.value = dec.toString(2);
+            }
+
+            const binStr = dec.toString(2);
+            const paddedBin = binStr.padStart(Math.ceil(binStr.length / 4) * 4, '0');
+            const groups4 = paddedBin.match(/.{1,4}/g) || [paddedBin];
+            const hexDigits = groups4.map(g => `${g}₍₂₎ = ${parseInt(g, 2).toString(16).toUpperCase()}₍₁₆₎`).join(' &nbsp;|&nbsp; ');
+
+            // خطوات مجموع قوى العدد 2
+            const powers = [];
+            const bitsArr = binStr.split('');
+            const len = bitsArr.length;
+            bitsArr.forEach((b, idx) => {
+                const p = len - 1 - idx;
+                if (b === '1') {
+                    powers.push(`(2^${p} × 1 = ${Math.pow(2, p)})`);
+                }
+            });
+
+            document.getElementById('convStepsOutput').innerHTML = `
+                <div style="font-weight:800; color:var(--primary-dark); margin-bottom:6px;">
+                    ✅ النتيجة الموحدة: <code>(${dec})₁₀</code> = <code>(${binStr})₂</code> = <code>(${dec.toString(16).toUpperCase()})₁₆</code>
+                </div>
+                <div style="font-size:0.9rem; color:var(--text-main); margin-bottom:4px;">
+                    🔹 <strong>التحويل بين الثنائي والسادس عشر (تقسيم 4-bits من اليمين):</strong> ${hexDigits}
+                </div>
+                <div style="font-size:0.88rem; color:var(--text-muted);">
+                    🔹 <strong>مجموع أوزان الخانات الثنائية:</strong> ${powers.length ? powers.join(' + ') + ' = ' + dec : '0'}
+                </div>
+            `;
+        }
+
+        function setConvPreset(decVal) {
+            document.getElementById('convDecInput').value = decVal;
+            updateBaseConverter('dec');
+        }
+
+        function showBitProblem(itemsCount, label, btn) {
+            if (btn) {
+                btn.parentElement.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            }
+            const bitsNeeded = Math.ceil(Math.log2(itemsCount));
+            const maxCap = Math.pow(2, bitsNeeded);
+            const prevCap = bitsNeeded > 0 ? Math.pow(2, bitsNeeded - 1) : 0;
+            document.getElementById('bitProbOutput').innerHTML = `
+                📌 <strong>${label}:</strong> نحتاج لتمثيل <strong>${itemsCount}</strong> حالة مختلفة.<br>
+                • باستخدام <strong>${bitsNeeded - 1} bit</strong> يمكن تمثيل <code>2^${bitsNeeded - 1} = ${prevCap}</code> احتمالاً فقط (غير كافٍ).<br>
+                • باستخدام <strong>${bitsNeeded} bit</strong> يمكن تمثيل <code>2^${bitsNeeded} = ${maxCap}</code> احتمالاً ⬅️ إذن الحد الأدنى المطلوب هو <strong>${bitsNeeded} bit</strong>!
+            `;
+        }
+
+        // ==========================================
+        // 3. مختبر (2): ترميز ASCII وحجم النصوص
+        // ==========================================
+        function updateAsciiLab(mode) {
+            const textEl = document.getElementById('asciiTextInput');
+            const hexEl = document.getElementById('asciiHexInput');
+            let str = '';
+
+            if (mode === 'text') {
+                str = textEl.value || '';
+                const hexArr = [];
+                for (let i = 0; i < str.length; i++) {
+                    hexArr.push(str.charCodeAt(i).toString(16).toUpperCase().padStart(2, '0'));
+                }
+                hexEl.value = hexArr.join('');
+            } else {
+                const cleanHex = (hexEl.value || '').replace(/[^0-9a-fA-F]/g, '');
+                const pairs = cleanHex.match(/.{1,2}/g) || [];
+                str = pairs.map(p => String.fromCharCode(parseInt(p, 16))).join('');
+                textEl.value = str;
+            }
+
+            const rows = [];
+            for (let i = 0; i < str.length; i++) {
+                const code = str.charCodeAt(i);
+                const bin = code.toString(2).padStart(8, '0');
+                const hex = code.toString(16).toUpperCase().padStart(2, '0');
+                rows.push(`<span style="display:inline-block; background:var(--surface-alt); border:1px solid var(--border); padding:4px 10px; border-radius:8px; margin:3px; font-family:monospace;"><strong>'${str[i]}'</strong>: ${bin}₍₂₎ = <strong>${hex}₍₁₆₎</strong></span>`);
+            }
+
+            const byteCount = str.length;
+            const bitCount = byteCount * 8;
+            document.getElementById('asciiLabOutput').innerHTML = `
+                <div style="font-weight:800; color:var(--purple); margin-bottom:6px;">
+                    📏 حجم البيانات النصية: <strong>${byteCount} أحرف = ${byteCount} Byte = ${bitCount} bits</strong> (لأن كل حرف ASCII يأخذ 1 Byte).
+                </div>
+                <div>${rows.join(' ')}</div>
+            `;
+        }
+
+        function setAsciiPreset(word) {
+            document.getElementById('asciiTextInput').value = word;
+            updateAsciiLab('text');
+        }
+
+        // ==========================================
+        // 4. مختبر (3): المتمم الثنائي والطرح بالمتممات
+        // ==========================================
+        function runComplementLab() {
+            const rawA = (document.getElementById('compBinA').value || '').replace(/[^01]/g, '') || '0000';
+            const rawB = (document.getElementById('compBinB').value || '').replace(/[^01]/g, '') || '0000';
+            const len = Math.max(rawA.length, rawB.length, 4);
+            const A = rawA.padStart(len, '0');
+            const B = rawB.padStart(len, '0');
+
+            // 1's complement of B
+            const onesB = B.split('').map(b => b === '0' ? '1' : '0').join('');
+            // 2's complement of B
+            const twosVal = (parseInt(onesB, 2) + 1);
+            const twosB = twosVal.toString(2).padStart(len, '0').slice(-len);
+
+            // Add A + twosB
+            const sumVal = parseInt(A, 2) + parseInt(twosB, 2);
+            const sumBinFull = sumVal.toString(2).padStart(len, '0');
+            const hasCarry = sumBinFull.length > len;
+            const finalResultBin = sumBinFull.slice(-len);
+            const decA = parseInt(A, 2);
+            const decB = parseInt(B, 2);
+
+            document.getElementById('compLabOutput').innerHTML = `
+                <div style="font-weight:800; color:var(--primary-dark); margin-bottom:6px;">
+                    1️⃣ <strong>الخطوة الأولى (إيجاد المكمل الثنائي للمطروح B = <code>${B}₍₂₎</code>):</strong><br>
+                    &nbsp;&nbsp;• المكمل للأحاد (عكس 0↔1): <code>${onesB}₍₂₎</code> &nbsp;⬅️&nbsp; إضافة 1 (المكمل للاثنين): <strong style="color:var(--danger);"><code>${twosB}₍₂₎</code></strong>
+                </div>
+                <div style="font-weight:800; color:var(--secondary); margin-bottom:6px;">
+                    2️⃣ <strong>الخطوة الثانية (تحويل الطرح إلى جمع مع المكمل):</strong><br>
+                    &nbsp;&nbsp;<code>${A}₍₂₎ - ${B}₍₂₎</code> &nbsp;⇒&nbsp; <code>${A}₍₂₎ + ${twosB}₍₂₎ = ${sumBinFull}₍₂₎</code>
+                </div>
+                <div style="font-weight:800; color:var(--success);">
+                    3️⃣ <strong>الخطوة الثالثة (تجاهل الخانة الرئيسية الزائدة في اليسار):</strong><br>
+                    &nbsp;&nbsp;الناتج النهائي = <strong><code>${finalResultBin}₍₂₎</code></strong> (ويكافئ عشرياً: ${decA} - ${decB} = <strong>${parseInt(finalResultBin, 2)}</strong>) ${hasCarry ? '✔️ تم تجاهل الرقم الرائد (1)' : ''}
+                </div>
+            `;
+        }
+
+        function setCompPreset(a, b) {
+            document.getElementById('compBinA').value = a;
+            document.getElementById('compBinB').value = b;
+            runComplementLab();
+        }
+
+        // ==========================================
+        // 5. مختبر (4): حاسبة الصوت والصور
+        // ==========================================
+        function calcAudioSize() {
+            const rate = parseFloat(document.getElementById('audRate').value) || 0;
+            const bits = parseFloat(document.getElementById('audBits').value) || 0;
+            const chan = parseFloat(document.getElementById('audChan').value) || 1;
+            const sec = parseFloat(document.getElementById('audSec').value) || 0;
+
+            const totalBits = rate * bits * chan * sec;
+            const totalBytes = totalBits / 8;
+            const totalKB = totalBytes / 1000;
+            const totalMB = totalKB / 1000;
+            const songsOnCD = totalMB > 0 ? Math.floor(650 / totalMB) : 0;
+
+            document.getElementById('audCalcOutput').innerHTML = `
+                • <strong>كمية البيانات بالبت (bits):</strong> ${rate.toLocaleString()} × ${bits} × ${chan} × ${sec} = <strong>${totalBits.toLocaleString()} bit</strong><br>
+                • <strong>بالبايت (÷ 8):</strong> <strong>${totalBytes.toLocaleString()} Byte</strong><br>
+                • <strong>بالكيلوبايت (÷ 1,000):</strong> <strong>${totalKB.toFixed(1)} KB</strong> (أقرب عدد صحيح: <strong>${Math.round(totalKB).toLocaleString()} KB</strong>)<br>
+                • <strong>بالميجابايت (÷ 1,000):</strong> <strong>${totalMB.toFixed(2)} MB</strong> (أقرب عدد صحيح: <strong>${Math.round(totalMB)} MB</strong>)
+                ${sec === 180 ? `<br>💿 <strong>عدد الأغاني (طول 3 دقائق) على قرص CD بسعة 650 MB:</strong> 650 ÷ ${totalMB.toFixed(2)} ≈ <strong>${songsOnCD} أغنية</strong> (جرب صـ 82)` : ''}
+            `;
+        }
+
+        function setAudPreset(r, b, c, s) {
+            document.getElementById('audRate').value = r;
+            document.getElementById('audBits').value = b;
+            document.getElementById('audChan').value = c;
+            document.getElementById('audSec').value = s;
+            calcAudioSize();
+        }
+
+        function calcImageSize() {
+            const w = parseFloat(document.getElementById('imgW').value) || 0;
+            const h = parseFloat(document.getElementById('imgH').value) || 0;
+            const bits = parseFloat(document.getElementById('imgBits').value) || 24;
+
+            const totalPixels = w * h;
+            const totalBits = totalPixels * bits;
+            const totalBytes = totalBits / 8;
+            const totalKB = totalBytes / 1000;
+            const totalMB = totalKB / 1000;
+
+            document.getElementById('imgCalcOutput').innerHTML = `
+                • <strong>إجمالي البكسلات:</strong> ${w.toLocaleString()} × ${h.toLocaleString()} = <strong>${totalPixels.toLocaleString()} pixels</strong><br>
+                • <strong>حجم الصورة بالبت (bits):</strong> ${totalPixels.toLocaleString()} × ${bits} = <strong>${totalBits.toLocaleString()} bit</strong><br>
+                • <strong>بالبايت (÷ 8):</strong> <strong>${totalBytes.toLocaleString()} Byte</strong><br>
+                • <strong>بالكيلوبايت (÷ 1,000):</strong> <strong>${totalKB.toFixed(1)} KB</strong> (أقرب صحيح: <strong>${Math.round(totalKB).toLocaleString()} KB</strong>)<br>
+                • <strong>بالميجابايت (÷ 1,000):</strong> <strong>${totalMB.toFixed(2)} MB</strong>
+            `;
+        }
+
+        function setImgPreset(w, h, b) {
+            document.getElementById('imgW').value = w;
+            document.getElementById('imgH').value = h;
+            document.getElementById('imgBits').value = b;
+            calcImageSize();
+        }
+
+        // ==========================================
+        // 6. مختبر (5): شبكة 5×5 لترميز طول التشغيل (RLE) + الفيديو
+        // ==========================================
+        let currentPixels = Array(25).fill('W');
+
+        function expandRleString(code) {
+            const out = [];
+            const regex = /([BW])(\d*)/g;
+            let match;
+            while ((match = regex.exec(code)) !== null) {
+                const ch = match[1];
+                const count = match[2] ? parseInt(match[2], 10) : 1;
+                for (let i = 0; i < count; i++) out.push(ch);
+            }
+            while (out.length < 25) out.push('W');
+            return out.slice(0, 25);
+        }
+
+        function compressRleArray(arr) {
+            let res = '';
+            let i = 0;
+            while (i < arr.length) {
+                let count = 1;
+                while (i + count < arr.length && arr[i + count] === arr[i]) count++;
+                res += arr[i] + (count >= 2 ? count : '');
+                i += count;
+            }
+            return res;
+        }
+
+        function renderRleGrid(noteText) {
+            const grid = document.getElementById('rlePixelGrid');
+            grid.innerHTML = '';
+            currentPixels.forEach((val, idx) => {
+                const cell = document.createElement('div');
+                cell.className = `rle-cell pixel-${val}`;
+                cell.innerText = val;
+                cell.onclick = () => {
+                    currentPixels[idx] = currentPixels[idx] === 'B' ? 'W' : 'B';
+                    renderRleGrid('تم تعديل الشبكة يدوياً — انظر السلسلة المضغوطة المحدثة:');
+                };
+                grid.appendChild(cell);
+            });
+
+            const rawStr = currentPixels.join('');
+            const rleStr = compressRleArray(currentPixels);
+            const ratio = Math.round((rleStr.length / rawStr.length) * 100);
+
+            document.getElementById('rleAnalysisBox').innerHTML = `
+                <div style="font-weight:900; color:var(--primary-dark); margin-bottom:6px;">📌 ${noteText || 'تحليل الشبكة 5×5:'}</div>
+                <div style="font-size:0.88rem; margin-bottom:6px;">
+                    • <strong>السلسلة الأصلية قبل الضغط (25 حرفاً):</strong><br>
+                    <code style="word-break:break-all; background:var(--surface-alt); padding:2px 6px; border-radius:4px;">${rawStr}</code>
+                </div>
+                <div style="font-size:0.92rem; margin-bottom:6px;">
+                    • <strong>بعد الضغط بطريقة طول التشغيل (Run-length encoding):</strong><br>
+                    <code style="color:var(--secondary); font-weight:900; font-size:1rem;">${rleStr}</code> (${rleStr.length} حرفاً)
+                </div>
+                <div style="font-size:0.86rem; color:var(--text-muted);">
+                    • <strong>نسبة الضغط:</strong> (${rleStr.length} ÷ 25) × 100 = <strong>${ratio}%</strong>
+                </div>
+            `;
+        }
+
+        function loadRlePreset(letter, code, desc, btn) {
+            if (btn) {
+                btn.parentElement.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            }
+            currentPixels = expandRleString(code);
+            renderRleGrid(`${desc} — الحرف الناتج هو: (${letter})`);
+        }
+
+        const videoCasesData = {
+            1: `<strong>حل سؤال «تحدى معلوماتك (1)» صـ 88 و 89:</strong><br>
+                • [1] حجم الإطار الواحد = 500 × 200 × 24 bit = 2,400,000 bit ÷ 8 = <strong>300,000 Byte</strong>.<br>
+                • حجم الفيديو (10 ثوانٍ × 30 fps) = 300,000 × 30 × 10 = 90,000,000 Byte = <strong>90 MB</strong>.<br>
+                • [2] نسبة الضغط بعد تحويله لملف بحجم 30 MB = (30 ÷ 90) × 100 = 33.3% ≈ <strong>33%</strong>.`,
+            2: `<strong>حل سؤال «جرب بنفسك 1-(2)» صـ 89:</strong><br>
+                • حجم الإطار الواحد = 640 × 360 × 24 bit = 5,529,600 bit ÷ 8 = <strong>691,200 Byte</strong>.<br>
+                • حجم الفيديو لمدة دقيقة (60 ثانية × 30 fps) = 691,200 × 30 × 60 = 1,244,160,000 Byte ÷ 1,000,000 = 1,244.16 MB ≈ <strong>1,244 MB</strong>.`,
+            3: `<strong>حل سؤال «جرب بنفسك 2-(2)» صـ 90:</strong><br>
+                • الحجم بعد الضغط = 21 MB، والحجم الأصلي (بعد فك الضغط) = 50 MB.<br>
+                • نسبة الضغط = (حجم البيانات بعد الضغط ÷ الحجم الأصلي) × 100 = (21 ÷ 50) × 100 = <strong>42%</strong>.`,
+            4: `<strong>حل سؤال «تمرين 1-(2)» صـ 90:</strong><br>
+                • حجم الإطار الواحد = 1,920 × 1,080 × 24 bit = 49,766,400 bit ÷ 8 = <strong>6,220,800 Byte</strong>.<br>
+                • حجم الفيديو لثانية واحدة بمعدل 60 fps = 6,220,800 × 60 × 1 = 373,248,000 Byte ÷ 1,000,000 = 373.248 MB ≈ <strong>373.2 MB</strong>.`
+        };
+
+        function showVideoCase(num) {
+            document.getElementById('videoCaseOutput').innerHTML = videoCasesData[num];
+        }
+
+        // ==========================================
+        // 7. مبدأ LATCH لتنظيم البيانات (الدرس 6-10 صـ 93)
+        // ==========================================
+        const latchData = {
+            L: {
+                title: "1. الموقع (Location) — الحرف L",
+                desc: "يعتمد التصنيف على الموقع الفعلي أو الجغرافي (مثل خريطة متجر حسب الطوابق، أو خريطة محطات المترو حسب مواقعها)."
+            },
+            A: {
+                title: "2. الأبجدية (Alphabet) — الحرف A",
+                desc: "يعتمد التصنيف على الترتيب الأبجدي أو البياني للحروف (مثل القواميس، فهارس الكتب، وقوائم جهات الاتصال في الهاتف)."
+            },
+            T: {
+                title: "3. الوقت (Time) — الحرف T",
+                desc: "يعتمد التصنيف على تسلسل الأحداث من حيث الوقت (مثل الجداول الزمنية التاريخية، وجدول مواعيد القطارات أو الحصص)."
+            },
+            C: {
+                title: "4. الفئة (Category) — الحرف C",
+                desc: "يعتمد التصنيف على الفروقات بين الأشياء ويُستخدم كمعيار لتمييز المجالات والأقسام (مثل تصنيف الكتب حسب المجال أو المنتجات حسب النوع)."
+            },
+            H: {
+                title: "5. الهرمية / التسلسل الهرمي (Hierarchy) — الحرف H",
+                desc: "يعتمد التصنيف على التغيرات الكمية مثل الحجم، المستوى، الدرجة، أو السعر (من الأكبر للأصغر أو الأعلى للأدنى)."
+            }
+        };
+
+        function selectLatch(letter) {
+            ['L', 'A', 'T', 'C', 'H'].forEach(k => {
+                document.getElementById('latch_' + k).classList.toggle('active', k === letter);
+            });
+            const d = latchData[letter];
+            document.getElementById('latchDetailBox').innerHTML = `
+                <h4 style="font-size:1.2rem; color:var(--primary-dark); margin-bottom:6px;">${d.title}</h4>
+                <p style="font-weight:800;">📖 نص الكتاب (صـ 93): "${d.desc}"</p>
+            `;
+        }
+
+        // ==========================================
+        // 8. بنك الأسئلة الشامل للوحدة السادسة (20 سؤالاً من الكتاب صـ 62 - 95)
+        // ==========================================
+        const unit6Questions = [
+            {
+                lesson: "G1",
+                q: "1. (صـ 62 و 63 - تمرين 2) اختر العبارة الواحدة «غير الصحيحة» فيما يتعلق بالبيانات الرقمية (Digital data):",
+                choices: [
+                    "أ) يمكن تحقيق تراكم البيانات وتكرارها بسهولة دون تدهور",
+                    "ب) من الممكن نقل البيانات بكفاءة وتصحيح التشويه الناتج عن الضوضاء",
+                    "ج) يمكنها التعبير عن الكميات التي تتغير بشكل مستمر وتدريجي دون تقسيم، مثل الوقت ودرجة الحرارة في عمود الزئبق",
+                    "د) من الممكن دمج أنواع مختلفة من الوسائط للتعبير عنها"
+                ],
+                correct: 2,
+                reason: "الكميات التي تتغير بشكل مستمر وتدريجي (كعمود الزئبق في مقياس الحرارة) هي البيانات التناظرية (Analog data)، بينما البيانات الرقمية تقسمها إلى خطوات محددة ومنفصلة."
+            },
+            {
+                lesson: "G1",
+                q: "2. (صـ 62 و 63 - جرب بنفسك 1) تُسمى عملية تحويل البيانات التناظرية إلى بيانات رقمية (رقمنة) بـ [1]، بينما عملية تحويل البيانات الرقمية إلى بيانات تناظرية تُسمى [2]:",
+                choices: [
+                    "أ) [1] تحويل A/D (Analog-to-Digital) — [2] تحويل D/A (Digital-to-Analog)",
+                    "ب) [1] تحويل D/A — [2] تحويل A/D",
+                    "ج) [1] التشفير — [2] فك الضغط",
+                    "د) [1] المكمل الأحادي — [2] المكمل الثنائي"
+                ],
+                correct: 0,
+                reason: "نص الكتاب (صـ 62): التحويل من تناظري إلى رقمي هو A/D conversion (digitization)، والتحويل من رقمي إلى تناظري هو D/A conversion."
+            },
+            {
+                lesson: "G1",
+                q: "3. (صـ 65 - تحدى معلوماتك) كم bit من البيانات مطلوب لتمثيل جميع النتائج الممكنة عند رمي حجرَي نرد (واحد كبير وواحد صغير)؟",
+                choices: [
+                    "أ) 6 bit (لأن عدد النتائج 6 × 6 = 36، و 2⁵ = 32 لا تكفي بينما 2⁶ = 64 تكفي)",
+                    "ب) 5 bit (لأن 2⁵ = 32)",
+                    "ج) 4 bit (لأن 2⁴ = 16)",
+                    "د) 12 bit"
+                ],
+                correct: 0,
+                reason: "عند رمي نردين توجد 6 × 6 = 36 نتيجة مختلفة. 5 bit تمثل 32 احتمالاً فقط، لذا نحتاج إلى 6 bit لأنها تمثل 2⁶ = 64 احتمالاً."
+            },
+            {
+                lesson: "G1",
+                q: "4. (صـ 65 و 66 - تحدى معلوماتك وجرب بنفسك) كم مرة تزيد كمية البيانات (عدد الاحتمالات) التي يمكن تمثيلها بـ 4 bit مقارنة بـ 2 bit؟ وكم Byte يوجد في 1 MB على شكل أس للعدد 2؟",
+                choices: [
+                    "أ) تزيد 4 مرات (16 ÷ 4 = 4) — ويوجد 2²⁰ بايت في 1 MB (لأن 1024 × 1024 = 2¹⁰ × 2¹⁰)",
+                    "ب) تزيد مرتين — ويوجد 2¹⁰ بايت في 1 MB",
+                    "ج) تزيد 8 مرات — ويوجد 2³⁰ بايت في 1 MB",
+                    "د) تزيد 16 مرة — ويوجد 2⁸ بايت في 1 MB"
+                ],
+                correct: 0,
+                reason: "2 bit تمثل 2² = 4 احتمالات، و4 bit تمثل 2⁴ = 16 احتمالاً (16 ÷ 4 = 4 مرات). و1 MB يساوي 1,024 KB = 1,024 × 1,024 Byte = 2¹⁰ × 2¹⁰ = 2²⁰ Byte."
+            },
+            {
+                lesson: "G1",
+                q: "5. (صـ 66 و 69 - تحدى معلوماتك) حوّل العدد الثنائي 11011011₍₂₎ إلى النظام السادس عشر، وحوّل العدد السادس عشر A5₍₁₆₎ إلى النظام العشري:",
+                choices: [
+                    "أ) 11011011₍₂₎ = DB₍₁₆₎ — و A5₍₁₆₎ = 165₍₁₀₎",
+                    "ب) 11011011₍₂₎ = B6₍₁₆₎ — و A5₍₁₆₎ = 150₍₁₀₎",
+                    "ج) 11011011₍₂₎ = F6₍₁₆₎ — و A5₍₁₆₎ = 120₍₁₀₎",
+                    "د) 11011011₍₂₎ = 9E₍₁₆₎ — و A5₍₁₆₎ = 185₍₁₀₎"
+                ],
+                correct: 0,
+                reason: "نقسم 11011011 إلى 1101 (13=D) و 1011 (11=B) فيكون DB₍₁₆₎. أما A5₍₁₆₎ فيساوي 10100101₍₂₎ = 128 + 32 + 4 + 1 = 165₍₁₀₎."
+            },
+            {
+                lesson: "G2",
+                q: "6. (صـ 70 - النقاط الرئيسية) ما اسم الظاهرة التي تحدث عندما تظهر رموز غير مفهومة بسبب عدم تطابق أساليب التشفير (Encoding) وفك التشفير (Decoding) لرموز الأحرف؟",
+                choices: [
+                    "أ) فساد الحرف (Character corruption)",
+                    "ب) التعرجات (Jaggies)",
+                    "ج) ظاهرة الصورة الباقية (Afterimage)",
+                    "د) الإجهاد التكنولوجي (Technostress)"
+                ],
+                correct: 0,
+                reason: "نص الكتاب (صـ 70): فساد الحرف (Character corruption) هو ظاهرة تحدث بسبب عدم تطابق أساليب التشفير (الترميز) وفك التشفير."
+            },
+            {
+                lesson: "G2",
+                q: "7. (صـ 71 - النقاط الرئيسية) لعرض الأحرف على شاشة الكمبيوتر أو مخرجات الطابعة، ما هما العنصران الأساسيان المطلوبان معاً؟",
+                choices: [
+                    "أ) رمز الحرف (Character code) والخط (Font)",
+                    "ب) تردد أخذ العينات وعمق البت الكمي",
+                    "ج) المتمم الأحادي والمتمم الثنائي",
+                    "د) الضغط الفاقد والضغط غير الفاقد"
+                ],
+                correct: 0,
+                reason: "نص الكتاب (صـ 71): لعرض الأحرف على شاشة الكمبيوتر أو مخرجات الطابعة، هناك عنصران أساسيان: رمز الحرف (character code) والخط (font)."
+            },
+            {
+                lesson: "G2",
+                q: "8. (صـ 71 و 72 - تحدى معلوماتك وحاول بنفسك) باستخدام جدول ASCII: ما هي الكلمة المقابلة للرمز السادس عشر «4C6F7665»، وما هو حجم البيانات عند إدخال كلمة «Welcome»؟",
+                choices: [
+                    "أ) الكلمة هي Love — وحجم كلمة Welcome هو 7 Byte (أو 56 bit)",
+                    "ب) الكلمة هي MILK — وحجم كلمة Welcome هو 14 Byte",
+                    "ج) الكلمة هي Hari — وحجم كلمة Welcome هو 5 Byte",
+                    "د) الكلمة هي Hello — وحجم كلمة Welcome هو 10 Byte"
+                ],
+                correct: 0,
+                reason: "بتقسيم 4C/6F/76/65 في جدول ASCII: 4C=L، 6F=o، 76=v، 65=e (الكلمة Love). وكلمة Welcome تتكون من 7 أحرف × 1 Byte = 7 Bytes."
+            },
+            {
+                lesson: "G2",
+                q: "9. (صـ 74 - تحدى معلوماتك) ما ناتج عملية الجمع الثنائي 1011₍₂₎ + 0011₍₂₎، وناتج عملية الطرح الثنائي 1011₍₂₎ - 0101₍₂₎؟",
+                choices: [
+                    "أ) الجمع = 1110₍₂₎ — والطرح = 0110₍₂₎",
+                    "ب) الجمع = 1111₍₂₎ — والطرح = 0011₍₂₎",
+                    "ج) الجمع = 1000₍₂₎ — والطرح = 1001₍₂₎",
+                    "د) الجمع = 1100₍₂₎ — والطرح = 0101₍₂₎"
+                ],
+                correct: 0,
+                reason: "في الجمع: 1011 (11) + 0011 (3) = 1110₍₂₎ (14). وفي الطرح: 1011 (11) - 0101 (5) = 0110₍₂₎ (6)."
+            },
+            {
+                lesson: "G2",
+                q: "10. (صـ 76 و 77 - تحدى معلوماتك) ما هو المكمل الثنائي (Two's Complement) للعدد 0111₍₂₎، وكيف يُستخدم لحساب عملية الطرح 1100₍₂₎ - 0111₍₂₎؟",
+                choices: [
+                    "أ) مكمل 0111₍₂₎ هو 1001₍₂₎، وبالجمع: 1100 + 1001 = 10101₍₂₎، وبتجاهل الخانة الرئيسية الزائدة يصبح الناتج 0101₍₂₎",
+                    "ب) مكمل 0111₍₂₎ هو 1000₍₂₎، والناتج النهائي هو 1111₍₂₎",
+                    "ج) مكمل 0111₍₂₎ هو 0111₍₂₎، والناتج النهائي هو 0011₍₂₎",
+                    "د) مكمل 0111₍₂₎ هو 1110₍₂₎، والناتج النهائي هو 1010₍₂₎"
+                ],
+                correct: 0,
+                reason: "نعكس خانات 0111 فتصبح 1000، ثم نضيف 1 فيصبح المكمل الثنائي 1001₍₂₎. نجمعه مع 1100 فنحصل على 10101₍₂₎، وبتجاهل الرقم الرائد في اليسار يكون الناتج 0101₍₂₎."
+            },
+            {
+                lesson: "G3",
+                q: "11. (صـ 80 - تحدى معلوماتك) ما هو الترتيب الصحيح لخطوات رقمنة إشارة صوتية تناظرية (طريقة PCM) أو رقمنة صورة؟",
+                choices: [
+                    "أ) أخذ العينات (Sampling) ← التحويل الكمي / التكميم (Quantization) ← الترميز (Encoding)",
+                    "ب) الترميز ← التحويل الكمي ← أخذ العينات",
+                    "ج) التحويل الكمي ← أخذ العينات ← الترميز",
+                    "د) التحويل الكمي ← الترميز ← أخذ العينات"
+                ],
+                correct: 0,
+                reason: "خطوات الرقمنة دائماً بالترتيب: (1) أخذ العينات (Sampling) ← (2) التحويل الكمي / التكميم (Quantization) ← (3) الترميز (Encoding)."
+            },
+            {
+                lesson: "G3",
+                q: "12. (صـ 80 و 82 - تحدى معلوماتك وتمرين) احسب كمية البيانات لثانية واحدة بالكيلوبايت (KB) عند رقمنة الموسيقى بتردد 44,100 Hz، وعمق 16 bit، وفي استريو ثنائي القناة (2) علماً بأن 1 KB = 1,000 B (مقرباً لأقرب عدد صحيح):",
+                choices: [
+                    "أ) 176 KB (لأن 44,100 × 16 × 2 × 1 = 1,411,200 bit ÷ 8 = 176,400 Byte ≈ 176 KB)",
+                    "ب) 88 KB",
+                    "ج) 352 KB",
+                    "د) 44 KB"
+                ],
+                correct: 0,
+                reason: "حجم الثانية بالبت = 44,100 × 16 × 2 = 1,411,200 bit. نقسم على 8 للتحويل لبايت = 176,400 Byte. نقسم على 1,000 = 176.4 KB ≈ 176 KB."
+            },
+            {
+                lesson: "G3",
+                q: "13. (صـ 80 و 82 - تمرين 1-(2)) وفقاً لـ «نظرية أخذ العينات» (Sampling theorem)، إذا كان التردد الأقصى لشكل الموجة التناظرية الأصلي هو 40 هرتز (Hz)، فما هو تردد أخذ العينات المطلوب لرقمنته بدقة؟",
+                choices: [
+                    "أ) يجب رقمنته بتردد أخذ عينات أكبر من ضعف التردد الأقصى، أي أكبر من 80 هرتز (Hz)",
+                    "ب) يكفي رقمنته بتردد 20 هرتز",
+                    "ج) يجب تقليل تردد أخذ العينات وتقليل عدد مستويات التكميم",
+                    "د) يكفي رقمنته بتردد 40 هرتز بالضبط"
+                ],
+                correct: 0,
+                reason: "تنص نظرية أخذ العينات (صـ 80) على أنه إذا تجاوز تردد أخذ العينات ضعف (2×) أعلى تردد في الموجة الأصلية (2 × 40 = 80 Hz)، يمكن إعادة بناء شكل الموجة الأصلية بدقة."
+            },
+            {
+                lesson: "G3",
+                q: "14. (صـ 83 و 84 - تحدى معلوماتك) أي العبارات التالية صحيحة حول «التنسيق النقطي» (Raster) و«تنسيق المتجهات» (Vector) للصور الرقمية؟",
+                choices: [
+                    "أ) تظهر في التنسيق النقطي حواف متعرجة (Jaggies) عند تكبير الصورة، بينما يمثل تنسيق المتجهات الصور بدمج إحداثيات النقاط وسماكة الخطوط باستخدام برنامج رسم",
+                    "ب) التنسيق النقطي يعتمد على المعادلات الرياضية ولا يتأثر بالتكبير أبداً",
+                    "ج) كلما كانت قيم الدقة (dpi) والتدرج أصغر، كانت الصورة الناتجة أكثر سلاسة",
+                    "د) يتم رسم الصور المتجهية باستخدام برنامج تلوين وتظهر فيها التعرجات عند التكبير"
+                ],
+                correct: 0,
+                reason: "التنسيق النقطي يتكون من شبكة بكسلات وتظهر فيه التعرجات (Jaggies) عند التكبير، بينما تنسيق المتجهات (Vector) يحفظ إحداثيات النقاط والخطوط رياضياً ولا يتشوه عند التكبير."
+            },
+            {
+                lesson: "G3",
+                q: "15. (صـ 84 - تحدى معلوماتك 3) ما هو حجم بيانات صورة ملونة كاملة (24 bit) بدقة 1,280 × 720 بكسل بالميجابايت (MB)؟ (افترض أن 1 KB = 1,000 B و 1 MB = 1,000 KB، وقرب إلى منزلتين عشريتين):",
+                choices: [
+                    "أ) 2.76 MB (لأن 1,280 × 720 × 24 = 22,118,400 bit ÷ 8 = 2,764,800 B ≈ 2.76 MB)",
+                    "ب) 1.38 MB",
+                    "ج) 5.52 MB",
+                    "د) 22.12 MB"
+                ],
+                correct: 0,
+                reason: "حجم الصورة = 1,280 × 720 × 24 = 22,118,400 bit. بالقسمة على 8 = 2,764,800 Byte. وبالقسمة على 1,000,000 = 2.7648 MB ≈ 2.76 MB."
+            },
+            {
+                lesson: "G3",
+                q: "16. (صـ 87 إلى 91 - النقاط الرئيسية وتمرين) قارن بدقة بين طرق ضغط البيانات: ما الفرق بين «ترميز طول التشغيل» (Run-length encoding) و«ترميز هوفمان» (Huffman coding)؟",
+                choices: [
+                    "أ) ترميز طول التشغيل يستبدل الرموز المتتالية المتطابقة بالرمز وعدد تكراره (مثل A5B2)، بينما ترميز هوفمان يعين تسلسلات bit أقصر للأحرف الأكثر تكراراً وأطول للأقل تكراراً",
+                    "ب) كلاهما من طرق الضغط الفاقد للبيانات (Lossy compression) التي لا تستعيد النص الأصلي",
+                    "ج) ترميز طول التشغيل يحذف الألوان من الفيديو، وترميز هوفمان يضاعف حجم الملف",
+                    "د) ترميز هوفمان يستخدم فقط للصوت التناظري قبل رقمنته"
+                ],
+                correct: 0,
+                reason: "كلاهما من الأنواع الرئيسية للضغط بدون فقدان (Lossless): ترميز طول التشغيل (RLE) يسرد الرمز وعدد تكراره المتتالي، وترميز هوفمان يعطي كود ثنائي أقصر للحروف المتكررة بكثرة."
+            },
+            {
+                lesson: "G4",
+                q: "17. (صـ 92 إلى 95 - تحدى معلوماتك وجرب بنفسك) طابق طرق تصميم البيانات الثلاث بتعريفاتها وأمثلتها: [1] استخراج العناصر الضرورية فقط ونقلها ببساطة (مثل الرسوم التوضيحية للفصول) — [2] تمثيل البيانات بصرياً (مثل الجداول والرسوم البيانية) — [3] تنظيم البيانات بوضوح وفقاً للعلاقات والتسلسل الهرمي:",
+                choices: [
+                    "أ) [1] التجريد (Abstraction) — [2] التصور (Visualization) — [3] الهيكلة (Structuring)",
+                    "ب) [1] الهيكلة — [2] التجريد — [3] التصور",
+                    "ج) [1] التصور — [2] الهيكلة — [3] التجريد",
+                    "د) [1] التكميم — [2] المعاينة — [3] الترميز"
+                ],
+                correct: 0,
+                reason: "في تصميم البيانات (صـ 92-95): التجريد (Abstraction) يستخرج العناصر الضرورية ببساطة، التصور (Visualization) يمثل البيانات بصرياً كالجداول والرسوم البيانية، والهيكلة (Structuring) تنظم العلاقات والقوائم الهرمية."
+            },
+            {
+                lesson: "G4",
+                q: "18. (صـ 92 و 95 - تمرين 1-(2)) ما هو المصطلح الذي يطلق على الرموز التصويرية المستخدمة في المرافق العامة مثل محطات القطار والمطارات (وعلامة مخرج الطوارئ) لنقل البيانات بصرياً دون استخدام الكلمات؟",
+                choices: [
+                    "أ) الرسم التصويري / التوضيحي (Pictogram)",
+                    "ب) واجهة سطر الأوامر (CUI)",
+                    "ج) فساد الحرف (Character corruption)",
+                    "د) دالة التجزئة (Hash function)"
+                ],
+                correct: 0,
+                reason: "الرسم التصويري (Pictogram) هو رمز تصويري مصمم لغرض نقل البيانات دون استخدام الكلمات، ويُستخدم لعلامات المعلومات والطوارئ في المحطات والمطارات."
+            },
+            {
+                lesson: "G4",
+                q: "19. (صـ 92 و 93 - تحدى معلوماتك 2) أجهزة الكمبيوتر الحالية تستخدم على نطاق واسع [1] التي تسمح بمعالجة المعلومات المعروضة بيانياً مثل الرموز والأزرار باستخدام فأرة أو إصبع، بينما أجهزة الكمبيوتر المبكرة استخدمت [2] بإدخال أحرف نصية من لوحة المفاتيح:",
+                choices: [
+                    "أ) [1] واجهة المستخدم الرسومية (GUI) — [2] واجهة سطر الأوامر / النصية (CUI)",
+                    "ب) [1] واجهة سطر الأوامر (CUI) — [2] واجهة المستخدم الرسومية (GUI)",
+                    "ج) [1] مبدأ LATCH — [2] الرسم التصويري",
+                    "د) [1] تجربة المستخدم (UX) — [2] التصميم الشامل"
+                ],
+                correct: 0,
+                reason: "واجهة المستخدم الرسومية (GUI) تعتمد على الرموز والأزرار والفأرة/اللمس، بينما واجهة سطر الأوامر (CUI) تعتمد على إدخال الأوامر النصية بلوحة المفاتيح."
+            },
+            {
+                lesson: "G4",
+                q: "20. (صـ 92 إلى 95 - تحدى معلوماتك وتمرين) ما الفرق بين مصطلح «التصميم الشامل» (Universal Design) ومصطلح «الدال / المُشير» (Signifier)؟",
+                choices: [
+                    "أ) التصميم الشامل هو تصميم مدروس يسمح لجميع الناس (بغض النظر عن العمر أو اللغة أو الجنسية أو القدرة الجسدية) باستخدامه بدون صعوبة، بينما الدال (Signifier) هو إشارات تدفع المستخدمين لاتخاذ إجراء",
+                    "ب) التصميم الشامل هو إشارات تدفع لاتخاذ إجراء، والدال هو لغة برمجة",
+                    "ج) كلاهما يشير إلى ضغط ملفات الفيديو بدون فقدان",
+                    "د) التصميم الشامل خاص بالمبرمجين فقط، والدال خاص بالطابعات الملونة"
+                ],
+                correct: 0,
+                reason: "نص الكتاب (صـ 92-95): التصميم الشامل (Universal design) يتيح لجميع الناس استخدام المنتج بدون صعوبة بغض النظر عن العمر أو اللغة أو القدرة الجسدية؛ أما الدال (Signifier) فهو إشارات تدفع المستخدمين لاتخاذ إجراء."
+            }
+        ];
+
+        let currentQuizFilter = 'all';
+        let answeredCorrectly = new Set();
+
+        function renderExam() {
+            const container = document.getElementById('quizContainer');
+            container.innerHTML = "";
+
+            unit6Questions.forEach((item, qIdx) => {
+                if (currentQuizFilter !== 'all' && item.lesson !== currentQuizFilter) return;
+                const qBox = document.createElement('div');
+                qBox.className = 'quiz-item-box';
+                qBox.innerHTML = `
+                    <div class="q-title">${item.q}</div>
+                    <div class="q-choices" id="choiceGroup_${qIdx}">
+                        ${item.choices.map((c, cIdx) => `
+                            <button class="choice-btn" onclick="validateAnswer(${qIdx}, ${cIdx}, this)">${c}</button>
+                        `).join('')}
+                    </div>
+                    <div class="choice-feedback" id="feedback_${qIdx}">📖 <strong>الشرح المنهجي من كتاب الوزارة:</strong> ${item.reason}</div>
+                `;
+                container.appendChild(qBox);
+            });
+            updateQuizScoreDisplay();
+        }
+
+        function filterQuiz(lesson, btn) {
+            currentQuizFilter = lesson;
+            if (btn) {
+                btn.parentElement.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            }
+            renderExam();
+        }
+
+        function validateAnswer(qIdx, cIdx, btn) {
+            const group = document.getElementById(`choiceGroup_${qIdx}`);
+            const buttons = group.querySelectorAll('.choice-btn');
+            const feedback = document.getElementById(`feedback_${qIdx}`);
+            const correctIdx = unit6Questions[qIdx].correct;
+
+            buttons.forEach(b => b.disabled = true);
+
+            if (cIdx === correctIdx) {
+                btn.classList.add('correct-choice');
+                answeredCorrectly.add(qIdx);
+            } else {
+                btn.classList.add('wrong-choice');
+                buttons[correctIdx].classList.add('correct-choice');
+            }
+
+            feedback.style.display = 'block';
+            updateQuizScoreDisplay();
+        }
+
+        function updateQuizScoreDisplay() {
+            document.getElementById('quizScoreTracker').innerText = `النتيجة الحالية: ${answeredCorrectly.size} / ${unit6Questions.length}`;
+        }
+
+        function reloadQuiz() {
+            answeredCorrectly.clear();
+            renderExam();
+        }
+
+        // ==========================================
+        // 9. قاموس مصطلحات الوحدة السادسة (Modal)
+        // ==========================================
+        const glossaryTerms = [
+            { ar: "البيانات التناظرية", en: "Analog data", desc: "كميات تتغير تدريجياً وبشكل مستمر ويمكن قياسها بدقة فائقة (مثل الكتلة، الوقت، درجة الحرارة بعمود الزئبق)." },
+            { ar: "البيانات الرقمية", en: "Digital data", desc: "كميات تتغير في خطوات محددة ومنفصلة ويتم تمثيلها رقمياً (تتميز بسهولة النسخ والتحرير والنقل ودمج الوسائط)." },
+            { ar: "التحويل من تناظري إلى رقمي", en: "A/D conversion (Digitization)", desc: "عملية تحويل البيانات التناظرية إلى بيانات رقمية." },
+            { ar: "التحويل من رقمي إلى تناظري", en: "D/A conversion", desc: "عملية تحويل البيانات الرقمية إلى بيانات تناظرية." },
+            { ar: "البت والبايت", en: "bit & Byte (1 Byte = 8 bits)", desc: "البت أصغر وحدة للمعلومات (0 أو 1)؛ والبايت يتكون من 8 بت ويمثل 2⁸ = 256 احتمالاً. تتغير الوحدات (KB, MB, GB, TB) كل 1,024 مرة." },
+            { ar: "النظام الثنائي والسادس عشر", en: "Binary (0,1) & Hexadecimal (0-9, A-F)", desc: "الثنائي يستخدم (0 و 1)، والسادس عشر يستخدم (0-9 و A-F) حيث تمثل كل خانة سادس عشر 4 خانات ثنائية (4 bits)." },
+            { ar: "رمز الحرف", en: "Character code", desc: "قيمة رقمية فريدة يتم تعيينها لكل حرف أو رمز." },
+            { ar: "كود ASCII ويونيكود", en: "ASCII code & Unicode", desc: "ASCII يمثل الأحرف الإنجليزية والرموز بـ 1 Byte (256 حرفاً)؛ بينما Unicode يجمع أحرف لغات العالم في معيار واحد (مثل UTF-8 و UTF-16)." },
+            { ar: "فساد الحرف", en: "Character corruption", desc: "ظاهرة تحدث بسبب عدم تطابق أساليب التشفير (Encoding) وفك التشفير (Decoding) للنصوص." },
+            { ar: "الخط", en: "Font", desc: "بيانات شكل الأحرف المقابلة لرموز الأحرف (مثل Serif و Sans-serif)." },
+            { ar: "المكمل / المتمم", en: "Complement (10's & 2's Complement)", desc: "أصغر رقم ينتج عند إضافته ترحيلاً للخانة الأعلى، ويُستخدم لتمثيل الأرقام السالبة وإجراء الطرح عن طريق الجمع." },
+            { ar: "التردد والفترة", en: "Frequency (Hz) & Period (s)", desc: "التردد هو عدد الموجات في ثانية واحدة (هرتز Hz)، والفترة هي زمن انتشار موجة واحدة (ثانية)." },
+            { ar: "طريقة التعديل بالنبضات الرقمية", en: "PCM (Pulse Code Modulation)", desc: "طريقة رقمنة الصوت التناظري عبر 3 خطوات: أخذ العينات (Sampling) ← التحويل الكمي (Quantization) ← الترميز (Encoding)." },
+            { ar: "نظرية أخذ العينات", en: "Sampling theorem", desc: "لإعادة بناء الموجة التناظرية بدقة، يجب أن يتجاوز تردد أخذ العينات ضعف (2×) أعلى تردد في الموجة الأصلية." },
+            { ar: "البكسل والدقة والتدرج", en: "Pixel, Resolution (dpi) & Gradation", desc: "البكسل أصغر وحدة في الصورة؛ الدقة تقاس بـ dpi؛ والتدرج يمثل مستويات كثافة اللون (8 bit = 256 تدرجاً)." },
+            { ar: "التنسيق النقطي وتنسيق المتجهات", en: "Raster (Jaggies) vs. Vector format", desc: "النقطي شبكة بكسلات تظهر فيها التعرجات (Jaggies) عند التكبير (برنامج تلوين)؛ والمتجهي يحفظ الإحداثيات والخطوط رياضياً (برنامج رسم)." },
+            { ar: "مزج الألوان الجمعي والطرحي", en: "Additive (RGB) & Subtractive (CMY)", desc: "الجمعي للضوء (RGB) في الشاشات ومزجه يقترب من الأبيض؛ والطرحي للصبغة (CMY) في الطابعات ومزجه يقترب من الأسود." },
+            { ar: "الألوان الكاملة", en: "24-bit full color", desc: "تمثيل كل لون من (R,G,B) بـ 8 بت (256 مستوى)، فيكون البكسل = 24 bit (3 Bytes)." },
+            { ar: "الإطار ومعدل الإطارات", en: "Frame & Frame rate (fps)", desc: "يعتمد الفيديو على ظاهرة الصورة الباقية؛ الإطار صورة ثابتة واحدة، ومعدل الإطارات (fps) عدد الإطارات المعروضة في الثانية." },
+            { ar: "الضغط غير الفاقد والفاقد", en: "Lossless vs. Lossy compression", desc: "غير الفاقد يستعيد البيانات الأصلية بالكامل (للنصوص والبرامج)؛ والفاقد يحذف تفاصيل غير ملحوظة (للصوت والصور والفيديو)." },
+            { ar: "ترميز طول التشغيل وترميز هوفمان", en: "Run-length encoding (RLE) & Huffman coding", desc: "RLE يستبدل الرموز المتتالية بالرمز وعدد تكراره (A5B2)؛ وهوفمان يعطي بتات أقصر للأحرف الأكثر تكراراً." },
+            { ar: "التجريد والتصور والهيكلة", en: "Abstraction, Visualization & Structuring", desc: "طرق تصميم البيانات: التجريد (استخراج الضروري ببساطة كالـ Pictogram)، التصور (الرسوم البيانية والجداول)، والهيكلة (القوائم والعلاقات)." },
+            { ar: "الرسم التصويري والأيقونة", en: "Pictogram & Icon", desc: "الرسم التصويري ينقل المعلومات دون كلمات في المحطات والمطارات؛ والأيقونة تمثل محتوى البرامج بالصور على الشاشات." },
+            { ar: "واجهة المستخدم (CUI و GUI) وتجربة المستخدم (UX)", en: "UI (CUI / GUI) & UX", desc: "CUI تعتمد على الأوامر النصية بلوحة المفاتيح، وGUI تعتمد على الرموز والفأرة، وUX هي الخبرة والتأثير العاطفي للمستخدم." },
+            { ar: "الإمكانية والدال", en: "Affordance & Signifier", desc: "الإمكانية (Affordance) هي العمليات الممكن تنفيذها على كائن، والدال (Signifier) هو إشارات تدفع المستخدم لاتخاذ إجراء." },
+            { ar: "قابلية الاستخدام وإمكانية الوصول والتصميم الشامل", en: "Usability, Accessibility & Universal Design", desc: "قابلية الاستخدام مدى سهولة الفهم؛ إمكانية الوصول سهولة الوصول لعموم الناس؛ والتصميم الشامل تصميم يتيح الاستخدام للجميع دون صعوبة." },
+            { ar: "مبدأ LATCH", en: "Location, Alphabet, Time, Category, Hierarchy", desc: "المعايير الخمسة لتنظيم وعرض البيانات: الموقع، الأبجدية، الوقت، الفئة، والهرمية." }
+        ];
+
+        function openGlossaryModal() {
+            document.getElementById('glossaryModal').classList.add('open');
+            renderGlossary();
+        }
+
+        function closeGlossaryModal() {
+            document.getElementById('glossaryModal').classList.remove('open');
+        }
+
+        function renderGlossary() {
+            const q = (document.getElementById('glossarySearchInput').value || '').trim().toLowerCase();
+            const grid = document.getElementById('glossaryGrid');
+            grid.innerHTML = '';
+            const filtered = glossaryTerms.filter(t => t.ar.includes(q) || t.en.toLowerCase().includes(q) || t.desc.includes(q));
+            filtered.forEach(t => {
+                const div = document.createElement('div');
+                div.className = 'glossary-item';
+                div.innerHTML = `
+                    <div style="font-weight:900; color:var(--primary); font-size:0.98rem;">${t.ar}</div>
+                    <div style="font-size:0.82rem; font-weight:700; color:var(--secondary); direction:ltr; text-align:right; margin-bottom:4px;">${t.en}</div>
+                    <div style="font-size:0.86rem; color:var(--text-muted);">${t.desc}</div>
+                `;
+                grid.appendChild(div);
+            });
+        }
+
+        // ==========================================
+        // تهيئة المنصة عند التحميل
+        // ==========================================
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section.content-card');
+            const navLinks = document.querySelectorAll('.nav-glass .nav-item');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        navLinks.forEach(link => {
+                            link.classList.toggle('active', link.getAttribute('data-target') === id);
+                        });
+                    }
+                });
+            }, { rootMargin: '-80px 0px -50% 0px', threshold: 0 });
+
+            sections.forEach(s => observer.observe(s));
+
+            updateBaseConverter('dec');
+            showBitProblem(36, 'رمي نردين (6 × 6 = 36 احتمالاً - صـ 65)', null);
+            updateAsciiLab('text');
+            runComplementLab();
+            calcAudioSize();
+            calcImageSize();
+            loadRlePreset('F', 'B6W4B4WBW4BW4', 'مثال الكتاب صـ 88 و 90: الحرف F', null);
+            showVideoCase(1);
+            selectLatch('L');
+            renderExam();
+        });
+    </script>
+
+</body>
+</html>
